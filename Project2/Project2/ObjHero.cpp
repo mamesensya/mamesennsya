@@ -21,10 +21,9 @@ using namespace GameL;
 void CObjHero::Init()
 {
 	m_bullet = true;
-	m_uniquebullet_1 = true;
-	m_uniquebullet_2 = true;
-	//m_stop_flag = true;
-	m_human = false;
+	m_unique_bullet_1 = true;
+	m_unique_bullet_2 = true;
+	m_human_flag = false;
 	m_hp = HP;
 
 	//当たり判定
@@ -35,7 +34,7 @@ void CObjHero::Init()
 void CObjHero::Action()
 {
 	////戦車状態：攻撃
-	//if (m_human == false)
+	//if (m_human_flag == false)
 	//{
 	//	//通常弾
 	//	if (Input::GetVKey('C') == true)
@@ -56,38 +55,38 @@ void CObjHero::Action()
 	//	//特殊弾（１）
 	//	else if (Input::GetVKey('X') == true)
 	//	{
-	//		if (m_uniquebullet_1 == true)
+	//		if (m_unique_bullet_1 == true)
 	//		{
 	//			//弾丸オブジェクト作成
 	//			CObjBullet* obj_b = new CObjBullet(m_x, m_y);//弾丸オブジェクト作成
 	//			Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
-	//			m_uniquebullet_1 = false;
+	//			m_unique_bullet_1 = false;
 	//		}
 	//		else
 	//		{
-	//			m_uniquebullet_1 = true;
+	//			m_unique_bullet_1 = true;
 	//		}
 	//	}
 	//	//特殊弾（２）
 	//	else if (Input::GetVKey('Z') == true)
 	//	{
-	//		if (m_uniquebullet_2 == true)
+	//		if (m_unique_bullet_2 == true)
 	//		{
 	//			//弾丸オブジェクト作成
 	//			CObjBullet* obj_b = new CObjBullet(m_x, m_y);//弾丸オブジェクト作成
 	//			Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
 
-	//			m_uniquebullet_2 = false;
+	//			m_unique_bullet_2 = false;
 	//		}
 	//		else
 	//		{
-	//			m_uniquebullet_2 = true;
+	//			m_unique_bullet_2 = true;
 	//		}
 	//	}
 	//}
 	////人状態：攻撃
-	//if (m_human == true)
+	//if (m_human_flag == true)
 	//{
 	//	//通常弾
 	//	if (Input::GetVKey('C') == true)
@@ -103,48 +102,26 @@ void CObjHero::Action()
 	//		}
 	//	}
 	//}
-	//戦車状態→人状態へ
-	if (m_human == false)
+	//人状態→戦車状態へ
+	if (m_human_flag == true)
 	{
-		//主人公が人状態に移行
+		//主人公が戦車状態に移行
 		if (Input::GetVKey('V') == true)
 		{
-			if (m_flag == true)
-			{
-				//主人公（人）
-				m_human = true;
-				//グラフィックの破棄
-
-				//グラフィック読み込み
-				Draw::LoadImageW(L"主人公_人.png", 0, TEX_SIZE_512);
-
-			}
-			else
-			{
-				m_flag = true;
-			}
+			m_human_flag = false;
+			//チャタリング防止用
+			while (Input::GetVKey('V') == true);
 		}
 	}
-	//人状態→戦車状態へ
-	else if (m_human == true)
+	//戦車状態→人状態へ
+	else if (m_human_flag == false)
 	{
 		//主人公が人状態に移行
 		if (Input::GetVKey('V') == true)
 		{
-			if (m_flag == true)
-			{
-				//主人公（人）
-				m_human = false;
-				//グラフィックの破棄
-
-				//グラフィック読み込み
-				Draw::LoadImageW(L"主人公_戦車.png", 0, TEX_SIZE_512);
-
-			}
-			else
-			{
-				m_flag = true;
-			}
+			m_human_flag = true;
+			//チャタリング防止用
+			while (Input::GetVKey('V') == true);
 		}
 	}
 	//右方向
@@ -198,24 +175,30 @@ void CObjHero::Action()
 //ドロー
 void CObjHero::Draw()
 {
-	//カラー情報
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	//主人公（戦車）のグラフィック
+	if (m_human_flag == false)
+	{
+		//カラー情報
+		float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
-	RECT_F src;//描画元切り取り位置
-	RECT_F dst;//描画先表示位置
+		RECT_F src;//描画元切り取り位置
+		RECT_F dst;//描画先表示位置
 
-	//切り取り位置の設定
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 300.0f;
-	src.m_bottom = 300.0f;
+		//切り取り位置の設定
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 300.0f;
+		src.m_bottom = 300.0f;
 
-	//表示位置の設定
-	dst.m_top = 0.0f + m_y;
-	dst.m_left = 0.0f + m_x;
-	dst.m_right = 32.0f + 64.0f + m_x;
-	dst.m_bottom = 32.0f + 64.0f + m_y;
+		//表示位置の設定
+		dst.m_top = 0.0f + m_y;
+		dst.m_left = 0.0f + m_x;
+		dst.m_right = 32.0f + 64.0f + m_x;
+		dst.m_bottom = 32.0f + 64.0f + m_y;
 
-	//描画
-	Draw::Draw(0, &src, &dst, c, m_r);
+		//描画
+		Draw::Draw(0, &src, &dst, c, m_r);
+	}
+	//主人公（人）のグラフィック
+	else if(m_human_flag==true)
 }
