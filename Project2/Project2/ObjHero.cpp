@@ -163,7 +163,6 @@ void CObjHero::Action()
 		//HitBoxの位置情報更新
 		hit->SetPos(m_x + 10, m_y);
 	}
-	/*
 	//当たり判定を行うオブジェクト情報部
 	int data_base[Collision_detection] =
 	{
@@ -176,12 +175,11 @@ void CObjHero::Action()
 		m_hp -= 1;
 	}
 	//m_hpが０になると主人公を破棄
-	if (m_hp >= 0)
+	if (m_hp <= 0)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 	}
-	*/
 }
 
 //ドロー
