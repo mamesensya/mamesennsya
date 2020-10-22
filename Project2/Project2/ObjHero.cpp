@@ -28,7 +28,7 @@ void CObjHero::Init()
 	direct = 1;
 
 	//当たり判定
-	Hits::SetHitBox(this, m_x, m_y, 96, 96, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_x+10, m_y+20, 72, 72, ELEMENT_PLAYER, OBJ_HERO, 1);
 }
 
 //アクション
@@ -125,6 +125,8 @@ void CObjHero::Action()
 			while (Input::GetVKey('V') == true);
 		}
 	}
+
+	CHitBox* hit = Hits::GetHitBox(this);
 	//右方向
 	if (Input::GetVKey(VK_RIGHT) == true)
 	{
@@ -132,7 +134,6 @@ void CObjHero::Action()
 		m_x += SPEED;
 		direct = 2;
 		//HitBoxの位置情報更新
-		CHitBox* hit = Hits::GetHitBox(this);
 		hit->SetPos(m_x, m_y + 12);
 	}
 	//左方向
@@ -142,7 +143,6 @@ void CObjHero::Action()
 		m_x -= SPEED;
 		direct = 4;
 		//HitBoxの位置情報更新
-		CHitBox* hit = Hits::GetHitBox(this);
 		hit->SetPos(m_x + 20, m_y + 12);
 	}
 	//上方向
@@ -152,7 +152,6 @@ void CObjHero::Action()
 		m_y -= SPEED;
 		direct = 1;
 		//HitBoxの位置情報更新
-		CHitBox* hit = Hits::GetHitBox(this);
 		hit->SetPos(m_x + 10, m_y + 20);
 	}
 	//下方向
@@ -162,7 +161,6 @@ void CObjHero::Action()
 		m_y += SPEED;
 		direct = 3;
 		//HitBoxの位置情報更新
-		CHitBox* hit = Hits::GetHitBox(this);
 		hit->SetPos(m_x + 10, m_y);
 	}
 	/*
