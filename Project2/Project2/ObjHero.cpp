@@ -201,4 +201,5 @@ void CObjHero::Draw()
 	}
 	//主人公（人）のグラフィック
 	else if(m_human_flag==true)
+	{ }
 }
