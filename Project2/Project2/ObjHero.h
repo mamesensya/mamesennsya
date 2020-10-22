@@ -11,11 +11,15 @@ public:
 	void Init();//イニシャライズ
 	void Action();//アクション
 	void Draw();//ドロー
+
+	int direct{0};//主人公の方向記憶変数
 private:
 	int m_hp{ 0 };//主人公のヒットポイント（体力）
 
 	float m_x{ 0 };//主人公移動用変数：横軸
 	float m_y{ 0 };//主人公移動用変数：縦軸
+	float m_px{ 0 };//主人公位置用変数：横軸
+	float m_py{ 0 };//主人公位置用変数：縦軸
 
 	float m_r{ 0 };//主人公の角度制御用
 

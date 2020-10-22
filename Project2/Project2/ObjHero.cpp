@@ -8,7 +8,7 @@
 #include "ObjHero.h"
 
 //当たり判定のオブジェクト情報部の数
-#define Collision_detection 1
+#define Collision_detection 4
 //主人公のHP（体力）
 #define HP 5
 //主人公のスピード
@@ -25,9 +25,10 @@ void CObjHero::Init()
 	m_unique_bullet_2 = true;
 	m_human_flag = false;
 	m_hp = HP;
+	direct = 1;
 
 	//当たり判定
-	Hits::SetHitBox(this, m_x, m_y, 92, 92, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_x, m_y, 96, 96, ELEMENT_PLAYER, OBJ_HERO, 1);
 }
 
 //アクション
@@ -129,30 +130,42 @@ void CObjHero::Action()
 	{
 		m_r = 270.0f;
 		m_x += SPEED;
+		direct = 2;
+		//HitBoxの位置情報更新
+		CHitBox* hit = Hits::GetHitBox(this);
+		hit->SetPos(m_x, m_y + 12);
 	}
 	//左方向
 	if (Input::GetVKey(VK_LEFT) == true)
 	{
 		m_r = 90.0f;
 		m_x -= SPEED;
+		direct = 4;
+		//HitBoxの位置情報更新
+		CHitBox* hit = Hits::GetHitBox(this);
+		hit->SetPos(m_x + 20, m_y + 12);
 	}
 	//上方向
 	if (Input::GetVKey(VK_UP) == true)
 	{
 		m_r = 0.0f;
 		m_y -= SPEED;
+		direct = 1;
+		//HitBoxの位置情報更新
+		CHitBox* hit = Hits::GetHitBox(this);
+		hit->SetPos(m_x + 10, m_y + 20);
 	}
 	//下方向
 	if (Input::GetVKey(VK_DOWN) == true)
 	{
 		m_r = 180.0f;
 		m_y += SPEED;
+		direct = 3;
+		//HitBoxの位置情報更新
+		CHitBox* hit = Hits::GetHitBox(this);
+		hit->SetPos(m_x + 10, m_y);
 	}
-
-	//HitBoxの位置情報更新
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x, m_y);
-
+	/*
 	//当たり判定を行うオブジェクト情報部
 	int data_base[Collision_detection] =
 	{
@@ -170,6 +183,7 @@ void CObjHero::Action()
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 	}
+	*/
 }
 
 //ドロー
@@ -200,6 +214,8 @@ void CObjHero::Draw()
 		Draw::Draw(0, &src, &dst, c, m_r);
 	}
 	//主人公（人）のグラフィック
-	else if(m_human_flag==true)
-	{ }
+	if(m_human_flag == true)
+	{
+
+	}
 }
