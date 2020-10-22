@@ -125,7 +125,7 @@ void CObjHero::Action()
 			while (Input::GetVKey('V') == true);
 		}
 	}
-
+	//ヒットボックス
 	CHitBox* hit = Hits::GetHitBox(this);
 	//右方向
 	if (Input::GetVKey(VK_RIGHT) == true)
@@ -166,7 +166,7 @@ void CObjHero::Action()
 	//当たり判定を行うオブジェクト情報部
 	int data_base[Collision_detection] =
 	{
-
+		OBJ_ENEMY,
 	};
 
 	//敵オブジェクトと接触したら主人公のm_hpが減少
@@ -179,6 +179,8 @@ void CObjHero::Action()
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+
+		//Scene::SetScene(new CSceneTitle());
 	}
 }
 
