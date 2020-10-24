@@ -8,6 +8,7 @@ enum OBJ_NAME
 	//OBJ_○○と表記
 	OBJ_HERO,
 	OBJ_ENEMY,
+	OBJ_ENEMY_BULLET,
 };
 //------------------------------------------------
 
@@ -52,7 +53,8 @@ struct UserData
 
 //ゲームシーンオブジェクトヘッダ------------------
 #include "ObjHero.h"
-
+#include"Enemy.h"
+#include"CObjEnemyBullet.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

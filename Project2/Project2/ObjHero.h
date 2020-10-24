@@ -12,6 +12,9 @@ public:
 	void Action();//アクション
 	void Draw();//ドロー
 
+	float GetX() { return m_x; }
+	float GetY() { return m_y; }
+
 	int direct{0};//主人公の方向記憶変数
 private:
 	int m_hp{ 0 };//主人公のヒットポイント（体力）
