@@ -17,6 +17,13 @@
 //使用するネームスペース
 using namespace GameL;
 
+//コンストラクタ
+CObjHero::CObjHero(float x, float y)
+{
+	m_x = x;
+	m_y = y;
+}
+
 //イニシャライズ
 void CObjHero::Init()
 {

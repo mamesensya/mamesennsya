@@ -5,7 +5,7 @@
 
 using namespace GameL;
 
-//コンストラクタ
+
 //シーンメインで位置変更可能
 CObjEnemyBullet::CObjEnemyBullet(float x, float y)
 {

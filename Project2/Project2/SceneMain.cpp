@@ -41,7 +41,7 @@ void CSceneMain::InitScene()
 	//主人公グラフィック読み込み
 	Draw::LoadImageW(L"主人公_戦車.png", 0, TEX_SIZE_512);
 	//主人公
-	CObjHero* obj = new CObjHero();
+	CObjHero* obj = new CObjHero(0,0);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	

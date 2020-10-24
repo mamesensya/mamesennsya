@@ -6,7 +6,7 @@ using namespace GameL;
 class CObjHero :public CObj
 {
 public:
-	CObjHero() {};
+	CObjHero(float x,float y) ;
 	~CObjHero() {};
 	void Init();//イニシャライズ
 	void Action();//アクション
