@@ -66,6 +66,9 @@
     <ClCompile Include="CObjEnemyBullet.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\..\Desktop\Beans(消さぬように)\Beans\EnemyBullet.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -117,6 +120,9 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CObjEnemyBullet.h">
+      <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\..\Desktop\Beans(消さぬように)\Beans\EnemyBullet.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
