@@ -65,10 +65,10 @@ void CObjEnemyBullet::Draw()
 	src.m_bottom = 200.0f;
 
 	//•\Ž¦ˆÊ’u
-	dst.m_top = 0.0f;
-	dst.m_left = 0.0f;
-	dst.m_right = 200.0f;
-    dst.m_bottom = 200.0f;
+	dst.m_top = 0.0f+m_y;
+	dst.m_left = 0.0f+m_x;
+	dst.m_right = 32.0f+m_x;
+    dst.m_bottom = 32.0f+m_y;
 
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 }

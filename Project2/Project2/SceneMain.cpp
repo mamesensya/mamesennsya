@@ -32,8 +32,7 @@ void CSceneMain::InitScene()
 	//ìGÇÃíeÅiBBíeÅj
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
 	CObjEnemyBullet* obj_enemybullet = new CObjEnemyBullet(300, 300);
-	Objs::InsertObj(obj_enemybullet, OBJ_ENEMY_BULLET, 50);
-
+	Objs::InsertObj(obj_enemybullet, OBJ_ENEMY_BULLET, 60);
 
 	Draw::LoadImageW(L"ìG_êÌé‘2.png", 1, TEX_SIZE_512);
 	CObjEnemy* obj_enemy = new CObjEnemy(300,300);
