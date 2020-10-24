@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\..\..\Desktop\Beans(消さぬように)\Beans\EnemyBullet.cpp" />
     <ClCompile Include="CObjEnemyBullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
@@ -158,6 +159,7 @@
     <ClCompile Include="SceneMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\..\..\Desktop\Beans(消さぬように)\Beans\EnemyBullet.h" />
     <ClInclude Include="CObjEnemyBullet.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameHead.h" />
