@@ -13,6 +13,9 @@ public:
 	void Action();
 	void Draw();
 
+
+	float GetX() { return m_x; }
+	float GetY() { return m_y; }
 	float GetR() { return m_r; }
 
 private:
