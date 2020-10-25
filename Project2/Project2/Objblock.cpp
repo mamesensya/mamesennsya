@@ -114,6 +114,12 @@ void CObjBlock::Action()
 	float hx = hero->GetX();
 	float hy = hero->GetY();
 
+	if (hx < 80)
+	{
+		hero->SetX(80);
+		m_scroll = hero - GetVX();
+
+
 	for (int i = 0; i < 80; i++)
 	{
 		for (int j = 0; j < 80; j++)
@@ -125,7 +131,14 @@ void CObjBlock::Action()
 				float y = i * 64.0f;
 
 				//主人公とブロックのあたり判定
-				if (1)
+				if ((hx + (-m_scroll) + 64.0f > x) && (hx + (-m_scroll) < y) && (hy < y + 64.0f))
+				{
+					//上下左右の判定
+
+					//vectorのさくせい
+					float vx = (hx + (-m_scroll)) - x;
+					float vy = hy - y;
+				}
 				{
 					;//当たってる場合
 				}
