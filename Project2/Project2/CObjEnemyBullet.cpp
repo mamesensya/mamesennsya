@@ -5,12 +5,11 @@
 
 using namespace GameL;
 
-
-//シーンメインで位置変更可能
-CObjEnemyBullet::CObjEnemyBullet(float x, float y)
+CObjEnemyBullet::CObjEnemyBullet(float x, float y,float r)
 {
-	m_x = x;//座標ｘ
-	m_y = y;//座標ｙ
+	m_x = x+45;
+	m_y = y+50;
+	m_r = r;
 }
 
 //イニシャライズ
@@ -26,8 +25,36 @@ void CObjEnemyBullet::Init()
 //アクション
 void CObjEnemyBullet::Action()
 {
+	//float mr = 0.0f;
+	////敵戦車のグラフィックの向きを取得
+	//CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+	//mr = enemy->GetR();
 
 
+	if (m_r == 0.0f)
+	{
+		m_vy = -5.0f;
+		m_vx = 0.0f;
+	}
+	else if (m_r == 90.0f)
+	{
+		m_vx = -5.0f;
+		m_vy = 0.0f;
+	}
+	else if (m_r == 180.0f)
+	{
+		m_vy = +5.0f;
+		m_vx = 0.0f;
+	}
+	else if (m_r == -90.0f)
+	{
+		m_vx = +5.0f;
+		m_vy = 0.0f;
+	}
+
+
+	m_x += m_vx;
+	m_y += m_vy;
 
 
 	//HitBoxの内容を更新
@@ -47,6 +74,12 @@ void CObjEnemyBullet::Action()
 	//	this->SetStatus(false);//自身に削除命令を出す
 	//	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 	//}
+
+	if (m_x >= 1000.0f||m_x<=-1000.0f || m_y >= 1000.0f||m_y>=1000.0f)
+	{
+		this->SetStatus(false);//削除命令
+		Hits::DeleteHitBox(this);//削除
+	}
 
 }
 

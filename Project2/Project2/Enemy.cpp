@@ -19,10 +19,10 @@ void CObjEnemy::Init()
 	m_vx = 0.0f;    //移動方向
 	m_vy = 0.0f;
 	m_r=0.0f;//向きを決める変数
-	m_hp=20;//体力
+	m_hp=5;//体力
 	count = 0;//向きを固定するカウント
-	m_time = 0;
-	m_move_time = 0;
+	m_time = 0;//弾丸発射制御用time
+	m_move_time = 0;//移動硬直用time
 
 	//HitBox追加
 	Hits::SetHitBox(this, m_x+35, m_y+40, 55, 55, ELEMENT_ENEMY, OBJ_ENEMY,1 );
@@ -31,14 +31,12 @@ void CObjEnemy::Init()
 void CObjEnemy::Action()
 {
 
-	//	m_time++;
-	//	if (m_time > 300)
-	//	{
-	//		m_time = 0;
-	//		//弾丸発射
-	//		CObjBulletEnemy* obj_b = new CObjBulletEnemy(m_x, m_y);//弾丸オブジェクト作成
-	//		Objs::InsertObj(obj_b, OBJ_BULLET_ENEMY, 1);
-	//	}
+	m_time++;
+	if (m_time > 100)
+	{
+		m_time = 0;
+
+	}
 
 	//ある程度近づくと主人公と並行な位置まで移動
 
@@ -55,6 +53,7 @@ void CObjEnemy::Action()
 	y = m_y - hy;
 	
 
+
 	if ((x >= -400.0f && x <= 400.0f) || (y >= -400.0f && y <= 400.0f))
 	{
 
@@ -63,14 +62,14 @@ void CObjEnemy::Action()
 		{
 			if (x > y)
 			{
-				if (x >= -50.0f && count == 0)
+				if (x >= -20.0f && count == 0)
 				{
 					//x軸がほぼ垂直
 					m_r = 180.0f;
 					m_vy = +0.1;
 					count = 1;
 				}
-				if (x < -50.0f&&m_move_time==0)
+				if (x < -20.0f&&m_move_time==0)
 				{
 					//x軸の方が近い　
 					m_r = -90.0f;
@@ -79,14 +78,14 @@ void CObjEnemy::Action()
 			}
 			if (x < y)
 			{
-				if (y >= -50.0f && count == 0)
+				if (y >= -20.0f && count == 0)
 				{
 					//y軸がほぼ平行
 					m_r = -90.0f;
 					m_vx = 0.1f;
 					count = 1;
 				}
-				if (y < -50.0f&&m_move_time==0)
+				if (y < -20.0f&&m_move_time==0)
 				{
 					//y軸の方が近い
 					m_r = 180.0f;
@@ -99,14 +98,14 @@ void CObjEnemy::Action()
 		{
 			if (x < y)
 			{
-				if (x <= 50.0f && count == 0)
+				if (x <= 20.0f && count == 0)
 				{
 					//x軸がほぼ垂直
 					m_r = 0.0f;
 					m_vy = -0.1f;
 					count = 1;
 				}
-				if (x > 50.0f&&m_move_time==0)
+				if (x > 20.0f&&m_move_time==0)
 				{
 					//x軸の方が近い
 					m_r = 90.0f;
@@ -115,14 +114,14 @@ void CObjEnemy::Action()
 			}
 			if (x > y)
 			{
-				if (y <= 50.0f && count == 0)
+				if (y <= 20.0f && count == 0)
 				{
 					//y軸がほぼ平行
 					m_r = 90.0f;
 					m_vx = -0.1f;
 					count = 1;
 				}
-				if (y > 50.0f&&m_move_time==0)
+				if (y > 20.0f&&m_move_time==0)
 				{
 					//y軸の方が近い
 					m_r = 0.0f;
@@ -137,14 +136,14 @@ void CObjEnemy::Action()
 			float py = y - y - y;
 	    	if (x<py)
 			{
-				if (x <= 50.0f && count == 0)
+				if (x <= 20.0f && count == 0)
 				{
 					//x軸がほぼ垂直
 					m_r = 180.0f;
 					m_vy = -0.1f;
 					count = 1;
 				}
-				if (x > 50.0f&&m_move_time==0)
+				if (x > 20.0f&&m_move_time==0)
 				{
 					//x軸の方が近い
 					m_r = 90.0f;
@@ -153,14 +152,14 @@ void CObjEnemy::Action()
 			}
 			if (x>py)
 			{
-				if (y >= -50.0f && count == 0)
+				if (y >= -20.0f && count == 0)
 				{
 					//y軸がほぼ平行
 					m_r = 90.0f;
 					m_vx = -0.1f;
 					count = 1;
 				}
-				if (y < -50.0f&&m_move_time==0)
+				if (y < -20.0f&&m_move_time==0)
 				{
 					//y軸の方が近い
 					m_r = 180.0f;
@@ -174,14 +173,14 @@ void CObjEnemy::Action()
 			float px = x - x - x;
 			if (px<y)
 			{
-				if (x >= -50.0f && count == 0)
+				if (x >= -20.0f && count == 0)
 				{
 					//x軸がほぼ垂直
 					m_r = 0.0f;
 					m_vy = -0.1;
 					count = 1;
 				}
-				if (x < -50.0f&&m_move_time==0)
+				if (x < -20.0f&&m_move_time==0)
 				{
 					//x軸の方が近い　
 					m_r = -90.0f;
@@ -190,14 +189,14 @@ void CObjEnemy::Action()
 			}
 			if (px>y)
 			{
-				if (y <= 50.0f && count == 0)
+				if (y <= 20.0f && count == 0)
 				{
 					//y軸がほぼ平行
 					m_r = -90.0f;
 					m_vx = 0.1f;
 					count = 1;
 				}
-				if (y > 50.0f&&m_move_time==0)
+				if (y > 20.0f&&m_move_time==0)
 				{
 					//y軸の方が近い
 					m_r = 0.0f;
@@ -207,6 +206,14 @@ void CObjEnemy::Action()
 		}
 	
 
+	}
+
+
+	if (m_time == 100&&count==1)
+	{
+		//敵弾丸発射
+		CObjEnemyBullet* obj_enemybullet = new CObjEnemyBullet(m_x, m_y,m_r);
+		Objs::InsertObj(obj_enemybullet, OBJ_ENEMY_BULLET, 60);
 	}
 
 	m_x += m_vx;
@@ -221,7 +228,7 @@ void CObjEnemy::Action()
 	//if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	//{
 	//	m_hp--;
-	//	if (m_hp == 0) {
+	//	if (m_hp <= 0) {
 	//		this->SetStatus(false);//自身に削除命令を出す
 	//		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 	//	}
@@ -229,6 +236,7 @@ void CObjEnemy::Action()
 	m_vx = 0;
 	m_vy = 0;
 
+	//移動硬直制御
 	if (count == 1)
 	{
 		m_move_time++;

@@ -31,12 +31,11 @@ void CSceneMain::InitScene()
 	Draw::LoadImage(L"red.jpg", 0, TEX_SIZE_512);
 	//敵の弾（BB弾）
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
-	CObjEnemyBullet* obj_enemybullet = new CObjEnemyBullet(300, 300);
-	Objs::InsertObj(obj_enemybullet, OBJ_ENEMY_BULLET, 60);
+
 
 	//敵戦車
 	Draw::LoadImageW(L"敵_戦車2.png", 1, TEX_SIZE_512);
-	CObjEnemy* obj_enemy = new CObjEnemy(700,500);
+	CObjEnemy* obj_enemy = new CObjEnemy(350,250);
 	Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);
 
 	//主人公グラフィック読み込み
