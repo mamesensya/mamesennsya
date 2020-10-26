@@ -12,8 +12,24 @@ public:
 	void Action();//アクション
 	void Draw();//ドロー
 
-	float GetX() { return m_x; }
-	float GetY() { return m_y; }
+	float GetX() 
+	{
+		if (m_hp == 0)
+		{
+			return 0;
+		}
+		else
+		return m_x;
+	}
+	float GetY() 
+	{
+		if (m_hp == 0)
+		{
+			return 0;
+		}
+		else
+		return m_y;
+	}
 
 	int direct{0};//主人公の方向記憶変数
 private:

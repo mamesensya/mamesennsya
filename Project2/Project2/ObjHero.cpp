@@ -171,18 +171,19 @@ void CObjHero::Action()
 		hit->SetPos(m_x + 10, m_y);
 	}
 	//当たり判定を行うオブジェクト情報部
-	int data_base[Collision_detection] =
+	int data_base[4] =
 	{
 		OBJ_ENEMY,
+		OBJ_ENEMY_BULLET,
 	};
 
 	//敵オブジェクトと接触したら主人公のm_hpが減少
-	if (hit->CheckObjNameHit(data_base[Collision_detection]) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_ENEMY_BULLET) != nullptr)
 	{
 		m_hp -= 1;
 	}
 	//m_hpが０になると主人公を破棄
-	if (m_hp <= 0)
+	if (m_hp == 0)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する

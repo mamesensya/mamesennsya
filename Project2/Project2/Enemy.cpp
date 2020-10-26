@@ -45,167 +45,170 @@ void CObjEnemy::Action()
 
 	//主人公の座標取得
 	CObjHero* hero=(CObjHero*)Objs::GetObj(OBJ_HERO);
-	float hx = hero->GetX();
-	float hy = hero->GetY();
-	
-	//敵から主人公のベクトルを求める
-	x = m_x - hx;
-	y = m_y - hy;
-	
-
-
-	if ((x >= -400.0f && x <= 400.0f) || (y >= -400.0f && y <= 400.0f))
+	if (hero != nullptr)
 	{
+		float hx = hero->GetX();
+		float hy = hero->GetY();
 
-		//(-x,-y)の時
-		if (x <= 0.0f && y <= 0.0f)
-		{
-			if (x > y)
-			{
-				if (x >= -20.0f && count == 0)
-				{
-					//x軸がほぼ垂直
-					m_r = 180.0f;
-					m_vy = +0.1;
-					count = 1;
-				}
-				if (x < -20.0f&&m_move_time==0)
-				{
-					//x軸の方が近い　
-					m_r = -90.0f;
-					m_vx = 0.7f;
-				}
-			}
-			if (x < y)
-			{
-				if (y >= -20.0f && count == 0)
-				{
-					//y軸がほぼ平行
-					m_r = -90.0f;
-					m_vx = 0.1f;
-					count = 1;
-				}
-				if (y < -20.0f&&m_move_time==0)
-				{
-					//y軸の方が近い
-					m_r = 180.0f;
-					m_vy = 0.7f;
-				}
-			}
-		}
-		//(x,y)の時
-		if (x >= 0.0f && y >= 0.0f)
-		{
-			if (x < y)
-			{
-				if (x <= 20.0f && count == 0)
-				{
-					//x軸がほぼ垂直
-					m_r = 0.0f;
-					m_vy = -0.1f;
-					count = 1;
-				}
-				if (x > 20.0f&&m_move_time==0)
-				{
-					//x軸の方が近い
-					m_r = 90.0f;
-					m_vx = -0.7f;
-				}
-			}
-			if (x > y)
-			{
-				if (y <= 20.0f && count == 0)
-				{
-					//y軸がほぼ平行
-					m_r = 90.0f;
-					m_vx = -0.1f;
-					count = 1;
-				}
-				if (y > 20.0f&&m_move_time==0)
-				{
-					//y軸の方が近い
-					m_r = 0.0f;
-					m_vy = -0.7f;
-				}
-			}
-		}
+		//敵から主人公のベクトルを求める
+		x = m_x - hx;
+		y = m_y - hy;
 
-		//(x,-y)の場合
-		if (x >= 0.0f && y <= 0.0f)
-		{
-			float py = y - y - y;
-	    	if (x<py)
-			{
-				if (x <= 20.0f && count == 0)
-				{
-					//x軸がほぼ垂直
-					m_r = 180.0f;
-					m_vy = -0.1f;
-					count = 1;
-				}
-				if (x > 20.0f&&m_move_time==0)
-				{
-					//x軸の方が近い
-					m_r = 90.0f;
-					m_vx = -0.7f;
-				}
-			}
-			if (x>py)
-			{
-				if (y >= -20.0f && count == 0)
-				{
-					//y軸がほぼ平行
-					m_r = 90.0f;
-					m_vx = -0.1f;
-					count = 1;
-				}
-				if (y < -20.0f&&m_move_time==0)
-				{
-					//y軸の方が近い
-					m_r = 180.0f;
-					m_vy = 0.7f;
-				}
-			}
-		}
-		//(-x,y)の場合
-		if (x <= 0.0f && y >= 0.0f)
-		{
-			float px = x - x - x;
-			if (px<y)
-			{
-				if (x >= -20.0f && count == 0)
-				{
-					//x軸がほぼ垂直
-					m_r = 0.0f;
-					m_vy = -0.1;
-					count = 1;
-				}
-				if (x < -20.0f&&m_move_time==0)
-				{
-					//x軸の方が近い　
-					m_r = -90.0f;
-					m_vx = 0.7f;
-				}
-			}
-			if (px>y)
-			{
-				if (y <= 20.0f && count == 0)
-				{
-					//y軸がほぼ平行
-					m_r = -90.0f;
-					m_vx = 0.1f;
-					count = 1;
-				}
-				if (y > 20.0f&&m_move_time==0)
-				{
-					//y軸の方が近い
-					m_r = 0.0f;
-					m_vy = -0.7f;
-				}
-			}
-		}
-	
 
+
+		if ((x >= -400.0f && x <= 400.0f) || (y >= -400.0f && y <= 400.0f))
+		{
+
+			//(-x,-y)の時
+			if (x <= 0.0f && y <= 0.0f)
+			{
+				if (x > y)
+				{
+					if (x >= -20.0f && count == 0)
+					{
+						//x軸がほぼ垂直
+						m_r = 180.0f;
+						m_vy = +0.1;
+						count = 1;
+					}
+					if (x < -20.0f && m_move_time == 0)
+					{
+						//x軸の方が近い　
+						m_r = -90.0f;
+						m_vx = 0.7f;
+					}
+				}
+				if (x < y)
+				{
+					if (y >= -20.0f && count == 0)
+					{
+						//y軸がほぼ平行
+						m_r = -90.0f;
+						m_vx = 0.1f;
+						count = 1;
+					}
+					if (y < -20.0f && m_move_time == 0)
+					{
+						//y軸の方が近い
+						m_r = 180.0f;
+						m_vy = 0.7f;
+					}
+				}
+			}
+			//(x,y)の時
+			if (x >= 0.0f && y >= 0.0f)
+			{
+				if (x < y)
+				{
+					if (x <= 20.0f && count == 0)
+					{
+						//x軸がほぼ垂直
+						m_r = 0.0f;
+						m_vy = -0.1f;
+						count = 1;
+					}
+					if (x > 20.0f && m_move_time == 0)
+					{
+						//x軸の方が近い
+						m_r = 90.0f;
+						m_vx = -0.7f;
+					}
+				}
+				if (x > y)
+				{
+					if (y <= 20.0f && count == 0)
+					{
+						//y軸がほぼ平行
+						m_r = 90.0f;
+						m_vx = -0.1f;
+						count = 1;
+					}
+					if (y > 20.0f && m_move_time == 0)
+					{
+						//y軸の方が近い
+						m_r = 0.0f;
+						m_vy = -0.7f;
+					}
+				}
+			}
+
+			//(x,-y)の場合
+			if (x >= 0.0f && y <= 0.0f)
+			{
+				float py = y - y - y;
+				if (x < py)
+				{
+					if (x <= 20.0f && count == 0)
+					{
+						//x軸がほぼ垂直
+						m_r = 180.0f;
+						m_vy = -0.1f;
+						count = 1;
+					}
+					if (x > 20.0f && m_move_time == 0)
+					{
+						//x軸の方が近い
+						m_r = 90.0f;
+						m_vx = -0.7f;
+					}
+				}
+				if (x > py)
+				{
+					if (y >= -20.0f && count == 0)
+					{
+						//y軸がほぼ平行
+						m_r = 90.0f;
+						m_vx = -0.1f;
+						count = 1;
+					}
+					if (y < -20.0f && m_move_time == 0)
+					{
+						//y軸の方が近い
+						m_r = 180.0f;
+						m_vy = 0.7f;
+					}
+				}
+			}
+			//(-x,y)の場合
+			if (x <= 0.0f && y >= 0.0f)
+			{
+				float px = x - x - x;
+				if (px < y)
+				{
+					if (x >= -20.0f && count == 0)
+					{
+						//x軸がほぼ垂直
+						m_r = 0.0f;
+						m_vy = -0.1;
+						count = 1;
+					}
+					if (x < -20.0f && m_move_time == 0)
+					{
+						//x軸の方が近い　
+						m_r = -90.0f;
+						m_vx = 0.7f;
+					}
+				}
+				if (px > y)
+				{
+					if (y <= 20.0f && count == 0)
+					{
+						//y軸がほぼ平行
+						m_r = -90.0f;
+						m_vx = 0.1f;
+						count = 1;
+					}
+					if (y > 20.0f && m_move_time == 0)
+					{
+						//y軸の方が近い
+						m_r = 0.0f;
+						m_vy = -0.7f;
+					}
+				}
+			}
+
+
+		}
 	}
 
 
