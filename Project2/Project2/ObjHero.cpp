@@ -3,6 +3,7 @@
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
 #include "GameL\WinInputs.h"
+#include "CObjPlayerBullet.h"
 
 #include "GameHead.h"
 #include "ObjHero.h"
@@ -41,76 +42,6 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
-	////戦車状態：攻撃
-	//if (m_human_flag == false)
-	//{
-	//	//通常弾
-	//	if (Input::GetVKey('C') == true)
-	//	{
-	//		if (m_bullet == true)
-	//		{
-	//			//弾丸オブジェクト作成
-	//			CObjBullet* obj_b = new CObjBullet(m_x, m_y);//弾丸オブジェクト作成
-	//			Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-
-	//			m_bullet = false;
-	//		}
-	//		else
-	//		{
-	//			m_bullet = true;
-	//		}
-	//	}
-	//	//特殊弾（１）
-	//	else if (Input::GetVKey('X') == true)
-	//	{
-	//		if (m_unique_bullet_1 == true)
-	//		{
-	//			//弾丸オブジェクト作成
-	//			CObjBullet* obj_b = new CObjBullet(m_x, m_y);//弾丸オブジェクト作成
-	//			Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-
-	//			m_unique_bullet_1 = false;
-	//		}
-	//		else
-	//		{
-	//			m_unique_bullet_1 = true;
-	//		}
-	//	}
-	//	//特殊弾（２）
-	//	else if (Input::GetVKey('Z') == true)
-	//	{
-	//		if (m_unique_bullet_2 == true)
-	//		{
-	//			//弾丸オブジェクト作成
-	//			CObjBullet* obj_b = new CObjBullet(m_x, m_y);//弾丸オブジェクト作成
-	//			Objs::InsertObj(obj_b, OBJ_BULLET, 1);//作った弾丸オブジェクトをオブジェクトマネージャーに登録
-
-	//			m_unique_bullet_2 = false;
-	//		}
-	//		else
-	//		{
-	//			m_unique_bullet_2 = true;
-	//		}
-	//	}
-	//}
-	////人状態：攻撃
-	//if (m_human_flag == true)
-	//{
-	//	//通常弾
-	//	if (Input::GetVKey('C') == true)
-	//	{
-	//		if (m_attack == true)
-	//		{
-
-	//			m_attack = false;
-	//		}
-	//		else
-	//		{
-	//			m_attack = true;
-	//		}
-	//	}
-	//}
-	//人状態→戦車状態へ
 	if (m_human_flag == true)
 	{
 		//主人公が戦車状態に移行
@@ -170,6 +101,12 @@ void CObjHero::Action()
 		//HitBoxの位置情報更新
 		hit->SetPos(m_x + 10, m_y);
 	}
+
+	if (Input::GetVKey('Z') == true) {
+		CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x,m_y,(float)((direct-1)*90));
+		Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 20);
+	}
+
 	//当たり判定を行うオブジェクト情報部
 	int data_base[4] =
 	{

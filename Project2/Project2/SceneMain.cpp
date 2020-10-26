@@ -48,6 +48,7 @@ void CSceneMain::InitScene()
 
 	Draw::LoadImageW(L"yuka.png", 3, TEX_SIZE_512);
 
+	Draw::LoadImageW(L"pien.png", 14, TEX_SIZE_512);
 	//CObjBlock* obj_block = new CObjBlock;
 	//Objs::InsertObj(obj_block, OBJ_BLOCK, 9);
 
