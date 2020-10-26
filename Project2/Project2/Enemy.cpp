@@ -227,15 +227,15 @@ void CObjEnemy::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x+35, m_y+40);
 
-	////弾丸と接触しているかを調べる
-	//if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
-	//{
-	//	m_hp--;
-	//	if (m_hp <= 0) {
-	//		this->SetStatus(false);//自身に削除命令を出す
-	//		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
-	//	}
-	//}
+	//弾丸と接触しているかを調べる
+	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
+	{
+		m_hp--;
+		if (m_hp <= 0) {
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
+		}
+	}
 	m_vx = 0;
 	m_vy = 0;
 

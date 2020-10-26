@@ -35,6 +35,8 @@ void CObjHero::Init()
 	m_hp = HP;
 	direct = 1;
 	m_vx = 0;
+	m_bullet_time = true;
+	m_time = 0;
 
 	//当たり判定
 	Hits::SetHitBox(this, m_x+10, m_y+20, 72, 72, ELEMENT_PLAYER, OBJ_HERO, 1);
@@ -104,10 +106,11 @@ void CObjHero::Action()
 	}
 	m_x = +m_vx;
 	m_y = +m_vy;
-
+	if(m_bullet_time==true)
 	if (Input::GetVKey('Z') == true) {
-		CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x,m_y,(float)((direct-1)*90));
-		Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 20);
+		CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x,m_y,(float)((direct+2)*90));
+		Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 14);
+		m_bullet_time = false;
 	}
 
 	//当たり判定を行うオブジェクト情報部
@@ -130,6 +133,16 @@ void CObjHero::Action()
 
 		//Scene::SetScene(new CSceneTitle());
 	}
+
+	if (m_bullet_time == false)
+	{
+		m_time++;
+		if (m_time == 60) {
+			m_bullet_time = true;
+			m_time = 0;
+		}
+	}
+
 }
 
 //ドロー

@@ -16,4 +16,5 @@ private:
 	float m_vx;
 	float m_vy;
 	float m_r;
+	float m_speed;
 };
