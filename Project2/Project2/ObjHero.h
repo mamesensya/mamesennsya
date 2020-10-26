@@ -14,20 +14,10 @@ public:
 
 	float GetX() 
 	{
-		if (m_hp == 0)
-		{
-			return 0;
-		}
-		else
 		return m_x;
 	}
 	float GetY() 
 	{
-		if (m_hp == 0)
-		{
-			return 0;
-		}
-		else
 		return m_y;
 	}
 
@@ -37,6 +27,8 @@ private:
 
 	float m_x{ 0 };//主人公移動用変数：横軸
 	float m_y{ 0 };//主人公移動用変数：縦軸
+	float m_vx{ 0 };//主人公ベクトル：横軸
+	float m_vy{ 0 };//主人公ベクトル：縦軸
 	float m_px{ 0 };//主人公位置用変数：横軸
 	float m_py{ 0 };//主人公位置用変数：縦軸
 
