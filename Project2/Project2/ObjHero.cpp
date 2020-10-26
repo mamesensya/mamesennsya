@@ -37,6 +37,12 @@ void CObjHero::Init()
 	m_vx = 0;
 	m_bullet_time = true;
 	m_time = 0;
+	m_vy=0;
+	//ブロックとの衝突確認用
+	m_hit_up = false;
+	m_hit_down = false;
+	m_hit_left = false;
+	m_hit_right = false;
 
 	//当たり判定
 	Hits::SetHitBox(this, m_x+10, m_y+20, 72, 72, ELEMENT_PLAYER, OBJ_HERO, 1);
@@ -67,15 +73,15 @@ void CObjHero::Action()
 		}
 	}
 	//ヒットボックス
-	CHitBox* hit = Hits::GetHitBox(this);
+	//CHitBox* hit = Hits::GetHitBox(this);
 	//右方向
 	if (Input::GetVKey(VK_RIGHT) == true)
 	{
 		m_r = 270.0f;
 		m_vx += 1;
 		direct = 2;
-		//HitBoxの位置情報更新
-		hit->SetPos(m_x, m_y + 12);
+		////HitBoxの位置情報更新
+		//hit->SetPos(m_x, m_y + 12);
 	}
 	//左方向
 	if (Input::GetVKey(VK_LEFT) == true)
@@ -83,8 +89,8 @@ void CObjHero::Action()
 		m_r = 90.0f;
 		m_vx -= 1;
 		direct = 4;
-		//HitBoxの位置情報更新
-		hit->SetPos(m_x + 20, m_y + 12);
+		////HitBoxの位置情報更新
+		//hit->SetPos(m_x + 20, m_y + 12);
 	}
 	//上方向
 	if (Input::GetVKey(VK_UP) == true)
@@ -92,8 +98,8 @@ void CObjHero::Action()
 		m_r = 0.0f;
 		m_vy -= 1;
 		direct = 1;
-		//HitBoxの位置情報更新
-		hit->SetPos(m_x + 10, m_y + 20);
+		////HitBoxの位置情報更新
+		//hit->SetPos(m_x + 10, m_y + 20);
 	}
 	//下方向
 	if (Input::GetVKey(VK_DOWN) == true)
@@ -101,8 +107,8 @@ void CObjHero::Action()
 		m_r = 180.0f;
 		m_vy += 1;
 		direct = 3;
-		//HitBoxの位置情報更新
-		hit->SetPos(m_x + 10, m_y);
+		////HitBoxの位置情報更新
+		//hit->SetPos(m_x + 10, m_y);
 	}
 	m_x = +m_vx;
 	m_y = +m_vy;
@@ -112,6 +118,9 @@ void CObjHero::Action()
 		Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 14);
 		m_bullet_time = false;
 	}
+
+	CHitBox* hit = Hits::GetHitBox(this);
+	hit->SetPos(m_x + 10, m_y + 20);
 
 	//当たり判定を行うオブジェクト情報部
 	int data_base[4] =
