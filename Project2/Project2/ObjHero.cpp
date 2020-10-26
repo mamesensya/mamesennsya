@@ -34,6 +34,7 @@ void CObjHero::Init()
 	m_human_flag = false;
 	m_hp = HP;
 	direct = 1;
+	m_vx = 0;
 
 	//当たり判定
 	Hits::SetHitBox(this, m_x+10, m_y+20, 72, 72, ELEMENT_PLAYER, OBJ_HERO, 1);
@@ -69,7 +70,7 @@ void CObjHero::Action()
 	if (Input::GetVKey(VK_RIGHT) == true)
 	{
 		m_r = 270.0f;
-		m_x += SPEED;
+		m_vx += 1;
 		direct = 2;
 		//HitBoxの位置情報更新
 		hit->SetPos(m_x, m_y + 12);
@@ -78,7 +79,7 @@ void CObjHero::Action()
 	if (Input::GetVKey(VK_LEFT) == true)
 	{
 		m_r = 90.0f;
-		m_x -= SPEED;
+		m_vx -= 1;
 		direct = 4;
 		//HitBoxの位置情報更新
 		hit->SetPos(m_x + 20, m_y + 12);
@@ -87,7 +88,7 @@ void CObjHero::Action()
 	if (Input::GetVKey(VK_UP) == true)
 	{
 		m_r = 0.0f;
-		m_y -= SPEED;
+		m_vy -= 1;
 		direct = 1;
 		//HitBoxの位置情報更新
 		hit->SetPos(m_x + 10, m_y + 20);
@@ -96,11 +97,16 @@ void CObjHero::Action()
 	if (Input::GetVKey(VK_DOWN) == true)
 	{
 		m_r = 180.0f;
-		m_y += SPEED;
+		m_vy += 1;
 		direct = 3;
 		//HitBoxの位置情報更新
 		hit->SetPos(m_x + 10, m_y);
 	}
+	m_x = +m_vx;
+	m_y = +m_vy;
+
+
+
 
 	if (Input::GetVKey('Z') == true) {
 		CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x,m_y,(float)((direct-1)*90));
