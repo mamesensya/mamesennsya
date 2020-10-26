@@ -105,9 +105,6 @@ void CObjHero::Action()
 	m_x = +m_vx;
 	m_y = +m_vy;
 
-
-
-
 	if (Input::GetVKey('Z') == true) {
 		CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x,m_y,(float)((direct-1)*90));
 		Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 20);
