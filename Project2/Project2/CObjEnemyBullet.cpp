@@ -2,7 +2,7 @@
 #include"GameL/HitBoxManager.h"
 #include"GameHead.h"
 #include"CObjEnemyBullet.h"
-
+//
 using namespace GameL;
 
 CObjEnemyBullet::CObjEnemyBullet(float x, float y,float r)
