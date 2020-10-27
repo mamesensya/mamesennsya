@@ -13,6 +13,7 @@ enum OBJ_NAME
 	OBJ_ANGLE_BULLET,
 	OBJ_GHOST,
 	OBJ_PENETRATE_BULLET,
+	OBJ_HERO_HUMAN,
 };
 //------------------------------------------------
 
