@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CObjEnemyBullet.cpp" />
+    <ClCompile Include="CObjpenetrateBullet.cpp" />
     <ClCompile Include="CObjPlayerBullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
@@ -164,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjEnemyBullet.h" />
+    <ClInclude Include="CObjpenetrateBullet.h" />
     <ClInclude Include="CObjPlayerBullet.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameHead.h" />
@@ -185,6 +187,9 @@
     </ClInclude>
     <ClInclude Include="ObjHero.h" />
     <ClInclude Include="SceneMain.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="仕様変更履歴.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

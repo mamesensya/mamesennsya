@@ -4,6 +4,7 @@
 #include "GameL\HitBoxManager.h"
 #include "GameL\WinInputs.h"
 #include "CObjPlayerBullet.h"
+#include "CObjpenetrateBullet.h"
 
 #include "GameHead.h"
 #include "ObjHero.h"
@@ -110,6 +111,12 @@ void CObjHero::Action()
 	if (Input::GetVKey('Z') == true) {
 		CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x,m_y,(float)((direct+2)*90));
 		Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 14);
+		m_bullet_time = false;
+	}
+	if (m_bullet_time==true)
+	if (Input::GetVKey('X') == true) {
+		CObjPenetrateBullet* obj_pb = new CObjPenetrateBullet(m_x, m_y, (float)((direct + 2) * 90));
+		Objs::InsertObj(obj_pb, OBJ_PENETRATE_BULLET, 15);
 		m_bullet_time = false;
 	}
 
