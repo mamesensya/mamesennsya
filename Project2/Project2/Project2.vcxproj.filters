@@ -72,6 +72,9 @@
     <ClCompile Include="CObjPlayerBullet.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="obj ghost.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -130,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="CObjPlayerBullet.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="obj ghost.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

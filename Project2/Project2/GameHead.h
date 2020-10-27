@@ -11,6 +11,7 @@ enum OBJ_NAME
 	OBJ_ENEMY_BULLET,
 	OBJ_BLOCK,
 	OBJ_ANGLE_BULLET,
+	OBJ_GHOST,
 };
 //------------------------------------------------
 
@@ -59,6 +60,7 @@ struct UserData
 #include"CObjEnemyBullet.h"
 #include"Objblock.h"
 #include"CObjPlayerBullet.h"
+#include"obj ghost.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
