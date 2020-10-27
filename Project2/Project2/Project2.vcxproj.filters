@@ -138,4 +138,7 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="仕様変更履歴.txt" />
+  </ItemGroup>
 </Project>
