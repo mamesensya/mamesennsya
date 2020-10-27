@@ -31,6 +31,8 @@ private:
 	int count;//ålŒö‚ÌˆÊ’u‚ğŒü‚­ˆ×‚Ì•Ï”
 	int m_time;//’e”­ËŠÔŠu§Œä—p•Ï”
 	int m_move_time;
+	int pbullet_interval;
+	bool pbullet_enable;
 
 
 };
