@@ -19,5 +19,6 @@ private:
 	float m_vx;//ˆÚ“®—p
 	float m_vy;
 	float m_r;//•ûŒü
-
+	float mx;//ˆÚ“®—Ê
+	float my;
 };
