@@ -44,6 +44,12 @@ void CSceneMain::InitScene()
 	CObjHero* obj = new CObjHero(200,200);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
+	//‹S
+	Draw::LoadImageW(L"‰¼‚¨‚É.jpg", 4, TEX_SIZE_512);
+	CObjGhost* obj_ghost = new CObjGhost();
+	Objs::InsertObj(obj_ghost, OBJ_GHOST, 4);
+
+
 	Draw::LoadImageW(L"hako.png", 13, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"yuka.png", 3, TEX_SIZE_512);

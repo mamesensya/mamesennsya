@@ -4,16 +4,13 @@
 #include "GameL\HitBoxManager.h"
 #include "GameL\WinInputs.h"
 #include "CObjPlayerBullet.h"
+#include "CObjpenetrateBullet.h"
 
 #include "GameHead.h"
 #include "ObjHero.h"
 
-//当たり判定のオブジェクト情報部の数
-#define Collision_detection 4
 //主人公のHP（体力）
 #define HP 5
-//主人公のスピード
-#define SPEED 1.0f
 
 //使用するネームスペース
 using namespace GameL;
@@ -31,43 +28,25 @@ void CObjHero::Init()
 	m_bullet = true;
 	m_unique_bullet_1 = true;
 	m_unique_bullet_2 = true;
-	m_human_flag = false;
+	m_hero_flag = false;
 	m_hp = HP;
 	direct = 1;
-	m_vx = 0;
 	m_bullet_time = true;
-	m_time = 0;
-	m_vy=0;
-	//ブロックとの衝突確認用
-	m_hit_up = false;
-	m_hit_down = false;
-	m_hit_left = false;
-	m_hit_right = false;
 
 	//当たり判定
-	Hits::SetHitBox(this, m_x+10, m_y+20, 72, 72, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_x, m_x, 72, 72, ELEMENT_PLAYER, OBJ_HERO, 1);
 }
 
 //アクション
 void CObjHero::Action()
 {
-	if (m_human_flag == true)
-	{
-		//主人公が戦車状態に移行
-		if (Input::GetVKey('V') == true)
-		{
-			m_human_flag = false;
-			//チャタリング防止用
-			while (Input::GetVKey('V') == true);
-		}
-	}
 	//戦車状態→人状態へ
-	else if (m_human_flag == false)
+	if (m_hero_flag == false)
 	{
 		//主人公が人状態に移行
 		if (Input::GetVKey('V') == true)
 		{
-			m_human_flag = true;
+			m_hero_flag = true;
 			//チャタリング防止用
 			while (Input::GetVKey('V') == true);
 		}
@@ -77,45 +56,40 @@ void CObjHero::Action()
 	//右方向
 	if (Input::GetVKey(VK_RIGHT) == true)
 	{
-		m_r = 270.0f;
-		m_vx += 1;
-		direct = 2;
-		////HitBoxの位置情報更新
-		//hit->SetPos(m_x, m_y + 12);
+		m_r -= 1.0f;
+		direct += 1;
 	}
 	//左方向
 	if (Input::GetVKey(VK_LEFT) == true)
 	{
-		m_r = 90.0f;
-		m_vx -= 1;
-		direct = 4;
-		////HitBoxの位置情報更新
-		//hit->SetPos(m_x + 20, m_y + 12);
+		m_r += 1.0f;
+		direct -= 1;
 	}
 	//上方向
 	if (Input::GetVKey(VK_UP) == true)
 	{
-		m_r = 0.0f;
-		m_vy -= 1;
 		direct = 1;
-		////HitBoxの位置情報更新
-		//hit->SetPos(m_x + 10, m_y + 20);
 	}
 	//下方向
 	if (Input::GetVKey(VK_DOWN) == true)
 	{
-		m_r = 180.0f;
-		m_vy += 1;
-		direct = 3;
-		////HitBoxの位置情報更新
-		//hit->SetPos(m_x + 10, m_y);
+		direct = 1;
 	}
+
 	m_x = +m_vx;
 	m_y = +m_vy;
+	
 	if(m_bullet_time==true)
-	if (Input::GetVKey('Z') == true) {
+	if (Input::GetVKey('Z') == true) 
+	{
 		CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x,m_y,(float)((direct+2)*90));
 		Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 14);
+		m_bullet_time = false;
+	}
+	if (m_bullet_time==true)
+	if (Input::GetVKey('X') == true) {
+		CObjPenetrateBullet* obj_pb = new CObjPenetrateBullet(m_x, m_y, (float)((direct + 2) * 90));
+		Objs::InsertObj(obj_pb, OBJ_PENETRATE_BULLET, 15);
 		m_bullet_time = false;
 	}
 
@@ -130,9 +104,12 @@ void CObjHero::Action()
 	};
 
 	//敵オブジェクトと接触したら主人公のm_hpが減少
-	if (hit->CheckObjNameHit(OBJ_ENEMY_BULLET) != nullptr)
+	for (int i = 0; i < 4; i++)
 	{
-		m_hp -= 1;
+		if (hit->CheckObjNameHit(data_base[i]) != nullptr)
+		{
+			m_hp -= 1;
+		}
 	}
 	//m_hpが０になると主人公を破棄
 	if (m_hp == 0)
@@ -146,7 +123,8 @@ void CObjHero::Action()
 	if (m_bullet_time == false)
 	{
 		m_time++;
-		if (m_time == 60) {
+		if (m_time == 60) 
+		{
 			m_bullet_time = true;
 			m_time = 0;
 		}
@@ -157,8 +135,7 @@ void CObjHero::Action()
 //ドロー
 void CObjHero::Draw()
 {
-	//主人公（戦車）のグラフィック
-	if (m_human_flag == false)
+	if (m_hero_flag == false)
 	{
 		//カラー情報
 		float c[4] = { 1.0f,1.0f,1.0f,1.0f };
@@ -180,10 +157,5 @@ void CObjHero::Draw()
 
 		//描画
 		Draw::Draw(0, &src, &dst, c, m_r);
-	}
-	//主人公（人）のグラフィック
-	if(m_human_flag == true)
-	{
-
 	}
 }

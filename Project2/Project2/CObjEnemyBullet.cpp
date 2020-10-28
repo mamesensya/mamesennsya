@@ -2,7 +2,7 @@
 #include"GameL/HitBoxManager.h"
 #include"GameHead.h"
 #include"CObjEnemyBullet.h"
-//
+
 using namespace GameL;
 
 CObjEnemyBullet::CObjEnemyBullet(float x, float y,float r)
@@ -17,6 +17,8 @@ void CObjEnemyBullet::Init()
 {
 	m_vx = 0.0f;
 	m_vy = 0.0f;
+	mx = 0;
+	my = 0;
 
 	//HitBox作成
 	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
@@ -56,6 +58,9 @@ void CObjEnemyBullet::Action()
 	m_x += m_vx;
 	m_y += m_vy;
 
+	mx += m_vx;
+	my += m_vy;
+
 
 	//HitBoxの内容を更新
 	CHitBox* hit = Hits::GetHitBox(this);
@@ -75,7 +80,7 @@ void CObjEnemyBullet::Action()
 	//	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 	//}
 
-	if (m_x >= 1000.0f||m_x<=-1000.0f || m_y >= 1000.0f||m_y>=1000.0f)
+	if (mx >= 1000.0f||mx<=-1000.0f || my >= 1000.0f||my>=1000.0f)
 	{
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
