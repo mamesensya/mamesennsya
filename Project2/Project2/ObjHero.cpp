@@ -78,19 +78,23 @@ void CObjHero::Action()
 
 	m_x = +m_vx;
 	m_y = +m_vy;
-	
-	if(m_bullet_time==true)
-	if (Input::GetVKey('Z') == true) 
-	{
-		CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x,m_y,(float)((direct+2)*90));
-		Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 14);
-		m_bullet_time = false;
-	}
-	if (m_bullet_time==true)
-	if (Input::GetVKey('X') == true) {
-		CObjPenetrateBullet* obj_pb = new CObjPenetrateBullet(m_x, m_y, (float)((direct + 2) * 90));
-		Objs::InsertObj(obj_pb, OBJ_PENETRATE_BULLET, 15);
-		m_bullet_time = false;
+
+	if (m_bullet_time == true)
+		if (Input::GetVKey('Z') == true)
+		{
+			CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x, m_y, m_r);
+			Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 14);
+			m_bullet_time = false;
+		}
+		if (Input::GetVKey('X') == true) {
+			CObjPenetrateBullet* obj_pb = new CObjPenetrateBullet(m_x, m_y, m_r);
+			Objs::InsertObj(obj_pb, OBJ_PENETRATE_BULLET, 15);
+			m_bullet_time = false;
+		}
+		if (Input::GetVKey('C') == true){
+			for (int i = 0; i < 3; i++) {
+				
+			}
 	}
 
 	//当たり判定を行うオブジェクト情報部
@@ -143,8 +147,8 @@ void CObjHero::Draw()
 		//切り取り位置の設定
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
-		src.m_right = 300.0f;
-		src.m_bottom = 300.0f;
+		src.m_right = 64.0f;
+		src.m_bottom = 64.0f;
 
 		//表示位置の設定
 		dst.m_top = 0.0f + m_y;
