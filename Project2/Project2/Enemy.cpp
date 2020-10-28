@@ -24,6 +24,9 @@ void CObjEnemy::Init()
 	m_time = 0;//’eŠÛ”­ŽË§Œä—ptime
 	m_move_time = 0;//ˆÚ“®d’¼—ptime
 
+	pbullet_interval = 0; //ŠÑ’Ê’eƒqƒbƒg‚ÌŠÔŠu
+	pbullet_enable = false; //ŠÑ’Ê’eƒ_ƒ[ƒW—LŒø
+
 	//HitBox’Ç‰Á
 	Hits::SetHitBox(this, m_x+35, m_y+40, 55, 55, ELEMENT_ENEMY, OBJ_ENEMY,1 );
 }
@@ -44,7 +47,7 @@ void CObjEnemy::Action()
 	float y = 0;//ŽålŒö‚©‚ç“G‚ÌƒxƒNƒgƒ‹y
 
 	//ŽålŒö‚ÌÀ•WŽæ“¾
-	CObjHero* hero=(CObjHero*)Objs::GetObj(OBJ_HERO);
+	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	if (hero != nullptr)
 	{
 		float hx = hero->GetX();
@@ -212,10 +215,10 @@ void CObjEnemy::Action()
 	}
 
 
-	if (m_time == 100&&count==1)
+	if (m_time == 100 && count == 1)
 	{
 		//“G’eŠÛ”­ŽË
-		CObjEnemyBullet* obj_enemybullet = new CObjEnemyBullet(m_x, m_y,m_r);
+		CObjEnemyBullet* obj_enemybullet = new CObjEnemyBullet(m_x, m_y, m_r);
 		Objs::InsertObj(obj_enemybullet, OBJ_ENEMY_BULLET, 60);
 	}
 
@@ -225,7 +228,7 @@ void CObjEnemy::Action()
 
 	//HitBox‚Ì“à—eXV
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x+35, m_y+40);
+	hit->SetPos(m_x + 35, m_y + 40);
 
 	//’eŠÛ‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ð’²‚×‚é
 	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
@@ -234,6 +237,23 @@ void CObjEnemy::Action()
 		if (m_hp <= 0) {
 			this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
 			Hits::DeleteHitBox(this);//’eŠÛ‚ªŠ—L‚·‚éHitBox‚Éíœ‚·‚éB
+		}
+	}
+	if (pbullet_enable == false) {
+		if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
+			m_hp--;
+			pbullet_enable = true;
+			if (m_hp <= 0) {
+				this->SetStatus(false);
+				Hits::DeleteHitBox(this);
+			}
+		}
+	}
+	else if (pbullet_enable == true) {
+		pbullet_interval++;
+		if (pbullet_interval > 7) {
+			pbullet_interval = 0;
+			pbullet_enable = false;
 		}
 	}
 	m_vx = 0;

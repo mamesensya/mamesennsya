@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CObjEnemyBullet.cpp" />
+    <ClCompile Include="CObjpenetrateBullet.cpp" />
     <ClCompile Include="CObjPlayerBullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
@@ -155,14 +156,19 @@
     <ClCompile Include="GameL\SetWindow.cpp" />
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
+    <ClCompile Include="obj ghost.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Objblock.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ObjHero.cpp" />
+    <ClCompile Include="ObjHeroHuman.cpp" />
     <ClCompile Include="SceneMain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjEnemyBullet.h" />
+    <ClInclude Include="CObjpenetrateBullet.h" />
     <ClInclude Include="CObjPlayerBullet.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameHead.h" />
@@ -178,11 +184,18 @@
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WinInputs.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="obj ghost.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Objblock.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="ObjHero.h" />
+    <ClInclude Include="ObjHeroHuman.h" />
     <ClInclude Include="SceneMain.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="仕様変更履歴.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
