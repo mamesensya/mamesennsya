@@ -18,10 +18,11 @@
     <ClCompile Include="GameL\SetWindow.cpp" />
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
-    <ClCompile Include="obj ghost.cpp" />
     <ClCompile Include="Objblock.cpp" />
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="SceneMain.cpp" />
+    <ClCompile Include="ObjHeroHuman.cpp" />
+    <ClCompile Include="ObjGhost.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjEnemyBullet.h" />
@@ -41,7 +42,6 @@
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WinInputs.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="obj ghost.h" />
     <ClInclude Include="Objblock.h" />
     <ClInclude Include="ObjHero.h" />
     <ClInclude Include="SceneMain.h" />
@@ -102,9 +102,8 @@
     <ClCompile Include="CObjPlayerBullet.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjHeroHuman.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
+    <ClInclude Include="ObjHeroHuman.h" />
+    <ClInclude Include="ObjGhost.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -162,9 +161,6 @@
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <ClInclude Include="CObjPlayerBullet.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="ObjHeroHuman.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
     <Text Include="仕様変更履歴.txt" />

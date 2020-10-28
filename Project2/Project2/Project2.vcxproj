@@ -156,12 +156,10 @@
     <ClCompile Include="GameL\SetWindow.cpp" />
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
-    <ClCompile Include="obj ghost.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Objblock.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="ObjGhost.cpp" />
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjHeroHuman.cpp" />
     <ClCompile Include="SceneMain.cpp" />
@@ -184,12 +182,10 @@
     <ClInclude Include="GameL\UserData.h" />
     <ClInclude Include="GameL\WinInputs.h" />
     <ClInclude Include="main.h" />
-    <ClInclude Include="obj ghost.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="Objblock.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="ObjGhost.h" />
     <ClInclude Include="ObjHero.h" />
     <ClInclude Include="ObjHeroHuman.h" />
     <ClInclude Include="SceneMain.h" />

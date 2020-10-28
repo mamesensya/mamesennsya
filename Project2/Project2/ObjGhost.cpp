@@ -1,6 +1,6 @@
 //使用ヘッダーふぁいる
 #include"GameL/DrawTexture.h"
-#include"GameL/SceneManager.h"
+#include"GameL/SceneObjManager.h"
 #include"GameL/HitBoxManager.h"
 
 
@@ -10,22 +10,22 @@
 //ネームスペース
 using namespace GameL;
 
-CObjghost::CObjghost()
+CObjGhost::CObjGhost()
 {
 
 }
 
-void CObjghost::Init()
+void CObjGhost::Init()
 {
 
 }
 
-void CObjghost::Action()
+void CObjGhost::Action()
 {
 
 }
 
-void CObjghost::Draw()
+void CObjGhost::Draw()
 {
 	//カラー情報
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
@@ -36,15 +36,15 @@ void CObjghost::Draw()
 	//切り取り位置の設定
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 300.0f;
-	src.m_bottom = 300.0f;
+	src.m_right = 200.0f;
+	src.m_bottom = 200.0f;
 
 	//表示位置の設定
 	dst.m_top = 0.0f ;
 	dst.m_left = 0.0f ;
-	dst.m_right = 32.0f + 64.0f ;
-	dst.m_bottom = 32.0f + 64.0f ;
+	dst.m_right =  400.0f;
+	dst.m_bottom = 400.0f ;
 
 	//描画
-	Draw::Draw(4, &src, &dst, c,1);
+	Draw::Draw(4, &src, &dst, c,0.0f);
 }

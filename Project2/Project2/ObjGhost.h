@@ -3,11 +3,11 @@
 
 using namespace GameL;
 
-class CObjghost :public CObj
+class CObjGhost:public CObj
 {
 public:
-	CObjghost();
-	~CObjghost();
+	CObjGhost();
+	~CObjGhost() {};
 	void Init();
 	void Action();
 	void Draw();
