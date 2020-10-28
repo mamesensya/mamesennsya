@@ -5,7 +5,7 @@
 
 
 #include"GameHead.h"
-#include"obj ghost.h"
+#include"ObjGhost.h"
 
 //ネームスペース
 using namespace GameL;
@@ -46,5 +46,5 @@ void CObjghost::Draw()
 	dst.m_bottom = 32.0f + 64.0f ;
 
 	//描画
-	Draw::Draw(0, &src, &dst, c,1);
+	Draw::Draw(4, &src, &dst, c,1);
 }
