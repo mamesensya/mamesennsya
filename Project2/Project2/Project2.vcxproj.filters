@@ -1,50 +1,74 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="CObjEnemyBullet.cpp" />
-    <ClCompile Include="CObjpenetrateBullet.cpp" />
-    <ClCompile Include="CObjPlayerBullet.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="GameL\Audio.cpp" />
-    <ClCompile Include="GameL\DirectXDevice.cpp" />
-    <ClCompile Include="GameL\Draw2DTex_Source.cpp" />
-    <ClCompile Include="GameL\DrawFont.cpp" />
-    <ClCompile Include="GameL\DrawTexture.cpp" />
-    <ClCompile Include="GameL\GameL_Main.cpp" />
-    <ClCompile Include="GameL\HitBoxManager.cpp" />
-    <ClCompile Include="GameL\MultiThread.cpp" />
-    <ClCompile Include="GameL\SceneManager.cpp" />
-    <ClCompile Include="GameL\SceneObjManager.cpp" />
-    <ClCompile Include="GameL\SetWindow.cpp" />
-    <ClCompile Include="GameL\UserData.cpp" />
-    <ClCompile Include="GameL\WinInputs.cpp" />
-    <ClCompile Include="Objblock.cpp" />
-    <ClCompile Include="ObjHero.cpp" />
-    <ClCompile Include="SceneMain.cpp" />
-    <ClCompile Include="ObjHeroHuman.cpp" />
-    <ClCompile Include="ObjGhost.cpp" />
+    <ClCompile Include="GameL\Audio.cpp">
+      <Filter>GameL</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\DirectXDevice.cpp">
+      <Filter>GameL</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\Draw2DTex_Source.cpp">
+      <Filter>GameL</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\DrawFont.cpp">
+      <Filter>GameL</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\DrawTexture.cpp">
+      <Filter>GameL</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\GameL_Main.cpp">
+      <Filter>GameL</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\HitBoxManager.cpp">
+      <Filter>GameL</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\MultiThread.cpp">
+      <Filter>GameL</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\SceneManager.cpp">
+      <Filter>GameL</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\SceneObjManager.cpp">
+      <Filter>GameL</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\SetWindow.cpp">
+      <Filter>GameL</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\UserData.cpp">
+      <Filter>GameL</Filter>
+    </ClCompile>
+    <ClCompile Include="GameL\WinInputs.cpp">
+      <Filter>GameL</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjEnemyBullet.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjpenetrateBullet.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjPlayerBullet.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Objblock.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjGhost.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHero.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjHeroHuman.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMain.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="CObjEnemyBullet.h" />
-    <ClInclude Include="CObjpenetrateBullet.h" />
-    <ClInclude Include="CObjPlayerBullet.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="GameHead.h" />
-    <ClInclude Include="GameL\Audio.h" />
-    <ClInclude Include="GameL\DirectXDevice.h" />
-    <ClInclude Include="GameL\DrawFont.h" />
-    <ClInclude Include="GameL\DrawTexture.h" />
-    <ClInclude Include="GameL\HitBoxManager.h" />
-    <ClInclude Include="GameL\MultiThread.h" />
-    <ClInclude Include="GameL\SceneManager.h" />
-    <ClInclude Include="GameL\SceneObjManager.h" />
-    <ClInclude Include="GameL\SetWindow.h" />
-    <ClInclude Include="GameL\UserData.h" />
-    <ClInclude Include="GameL\WinInputs.h" />
-    <ClInclude Include="main.h" />
-    <ClInclude Include="Objblock.h" />
-    <ClInclude Include="ObjHero.h" />
-    <ClInclude Include="SceneMain.h" />
     <ClCompile Include="GameL\Audio.cpp">
       <Filter>ヘッダー ファイル</Filter>
     </ClCompile>
@@ -102,8 +126,69 @@
     <ClCompile Include="CObjPlayerBullet.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClInclude Include="ObjHeroHuman.h" />
-    <ClInclude Include="ObjGhost.h" />
+    <ClInclude Include="GameL\Audio.h">
+      <Filter>GameL</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\DirectXDevice.h">
+      <Filter>GameL</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\DrawFont.h">
+      <Filter>GameL</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\DrawTexture.h">
+      <Filter>GameL</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHead.h">
+      <Filter>GameL</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\HitBoxManager.h">
+      <Filter>GameL</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\MultiThread.h">
+      <Filter>GameL</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\SceneManager.h">
+      <Filter>GameL</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\SceneObjManager.h">
+      <Filter>GameL</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\SetWindow.h">
+      <Filter>GameL</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\UserData.h">
+      <Filter>GameL</Filter>
+    </ClInclude>
+    <ClInclude Include="GameL\WinInputs.h">
+      <Filter>GameL</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjEnemyBullet.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjpenetrateBullet.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjPlayerBullet.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Objblock.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjGhost.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjHero.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjHeroHuman.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -163,6 +248,22 @@
     <ClInclude Include="CObjPlayerBullet.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <Text Include="仕様変更履歴.txt" />
+    <ClInclude Include="SceneMain.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="GameL">
+      <UniqueIdentifier>{2694f962-77bc-454b-b935-00044bc79c1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="リソースファイル">
+      <UniqueIdentifier>{f8296c81-8d52-4936-bff1-73538f765cb4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダーファイル">
+      <UniqueIdentifier>{f590ed3b-a4b4-490c-bef0-41e18eb473f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソースファイル">
+      <UniqueIdentifier>{12a83330-ca4a-4e7e-8e9c-36558d0755cf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>
