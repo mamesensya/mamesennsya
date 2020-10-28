@@ -10,7 +10,7 @@
 #include "ObjHero.h"
 
 //主人公のHP（体力）
-#define HP 5
+#define HP 100000000000
 
 //使用するネームスペース
 using namespace GameL;
@@ -34,7 +34,7 @@ void CObjHero::Init()
 	m_bullet_time = true;
 
 	//当たり判定
-	Hits::SetHitBox(this, m_x, m_x, 72, 72, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_x+13.0f, m_y+15.0f, 65, 65, ELEMENT_PLAYER, OBJ_HERO, 1);
 }
 
 //アクション
@@ -79,22 +79,23 @@ void CObjHero::Action()
 	m_x = +m_vx;
 	m_y = +m_vy;
 
-	if (m_bullet_time == true)
+	if (m_bullet_time == true){
 		if (Input::GetVKey('Z') == true)
 		{
-			CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x, m_y, m_r);
+			CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x, m_y, m_r-(m_r*2)-90);
 			Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 14);
 			m_bullet_time = false;
 		}
 		if (Input::GetVKey('X') == true) {
-			CObjPenetrateBullet* obj_pb = new CObjPenetrateBullet(m_x, m_y, m_r);
+			CObjPenetrateBullet* obj_pb = new CObjPenetrateBullet(m_x, m_y, m_r - (m_r * 2) - 90);
 			Objs::InsertObj(obj_pb, OBJ_PENETRATE_BULLET, 15);
 			m_bullet_time = false;
 		}
-		if (Input::GetVKey('C') == true){
+		if (Input::GetVKey('C') == true) {
 			for (int i = 0; i < 3; i++) {
-				
+
 			}
+		}
 	}
 
 	//当たり判定を行うオブジェクト情報部
@@ -145,16 +146,16 @@ void CObjHero::Draw()
 		RECT_F dst;//描画先表示位置
 
 		//切り取り位置の設定
-		src.m_top = 0.0f;
-		src.m_left = 0.0f;
-		src.m_right = 64.0f;
-		src.m_bottom = 64.0f;
+		src.m_top = 22.0f;
+		src.m_left = 22.0f;
+		src.m_right = 400.0f;
+		src.m_bottom = 400.0f;
 
 		//表示位置の設定
 		dst.m_top = 0.0f + m_y;
 		dst.m_left = 0.0f + m_x;
-		dst.m_right = 32.0f + 64.0f + m_x;
-		dst.m_bottom = 32.0f + 64.0f + m_y;
+		dst.m_right =32.0f+ 64.0f + m_x;
+		dst.m_bottom = 32.0f+64.0f + m_y;
 
 		//描画
 		Draw::Draw(0, &src, &dst, c, m_r);

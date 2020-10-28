@@ -159,7 +159,9 @@
     <ClCompile Include="Objblock.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="ObjGhost.cpp" />
+    <ClCompile Include="ObjGhost.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjHeroHuman.cpp" />
     <ClCompile Include="SceneMain.cpp" />

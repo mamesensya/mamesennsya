@@ -38,16 +38,16 @@ void CSceneMain::InitScene()
 	CObjEnemy* obj_enemy = new CObjEnemy(350,250);
 	Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);
 
-	//主人公グラフィック読み込み
-	Draw::LoadImageW(L"主人公_戦車.png", 0, TEX_SIZE_512);
+	//主人公グラフィック読み込み(400×400)
+	Draw::LoadImageW(L"test.png", 0, TEX_SIZE_512);
 	//主人公
 	CObjHero* obj = new CObjHero(0,0);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
-	//鬼
-	Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
-	CObjGhost* obj_ghost = new CObjGhost();
-	Objs::InsertObj(obj_ghost, OBJ_GHOST, 4);
+	////鬼
+	//Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
+	//CObjGhost* obj_ghost = new CObjGhost();
+	//Objs::InsertObj(obj_ghost, OBJ_GHOST, 4);
 
 
 	Draw::LoadImageW(L"hako.png", 13, TEX_SIZE_512);
