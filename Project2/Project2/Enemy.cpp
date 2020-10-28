@@ -251,7 +251,7 @@ void CObjEnemy::Action()
 	}
 	else if (pbullet_enable == true) {
 		pbullet_interval++;
-		if (pbullet_interval > 5) {
+		if (pbullet_interval > 7) {
 			pbullet_interval = 0;
 			pbullet_enable = false;
 		}

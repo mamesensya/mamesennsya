@@ -7,8 +7,8 @@
 using namespace GameL;
 
 CObjPenetrateBullet::CObjPenetrateBullet(float x, float y, float r) {
-	m_x = x;
-	m_y = y;
+	m_x = x+32;
+	m_y = y+32;
 	m_r = r;
 };
 
