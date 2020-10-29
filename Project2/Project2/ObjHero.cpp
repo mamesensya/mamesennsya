@@ -117,14 +117,14 @@ void CObjHero::Action()
 			m_hp -= 1;
 		}
 	}
-	//m_hpが０になると主人公を破棄
-	if (m_hp == 0)
-	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+	////m_hpが０になると主人公を破棄
+	//if (m_hp == 0)
+	//{
+	//	this->SetStatus(false);//自身に削除命令を出す
+	//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-		//Scene::SetScene(new CSceneTitle());
-	}
+	//	//Scene::SetScene(new CSceneTitle());
+	//}
 
 	if (m_bullet_time == false)
 	{
