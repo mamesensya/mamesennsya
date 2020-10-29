@@ -41,7 +41,7 @@ void CSceneMain::InitScene()
 	//主人公グラフィック読み込み(400×400)
 	Draw::LoadImageW(L"test.png", 0, TEX_SIZE_512);
 	//主人公
-	CObjHero* obj = new CObjHero(0,0);
+	CObjHero* obj = new CObjHero(100,0);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	////鬼
@@ -55,8 +55,8 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"yuka.png", 3, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"大豆.jpg", 14, TEX_SIZE_512);
-	//CObjBlock* obj_block = new CObjBlock;
-	//Objs::InsertObj(obj_block, OBJ_BLOCK, 9);
+	CObjBlock* obj_block = new CObjBlock;
+	Objs::InsertObj(obj_block, OBJ_BLOCK, 9);
 
 	
 

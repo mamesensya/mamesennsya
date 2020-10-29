@@ -14,9 +14,19 @@ public:
 
 	float GetX() { return m_x; }
 	float GetY() { return m_y; }
-	void SetX(float x) { m_px = x; }
-	void SetY(float y) { m_py = y; }
+	float GetVY() { return m_vy; }
+	float GetVX() { return m_vx; }
+
+	void SetX(float x) { m_x = x; }
+	void SetY(float y) { m_y = y; }
 	void SetVY(float vy) { m_vy = vy; }
+	void SetVX(float vx) { m_vx = vx; }
+	
+	void SetUp(bool b) { m_hit_up = b; }
+	void SetDown(bool b) { m_hit_down = b; }
+	void SetLeft(bool b) { m_hit_left = b; }
+	void SetRight(bool b) { m_hit_right = b; }
+
 
 	bool Hero() { return m_hero_flag; }
 
@@ -28,8 +38,7 @@ private:
 	float m_y;//主人公移動用変数：縦軸
 	float m_vx{ 0 };//主人公ベクトル：横軸
 	float m_vy{ 0 };//主人公ベクトル：縦軸
-	float m_px{ 0 };//主人公位置用変数：横軸
-	float m_py{ 0 };//主人公位置用変数：縦軸
+	
 
 	float m_r{ 0 };//主人公の角度制御用
 
@@ -42,4 +51,9 @@ private:
 
 	bool m_hero_flag;//主人公の状態確認フラグ
 	//false：主人公（戦車）　true：主人公（人）
+
+	bool m_hit_up;
+	bool m_hit_down;
+	bool m_hit_left;
+	bool m_hit_right;
 };

@@ -65,7 +65,7 @@ struct UserData
 #include"ObjGhost.h"
 #include "Enemy.h"
 #include "CObjEnemyBullet.h"
-//#include "Objblock.h"
+#include "Objblock.h"
 #include "CObjPlayerBullet.h"
 #include "CObjpenetrateBullet.h"
 //------------------------------------------------

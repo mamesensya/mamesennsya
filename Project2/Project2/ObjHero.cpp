@@ -41,6 +41,8 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+	m_vx = 0;
+	m_vy = 0;
 	//戦車状態→人状態へ
 	if (m_hero_flag == false)
 	{
@@ -56,23 +58,25 @@ void CObjHero::Action()
 	//右方向
 	if (Input::GetVKey(VK_RIGHT) == true)
 	{
-		m_r -= 1.0f;
+		m_vx += 10.0f;
 		direct += 1;
 	}
 	//左方向
 	if (Input::GetVKey(VK_LEFT) == true)
 	{
-		m_r += 1.0f;
+		m_vx -= 10.0f;
 		direct -= 1;
 	}
 	//上方向
 	if (Input::GetVKey(VK_UP) == true)
 	{
+		m_vy -= 10.0f;
 		direct = 1;
 	}
 	//下方向
 	if (Input::GetVKey(VK_DOWN) == true)
 	{
+		m_vy += 10.0f;
 		direct = 1;
 	}
 
@@ -109,22 +113,22 @@ void CObjHero::Action()
 		OBJ_ENEMY_BULLET,
 	};
 
-	//敵オブジェクトと接触したら主人公のm_hpが減少
-	for (int i = 0; i < 4; i++)
-	{
-		if (hit->CheckObjNameHit(data_base[i]) != nullptr)
-		{
-			m_hp -= 1;
-		}
-	}
-	//m_hpが０になると主人公を破棄
-	if (m_hp == 0)
-	{
-		this->SetStatus(false);//自身に削除命令を出す
-		Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+	////敵オブジェクトと接触したら主人公のm_hpが減少
+	//for (int i = 0; i < 4; i++)
+	//{
+	//	if (hit->CheckObjNameHit(data_base[i]) != nullptr)
+	//	{
+	//		m_hp -= 1;
+	//	}
+	//}
+	////m_hpが０になると主人公を破棄
+	//if (m_hp == 0)
+	//{
+	//	this->SetStatus(false);//自身に削除命令を出す
+	//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-		//Scene::SetScene(new CSceneTitle());
-	}
+	//	//Scene::SetScene(new CSceneTitle());
+	//}
 
 	if (m_bullet_time == false)
 	{
@@ -135,7 +139,7 @@ void CObjHero::Action()
 			m_time = 0;
 		}
 	}
-
+	
 }
 
 //ドロー
