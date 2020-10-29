@@ -24,8 +24,8 @@ public:
 private:
 	int m_hp{ 0 };//主人公のヒットポイント（体力）
 
-	float m_x{ 0 };//主人公移動用変数：横軸
-	float m_y{ 0 };//主人公移動用変数：縦軸
+	float m_x;//主人公移動用変数：横軸
+	float m_y;//主人公移動用変数：縦軸
 	float m_vx{ 0 };//主人公ベクトル：横軸
 	float m_vy{ 0 };//主人公ベクトル：縦軸
 	float m_px{ 0 };//主人公位置用変数：横軸

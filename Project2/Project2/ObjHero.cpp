@@ -10,7 +10,7 @@
 #include "ObjHero.h"
 
 //主人公のHP（体力）
-#define HP 100000000000
+#define HP 5
 
 //使用するネームスペース
 using namespace GameL;
@@ -33,6 +33,7 @@ void CObjHero::Init()
 	direct = 1;
 	m_bullet_time = true;
 
+
 	//当たり判定
 	Hits::SetHitBox(this, m_x+13.0f, m_y+15.0f, 65, 65, ELEMENT_PLAYER, OBJ_HERO, 1);
 }
@@ -51,8 +52,7 @@ void CObjHero::Action()
 			while (Input::GetVKey('V') == true);
 		}
 	}
-	//ヒットボックス
-	CHitBox* hit = Hits::GetHitBox(this);
+	
 	//右方向
 	if (Input::GetVKey(VK_RIGHT) == true)
 	{
@@ -76,8 +76,12 @@ void CObjHero::Action()
 		direct = 1;
 	}
 
-	m_x = +m_vx;
-	m_y = +m_vy;
+	m_x += m_vx;
+	m_y += m_vy;
+
+	//HitBoxの内容更新
+	CHitBox* hit = Hits::GetHitBox(this);
+	hit->SetPos(m_x + 13.0f, m_y + 15.0f);
 
 	if (m_bullet_time == true){
 		if (Input::GetVKey('Z') == true)

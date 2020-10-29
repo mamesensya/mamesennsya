@@ -230,9 +230,6 @@
     <ClInclude Include="ObjHero.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="SceneMain.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="GameHead.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -247,6 +244,9 @@
     </ClInclude>
     <ClInclude Include="CObjPlayerBullet.h">
       <Filter>ソース ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMain.h">
+      <Filter>ソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="SceneMain.h">
       <Filter>ソースファイル</Filter>
