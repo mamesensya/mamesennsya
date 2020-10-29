@@ -97,8 +97,10 @@ void CObjHero::Action()
 		}
 		if (Input::GetVKey('C') == true) {
 			for (int i = 0; i < 3; i++) {
-
+				CObjPlayerBullet* obj_db = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
+				Objs::InsertObj(obj_db, OBJ_ANGLE_BULLET, 16);
 			}
+			m_bullet_time = false;
 		}
 	}
 
@@ -129,7 +131,7 @@ void CObjHero::Action()
 	if (m_bullet_time == false)
 	{
 		m_time++;
-		if (m_time == 60) 
+		if (m_time == 30) 
 		{
 			m_bullet_time = true;
 			m_time = 0;

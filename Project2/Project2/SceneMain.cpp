@@ -41,7 +41,7 @@ void CSceneMain::InitScene()
 	//主人公グラフィック読み込み(400×400)
 	Draw::LoadImageW(L"test.png", 0, TEX_SIZE_512);
 	//主人公
-	CObjHero* obj = new CObjHero(0,0);
+	CObjHero* obj = new CObjHero(200,200);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	//鬼
