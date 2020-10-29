@@ -17,14 +17,6 @@ public:
 	void SetX(float x) { m_px = x; }
 	void SetY(float y) { m_py = y; }
 	void SetVY(float vy) { m_vy = vy; }
-	float GetX() 
-	{
-		return m_x;
-	}
-	float GetY() 
-	{
-		return m_y;
-	}
 
 	bool Hero() { return m_hero_flag; }
 
@@ -36,10 +28,10 @@ private:
 
 	float m_x;//主人公移動用変数：横軸
 	float m_y;//主人公移動用変数：縦軸
-	float m_vx;//主人公ベクトル：横軸
-	float m_vy;//主人公ベクトル：縦軸
-	float m_px{ 100 };//主人公位置用変数：横軸
-	float m_py{ 100 };//主人公位置用変数：縦軸
+	float m_vx{ 0 };//主人公ベクトル：横軸
+	float m_vy{ 0 };//主人公ベクトル：縦軸
+	float m_px{ 0 };//主人公位置用変数：横軸
+	float m_py{ 0 };//主人公位置用変数：縦軸
 
 	float m_r{ 0 };//主人公の角度制御用
 
