@@ -67,6 +67,12 @@
     <ClCompile Include="SceneMain.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="CObjEnemy3Bullet.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjEnemy3.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -136,9 +142,6 @@
       <Filter>GameL</Filter>
     </ClInclude>
     <ClInclude Include="GameL\DrawTexture.h">
-      <Filter>GameL</Filter>
-    </ClInclude>
-    <ClInclude Include="GameHead.h">
       <Filter>GameL</Filter>
     </ClInclude>
     <ClInclude Include="GameL\HitBoxManager.h">
@@ -249,6 +252,15 @@
       <Filter>ソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="SceneMain.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHead.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjEnemy3Bullet.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjEnemy3.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
   </ItemGroup>
