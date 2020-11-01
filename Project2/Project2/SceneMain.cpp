@@ -28,7 +28,6 @@ CSceneMain::~CSceneMain()
 //初期化メソッド
 void CSceneMain::InitScene()
 {
-	Draw::LoadImage(L"red.jpg", 0, TEX_SIZE_512);
 	//敵の弾（BB弾）
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
 
@@ -61,11 +60,11 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"yuka.png", 3, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"大豆.jpg", 14, TEX_SIZE_512);
+
 	//CObjBlock* obj_block = new CObjBlock;
 	//Objs::InsertObj(obj_block, OBJ_BLOCK, 9);
 
-	
-
+//	Draw::LoadImageW(L"主人公_人（仮）.jpg", 5, TEX_SIZE_512);
 }
 
 //実行中メソッド

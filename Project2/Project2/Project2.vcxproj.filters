@@ -61,9 +61,6 @@
     <ClCompile Include="ObjHero.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="ObjHeroHuman.cpp">
-      <Filter>ソースファイル</Filter>
-    </ClCompile>
     <ClCompile Include="SceneMain.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
@@ -71,6 +68,15 @@
       <Filter>ソースファイル</Filter>
     </ClCompile>
     <ClCompile Include="CObjEnemy3.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjChara.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBox.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjBean.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -189,9 +195,6 @@
     <ClInclude Include="ObjHero.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="ObjHeroHuman.h">
-      <Filter>ソースファイル</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameL\Audio.h">
@@ -233,9 +236,6 @@
     <ClInclude Include="ObjHero.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="GameHead.h">
-      <Filter>ソース ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>ソース ファイル</Filter>
     </ClInclude>
@@ -261,6 +261,18 @@
       <Filter>ソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="CObjEnemy3.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjChara.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBox.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="GameHead.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjBean.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
   </ItemGroup>
