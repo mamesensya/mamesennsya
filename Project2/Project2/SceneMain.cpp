@@ -37,11 +37,16 @@ void CSceneMain::InitScene()
 	CObjEnemy* obj_enemy = new CObjEnemy(350,250);
 	Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);
 
+	//ボス戦車
+	Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
+	CObjBossEnemy* obj_bossenemy = new CObjBossEnemy(400, 300);
+	Objs::InsertObj(obj_bossenemy, OBJ_BOSSENEMY, 52);
 
 	//敵戦車（3方向弾）
 	CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 400);
 	Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
-
+	
+	
 
 	//主人公グラフィック読み込み(400×400)
 	Draw::LoadImageW(L"test.png", 0, TEX_SIZE_512);
