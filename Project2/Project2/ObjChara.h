@@ -3,11 +3,11 @@
 //
 //using namespace GameL;
 //
-//class CObjHeroHuman :public CObj
+//class CObjChara :public CObj
 //{
 //public:
-//	CObjHeroHuman(float x, float y);
-//	~CObjHeroHuman() {};
+//	CObjChara(float x, float y);
+//	~CObjChara() {};
 //	void Init();//イニシャライズ
 //	void Action();//アクション
 //	void Draw();//ドロー
@@ -32,4 +32,7 @@
 //
 //	bool m_hero_flag;//主人公の状態確認フラグ
 //	//false：主人公（戦車）　true：主人公（人）
+//
+//	bool m_attack_time;//主人公（人）：攻撃の間隔の制御用
+//
 //};

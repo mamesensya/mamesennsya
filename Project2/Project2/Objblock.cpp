@@ -123,9 +123,9 @@ void CObjBlock::Action()
 	}
 
 	//左方スクロールライン
-	if (hx > 300)
+	if (hx > 350)
 	{
-		hero->SetX(300);
+		hero->SetX(350);
 		m_scroll -= hero->GetVX();
 	}
 
