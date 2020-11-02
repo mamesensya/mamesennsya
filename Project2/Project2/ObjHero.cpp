@@ -66,11 +66,13 @@ void CObjHero::Action()
 	//‰E•ûŒü
 	if (Input::GetVKey(VK_RIGHT) == true)
 	{
+		m_vx += 2;
 		m_r -= 1.0f;
 	}
 	//¶•ûŒü
 	else if (Input::GetVKey(VK_LEFT) == true)
 	{
+		m_vx -= 2;
 		m_r += 1.0f;
 	}
 	//ã•ûŒü
