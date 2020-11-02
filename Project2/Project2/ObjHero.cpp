@@ -44,6 +44,9 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+	m_vx = 0;
+	m_vy = 0;
+
 	////戦車状態→人状態へ
 	//if (Input::GetVKey('V') == true)
 	//{
