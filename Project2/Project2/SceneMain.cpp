@@ -52,16 +52,20 @@ void CSceneMain::InitScene()
 	//鬼
 	Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
 	CObjGhost* obj_ghost = new CObjGhost(550,450);
-	Objs::InsertObj(obj_ghost, OBJ_GHOST, 4);
+	Objs::InsertObj(obj_ghost, OBJ_GHOST, 9);
 
 
 	Draw::LoadImageW(L"hako.png", 13, TEX_SIZE_512);
+	
+	Draw::LoadImageW(L"豆箱.jpg", 15, TEX_SIZE_512);
+	CObjBox* obj_box = new CObjBox(400, 300);
+	Objs::InsertObj(obj_box, OBJ_BOX, 11);
 
 	Draw::LoadImageW(L"yuka.png", 3, TEX_SIZE_512);
 
 	Draw::LoadImageW(L"大豆.jpg", 14, TEX_SIZE_512);
 	CObjBlock* obj_block = new CObjBlock;
-	Objs::InsertObj(obj_block, OBJ_BLOCK, 9);
+	Objs::InsertObj(obj_block, OBJ_BLOCK, 4);
 
 //	Draw::LoadImageW(L"主人公_人（仮）.jpg", 5, TEX_SIZE_512);
 }

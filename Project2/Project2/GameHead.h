@@ -76,6 +76,8 @@ struct UserData
 #include"CObjEnemy3Bullet.h"
 #include"CObjEnemy3.h"
 //#include "ObjHeroHuman.h"
+#include "ObjBox.h"
+#include "ObjBean.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
