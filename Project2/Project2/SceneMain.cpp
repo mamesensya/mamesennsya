@@ -28,7 +28,6 @@ CSceneMain::~CSceneMain()
 //初期化メソッド
 void CSceneMain::InitScene()
 {
-	Draw::LoadImage(L"red.jpg", 0, TEX_SIZE_512);
 	//敵の弾（BB弾）
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
 
@@ -38,16 +37,22 @@ void CSceneMain::InitScene()
 	CObjEnemy* obj_enemy = new CObjEnemy(350,250);
 	Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);
 
+
+	//敵戦車（3方向弾）
+	CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 400);
+	Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
+
+
 	//主人公グラフィック読み込み(400×400)
 	Draw::LoadImageW(L"test.png", 0, TEX_SIZE_512);
 	//主人公
-	CObjHero* obj = new CObjHero(100,0);
+	CObjHero* obj = new CObjHero(200,200);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
-	////鬼
-	//Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
-	//CObjGhost* obj_ghost = new CObjGhost();
-	//Objs::InsertObj(obj_ghost, OBJ_GHOST, 4);
+	//鬼
+	Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
+	CObjGhost* obj_ghost = new CObjGhost(550,450);
+	Objs::InsertObj(obj_ghost, OBJ_GHOST, 4);
 
 
 	Draw::LoadImageW(L"hako.png", 13, TEX_SIZE_512);
@@ -58,8 +63,7 @@ void CSceneMain::InitScene()
 	CObjBlock* obj_block = new CObjBlock;
 	Objs::InsertObj(obj_block, OBJ_BLOCK, 9);
 
-	
-
+//	Draw::LoadImageW(L"主人公_人（仮）.jpg", 5, TEX_SIZE_512);
 }
 
 //実行中メソッド
