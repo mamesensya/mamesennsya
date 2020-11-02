@@ -41,12 +41,12 @@ void CSceneMain::InitScene()
 	//主人公グラフィック読み込み(400×400)
 	Draw::LoadImageW(L"test.png", 0, TEX_SIZE_512);
 	//主人公
-	CObjHero* obj = new CObjHero(200,200);
+	CObjHero* obj = new CObjHero(700,500);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	//鬼
 	Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
-	CObjGhost* obj_ghost = new CObjGhost(550,450);
+	CObjGhost* obj_ghost = new CObjGhost(0,0);
 	Objs::InsertObj(obj_ghost, OBJ_GHOST, 4);
 
 

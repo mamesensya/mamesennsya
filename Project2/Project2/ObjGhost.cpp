@@ -20,6 +20,7 @@ void CObjGhost::Init()
 {
 	m_vx = 0.0f;
 	m_vy = 0.0f;
+	m_time = 0;
 
 	//“–‚½‚è”»’è
 	Hits::SetHitBox(this, m_x+5, m_y+5, 30, 30, ELEMENT_ENEMY, OBJ_GHOST, 4);
@@ -28,6 +29,8 @@ void CObjGhost::Init()
 
 void CObjGhost::Action()
 {
+	if (m_time == 2)
+		m_time = 0;
 	//ƒxƒNƒgƒ‹‚ð‹‚ß‚é
 	float x = 0;
 	float y = 0;
@@ -38,6 +41,7 @@ void CObjGhost::Action()
 	{
 		float hx = hero->GetX();
 		float hy = hero->GetY();
+		float distance = 50.0f;
 
 		x = m_x - hx;
 		y = m_y - hy;
@@ -58,39 +62,39 @@ void CObjGhost::Action()
 		m_vx *= 5.0f;
 		m_vy *= 5.0f;
 
-		//ŽålŒö‚ÉÚ‹ß‚µ‚½‚çÃŽ~(‹ßÚŠi“¬‚ÍŒã‚ÉŽÀ‘•)
-		if ((x >= -30.0f && x <= 80.0f) && (y >= -30.0f && y <= 80.0f))
-		{
-			m_vx = 0.0f;
-			m_vy = 0.0f;
-
-			if ((x >= -30.0f && x <= 80.0f) && (y >= -30.0f && y <= 80.0f) > (x >= -29.9f && x <= 79.9f) && (y >= -29.9f && y <= 79.9f))
-			{
-				m_vx *= -1.0f;
-				m_vy *= -1.0f;
-
-				/*for (; m_time < 80; m_time++)
-				{
-
-				}*/
-			}
-		}
-
 		if ((x >= -400.0f && x <= 400.0f) || (y >= -400.0f && y <= 400.0f))
 		{
-			m_x += m_vx;
-			m_y += m_vy;
+			if ((x >= -(25.0f + distance) && x <= 75.0f + distance) && (y >= -(25.0f + distance) && y <= 75.0f + distance)||m_time!=0)
+			{
 
+				m_vx = m_vx - m_vx - m_vx;
+				m_vy = m_vy - m_vy - m_vy;
+				m_time = 1;
+				if(m_time < 2) {
+					m_x += m_vx;
+					m_y += m_vy;
+					m_time++;
+				}
+			}
+			//ŽålŒö‚ÉÚ‹ß‚µ‚½‚çÃŽ~(‹ßÚŠi“¬‚ÍŒã‚ÉŽÀ‘•)
+			else if ((x >= -(30.0f + distance) && x <= 80.0f + distance) && (y >= -(30.0f + distance) && y <= 80.0f + distance))
+			{
+				m_vx = 0.0f;
+				m_vy = 0.0f;
 
+			}
+			if (m_time == 0) {
+				m_x += m_vx;
+				m_y += m_vy;
+			}
 		}
 
 		
 
 	}
-
-	//ˆÚ“®•ûŒü
-	m_vx = 0.0f;
-	m_vy = 0.0f;
+		//ˆÚ“®•ûŒü‰Šú‰»
+		m_vx = 0.0f;
+		m_vy = 0.0f;
 
 
 

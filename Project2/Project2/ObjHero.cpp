@@ -41,6 +41,8 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+	m_vx = 0;
+	m_vy = 0;
 	//戦車状態→人状態へ
 	if (m_hero_flag == false)
 	{
@@ -56,23 +58,27 @@ void CObjHero::Action()
 	//右方向
 	if (Input::GetVKey(VK_RIGHT) == true)
 	{
+		m_vx += 2;
 		m_r -= 1.0f;
 		direct += 1;
 	}
 	//左方向
 	if (Input::GetVKey(VK_LEFT) == true)
 	{
+		m_vx -= 2;
 		m_r += 1.0f;
 		direct -= 1;
 	}
 	//上方向
 	if (Input::GetVKey(VK_UP) == true)
 	{
+		m_vy -= 2;
 		direct = 1;
 	}
 	//下方向
 	if (Input::GetVKey(VK_DOWN) == true)
 	{
+		m_vy += 2;
 		direct = 1;
 	}
 
