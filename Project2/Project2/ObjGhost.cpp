@@ -29,8 +29,9 @@ void CObjGhost::Init()
 
 void CObjGhost::Action()
 {
-	if (m_time == 2)
+	if (m_time == 130) {
 		m_time = 0;
+	}
 	//ベクトルを求める
 	float x = 0;
 	float y = 0;
@@ -66,15 +67,15 @@ void CObjGhost::Action()
 		{
 			if ((x >= -(25.0f + distance) && x <= 75.0f + distance) && (y >= -(25.0f + distance) && y <= 75.0f + distance)||m_time!=0)
 			{
-
+				//ベクトルを真逆にする
 				m_vx = m_vx - m_vx - m_vx;
 				m_vy = m_vy - m_vy - m_vy;
-				m_time = 1;
-				if(m_time < 2) {
+				if (m_time < 130) {
 					m_x += m_vx;
 					m_y += m_vy;
 					m_time++;
 				}
+				
 			}
 			//主人公に接近したら静止(近接格闘は後に実装)
 			else if ((x >= -(30.0f + distance) && x <= 80.0f + distance) && (y >= -(30.0f + distance) && y <= 80.0f + distance))
@@ -87,6 +88,7 @@ void CObjGhost::Action()
 				m_x += m_vx;
 				m_y += m_vy;
 			}
+
 		}
 
 		

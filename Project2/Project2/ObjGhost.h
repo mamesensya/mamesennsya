@@ -19,6 +19,6 @@ private:
 	float m_vx;
 	float m_vy;
 
-	int m_time;
+	int m_time = 1;
 
 };
