@@ -8,6 +8,9 @@
 
 using namespace GameL;
 
+
+
+
 CObjEnemy::CObjEnemy(float x, float y)
 {
 	m_x = x;
@@ -34,6 +37,9 @@ void CObjEnemy::Init()
 void CObjEnemy::Action()
 {
 
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map = block->GetS();
+
 	m_time++;
 	if (m_time > 100)
 	{
@@ -52,7 +58,6 @@ void CObjEnemy::Action()
 	{
 		float hx = hero->GetX();
 		float hy = hero->GetY();
-
 		//ìGÇ©ÇÁéÂêlåˆÇÃÉxÉNÉgÉãÇãÅÇﬂÇÈ
 		x = m_x - hx;
 		y = m_y - hy;
@@ -214,7 +219,6 @@ void CObjEnemy::Action()
 		}
 	}
 
-
 	if (m_time == 100 && count == 1)
 	{
 		//ìGíeä€î≠éÀ
@@ -228,7 +232,7 @@ void CObjEnemy::Action()
 
 	//HitBoxÇÃì‡óeçXêV
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x + 35, m_y + 40);
+	hit->SetPos(m_x + 35+m_scroll_map, m_y + 40);
 
 	//íeä€Ç∆ê⁄êGÇµÇƒÇ¢ÇÈÇ©Çí≤Ç◊ÇÈ
 	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
@@ -287,10 +291,10 @@ void CObjEnemy::Draw()
 	src.m_bottom = 400.0f;
 
 	//èoóÕà íu
-	dst.m_top = 0.0f+m_y;
-	dst.m_left =0.0f+m_x;
-	dst.m_right =128.0f+m_x;
-	dst.m_bottom =128.0f+m_y;
+	dst.m_top = 0.0f+m_y ;
+	dst.m_left =0.0f+m_x+m_scroll_map;
+	dst.m_right =128.0f+m_x+m_scroll_map;
+	dst.m_bottom =128.0f+m_y ;
 
 	Draw::Draw(1, &src, &dst, c, m_r);
 }

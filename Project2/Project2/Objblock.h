@@ -13,6 +13,7 @@ public:
 	void Init();
 	void Action();
 	void Draw();
+	float GetS() { return m_scroll; };
 private:
 	int m_map[80][60];//マップ情報（仮）
 
