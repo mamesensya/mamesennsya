@@ -17,4 +17,8 @@ private:
 	float m_vy;
 	float m_r;
 	float m_speed;
+	float mx;
+	float my;
+
+	float m_scroll_map;
 };

@@ -20,6 +20,7 @@ void CObjEnemyBullet::Init()
 	mx = 0;
 	my = 0;
 
+
 	//HitBox作成
 	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
 }
@@ -27,10 +28,20 @@ void CObjEnemyBullet::Init()
 //アクション
 void CObjEnemyBullet::Action()
 {
-	//float mr = 0.0f;
-	////敵戦車のグラフィックの向きを取得
-	//CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
-	//mr = enemy->GetR();
+	float er = 0.0f;
+
+	//スクロールした分のベクトルを取得
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map = block->GetS();
+
+
+	//敵戦車のグラフィックの向きを取得
+	CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+	er = enemy->GetR();
+
+	//敵戦車の座標取得
+	float ex = enemy->GetX();
+	float ey = enemy->GetY();
 
 
 	if (m_r == 0.0f)
@@ -64,7 +75,7 @@ void CObjEnemyBullet::Action()
 
 	//HitBoxの内容を更新
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x, m_y);
+	hit->SetPos(m_x+m_scroll_map, m_y);
 
 	//主人公と接触しているかどうか調べる
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
@@ -73,14 +84,14 @@ void CObjEnemyBullet::Action()
 		Hits::DeleteHitBox(this);//削除
 	}
 
-	////弾丸と接触しているかを調べる
-	//if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
-	//{
-	//	this->SetStatus(false);//自身に削除命令を出す
-	//	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
-	//}
+	//弾丸と接触しているかを調べる
+	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
+	}
 
-	if (mx >= 1000.0f||mx<=-1000.0f || my >= 1000.0f||my>=1000.0f)
+	if (mx >= 1000.0f||mx<=-1000.0f || my >= 1000.0f||my<=-1000.0f)
 	{
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
@@ -104,8 +115,8 @@ void CObjEnemyBullet::Draw()
 
 	//表示位置
 	dst.m_top = 0.0f+m_y;
-	dst.m_left = 0.0f+m_x;
-	dst.m_right = 32.0f+m_x;
+	dst.m_left = 0.0f + m_x+m_scroll_map ;
+	dst.m_right = 32.0f+m_x +m_scroll_map;
     dst.m_bottom = 32.0f+m_y;
 
 	Draw::Draw(2, &src, &dst, c, 0.0f);

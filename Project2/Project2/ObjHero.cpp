@@ -135,6 +135,7 @@ void CObjHero::Action()
 	{
 		OBJ_ENEMY,
 		OBJ_ENEMY_BULLET,
+		OBJ_ENEMY_3BULLET,
 	};
 	//敵オブジェクトと接触したら主人公のm_hpが減少
 	for (int i = 0; i < 4; i++)
