@@ -40,6 +40,7 @@ enum HIT_ELEMENTS
 	ELEMENT_BLUE,
 	ELEMENT_BLACK,
 	ELEMENT_WHITE,
+	ELEMENT_CHARA,
 };
 //------------------------------------------------
 
@@ -81,7 +82,6 @@ struct UserData
 #include "ObjBox.h"
 #include "ObjBean.h"
 #include "CObjAttack.h"
-//#include "ObjHeroHuman.h"
 #include"CObjBossEnemy.h"
 #include"OBJGhostAttack.h"
 //------------------------------------------------

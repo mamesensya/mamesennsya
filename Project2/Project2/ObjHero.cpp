@@ -35,7 +35,6 @@ void CObjHero::Init()
 	m_unique_bullet_2 = 3;
 	m_hero_flag = false;
 	m_hp = HP;
-	m_bullet_time = true;
 
 	//当たり判定
 	Hits::SetHitBox(this, m_x+13.0f, m_y+15.0f, 65, 65, ELEMENT_PLAYER, OBJ_HERO, 1);
@@ -44,97 +43,103 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
-	m_vx = 0;
-	m_vy = 0;
-
-	////戦車状態→人状態へ
-	//if (Input::GetVKey('V') == true)
-	//{
-	//	if (m_hero_flag == false)
-	//	{
-	//		m_hero_flag = true;
-	//		//チャタリング防止用
-	//		while (Input::GetVKey('V') == true);
-	//	}
-	//}
-
-	if (m_r == -90.0f)
-		m_r = 270.0f;
-	else if (m_r == 270.0f)
-		m_r = -90.0f;
-
-	//右方向
-	if (Input::GetVKey(VK_RIGHT) == true)
+	//主人公（人）の状態なら動作しない
+	if (m_hero_flag == false)
 	{
-		m_vx += 2;
-		m_r -= 1.0f;
-	}
-	//左方向
-	else if (Input::GetVKey(VK_LEFT) == true)
-	{
-		m_vx -= 2;
-		m_r += 1.0f;
-	}
-	//上方向
-	else if (Input::GetVKey(VK_UP) == true)
-	{
-		//sin_f = sinf(m_r);
-		//cos_f = cosf(m_r);
+		//ベクトルを0にする
+		m_vx = 0;
+		m_vy = 0;
 
-		////VectorNormalize(&sin_f, &cos_f);
-
-		//m_vx += sin_f;
-		//m_vy += cos_f;
-	}
-	//下方向
-	else if (Input::GetVKey(VK_DOWN) == true)
-	{
-		//sin_f = sinf(m_r);
-		//cos_f = cosf(m_r);
-
-		////VectorNormalize(&sin_f, &cos_f);
-
-		//if(m_r)
-		//m_vx -= sin_f;
-		//m_vy -= cos_f;
-	}
-
-	m_x += m_vx;
-	m_y += m_vy;
-	
-	//HitBoxの内容更新
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x + 13.0f, m_y + 15.0f);
-
-	if (m_bullet_time == true){
-		if (Input::GetVKey('Z') == true && m_bullet > 0)
+		//戦車状態→人状態へ
+		if (Input::GetVKey('V') == true)
 		{
-			CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x, m_y, m_r-(m_r*2)-90);
-			Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 14);
-			m_bullet -= 1;
-			m_bullet_time = false;
-		}
-		if (Input::GetVKey('X') == true && m_unique_bullet_1 > 0) {
-			CObjPenetrateBullet* obj_pb = new CObjPenetrateBullet(m_x, m_y, m_r - (m_r * 2) - 90);
-			Objs::InsertObj(obj_pb, OBJ_PENETRATE_BULLET, 15);
-			m_unique_bullet_1 -= 1;
-			m_bullet_time = false;
-		}
-		if (Input::GetVKey('C') == true && m_unique_bullet_2 > 0) {
-			for (int i = 0; i < 3; i++) {
-				CObjPlayerBullet* obj_db = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
-				Objs::InsertObj(obj_db, OBJ_ANGLE_BULLET, 16);
+			if (m_hero_flag == false)
+			{
+				m_hero_flag = true;
+
+				CObjChara* obj_chara = new CObjChara(m_x, m_y);
+				Objs::InsertObj(obj_chara, OBJ_CHARA, 10);
+
+				while (Input::GetVKey('V') == true);
 			}
-			m_unique_bullet_2 -= 1;
-			m_bullet_time = false;
 		}
-	}
+
+		if (m_r == 360.0f)
+			m_r = 0.0f;
+		//else if (m_r == 360.0f)
+		//	m_r = 0.0f;
+
+		//右方向
+		if (Input::GetVKey(VK_RIGHT) == true)
+		{
+			m_r -= 1.0f;
+		}
+		//左方向
+		else if (Input::GetVKey(VK_LEFT) == true)
+		{
+			m_r += 1.0f;
+		}
+		//上方向
+		else if (Input::GetVKey(VK_UP) == true)
+		{
+			sin_f = sinf(m_r);
+			cos_f = cosf(m_r);
+
+			//VectorNormalize(&sin_f, &cos_f);
+
+			m_vx = sin_f;
+			m_vy = cos_f;
+		}
+		//下方向
+		else if (Input::GetVKey(VK_DOWN) == true)
+		{
+			sin_f = sinf(m_r);
+			cos_f = cosf(m_r);
+
+			//VectorNormalize(&sin_f, &cos_f);
+
+			m_vx -= sin_f;
+			m_vy -= cos_f;
+		}
+
+		//ベクトルを位置に加算
+		m_x += m_vx;
+		m_y += m_vy;
+
+		//HitBoxの内容更新
+		CHitBox* hit = Hits::GetHitBox(this);
+		hit->SetPos(m_x + 13.0f, m_y + 15.0f);
+
+		if (m_bullet_time == true) {
+			if (Input::GetVKey('Z') == true && m_bullet > 0)
+			{
+				CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - 90);
+				Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 14);
+				m_bullet -= 1;
+				m_bullet_time = false;
+			}
+			if (Input::GetVKey('X') == true && m_unique_bullet_1 > 0) {
+				CObjPenetrateBullet* obj_pb = new CObjPenetrateBullet(m_x, m_y, m_r - (m_r * 2) - 90);
+				Objs::InsertObj(obj_pb, OBJ_PENETRATE_BULLET, 15);
+				m_unique_bullet_1 -= 1;
+				m_bullet_time = false;
+			}
+			if (Input::GetVKey('C') == true && m_unique_bullet_2 > 0) {
+				for (int i = 0; i < 3; i++) {
+					CObjPlayerBullet* obj_db = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
+					Objs::InsertObj(obj_db, OBJ_ANGLE_BULLET, 16);
+				}
+				m_unique_bullet_2 -= 1;
+				m_bullet_time = false;
+			}
+		}
 
 	//当たり判定を行うオブジェクト情報部
 	int data_base[4] =
 	{
 		OBJ_ENEMY,
 		OBJ_ENEMY_BULLET,
+		OBJ_ENEMY_3BULLET,
 	};
 	//敵オブジェクトと接触したら主人公のm_hpが減少
 	for (int i = 0; i < 4; i++)
@@ -150,47 +155,44 @@ void CObjHero::Action()
 	//	this->SetStatus(false);//自身に削除命令を出す
 	//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-	//	//Scene::SetScene(new CSceneTitle());
-	//}
+		//	//Scene::SetScene(new CSceneTitle());
+		//}
 
-	if (m_bullet_time == false)
-	{
-		m_time++;
-		if (m_time == 30) 
+		if (m_bullet_time == false)
 		{
-			m_bullet_time = true;
-			m_time = 0;
+			m_time++;
+			if (m_time == 30)
+			{
+				m_bullet_time = true;
+				m_time = 0;
+			}
 		}
 	}
-	
 }
 
 //ドロー
 void CObjHero::Draw()
 {
-	if (m_hero_flag == false)
-	{
-		//カラー情報
-		float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	//カラー情報
+	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
-		RECT_F src;//描画元切り取り位置
-		RECT_F dst;//描画先表示位置
+	RECT_F src;//描画元切り取り位置
+	RECT_F dst;//描画先表示位置
 
-		//切り取り位置の設定
-		src.m_top = 22.0f;
-		src.m_left = 22.0f;
-		src.m_right = 400.0f;
-		src.m_bottom = 400.0f;
+	//切り取り位置の設定
+	src.m_top = 22.0f;
+	src.m_left = 22.0f;
+	src.m_right = 400.0f;
+	src.m_bottom = 400.0f;
 
-		//表示位置の設定
-		dst.m_top = 0.0f + m_y;
-		dst.m_left = 0.0f + m_x;
-		dst.m_right =32.0f+ 64.0f + m_x;
-		dst.m_bottom = 32.0f+64.0f + m_y;
+	//表示位置の設定
+	dst.m_top = 0.0f + m_y;
+	dst.m_left = 0.0f + m_x;
+	dst.m_right = 32.0f + 64.0f + m_x;
+	dst.m_bottom = 32.0f + 64.0f + m_y;
 
-		//描画
-		Draw::Draw(0, &src, &dst, c, m_r);
-	}
+	//描画
+	Draw::Draw(0, &src, &dst, c, m_r);
 }
 
 ////主人公の今向いている角度に向かって移動する関数

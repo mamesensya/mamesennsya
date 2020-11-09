@@ -30,6 +30,9 @@ void CObjEnemy::Init()
 	pbullet_interval = 0; //貫通弾ヒットの間隔
 	pbullet_enable = false; //貫通弾ダメージ有効
 
+
+	m_scroll_map = 0;
+
 	//HitBox追加
 	Hits::SetHitBox(this, m_x+35, m_y+40, 55, 55, ELEMENT_ENEMY, OBJ_ENEMY,1 );
 }
@@ -39,6 +42,8 @@ void CObjEnemy::Action()
 
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map = block->GetS();
+
+
 
 	m_time++;
 	if (m_time > 100)
@@ -59,6 +64,10 @@ void CObjEnemy::Action()
 		float hx = hero->GetX();
 		float hy = hero->GetY();
 		//敵から主人公のベクトルを求める
+
+		hx = hx - m_scroll_map;
+		hy = hy - m_scroll_map;
+
 		x = m_x - hx;
 		y = m_y - hy;
 
@@ -230,6 +239,7 @@ void CObjEnemy::Action()
 	m_y += m_vy;
 
 
+
 	//HitBoxの内容更新
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + 35+m_scroll_map, m_y + 40);
@@ -263,6 +273,7 @@ void CObjEnemy::Action()
 	m_vx = 0;
 	m_vy = 0;
 
+
 	//移動硬直制御
 	if (count == 1)
 	{
@@ -292,8 +303,8 @@ void CObjEnemy::Draw()
 
 	//出力位置
 	dst.m_top = 0.0f+m_y ;
-	dst.m_left =0.0f+m_x+m_scroll_map;
-	dst.m_right =128.0f+m_x+m_scroll_map;
+	dst.m_left =0.0f+m_x + m_scroll_map;
+	dst.m_right =128.0f+m_x + m_scroll_map;
 	dst.m_bottom =128.0f+m_y ;
 
 	Draw::Draw(1, &src, &dst, c, m_r);

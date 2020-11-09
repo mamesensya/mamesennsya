@@ -34,6 +34,9 @@ void CObjBossEnemy::Init()
 void CObjBossEnemy::Action()
 {
 
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map = block->GetS();
+
 	m_time++;
 	if (m_time > 100)
 	{
@@ -215,14 +218,14 @@ void CObjBossEnemy::Action()
 	}
 
 
-	if (m_time == 100 && count == 1)
-	{
-		//ìGíeä€î≠éÀ
-		for (int i = 0; i < 3; i++) {
-			CObjEnemy3B* obj_eb = new CObjEnemy3B(m_x, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
-			Objs::InsertObj(obj_eb, OBJ_ENEMY_3BULLET, 16);
-		}
-	}
+	//if (m_time == 100 && count == 1)
+	//{
+	//	//ìGíeä€î≠éÀ
+	//	for (int i = 0; i < 3; i++) {
+	//		CObjEnemy3B* obj_eb = new CObjEnemy3B(m_x, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
+	//		Objs::InsertObj(obj_eb, OBJ_ENEMY_3BULLET, 16);
+	//	}
+	//}
 
 	m_x += m_vx;
 	m_y += m_vy;
@@ -230,7 +233,7 @@ void CObjBossEnemy::Action()
 
 	//HitBoxÇÃì‡óeçXêV
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x + 35, m_y + 40);
+	hit->SetPos(m_x + 35+ m_scroll_map, m_y + 40);
 
 	//íeä€Ç∆ê⁄êGÇµÇƒÇ¢ÇÈÇ©Çí≤Ç◊ÇÈ
 	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
@@ -290,8 +293,8 @@ void CObjBossEnemy::Draw()
 
 	//èoóÕà íu
 	dst.m_top = 0.0f + m_y;
-	dst.m_left = 0.0f + m_x;
-	dst.m_right = 128.0f + m_x;
+	dst.m_left = 0.0f + m_x+m_scroll_map;
+	dst.m_right = 128.0f + m_x+m_scroll_map;
 	dst.m_bottom = 128.0f + m_y;
 
 	Draw::Draw(5, &src, &dst, c, m_r);

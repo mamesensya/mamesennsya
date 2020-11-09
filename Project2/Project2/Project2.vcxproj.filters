@@ -79,6 +79,9 @@
     <ClCompile Include="ObjBean.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="CObjAttack.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
     <ClCompile Include="CObjBossEnemy.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
@@ -280,6 +283,9 @@
       <Filter>ソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="CObjBossEnemy.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjAttack.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="OBJGhostAttack.h" />

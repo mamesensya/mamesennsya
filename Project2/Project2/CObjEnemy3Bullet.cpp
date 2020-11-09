@@ -1,8 +1,7 @@
 #include "GameHead.h"
-#include "CObjEnemy3.h"
+#include "CObjEnemy3Bullet.h"
 #include "GameL\HitBoxManager.h"
 #include "GameL\DrawTexture.h"
-#include "GameL\HitBoxManager.h"
 #include "GameL\SceneManager.h"
 
 
@@ -18,6 +17,10 @@ CObjEnemy3B::CObjEnemy3B(float x, float y, float r) {
 void CObjEnemy3B::Init() {
 	m_vx = 0;
 	m_vy = 0;
+	mx=0;
+	my = 0;
+
+	m_scroll_map = 0;
 
 	m_speed = 7;
 	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_3BULLET, 1);
@@ -27,11 +30,23 @@ void CObjEnemy3B::Action() {
 
 	CHitBox* Hit = Hits::GetHitBox(this);
 
+
+	//スクロールした分のベクトルを取得
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map = block->GetS();
+
+
 	m_vx = cos(3.14 / 180.0f * m_r);
 	m_vy = sin(3.14 / 180.0f * m_r);
 
+	
+
 	m_x += m_vx * m_speed;
 	m_y += m_vy * m_speed;
+
+	mx += m_vx * m_speed;
+	my += m_vy * m_speed;
+	
 
 	Hit->SetPos(m_x, m_y);
 
@@ -39,6 +54,19 @@ void CObjEnemy3B::Action() {
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 	}
+
+	if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
+	{
+		this->SetStatus(false);//削除命令
+		Hits::DeleteHitBox(this);//削除
+	}
+	//主人公（人）と接触しているか調べる
+	if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
+	{
+		this->SetStatus(false);//削除命令
+		Hits::DeleteHitBox(this);//削除
+	}
+
 };
 
 void CObjEnemy3B::Draw() {
