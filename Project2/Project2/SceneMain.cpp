@@ -5,14 +5,14 @@
 //GameLで使用するヘッダー
 #include "GameL\SceneObjManager.h"
 #include"GameL\DrawTexture.h"
-
+#include "GameL\DrawFont.h"
 //使用するネームスペース
 using namespace GameL;
 
 //使用ヘッダー
 #include"SceneMain.h"
 #include"GameHead.h"
-
+#include "Objblock.h"
 //コンストラクタ
 CSceneMain::CSceneMain()
 {
@@ -63,6 +63,7 @@ void CSceneMain::InitScene()
 	CObjBlock* obj_block = new CObjBlock;
 	Objs::InsertObj(obj_block, OBJ_BLOCK, 9);
 
+	
 //	Draw::LoadImageW(L"主人公_人（仮）.jpg", 5, TEX_SIZE_512);
 }
 

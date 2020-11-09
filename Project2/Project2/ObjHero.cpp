@@ -64,18 +64,21 @@ void CObjHero::Action()
 		m_r = -90.0f;
 
 	//‰E•ûŒü
-	if (Input::GetVKey(VK_RIGHT) == true)
+	if ((Input::GetVKey(VK_RIGHT) == true))
 	{
+		m_vx += 5.0f;
 		m_r -= 1.0f;
 	}
 	//¶•ûŒü
 	else if (Input::GetVKey(VK_LEFT) == true)
 	{
+		m_vx -= 5.0f;
 		m_r += 1.0f;
 	}
 	//ã•ûŒü
 	else if (Input::GetVKey(VK_UP) == true)
 	{
+		m_vy -= 5.0f;
 		//sin_f = sinf(m_r);
 		//cos_f = cosf(m_r);
 
@@ -87,6 +90,7 @@ void CObjHero::Action()
 	//‰º•ûŒü
 	else if (Input::GetVKey(VK_DOWN) == true)
 	{
+		m_vy += 5.0f;
 		//sin_f = sinf(m_r);
 		//cos_f = cosf(m_r);
 
