@@ -6,6 +6,8 @@
 
 #include"GameHead.h"
 #include"ObjGhost.h"
+#include"OBJGhostAttack.h"
+#include"ObjHero.h"
 
 //ネームスペース
 using namespace GameL;
@@ -32,6 +34,12 @@ void CObjGhost::Action()
 	if (m_time == 130) {
 		m_time = 0;
 	}
+
+	//内容更新
+	CHitBox* hit = Hits::GetHitBox(this);
+	hit->SetPos(m_x + 5, m_y + 5);
+
+
 	//ベクトルを求める
 	float x = 0;
 	float y = 0;
@@ -82,6 +90,19 @@ void CObjGhost::Action()
 			{
 				m_vx = 0.0f;
 				m_vy = 0.0f;
+				for (;;n++)
+				{
+					if (n == 30)
+					{
+						CObjGhostAttack* objAttack = new CObjGhostAttack(m_x, m_y);
+						Objs::InsertObj(objAttack, OBJ_GHOST_ATTACK, 6);
+						
+						
+						n = 0;
+						break;
+					}
+					
+				}
 
 			}
 			if (m_time == 0) {
@@ -100,10 +121,7 @@ void CObjGhost::Action()
 
 
 
-	//内容更新
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x+5, m_y+5);
-
+	
 	//主人公弾と接触しているかどうか調べる
 	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
 	{

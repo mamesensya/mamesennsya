@@ -4,21 +4,19 @@
 
 using namespace GameL;
 
-class CObjGhost:public CObj
+class CObjGhostAttack :public CObj
 {
 public:
-	CObjGhost(float x,float y) ;
-	~CObjGhost() {};
+	CObjGhostAttack(float x, float y) ;
+	~CObjGhostAttack() {};
 	void Init();
 	void Action();
 	void Draw();
-
 private:
-	float m_x;//以下ホーミング変数
+	float m_x;
 	float m_y;
 	float m_vx;
 	float m_vy;
 
-	int m_time = 1;//接近と逃走用
-	int n = 0;//近接格闘用
+	int m_time = 0;
 };
