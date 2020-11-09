@@ -72,7 +72,9 @@ void CSceneMain::InitScene()
 	CObjBlock* obj_block = new CObjBlock;
 	Objs::InsertObj(obj_block, OBJ_BLOCK, 4);
 
-//	Draw::LoadImageW(L"主人公_人（仮）.jpg", 5, TEX_SIZE_512);
+	Draw::LoadImageW(L"主人公_人（仮）.jpg", 6, TEX_SIZE_512);
+
+	Draw::LoadImageW(L"主人公近接攻撃（仮）.png", 7, TEX_SIZE_512);
 }
 
 //実行中メソッド
