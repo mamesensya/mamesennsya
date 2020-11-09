@@ -5,33 +5,31 @@
 //#include "GameL\WinInputs.h"
 //
 //#include "GameHead.h"
-//#include "ObjHeroHuman.h"
+//#include "ObjChara.h"
 //
 //using namespace GameL;
 //
 ////コンストラクタ
-//CObjHeroHuman::CObjHeroHuman(float x, float y)
+//CObjChara::CObjChara(float x, float y)
 //{
 //	m_x = x;
 //	m_y = y;
 //}
 //
-//void CObjHeroHuman::Init()
+//void CObjChara::Init()
 //{
 //	m_hero_flag = true;
 //}
 //
-//void CObjHeroHuman::Action()
+//void CObjChara::Action()
 //{
 //	//人状態→戦車状態へ
 //	if (m_hero_flag == true)
 //	{
 //		//主人公が人状態に移行
-//		if (Input::GetVKey('B') == true)
+//		if (Input::GetVKey('V') == true)
 //		{
 //			m_hero_flag = false;
-//			//チャタリング防止用
-//			while (Input::GetVKey('V') == true);
 //		}
 //	}
 //
@@ -39,21 +37,32 @@
 //	if (Input::GetVKey(VK_RIGHT) == true)
 //	{
 //		m_r = 180.0f;
+//		m_vx = 1.0f;
 //	}
 //	//左方向
 //	if (Input::GetVKey(VK_LEFT) == true)
 //	{
 //		m_r = 90.0f;
+//		m_vx = -1.0f;
 //	}
 //	//上方向
 //	if (Input::GetVKey(VK_UP) == true)
 //	{
 //		m_r = 0.0f;
+//		m_vy = -1.0f;
 //	}
 //	//下方向
 //	if (Input::GetVKey(VK_DOWN) == true)
 //	{
 //		m_r = 270.0f;
+//		m_vy = 1.0f;
+//	}
+//
+//	if (Input::GetVKey('Z') == true)
+//	{
+//		CObjAttack* obj_at = new CObjAttack(m_x, m_y, m_r);
+//		Objs::InsertObj(obj_at, OBJ_ATTACK, 15);
+//		m_attack_time = false;
 //	}
 //
 //	m_x = +m_vx;
@@ -86,7 +95,7 @@
 //
 //}
 //
-//void CObjHeroHuman::Draw()
+//void CObjChara::Draw()
 //{
 //	if (m_hero_flag == true)
 //	{

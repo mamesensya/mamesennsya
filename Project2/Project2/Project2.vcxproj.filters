@@ -79,6 +79,9 @@
     <ClCompile Include="ObjBean.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="CObjBossEnemy.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -273,6 +276,9 @@
       <Filter>ソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="ObjBean.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjBossEnemy.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
   </ItemGroup>

@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CObjBossEnemy.cpp" />
     <ClCompile Include="CObjEnemy3.cpp" />
     <ClCompile Include="CObjEnemy3Bullet.cpp" />
     <ClCompile Include="CObjEnemyBullet.cpp" />
@@ -171,6 +172,7 @@
     <ClCompile Include="SceneMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CObjBossEnemy.h" />
     <ClInclude Include="CObjEnemy3.h" />
     <ClInclude Include="CObjEnemy3Bullet.h" />
     <ClInclude Include="CObjEnemyBullet.h" />

@@ -16,6 +16,7 @@ public:
 
 	float GetScrollX() { return m_scroll;}
 	float GetScrollY() { return m_scroll2; }
+	float GetS() { return m_scroll; };
 private:
 	int m_map[60][80];//マップ情報（仮）
 

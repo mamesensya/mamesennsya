@@ -38,7 +38,7 @@ void CObjHero::Init()
 	m_bullet_time = true;
 
 	//“–‚½‚è”»’è
-	Hits::SetHitBox(this, m_x+13.0f, m_y+15.0f, 65, 65, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_x+13.0f, m_y+15.0f, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 }
 
 //ƒAƒNƒVƒ‡ƒ“

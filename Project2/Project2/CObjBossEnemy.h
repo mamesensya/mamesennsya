@@ -4,11 +4,11 @@
 
 using namespace GameL;
 
-class CObjEnemy :public CObj
+class CObjBossEnemy :public CObj
 {
 public:
-	CObjEnemy(float x,float y);
-	~CObjEnemy() {};
+	CObjBossEnemy(float x, float y);
+	~CObjBossEnemy() {};
 	void Init();
 	void Action();
 	void Draw();
@@ -30,11 +30,9 @@ private:
 	int m_hp;//HP
 	int count;//主人公の位置を向く為の変数
 	int m_time;//弾発射間隔制御用変数
-	int m_move_time;//敵戦車移動硬直用変数
-
-	float m_scroll_map;//mapのスクロールに合わせて動くための変数
-
+	int m_move_time;
 	int pbullet_interval;
 	bool pbullet_enable;
+
 
 };
