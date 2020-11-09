@@ -35,7 +35,6 @@ void CObjHero::Init()
 	m_unique_bullet_2 = 3;
 	m_hero_flag = false;
 	m_hp = HP;
-	m_bullet_time = true;
 
 	//“–‚½‚è”»’è
 	Hits::SetHitBox(this, m_x+13.0f, m_y+15.0f, 65, 65, ELEMENT_PLAYER, OBJ_HERO, 1);

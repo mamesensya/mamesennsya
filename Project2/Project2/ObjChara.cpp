@@ -25,7 +25,9 @@ void CObjChara::Init()
 
 void CObjChara::Action()
 {
+	//主人公の情報を取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	//主人公が存在しないなら動作しない
 	if (hero != nullptr)
 	{
 		//HitBoxの内容更新
@@ -75,6 +77,7 @@ void CObjChara::Action()
 				m_r = 180.0f;
 				m_vy = 1.0f;
 			}
+
 			//主人公近接攻撃
 			if (Input::GetVKey('Z') == true)
 			{
@@ -96,6 +99,7 @@ void CObjChara::Action()
 			{
 				OBJ_ENEMY,
 				OBJ_ENEMY_BULLET,
+				OBJ_ENEMY_3BULLET,
 			};
 
 			//敵オブジェクトと接触したら主人公のm_hpが減少
@@ -114,6 +118,15 @@ void CObjChara::Action()
 
 			//	//Scene::SetScene(new CSceneTitle());
 			//}
+			if (m_attack_time == false)
+			{
+				m_time++;
+				if (m_time == 60)
+				{
+					m_attack_time = true;
+					m_time = 0;
+				}
+			}
 		}
 	}
 }

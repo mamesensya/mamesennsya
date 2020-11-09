@@ -39,6 +39,13 @@ void CObjEnemy3B::Action() {
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 	}
+	//主人公（人）と接触しているか調べる
+	if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
+	{
+		this->SetStatus(false);//削除命令
+		Hits::DeleteHitBox(this);//削除
+	}
+
 };
 
 void CObjEnemy3B::Draw() {

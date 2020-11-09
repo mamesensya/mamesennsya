@@ -32,5 +32,7 @@ private:
 
 	float m_r{ 0 };//主人公の角度制御用
 
-	bool m_attack_time;//主人公（人）：攻撃の間隔の制御用
+	int m_time{ 0 };//主人公攻撃間隔時間
+
+	bool m_attack_time{ true };//主人公（人）：攻撃の間隔の制御用
 };

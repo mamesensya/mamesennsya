@@ -46,12 +46,12 @@ private:
 
 	float m_r{ 0 };//主人公の角度制御用
 
-	int m_time{0};//
+	int m_time{0};//主人公攻撃間隔時間
 
 	int m_bullet;//主人公（戦車）：通常弾数
 	int m_unique_bullet_1;//主人公（戦車）：特殊弾（１）弾数
 	int m_unique_bullet_2;//主人公（戦車）：特殊弾（２）弾数
-	bool m_bullet_time;//主人公（戦車）：弾の発射間隔の制御用
+	bool m_bullet_time{ true };//主人公（戦車）：弾の発射間隔の制御用
 
 	float sin_f{ 0 };
 	float cos_f{ 0 };
