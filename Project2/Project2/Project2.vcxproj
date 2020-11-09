@@ -159,6 +159,7 @@
     <ClCompile Include="GameL\SetWindow.cpp" />
     <ClCompile Include="GameL\UserData.cpp" />
     <ClCompile Include="GameL\WinInputs.cpp" />
+    <ClCompile Include="CObjAttack.cpp" />
     <ClCompile Include="ObjBean.cpp" />
     <ClCompile Include="Objblock.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -172,6 +173,7 @@
     <ClCompile Include="SceneMain.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CObjAttack.h" />
     <ClInclude Include="CObjBossEnemy.h" />
     <ClInclude Include="CObjEnemy3.h" />
     <ClInclude Include="CObjEnemy3Bullet.h" />

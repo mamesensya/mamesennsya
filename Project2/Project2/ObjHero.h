@@ -33,9 +33,8 @@ public:
 	void GetUniqueBullet2(int unique_bullet_2)
 	{	m_unique_bullet_2 += unique_bullet_2;	}
 
-	bool Hero() { return m_hero_flag; }
-
-	int direct{0};//主人公の方向記憶変数
+	bool m_hero_flag;//主人公の状態確認フラグ
+	//false：主人公（戦車）　true：主人公（人）
 private:
 	int m_hp{ 0 };//主人公のヒットポイント（体力）
 
@@ -54,12 +53,8 @@ private:
 	int m_unique_bullet_2;//主人公（戦車）：特殊弾（２）弾数
 	bool m_bullet_time;//主人公（戦車）：弾の発射間隔の制御用
 
-	bool m_hero_flag;//主人公の状態確認フラグ
-	//false：主人公（戦車）　true：主人公（人）
-
 	float sin_f{ 0 };
 	float cos_f{ 0 };
-
 
 	bool m_hit_up;
 	bool m_hit_down;
