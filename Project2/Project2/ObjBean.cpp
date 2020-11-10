@@ -21,9 +21,11 @@ void CObjBean::Init()
 	//ボックスの当たり判定
 	//主人公の位置取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	float hx = hero->GetX();
-	float hy = hero->GetY();
-
+	if (hero != nullptr)
+	{
+		float hx = hero->GetX();
+		float hy = hero->GetY();
+	}
 	//当たり判定用HitBox作成
 	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ITEM, OBJ_BEAN, 1);
 }
