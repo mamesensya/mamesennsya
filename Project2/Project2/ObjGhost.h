@@ -19,6 +19,10 @@ private:
 	float m_vx;
 	float m_vy;
 
-	int m_time = 1;
+	float m_scroll_map;
 
+	int m_time = 1;//Ú‹ß‚Æ“¦‘–—p
+	int c{0};//UŒ‚‚·‚éŠÔŠu
+
+	float n{0.0f};//§Œä
 };

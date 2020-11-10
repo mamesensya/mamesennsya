@@ -34,5 +34,6 @@ private:
 	int pbullet_interval;
 	bool pbullet_enable;
 
+	float m_scroll_map;
 
 };

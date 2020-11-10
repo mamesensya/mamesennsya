@@ -21,4 +21,6 @@ private:
 	float m_r;//•ûŒü
 	float mx;//ˆÚ“®—Ê
 	float my;
+
+	float m_scroll_map{0};
 };

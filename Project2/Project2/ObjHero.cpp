@@ -66,8 +66,8 @@ void CObjHero::Action()
 
 		if (m_r == 360.0f)
 			m_r = 0.0f;
-		//else if (m_r == 360.0f)
-		//	m_r = 0.0f;
+		else if (m_r == 360.0f)
+			m_r = 0.0f;
 
 		//右方向
 		if (Input::GetVKey(VK_RIGHT) == true)
@@ -77,6 +77,7 @@ void CObjHero::Action()
 		//左方向
 		else if (Input::GetVKey(VK_LEFT) == true)
 		{
+			
 			m_r += 1.0f;
 		}
 		//上方向
@@ -134,26 +135,26 @@ void CObjHero::Action()
 			}
 		}
 
-		//当たり判定を行うオブジェクト情報部
-		int data_base[4] =
+	//当たり判定を行うオブジェクト情報部
+	int data_base[4] =
+	{
+		OBJ_ENEMY,
+		OBJ_ENEMY_BULLET,
+		OBJ_ENEMY_3BULLET,
+	};
+	//敵オブジェクトと接触したら主人公のm_hpが減少
+	for (int i = 0; i < 4; i++)
+	{
+		if (hit->CheckObjNameHit(data_base[i]) != nullptr)
 		{
-			OBJ_ENEMY,
-			OBJ_ENEMY_BULLET,
-
-		};
-		//敵オブジェクトと接触したら主人公のm_hpが減少
-		for (int i = 0; i < 4; i++)
-		{
-			if (hit->CheckObjNameHit(data_base[i]) != nullptr)
-			{
-				m_hp -= 1;
-			}
+			m_hp -= 1;
 		}
-		////m_hpが０になると主人公を破棄
-		//if (m_hp == 0)
-		//{
-		//	this->SetStatus(false);//自身に削除命令を出す
-		//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+	}
+	////m_hpが０になると主人公を破棄
+	//if (m_hp == 0)
+	//{
+	//	this->SetStatus(false);//自身に削除命令を出す
+	//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
 		//	//Scene::SetScene(new CSceneTitle());
 		//}

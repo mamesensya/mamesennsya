@@ -19,7 +19,8 @@ enum OBJ_NAME
 	OBJ_BOX,
 	OBJ_ATTACK,
 	OBJ_BEAN,
-	OBJ_BOSSENEMY
+	OBJ_BOSSENEMY,
+	OBJ_GHOST_ATTACK,
 };
 //------------------------------------------------
 
@@ -81,6 +82,7 @@ struct UserData
 #include "ObjBean.h"
 #include "CObjAttack.h"
 #include"CObjBossEnemy.h"
+#include"OBJGhostAttack.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

@@ -34,6 +34,9 @@ void CObjEnemy3::Init()
 void CObjEnemy3::Action()
 {
 
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map = block->GetS();
+
 	m_time++;
 	if (m_time > 100)
 	{
@@ -54,7 +57,7 @@ void CObjEnemy3::Action()
 		float hy = hero->GetY();
 
 		//敵から主人公のベクトルを求める
-		x = m_x - hx;
+		x = m_x - hx+m_scroll_map;
 		y = m_y - hy;
 
 
@@ -219,7 +222,7 @@ void CObjEnemy3::Action()
 	{
 		//敵弾丸発射
 		for (int i = 0; i < 3; i++) {
-			CObjEnemy3B* obj_eb = new CObjEnemy3B(m_x, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
+			CObjEnemy3B* obj_eb = new CObjEnemy3B(m_x+m_scroll_map, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
 			Objs::InsertObj(obj_eb, OBJ_ENEMY_3BULLET, 16);
 		}
 	}
@@ -230,7 +233,7 @@ void CObjEnemy3::Action()
 
 	//HitBoxの内容更新
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x + 35, m_y + 40);
+	hit->SetPos(m_x + 35+ m_scroll_map, m_y + 40);
 
 	//弾丸と接触しているかを調べる
 	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
@@ -290,8 +293,8 @@ void CObjEnemy3::Draw()
 
 	//出力位置
 	dst.m_top = 0.0f + m_y;
-	dst.m_left = 0.0f + m_x;
-	dst.m_right = 128.0f + m_x;
+	dst.m_left = 0.0f + m_x+ m_scroll_map;
+	dst.m_right = 128.0f + m_x+ m_scroll_map;
 	dst.m_bottom = 128.0f + m_y;
 
 	Draw::Draw(1, &src, &dst, c, m_r);

@@ -168,6 +168,7 @@
     <ClCompile Include="ObjGhost.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="OBJGhostAttack.cpp" />
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjChara.cpp" />
     <ClCompile Include="SceneMain.cpp" />
@@ -200,6 +201,7 @@
     </ClInclude>
     <ClInclude Include="ObjBox.h" />
     <ClInclude Include="ObjGhost.h" />
+    <ClInclude Include="OBJGhostAttack.h" />
     <ClInclude Include="ObjHero.h" />
     <ClInclude Include="ObjChara.h" />
     <ClInclude Include="SceneMain.h" />
