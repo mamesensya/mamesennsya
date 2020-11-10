@@ -5,7 +5,6 @@
 
 #include"GameHead.h"
 #include"OBJGhostAttack.h"
-#include"ObjHero.h"
 
 
 CObjGhostAttack::CObjGhostAttack(float x, float y)
@@ -16,21 +15,22 @@ CObjGhostAttack::CObjGhostAttack(float x, float y)
 
 void CObjGhostAttack::Init()
 {
-	
-
+	m_scroll_map = 0;
 	Hits::SetHitBox(this, m_x+10, m_y+30 , 10, 30, ELEMENT_ENEMY, OBJ_GHOST_ATTACK, 6);
 }
 
 void CObjGhostAttack::Action()
 {
-	
+	CHitBox* hit = Hits::GetHitBox(this);
+
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map = block->GetS();
 
 	m_time ++ ;
 	if (m_time == 50)
 	{
 		//内容更新
-		CHitBox* hit = Hits::GetHitBox(this);
-		hit->SetPos(m_x+5, m_y+5);
+		
 		if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 		{
 			this->SetStatus(false);//主人公に当たったら破棄
@@ -42,6 +42,8 @@ void CObjGhostAttack::Action()
 		m_time = 0;
 		
 	}
+	
+	hit->SetPos(m_x +10+ m_scroll_map, m_y +30);
 }
 
 void CObjGhostAttack::Draw()
@@ -60,8 +62,8 @@ void CObjGhostAttack::Draw()
 
 	//表示位置の設定
 	dst.m_top = 35.0f + m_y;
-	dst.m_left = 0.0f + m_x;
-	dst.m_right = 30.0f + m_x;
+	dst.m_left = 0.0f + m_x+m_scroll_map;
+	dst.m_right = 30.0f + m_x+m_scroll_map;
 	dst.m_bottom = 30.0f + m_y+30;
 
 	//描画
