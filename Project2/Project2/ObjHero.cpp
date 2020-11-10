@@ -16,9 +16,7 @@
 //使用するネームスペース
 using namespace GameL;
 
-//bool HeroAngleMove(float r, float vx, float vy);//主人公移動用の関数
-
-//bool VectorNormalize(float* vx, float* vy);//ベクトル正規化関数
+bool VectorNormalize(float* vx, float* vy);//ベクトル正規化関数
 
 //コンストラクタ
 CObjHero::CObjHero(float x, float y)
@@ -37,7 +35,7 @@ void CObjHero::Init()
 	m_hp = HP;
 
 	//当たり判定
-	Hits::SetHitBox(this, m_x+13.0f, m_y+15.0f, 65, 65, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_x+13.0f, m_y+15.0f, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 }
 
 //アクション
@@ -57,17 +55,18 @@ void CObjHero::Action()
 			{
 				m_hero_flag = true;
 
-				CObjChara* obj_chara = new CObjChara(m_x, m_y);
-				Objs::InsertObj(obj_chara, OBJ_CHARA, 10);
-
+				//主人公（人）を作成
+				CObjChara* obj_chara = new CObjChara(m_x+20, m_y+20);
+				Objs::InsertObj(obj_chara, OBJ_CHARA, 11);
+				//チャタリング防止用
 				while (Input::GetVKey('V') == true);
 			}
 		}
 
-		if (m_r == 360.0f)
+		if (m_r > 360.0f)
 			m_r = 0.0f;
-		else if (m_r == 360.0f)
-			m_r = 0.0f;
+		else if (m_r < 0.0f)
+			m_r = 360.0f;
 
 		//右方向
 		if (Input::GetVKey(VK_RIGHT) == true)
@@ -84,24 +83,28 @@ void CObjHero::Action()
 		//上方向
 		else if (Input::GetVKey(VK_UP) == true)
 		{
-			sin_f = sinf(m_r);
-			cos_f = cosf(m_r);
+			rad = m_r * 3.14 / 180;
 
-			//VectorNormalize(&sin_f, &cos_f);
+			sin_f = sinf(rad);
+			cos_f = cosf(rad);
 
-			m_vx = sin_f;
-			m_vy = cos_f;
+			VectorNormalize(&sin_f, &cos_f);
+
+			m_vx = -sin_f;
+			m_vy = -cos_f;
 		}
 		//下方向
 		else if (Input::GetVKey(VK_DOWN) == true)
 		{
-			sin_f = sinf(m_r);
-			cos_f = cosf(m_r);
+			rad = m_r * 3.14 / 180;
 
-			//VectorNormalize(&sin_f, &cos_f);
+			sin_f = sinf(rad);
+			cos_f = cosf(rad);
 
-			m_vx -= sin_f;
-			m_vy -= cos_f;
+			VectorNormalize(&sin_f, &cos_f);
+
+			m_vx = +sin_f;
+			m_vy = +cos_f;
 		}
 
 		//ベクトルを位置に加算
@@ -136,30 +139,31 @@ void CObjHero::Action()
 			}
 		}
 
-	//当たり判定を行うオブジェクト情報部
-	int data_base[4] =
-	{
-		OBJ_ENEMY,
-		OBJ_ENEMY_BULLET,
-		OBJ_ENEMY_3BULLET,
-	};
-	//敵オブジェクトと接触したら主人公のm_hpが減少
-	for (int i = 0; i < 4; i++)
-	{
-		if (hit->CheckObjNameHit(data_base[i]) != nullptr)
+		//当たり判定を行うオブジェクト情報部
+		int data_base[4] =
 		{
-			m_hp -= 1;
+			OBJ_ENEMY,
+			OBJ_ENEMY_BULLET,
+			OBJ_ENEMY_3BULLET,
+		};
+		//敵オブジェクトと接触したら主人公のm_hpが減少
+		for (int i = 0; i < 4; i++)
+		{
+			if (hit->CheckObjNameHit(data_base[i]) != nullptr)
+			{
+				m_hp -= 1;
+			}
 		}
-	}
-	////m_hpが０になると主人公を破棄
-	//if (m_hp == 0)
-	//{
-	//	this->SetStatus(false);//自身に削除命令を出す
-	//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+		////m_hpが０になると主人公を破棄
+		//if (m_hp == 0)
+		//{
+		//	this->SetStatus(false);//自身に削除命令を出す
+		//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
 		//	//Scene::SetScene(new CSceneTitle());
 		//}
 
+		//攻撃間隔制御
 		if (m_bullet_time == false)
 		{
 			m_time++;
@@ -167,7 +171,7 @@ void CObjHero::Action()
 			{
 				m_bullet_time = true;
 				m_time = 0;
-			}
+			}	
 		}
 	}
 }
@@ -194,68 +198,28 @@ void CObjHero::Draw()
 	dst.m_bottom = 32.0f + 64.0f + m_y;
 
 	//描画
-	Draw::Draw(0, &src, &dst, c, m_r);
+	Draw::Draw(20, &src, &dst, c, m_r);
 }
 
-////主人公の今向いている角度に向かって移動する関数
-//bool HeroAngleMove(float r,float vx,float vy)
-//{
-//	float sin_f = sinf(r);
-//	float cos_f = cosf(r);
-//
-//	if (r > 22.5 && r <= 67.5 )
-//	{
-//		return 0;
-//	}
-//	else if (r > 67.5 - 90 && r <= 112.5 - 90)
-//	{
-//
-//	}
-//	else if (r > 112.5 - 90 && r <= 157.5 - 90)
-//	{
-//
-//	}
-//	else if (r > 157.5 - 90 && r <= 202.5 - 90)
-//	{
-//
-//	}
-//	else if (r > 202.5 - 90 && r <= 247.5 - 90)
-//	{
-//
-//	}
-//	else if (r > 247.5 - 90 && r <= 292.5 - 90)
-//	{
-//
-//	}
-//	else if (r > 292.5 - 90 && r <= 337.5)
-//	{
-//
-//	}
-//	else if (r > 337.5 - 90 && r <= 382.5 - 90)
-//	{
-//
-//	}
-//}
+bool VectorNormalize(float* vx, float* vy)
+{
+	//ベクトルの長さを求める
+	float r = 0.0f;
+	r = (*vx) * (*vx) + (*vy) * (*vy);
+	r = sqrt(r);
 
-//bool VectorNormalize(float* vx, float* vy)
-//{
-//	//ベクトルの長さを求める
-//	float r = 0.0f;
-//	r = (*vx) * (*vx) + (*vy) * (*vy);
-//	r = sqrt(r);
-//
-//	//長さが0かどうか調べる
-//	if (r == 0.0f)
-//	{
-//		//0なら計算失敗
-//		return false;
-//	}
-//	else
-//	{
-//		//正規化を行い、vxとvyの参照先の値を変更
-//		(*vx) = 1.0f / r * (*vx);
-//		(*vy) = 1.0f / r * (*vy);
-//	}
-//	//計算成功
-//	return true;
-//}
+	//長さが0かどうか調べる
+	if (r == 0.0f)
+	{
+		//0なら計算失敗
+		return false;
+	}
+	else
+	{
+		//正規化を行い、vxとvyの参照先の値を変更
+		(*vx) = 1.0f / r * (*vx);
+		(*vy) = 1.0f / r * (*vy);
+	}
+	//計算成功
+	return true;
+}

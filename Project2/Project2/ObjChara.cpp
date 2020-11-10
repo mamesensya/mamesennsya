@@ -79,13 +79,15 @@ void CObjChara::Action()
 			}
 
 			//主人公近接攻撃
-			if (Input::GetVKey('Z') == true)
+			if (m_attack_time == true)
 			{
-				CObjAttack* obj_at = new CObjAttack(m_x, m_y, m_r);
-				Objs::InsertObj(obj_at, OBJ_ATTACK, 15);
-				m_attack_time = false;
+				if (Input::GetVKey('Z') == true)
+				{
+					CObjAttack* obj_at = new CObjAttack(m_x, m_y, m_r);
+					Objs::InsertObj(obj_at, OBJ_ATTACK, 15);
+					m_attack_time = false;
+				}
 			}
-
 			//ベクトルを位置に加算
 			m_x += +m_vx;
 			m_y += m_vy;
@@ -152,5 +154,5 @@ void CObjChara::Draw()
 	dst.m_bottom = 32.0f + 16.0f + m_y;
 
 	//描画
-	Draw::Draw(6, &src, &dst, c, m_r);
+	Draw::Draw(21, &src, &dst, c, m_r);
 }
