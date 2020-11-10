@@ -35,7 +35,7 @@ void CObjBean::Action()
 	hit->SetPos(m_x, m_y);
 
 	//ålŒöi‹ßÚUŒ‚j‚ÆÚG‚µ‚½‚ç“¤‚ğíœ
-	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
 		//“¤‚ğíœ
 		this->SetStatus(false);

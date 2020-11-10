@@ -59,8 +59,7 @@ void CObjBox::Action()
 	hit->SetPos(m_x, m_y);
 
 	//主人公（近接攻撃）と接触したらボックスを削除
-	//if (hit->CheckObjNameHit(OBJ_ATTACK) != nullptr)
-	if(hit->CheckObjNameHit(OBJ_ANGLE_BULLET)!=nullptr)
+	if(hit->CheckObjNameHit(OBJ_ATTACK)!=nullptr)
 	{
 		//豆箱を削除
 		this->SetStatus(false);

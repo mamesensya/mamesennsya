@@ -109,9 +109,9 @@ void CObjBlock::Action()
 	}
 
 	//左方スクロールライン
-	if (hx > 350)
+	if (hx > 300)
 	{
-		hero->SetX(350);
+		hero->SetX(300);
 		m_scroll -= hero->GetVX();
 	}
 	//上方スクロールライン
@@ -177,36 +177,42 @@ void CObjBlock::Action()
 						if ((r < 45 && r>0) || r > 315)
 						{
 							//右
-							hero->SetRight(true);
+							hero->SetLeft(true);
 							hero->SetX(x + 64.0f+(m_scroll));
 							hero->SetVX(-hero->GetVX() * 0.1f);
 
-							break;
+						
 						}
 						if (r > 45 && r < 135)
 						{
 							//上
-							hero->SetUp(true);
-							hero->SetY(y -(m_scroll2));
-							hero->SetVY(-hero->GetVY() * 0.05f);
+							hero->SetDown(true);
+							hero->SetY(y - 64.0f+(m_scroll2));
+							hero->SetVY(-hero->GetVY() * 0.1f);
 
-							break;
+
+
+							
 						}
 						if (r > 135 && r < 225)
 						{
 							//左
-							hero->SetLeft(true);
+							hero->SetRight(true);
 							hero->SetX(x - 64.0f+(m_scroll));
-							hero->SetVX(-hero->GetVX()* 0.05f);
+							hero->SetVX(-hero->GetVX()* 0.1f);
+
+						
 
 							
 						}
-						if (r > 225 && r < 300)
+						if (r > 225 && r < 315)
 						{
 							//下
-							hero->SetDown(true);
+							hero->SetUp(true);
 							hero->SetY(y + 64.0f+(m_scroll2));
-							hero->SetVY(-hero->GetVY()*0.05f);
+							hero->SetVY(-hero->GetVY()*0.1f);
+
+						
 						}
 						
 					}
