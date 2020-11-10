@@ -56,7 +56,7 @@ void CSceneMain::InitScene()
 
 	//‹S
 	Draw::LoadImageW(L"‰¼‚¨‚É.png", 4, TEX_SIZE_512);
-	CObjGhost* obj_ghost = new CObjGhost(0,0);
+	CObjGhost* obj_ghost = new CObjGhost(100,200);
 	Objs::InsertObj(obj_ghost, OBJ_GHOST, 4);
 
 

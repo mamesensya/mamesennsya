@@ -66,44 +66,41 @@ void CObjHero::Action()
 
 		if (m_r == 360.0f)
 			m_r = 0.0f;
-		//else if (m_r == 360.0f)
-		//	m_r = 0.0f;
+		else if (m_r == 360.0f)
+			m_r = 0.0f;
 
 		//右方向
 		if (Input::GetVKey(VK_RIGHT) == true)
 		{
-			m_vx = 2.0f;
 			m_r -= 1.0f;
 		}
 		//左方向
 		else if (Input::GetVKey(VK_LEFT) == true)
 		{
-			m_vx = -2.0f;
+			
 			m_r += 1.0f;
 		}
 		//上方向
 		else if (Input::GetVKey(VK_UP) == true)
 		{
-			m_vy = -2.0f;
 			sin_f = sinf(m_r);
 			cos_f = cosf(m_r);
 
 			//VectorNormalize(&sin_f, &cos_f);
 
-			//m_vx = sin_f;
-			//m_vy = cos_f;
+			m_vx = sin_f;
+			m_vy = cos_f;
 		}
 		//下方向
 		else if (Input::GetVKey(VK_DOWN) == true)
 		{
-			m_vy = 2.0f;
 			sin_f = sinf(m_r);
 			cos_f = cosf(m_r);
 
 			//VectorNormalize(&sin_f, &cos_f);
 
-			//m_vx -= sin_f;
-			//m_vy -= cos_f;
+			m_vx -= sin_f;
+			m_vy -= cos_f;
 		}
 
 		//ベクトルを位置に加算
