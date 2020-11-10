@@ -106,14 +106,7 @@ void CObjAttack::Draw()
 		dst.m_right = 32.0f + 16.0f + m_x+25.0f;
 		dst.m_bottom = 32.0f + 16.0f + m_y;
 	}
-	////ï\é¶à íuÇÃê›íË
-	//dst.m_top = 0.0f + m_y;
-	//dst.m_left = 0.0f + m_x;
-	//dst.m_right = 32.0f + 16.0f + m_x;
-	//dst.m_bottom = 32.0f + 16.0f + m_y;
 
 	//ï`âÊ
-	Draw::Draw(8, &src, &dst, c, m_r);
-
-
+	Draw::Draw(22, &src, &dst, c, m_r);
 }

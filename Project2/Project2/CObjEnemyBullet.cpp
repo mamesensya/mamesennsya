@@ -34,15 +34,15 @@ void CObjEnemyBullet::Action()
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map = block->GetS();
 
-
 	//敵戦車のグラフィックの向きを取得
 	CObjEnemy* enemy = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
-	er = enemy->GetR();
-
-	//敵戦車の座標取得
-	float ex = enemy->GetX();
-	float ey = enemy->GetY();
-
+	if (enemy != nullptr)
+	{
+		er = enemy->GetR();
+		//敵戦車の座標取得
+		float ex = enemy->GetX();
+		float ey = enemy->GetY();
+	}
 
 	if (m_r == 0.0f)
 	{

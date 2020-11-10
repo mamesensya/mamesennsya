@@ -35,7 +35,7 @@ void CObjHero::Init()
 	m_hp = HP;
 
 	//当たり判定
-	Hits::SetHitBox(this, m_x+13.0f, m_y+15.0f, 65, 65, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_x+13.0f, m_y+15.0f, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 }
 
 //アクション
@@ -56,8 +56,8 @@ void CObjHero::Action()
 				m_hero_flag = true;
 
 				//主人公（人）を作成
-				CObjChara* obj_chara = new CObjChara(m_x, m_y);
-				Objs::InsertObj(obj_chara, OBJ_CHARA, 10);
+				CObjChara* obj_chara = new CObjChara(m_x+20, m_y+20);
+				Objs::InsertObj(obj_chara, OBJ_CHARA, 11);
 				//チャタリング防止用
 				while (Input::GetVKey('V') == true);
 			}
@@ -76,6 +76,7 @@ void CObjHero::Action()
 		//左方向
 		else if (Input::GetVKey(VK_LEFT) == true)
 		{
+			
 			m_r += 1.0f;
 		}
 		//上方向
@@ -196,7 +197,7 @@ void CObjHero::Draw()
 	dst.m_bottom = 32.0f + 64.0f + m_y;
 
 	//描画
-	Draw::Draw(0, &src, &dst, c, m_r);
+	Draw::Draw(20, &src, &dst, c, m_r);
 }
 
 bool VectorNormalize(float* vx, float* vy)

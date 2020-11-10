@@ -5,6 +5,7 @@
 
 #include"GameHead.h"
 #include"OBJGhostAttack.h"
+#include"ObjHero.h"
 
 
 CObjGhostAttack::CObjGhostAttack(float x, float y)
@@ -17,14 +18,24 @@ void CObjGhostAttack::Init()
 {
 	
 
-	Hits::SetHitBox(this, m_x+10, m_y+35 , 10, 30, ELEMENT_ENEMY, OBJ_GHOST_ATTACK, 6);
+	Hits::SetHitBox(this, m_x+10, m_y+30 , 10, 30, ELEMENT_ENEMY, OBJ_GHOST_ATTACK, 6);
 }
 
 void CObjGhostAttack::Action()
 {
+	
+
 	m_time ++ ;
-	if (m_time == 3)
+	if (m_time == 50)
 	{
+		//内容更新
+		CHitBox* hit = Hits::GetHitBox(this);
+		hit->SetPos(m_x+5, m_y+5);
+		if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+		{
+			this->SetStatus(false);//主人公に当たったら破棄
+			Hits::DeleteHitBox(this);
+		}
 
 		this->SetStatus(false);//一定時間経過したらいったん破棄
 		Hits::DeleteHitBox(this);
