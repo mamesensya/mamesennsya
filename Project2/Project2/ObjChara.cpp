@@ -100,17 +100,22 @@ void CObjChara::Action()
 			m_vy = 0;
 
 			//当たり判定を行うオブジェクト情報部
-			int data_base[4] =
+			int data_base[8] =
 			{
 				OBJ_ENEMY,
 				OBJ_ENEMY_BULLET,
+				OBJ_ENEMY3,
 				OBJ_ENEMY_3BULLET,
+				OBJ_BOSS,
+				OBJ_BOSS_BULLET,
+				OBJ_GHOST,
+				OBJ_GHOST_ATTACK,
 			};
 
 			//敵オブジェクトと接触したら主人公のm_hpが減少
 			if (m_hit == true)
 			{
-				for (int i = 0; i < 4; i++)
+				for (int i = 0; i < 8; i++)
 				{
 					if (hit->CheckObjNameHit(data_base[i]) != nullptr)
 					{
@@ -125,7 +130,7 @@ void CObjChara::Action()
 			//	this->SetStatus(false);//自身に削除命令を出す
 			//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-			//	//Scene::SetScene(new CSceneTitle());
+			//	Scene::SetScene(new CSceneGameOver());
 			//}
 
 			//攻撃間隔制御用

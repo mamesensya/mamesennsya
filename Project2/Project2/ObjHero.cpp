@@ -17,7 +17,13 @@
 using namespace GameL;
 
 //角度をラジアンに変える
-inline float radian(float r) { return r * 3.14 / 180; }
+inline void sin_cos(float r,float *sin,float *cos) 
+{ 
+	float rad = r * 3.14 / 180;
+
+	*sin = sinf(rad);
+	*cos = cosf(rad);
+}
 
 bool VectorNormalize(float* vx, float* vy);//ベクトル正規化関数
 
@@ -66,6 +72,7 @@ void CObjHero::Action()
 			}
 		}
 
+		//角度を0～360°以内の数字に抑える
 		if (m_r > 360.0f)
 			m_r = 0.0f;
 		else if (m_r < 0.0f)
@@ -74,23 +81,18 @@ void CObjHero::Action()
 		//右方向
 		if (Input::GetVKey(VK_RIGHT) == true)
 		{
-			
 			m_r -= 1.0f;
 		}
 		//左方向
 		else if (Input::GetVKey(VK_LEFT) == true)
 		{
-			
 			m_r += 1.0f;
 		}
 		//上方向
 		else if (Input::GetVKey(VK_UP) == true)
 		{
-			//角度をラジアンに変換
-			rad = radian(m_r);
-
-			sin_f = sinf(rad);
-			cos_f = cosf(rad);
+			//角度をラジアンに変換してsin cosの計算
+			sin_cos(m_r, &sin_f, &cos_f);
 
 			VectorNormalize(&sin_f, &cos_f);
 
@@ -100,11 +102,8 @@ void CObjHero::Action()
 		//下方向
 		else if (Input::GetVKey(VK_DOWN) == true)
 		{
-			//角度をラジアンに変換
-			rad = radian(m_r);
-
-			sin_f = sinf(rad);
-			cos_f = cosf(rad);
+			//角度をラジアンに変換してsin cosの計算
+			sin_cos(m_r, &sin_f, &cos_f);
 
 			VectorNormalize(&sin_f, &cos_f);
 
@@ -145,16 +144,21 @@ void CObjHero::Action()
 		}
 
 		//当たり判定を行うオブジェクト情報部
-		int data_base[4] =
+		int data_base[8] =
 		{
 			OBJ_ENEMY,
 			OBJ_ENEMY_BULLET,
+			OBJ_ENEMY3,
 			OBJ_ENEMY_3BULLET,
+			OBJ_BOSS,
+			OBJ_BOSS_BULLET,
+			OBJ_GHOST,
+			OBJ_GHOST_ATTACK,
 		};
 		//敵オブジェクトと接触したら主人公のm_hpが減少
 		if (m_hit == true)
 		{
-			for (int i = 0; i < 4; i++)
+			for (int i = 0; i < 8; i++)
 			{
 				if (hit->CheckObjNameHit(data_base[i]) != nullptr)
 				{
@@ -169,7 +173,7 @@ void CObjHero::Action()
 		//	this->SetStatus(false);//自身に削除命令を出す
 		//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-		//	//Scene::SetScene(new CSceneTitle());
+		//	Scene::SetScene(new CSceneGameOver());
 		//}
 
 		//攻撃間隔制御
@@ -186,7 +190,7 @@ void CObjHero::Action()
 		if (m_hit == false)
 		{
 			m_hit_time++;
-			if (m_hit_time == 30)
+			if (m_hit_time == 60)
 			{
 				m_hit = true;
 				m_hit_time = 0;
