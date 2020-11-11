@@ -172,7 +172,10 @@
     <ClCompile Include="OBJGhostAttack.cpp" />
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjChara.cpp" />
+    <ClCompile Include="objtitle.cpp" />
+    <ClCompile Include="SceneGameOver.cpp" />
     <ClCompile Include="SceneMain.cpp" />
+    <ClCompile Include="SceneTitle.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAttack.h" />
@@ -206,7 +209,13 @@
     <ClInclude Include="OBJGhostAttack.h" />
     <ClInclude Include="ObjHero.h" />
     <ClInclude Include="ObjChara.h" />
+    <ClInclude Include="objTitle.h" />
+    <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneMain.h" />
+    <ClInclude Include="SceneTitle.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="title.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
