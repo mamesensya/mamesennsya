@@ -45,9 +45,6 @@ void CSceneMain::InitScene()
 	CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
 	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
 
-	//“GíÔi3•ûŒü’ej
-	CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 400);
-	Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
 	
 	
 

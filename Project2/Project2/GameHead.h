@@ -20,6 +20,7 @@ enum OBJ_NAME
 	OBJ_ATTACK,
 	OBJ_BEAN,
 	OBJ_BOSS,
+	OBJ_BOSS_BULLET,
 	OBJ_GHOST_ATTACK,
 };
 //------------------------------------------------

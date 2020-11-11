@@ -88,7 +88,9 @@
     <ClCompile Include="CObjBoss.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="OBJGhostAttack.cpp" />
+    <ClCompile Include="OBJGhostAttack.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -294,7 +296,9 @@
     <ClInclude Include="CObjBoss.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="OBJGhostAttack.h" />
+    <ClInclude Include="OBJGhostAttack.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameL">
