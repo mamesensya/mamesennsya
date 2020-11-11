@@ -133,11 +133,7 @@ void CObjBlock::Action()
 	hero->SetLeft(false);
 	hero->SetRight(false);
 
-	wchar_t str[128];
-	float c[4] = { 1.0f };
-	swprintf_s(str, L"ScrollX=%f,Scroll=Y=%f",m_scroll,m_scroll2);
-	Font::SetStrTex(str);
-	Font::StrDraw(str, 0, 0, 20, c);
+	
 	for (int i = 0; i < 60; i++)
 	{
 		for (int j = 0; j < 80; j++)
@@ -169,7 +165,7 @@ void CObjBlock::Action()
 					else
 						r = 360.0f - abs(r);
 
-					if (len < 88.0f)
+					if (len < 70.0f)
 					{
 
 
