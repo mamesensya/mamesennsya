@@ -186,16 +186,16 @@ void CObjHero::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//切り取り位置の設定
-	src.m_top = 22.0f;
-	src.m_left = 22.0f;
+	src.m_top = 15.0f;
+	src.m_left = 15.0f;
 	src.m_right = 400.0f;
 	src.m_bottom = 400.0f;
 
 	//表示位置の設定
-	dst.m_top =- 22.0f + m_y;
-	dst.m_left = -25.0f + m_x;
-	dst.m_right = 32.0f + 64.0f + m_x;
-	dst.m_bottom =32.0f + 64.0f + m_y;
+	dst.m_top = -20.0f + m_y;
+	dst.m_left = -20.0f + m_x;
+	dst.m_right = 27.0f + 64.0f + m_x;
+	dst.m_bottom = 22.0f + 64.0f + m_y;
 
 	//描画
 	Draw::Draw(20, &src, &dst, c, m_r);
