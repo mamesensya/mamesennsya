@@ -32,7 +32,9 @@ private:
 
 	float m_r{ 0 };//ålŒö‚ÌŠp“x§Œä—p
 
-	int m_time{ 0 };//ålŒöUŒ‚ŠÔŠuŠÔ
+	int m_attack_time{ 0 };//UŒ‚ŠÔŠuŠÔ
+	int m_hit_time{ 0 };//”í’eŠÔŠuŠÔ
 
-	bool m_attack_time{ true };//ålŒöiljFUŒ‚‚ÌŠÔŠu‚Ì§Œä—p
+	bool m_attack{ true };//UŒ‚ŠÔŠu§Œä—p
+	bool m_hit{ true };//”í’eŠÔŠu§Œä—p
 };

@@ -46,8 +46,11 @@ void CSceneMain::InitScene()
 	CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
 	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
 
-	
-	
+	Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
+	CObjGhost* obj_ghost = new CObjGhost(400, 300);
+	Objs::InsertObj(obj_ghost, OBJ_GHOST, 52);
+
+	Draw::LoadImageW(L"仮棒.png", 6, TEX_SIZE_512);
 
 	//主人公グラフィック読み込み(400×400)
 	Draw::LoadImageW(L"test.png", 20, TEX_SIZE_512);

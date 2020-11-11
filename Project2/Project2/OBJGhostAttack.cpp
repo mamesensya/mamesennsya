@@ -27,7 +27,7 @@ void CObjGhostAttack::Action()
 	m_scroll_map = block->GetS();
 
 	m_time ++ ;
-	if (m_time == 50)
+	if (m_time == 30)
 	{
 		//“à—eXV
 		

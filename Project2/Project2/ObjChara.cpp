@@ -17,7 +17,10 @@ CObjChara::CObjChara(float x, float y)
 
 void CObjChara::Init()
 {
+	m_hp = 5;
+
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	//ヒーローからフラグ情報をもらって代入
 	m_hero_flag = hero->m_hero_flag;
 	//当たり判定
 	Hits::SetHitBox(this, m_x, m_y, 48, 48, ELEMENT_CHARA, OBJ_CHARA, 1);
@@ -49,7 +52,7 @@ void CObjChara::Action()
 
 					this->SetStatus(false);//自身に削除命令を出す
 					Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
-
+					//チャタリング防止用
 					while (Input::GetVKey('V') == true);
 				}
 			}
@@ -79,13 +82,13 @@ void CObjChara::Action()
 			}
 
 			//主人公近接攻撃
-			if (m_attack_time == true)
+			if (m_attack == true)
 			{
 				if (Input::GetVKey('Z') == true)
 				{
 					CObjAttack* obj_at = new CObjAttack(m_x, m_y, m_r);
 					Objs::InsertObj(obj_at, OBJ_ATTACK, 15);
-					m_attack_time = false;
+					m_attack = false;
 				}
 			}
 			//ベクトルを位置に加算
@@ -97,19 +100,28 @@ void CObjChara::Action()
 			m_vy = 0;
 
 			//当たり判定を行うオブジェクト情報部
-			int data_base[4] =
+			int data_base[8] =
 			{
 				OBJ_ENEMY,
 				OBJ_ENEMY_BULLET,
+				OBJ_ENEMY3,
 				OBJ_ENEMY_3BULLET,
+				OBJ_BOSS,
+				OBJ_BOSS_BULLET,
+				OBJ_GHOST,
+				OBJ_GHOST_ATTACK,
 			};
 
 			//敵オブジェクトと接触したら主人公のm_hpが減少
-			for (int i = 0; i < 4; i++)
+			if (m_hit == true)
 			{
-				if (hit->CheckObjNameHit(data_base[i]) != nullptr)
+				for (int i = 0; i < 8; i++)
 				{
-					m_hp -= 1;
+					if (hit->CheckObjNameHit(data_base[i]) != nullptr)
+					{
+						m_hp -= 1;
+						m_hit = false;
+					}
 				}
 			}
 			////m_hpが０になると主人公を破棄
@@ -118,15 +130,27 @@ void CObjChara::Action()
 			//	this->SetStatus(false);//自身に削除命令を出す
 			//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-			//	//Scene::SetScene(new CSceneTitle());
+			//	Scene::SetScene(new CSceneGameOver());
 			//}
-			if (m_attack_time == false)
+
+			//攻撃間隔制御用
+			if (m_attack == false)
 			{
-				m_time++;
-				if (m_time == 60)
+				m_attack_time++;
+				if (m_attack_time == 60)
 				{
-					m_attack_time = true;
-					m_time = 0;
+					m_attack = true;
+					m_attack_time = 0;
+				}
+			}
+			//被弾間隔制御用
+			if (m_hit == false)
+			{
+				m_hit_time++;
+				if (m_hit_time == 60)
+				{
+					m_hit = true;
+					m_hit_time = 0;
 				}
 			}
 		}

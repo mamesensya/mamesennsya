@@ -3,7 +3,6 @@
 #include"GameL/SceneObjManager.h"
 #include"GameL/HitBoxManager.h"
 
-
 #include"GameHead.h"
 #include"ObjGhost.h"
 #include"OBJGhostAttack.h"
@@ -44,7 +43,7 @@ void CObjGhost::Action()
 		n = 0.0f;
 	}
 
-	if (c == 200)
+	if (c == 350)
 	{
 		c = 0;
 	}
@@ -84,8 +83,50 @@ void CObjGhost::Action()
 			m_vx = -1.0f / r * x;//³‹K‰»‚ðs‚¤
 			m_vy = -1.0f / r * y;
 		}
-		m_vx *= 2.0f;
-		m_vy *= 2.0f;
+
+		//‹S‚ÆŽålŒö‚ÅŠp“xŽæ‚è
+		CObjHero* obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
+		
+		//ŽålŒö‚ª‘¶Ý‚µ‚Ä‚¢‚éê‡Šp“xŒvŽZ
+		if (obj != nullptr)
+		{
+			float sx = obj->GetX() - m_x;
+			float sy = obj->GetY() - m_y;
+			float ar = atan2(-sy, sx) * 180.0f / 3.14f;
+
+			if (ar < 0)
+				ar = 360 - abs(ar);
+
+			//Œ»ÝŒü‚¢‚Ä‚¢‚é•ûŒü‚ÅŠp“xŽæ‚è
+			float br = atan2(-m_vy, m_vx) * 180.0f / 3.14f;
+
+			if (br < 0)
+				br = 360 - abs(br);
+
+			//‚©‚¯—£‚ê‚½‚çˆÚ“®•ûŒü‚ðŽålŒö‚É‚·‚é
+			if (ar - br > 20)
+			{
+				m_vx = cos(3.14 / 180 * ar);
+				m_vy = cos(3.14 / 180 * ar);
+			}
+
+			r = 3.14 / 180.0f;//Šp“x1
+			if (ar < br)//ˆÚ“®•ûŒü‚É+1
+			{
+				m_vx = m_vx * cos(r) - m_vy * sin(r);
+				m_vy = m_vy * cos(r) - m_vx * sin(r);
+			}
+			else//ˆÚ“®•ûŒü‚É-1
+			{
+				m_vx = m_vx * cos(-r) - m_vy * sin(-r);
+				m_vy = m_vy * cos(-r) - m_vy * sin(-r);
+			}
+			
+		}
+
+
+		m_vx *= 1.5f;
+		m_vy *= 1.5f;
 
 		if ((x >= -400.0f && x <= 400.0f) || (y >= -400.0f && y <= 400.0f))
 		{
@@ -100,22 +141,20 @@ void CObjGhost::Action()
 					m_y += m_vy;
 					m_time++;
 				}
-
-
-				
 			}
 			//ŽålŒö‚ÉÚ‹ß‚µ‚½‚çÃŽ~
 			else if ((x >= -(30.0f + distance) && x <= 80.0f + distance) && (y >= -(30.0f + distance) && y <= 80.0f + distance)||n!=0)
 			{
 				n+=1.0f;
-				if (n != 0.0f)
+				if (n != 0.0f||100 < c <= 350)
 				{
 					m_x += m_vx*0;
 					m_y += m_vy*0;
 					
-					
+
 				}
-				if (c == 200)
+
+				if (c == 100)
 				{
 					CObjGhostAttack* objAttack = new CObjGhostAttack(m_x, m_y);
 					Objs::InsertObj(objAttack, OBJ_GHOST_ATTACK, 6);
@@ -131,27 +170,18 @@ void CObjGhost::Action()
 					m_y += m_vy;
 				}
 			}
-			
 		}
-
-		
-
 	}
 		//ˆÚ“®•ûŒü‰Šú‰»
 		m_vx = 0.0f;
 		m_vy = 0.0f;
 
-
-
-	
 	//ŽålŒö’e‚ÆÚG‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é
 	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 	}
-	
-	
 
 }
 
