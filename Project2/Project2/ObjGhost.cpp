@@ -151,6 +151,7 @@ void CObjGhost::Action()
 					m_x += m_vx*0;
 					m_y += m_vy*0;
 					
+
 				}
 
 				if (c == 100)
