@@ -35,7 +35,7 @@ void CObjHero::Init()
 	m_hp = HP;
 
 	//当たり判定
-	Hits::SetHitBox(this, m_x+13.0f, m_y+15.0f, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
+	Hits::SetHitBox(this, m_x, m_y, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
 }
 
 //アクション
@@ -113,7 +113,7 @@ void CObjHero::Action()
 
 		//HitBoxの内容更新
 		CHitBox* hit = Hits::GetHitBox(this);
-		hit->SetPos(m_x + 13.0f, m_y + 15.0f);
+		hit->SetPos(m_x, m_y);
 
 		if (m_bullet_time == true) {
 			if (Input::GetVKey('Z') == true && m_bullet > 0)
@@ -192,10 +192,10 @@ void CObjHero::Draw()
 	src.m_bottom = 400.0f;
 
 	//表示位置の設定
-	dst.m_top = 0.0f + m_y;
-	dst.m_left = 0.0f + m_x;
+	dst.m_top =- 22.0f + m_y;
+	dst.m_left = -25.0f + m_x;
 	dst.m_right = 32.0f + 64.0f + m_x;
-	dst.m_bottom = 32.0f + 64.0f + m_y;
+	dst.m_bottom =32.0f + 64.0f + m_y;
 
 	//描画
 	Draw::Draw(20, &src, &dst, c, m_r);
