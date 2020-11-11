@@ -46,6 +46,8 @@ private:
 
 	float m_r{ 0 };//主人公の角度制御用
 
+	float rad{ 0 };//ラジアン
+
 	int m_time{0};//主人公攻撃間隔時間
 
 	int m_bullet;//主人公（戦車）：通常弾数
