@@ -48,12 +48,15 @@ private:
 
 	float rad{ 0 };//ラジアン
 
-	int m_time{0};//主人公攻撃間隔時間
-
 	int m_bullet;//主人公（戦車）：通常弾数
 	int m_unique_bullet_1;//主人公（戦車）：特殊弾（１）弾数
 	int m_unique_bullet_2;//主人公（戦車）：特殊弾（２）弾数
-	bool m_bullet_time{ true };//主人公（戦車）：弾の発射間隔の制御用
+	
+	int m_attack_time{ 0 };//攻撃間隔時間
+	int m_hit_time{ 0 };//被弾間隔時間
+
+	bool m_attack{ true };//弾発射間隔制御用
+	bool m_hit{ true };//被弾間隔制御用
 
 	float sin_f{ 0 };
 	float cos_f{ 0 };
