@@ -10,14 +10,15 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\WinInputs.h"
 
+
 using namespace GameL;
 
 void SceneTitle::InitScene() {
 
-	Draw::LoadImageW(L"title.png", 1, TEX_SIZE_1024);
+	Draw::LoadImageW(L"title.png", 15, TEX_SIZE_1024);
 	
 	CObjTitles* tobj = new CObjTitles();
-	Objs::InsertObj(tobj, OBJ_TITLEFONT, 1);
+	Objs::InsertObj(tobj, OBJ_TITLEFONT, 100);
 	
 };
 
@@ -35,5 +36,7 @@ void SceneTitle::Scene() {
 	Font::StrDraw(L"ì§êÌé‘",208,100 ,128, c);
 	Font::StrDraw(L"(C) CopyRight 2020 Team.Inverse", 245,580,20, c);
 	
+
 	
+
 }

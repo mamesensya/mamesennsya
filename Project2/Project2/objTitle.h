@@ -15,4 +15,7 @@ private:
 	float adjustpos[30];
 	float ease[30];
 	int visible;
+
+	int for_phase;
+	float for_adjustpos;
 };

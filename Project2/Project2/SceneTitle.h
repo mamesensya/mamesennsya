@@ -13,5 +13,4 @@ public:
 	void Scene();
 private:
 	bool keyover = false;
-
 };

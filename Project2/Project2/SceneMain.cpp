@@ -29,6 +29,7 @@ CSceneMain::~CSceneMain()
 void CSceneMain::InitScene()
 {
 	//“G‚Ì’eiBB’ej
+
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
 
 	//“GíÔ
