@@ -50,7 +50,6 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(obj_ghost, OBJ_GHOST, 52);
 
 	Draw::LoadImageW(L"仮棒.png", 6, TEX_SIZE_512);
-	
 
 	//主人公グラフィック読み込み(400×400)
 	Draw::LoadImageW(L"test.png", 20, TEX_SIZE_512);
