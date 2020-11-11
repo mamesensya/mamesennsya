@@ -39,8 +39,8 @@ void CSceneMain::InitScene()
 
 	//ボス戦車
 	Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
-	CObjBossEnemy* obj_bossenemy = new CObjBossEnemy(400, 300);
-	Objs::InsertObj(obj_bossenemy, OBJ_BOSSENEMY, 52);
+	CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
+	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
 
 	//敵戦車（3方向弾）
 	CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 400);

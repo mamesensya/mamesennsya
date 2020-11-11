@@ -4,17 +4,18 @@
 #include"GameL/WinInputs.h"
 
 #include"GameHead.h"
-#include"CObjBossEnemy.h"
+#include"CObjBoss.h"
 
 using namespace GameL;
 
-CObjBossEnemy::CObjBossEnemy(float x, float y)
+CObjBoss::CObjBoss(float x, float y)
 {
 	m_x = x;
 	m_y = y;
 }
 
-void CObjBossEnemy::Init()
+//イニシャライズ
+void CObjBoss::Init()
 {
 	m_vx = 0.0f;    //移動方向
 	m_vy = 0.0f;
@@ -31,7 +32,7 @@ void CObjBossEnemy::Init()
 	Hits::SetHitBox(this, m_x + 35, m_y + 40, 65, 65, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 }
 
-void CObjBossEnemy::Action()
+void CObjBoss::Action()
 {
 
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -57,7 +58,7 @@ void CObjBossEnemy::Action()
 		float hy = hero->GetY();
 
 		//敵から主人公のベクトルを求める
-		x = m_x - hx;
+		x = m_x - hx+m_scroll_map;
 		y = m_y - hy;
 
 
@@ -214,18 +215,21 @@ void CObjBossEnemy::Action()
 			}
 
 
+			if (m_time == 100 && count == 1)
+			{
+				//敵弾丸発射
+				for (int i = 0; i < 3; i++) {
+					CObjEnemy3B* obj_eb = new CObjEnemy3B(m_x+m_scroll_map, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
+					Objs::InsertObj(obj_eb, OBJ_ENEMY_3BULLET, 16);
+				}
+			}
+
+
 		}
 	}
 
 
-	//if (m_time == 100 && count == 1)
-	//{
-	//	//敵弾丸発射
-	//	for (int i = 0; i < 3; i++) {
-	//		CObjEnemy3B* obj_eb = new CObjEnemy3B(m_x, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
-	//		Objs::InsertObj(obj_eb, OBJ_ENEMY_3BULLET, 16);
-	//	}
-	//}
+	
 
 	m_x += m_vx;
 	m_y += m_vy;
@@ -277,7 +281,7 @@ void CObjBossEnemy::Action()
 
 }
 
-void CObjBossEnemy::Draw()
+void CObjBoss::Draw()
 {
 
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };

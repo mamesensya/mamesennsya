@@ -1,39 +1,36 @@
 #include"GameL/DrawTexture.h"
 #include"GameL/HitBoxManager.h"
 #include"GameHead.h"
-#include"CObjEnemyBullet.h"
+#include"CObjBossBullet.h"
 
 using namespace GameL;
 
-CObjEnemyBullet::CObjEnemyBullet(float x, float y,float r)
+CObjBossBullet::CObjBossBullet(float x, float y,float r)
 {
-	m_x = x+45;
-	m_y = y+50;
+	m_x = x + 45;
+	m_y = y + 50;
 	m_r = r;
 }
 
 //イニシャライズ
-void CObjEnemyBullet::Init()
+void CObjBossBullet::Init()
 {
 	m_vx = 0.0f;
 	m_vy = 0.0f;
-	mx = 0;
-	my = 0;
 
-	m_scroll_map = 0;
+
 	//HitBox作成
 	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
 }
 
 //アクション
-void CObjEnemyBullet::Action()
+void CObjBossBullet::Action()
 {
 	float er = 0.0f;
 
 	//スクロールした分のベクトルを取得
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map = block->GetS();
-
 
 	if (m_r == 0.0f)
 	{
@@ -60,13 +57,10 @@ void CObjEnemyBullet::Action()
 	m_x += m_vx;
 	m_y += m_vy;
 
-	mx += m_vx;
-	my += m_vy;
-
 
 	//HitBoxの内容を更新
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x+m_scroll_map, m_y);
+	hit->SetPos(m_x + m_scroll_map, m_y);
 
 	//主人公と接触しているかどうか調べる
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
@@ -87,16 +81,16 @@ void CObjEnemyBullet::Action()
 	//	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 	//}
 
-	if (mx >= 1000.0f||mx<=-1000.0f || my >= 1000.0f||my<=-1000.0f)
-	{
-		this->SetStatus(false);//削除命令
-		Hits::DeleteHitBox(this);//削除
-	}
+	//if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
+	//{
+	//	this->SetStatus(false);//削除命令
+	//	Hits::DeleteHitBox(this);//削除
+	//}
 
 }
 
 //ドロー
-void CObjEnemyBullet::Draw()
+void CObjBossBullet::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -110,10 +104,10 @@ void CObjEnemyBullet::Draw()
 	src.m_bottom = 200.0f;
 
 	//表示位置
-	dst.m_top = 0.0f+m_y;
-	dst.m_left = 0.0f + m_x+m_scroll_map ;
-	dst.m_right = 32.0f+m_x +m_scroll_map;
-    dst.m_bottom = 32.0f+m_y;
+	dst.m_top = 0.0f + m_y;
+	dst.m_left = 0.0f + m_x + m_scroll_map;
+	dst.m_right = 32.0f + m_x + m_scroll_map;
+	dst.m_bottom = 32.0f + m_y;
 
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 }

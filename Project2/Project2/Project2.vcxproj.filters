@@ -82,7 +82,10 @@
     <ClCompile Include="CObjAttack.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CObjBossEnemy.cpp">
+    <ClCompile Include="CObjBossBullet.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjBoss.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -281,10 +284,13 @@
     <ClInclude Include="ObjBean.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CObjBossEnemy.h">
+    <ClInclude Include="CObjAttack.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CObjAttack.h">
+    <ClInclude Include="CObjBossBullet.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjBoss.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
   </ItemGroup>
