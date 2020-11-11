@@ -10,6 +10,8 @@
 
 #include "GameHead.h"
 #include "Objblock.h"
+
+//デバッグ用にインクルードするヘッダー
 #include "GameL\DrawFont.h"
 
 //使用するネームスペース
@@ -133,11 +135,7 @@ void CObjBlock::Action()
 	hero->SetLeft(false);
 	hero->SetRight(false);
 
-	wchar_t str[128];
-	float c[4] = { 1.0f };
-	swprintf_s(str, L"ScrollX=%f,Scroll=Y=%f",m_scroll,m_scroll2);
-	Font::SetStrTex(str);
-	Font::StrDraw(str, 0, 0, 20, c);
+	
 	for (int i = 0; i < 60; i++)
 	{
 		for (int j = 0; j < 80; j++)
@@ -223,10 +221,14 @@ void CObjBlock::Action()
 				
 				
 			}
+		
 			
 		
 		}
-		
+		wchar_t str[128];
+		float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+		swprintf_s(str, L"<Hero Position> X=%f , Y=%f", hero->GetX(), hero->GetY());
+		Font::StrDraw(str, 10, 10, 20, c);
 	}
 
 	

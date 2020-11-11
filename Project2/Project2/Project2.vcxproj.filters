@@ -82,10 +82,24 @@
     <ClCompile Include="CObjAttack.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="CObjBossEnemy.cpp">
+    <ClCompile Include="CObjBossBullet.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
-    <ClCompile Include="OBJGhostAttack.cpp" />
+    <ClCompile Include="CObjBoss.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="OBJGhostAttack.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="objtitle.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneGameOver.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneTitle.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -282,13 +296,27 @@
     <ClInclude Include="ObjBean.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CObjBossEnemy.h">
-      <Filter>ソースファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CObjAttack.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
-    <ClInclude Include="OBJGhostAttack.h" />
+    <ClInclude Include="CObjBossBullet.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjBoss.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="OBJGhostAttack.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="objTitle.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameOver.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneTitle.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="GameL">
@@ -303,5 +331,10 @@
     <Filter Include="ソースファイル">
       <UniqueIdentifier>{12a83330-ca4a-4e7e-8e9c-36558d0755cf}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="title.png">
+      <Filter>ソースファイル</Filter>
+    </Image>
   </ItemGroup>
 </Project>

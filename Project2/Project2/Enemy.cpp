@@ -66,7 +66,7 @@ void CObjEnemy::Action()
 		//敵から主人公のベクトルを求める
 
 		hx = hx - m_scroll_map;
-		hy = hy - m_scroll_map;
+		hy = hy ;
 
 		x = m_x - hx;
 		y = m_y - hy;

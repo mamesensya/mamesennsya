@@ -214,18 +214,21 @@ void CObjEnemy3::Action()
 			}
 
 
+			if (m_time == 100 && count == 1)
+			{
+				//“G’eŠÛ”­ŽË
+				for (int i = 0; i < 3; i++) {
+					CObjEnemy3B* obj_eb = new CObjEnemy3B(m_x + m_scroll_map, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
+					Objs::InsertObj(obj_eb, OBJ_ENEMY_3BULLET, 16);
+				}
+			}
+
+
 		}
 	}
 
 
-	if (m_time == 100 && count == 1)
-	{
-		//“G’eŠÛ”­ŽË
-		for (int i = 0; i < 3; i++) {
-			CObjEnemy3B* obj_eb = new CObjEnemy3B(m_x+m_scroll_map, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
-			Objs::InsertObj(obj_eb, OBJ_ENEMY_3BULLET, 16);
-		}
-	}
+	
 
 	m_x += m_vx;
 	m_y += m_vy;

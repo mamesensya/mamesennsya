@@ -4,11 +4,11 @@
 
 using namespace GameL;
 
-class CObjBossEnemy :public CObj
+class CObjBoss :public CObj
 {
 public:
-	CObjBossEnemy(float x, float y);
-	~CObjBossEnemy() {};
+	CObjBoss(float x, float y);
+	~CObjBoss() {};
 	void Init();
 	void Action();
 	void Draw();

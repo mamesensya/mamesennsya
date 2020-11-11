@@ -42,16 +42,11 @@ void CSceneMain::InitScene()
 
 	//ボス戦車
 	Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
-	CObjBossEnemy* obj_bossenemy = new CObjBossEnemy(400, 300);
-	Objs::InsertObj(obj_bossenemy, OBJ_BOSSENEMY, 52);
-	
-	//鬼
-	Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
-	CObjGhost* obj_ghost = new CObjGhost(0, 0);
-	Objs::InsertObj(obj_ghost, OBJ_GHOST, 10);
+	CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
+	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
 
-	//鬼の攻撃
-	Draw::LoadImageW(L"仮棒.png", 6, TEX_SIZE_512);
+	
+	
 
 	//主人公グラフィック読み込み(400×400)
 	Draw::LoadImageW(L"test.png", 20, TEX_SIZE_512);

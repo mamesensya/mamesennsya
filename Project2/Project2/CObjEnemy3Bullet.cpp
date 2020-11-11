@@ -22,7 +22,7 @@ void CObjEnemy3B::Init() {
 
 	m_scroll_map = 0;
 
-	m_speed = 7;
+	m_speed = 5;
 	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_3BULLET, 1);
 };
 
@@ -54,12 +54,6 @@ void CObjEnemy3B::Action() {
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 	}
-
-	if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
-	{
-		this->SetStatus(false);//削除命令
-		Hits::DeleteHitBox(this);//削除
-	}
 	//主人公（人）と接触しているか調べる
 	if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
@@ -67,6 +61,12 @@ void CObjEnemy3B::Action() {
 		Hits::DeleteHitBox(this);//削除
 	}
 
+
+	if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
+	{
+		this->SetStatus(false);//削除命令
+		Hits::DeleteHitBox(this);//削除
+	}
 };
 
 void CObjEnemy3B::Draw() {

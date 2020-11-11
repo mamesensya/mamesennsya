@@ -19,8 +19,11 @@ enum OBJ_NAME
 	OBJ_BOX,
 	OBJ_ATTACK,
 	OBJ_BEAN,
-	OBJ_BOSSENEMY,
+	OBJ_BOSS,
+	OBJ_BOSS_BULLET,
 	OBJ_GHOST_ATTACK,
+	OBJ_TITLE,
+	OBJ_TITLEFONT,
 };
 //------------------------------------------------
 
@@ -81,12 +84,16 @@ struct UserData
 #include "ObjBox.h"
 #include "ObjBean.h"
 #include "CObjAttack.h"
-#include"CObjBossEnemy.h"
+#include"CObjBoss.h"
+#include"CObjBossBullet.h"
 #include"OBJGhostAttack.h"
+#include"objTitle.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
 #include "SceneMain.h"
+#include "SceneTitle.h"
+#include "SceneGameOver.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
@@ -94,5 +101,5 @@ struct UserData
 
 
 //ゲーム開始時のシーンクラス登録
-#define SET_GAME_START CSceneMain
+#define SET_GAME_START SceneTitle
 //-----------------------------------------------
