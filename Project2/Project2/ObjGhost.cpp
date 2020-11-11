@@ -146,7 +146,7 @@ void CObjGhost::Action()
 			else if ((x >= -(30.0f + distance) && x <= 80.0f + distance) && (y >= -(30.0f + distance) && y <= 80.0f + distance)||n!=0)
 			{
 				n+=1.0f;
-				if (n != 0.0f||100 < c <= 350)
+				if (n != 0.0f||100 < c < 350)
 				{
 					m_x += m_vx*0;
 					m_y += m_vy*0;
