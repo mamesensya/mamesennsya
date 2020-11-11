@@ -167,7 +167,7 @@ void CObjBlock::Action()
 					else
 						r = 360.0f - abs(r);
 
-					if (len < 70.0f)
+					if (len < 88.0f)
 					{
 
 
