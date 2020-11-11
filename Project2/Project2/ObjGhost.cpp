@@ -22,6 +22,7 @@ void CObjGhost::Init()
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 	m_time = 0;
+	m_scroll_map = 0;
 
 	//当たり判定
 	Hits::SetHitBox(this, m_x+5, m_y+5, 30, 30, ELEMENT_ENEMY, OBJ_GHOST, 4);
@@ -30,6 +31,10 @@ void CObjGhost::Init()
 
 void CObjGhost::Action()
 {
+
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map = block->GetS();
+
 	if (m_time == 50) {
 		m_time = 0;
 	}
@@ -47,7 +52,7 @@ void CObjGhost::Action()
 
 	//内容更新
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x + 5, m_y + 5);
+	hit->SetPos(m_x + 5+m_scroll_map, m_y + 5);
 
 
 	//ベクトルを求める
