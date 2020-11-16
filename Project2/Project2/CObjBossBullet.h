@@ -21,13 +21,12 @@ private:
 	float m_r;
 	float m_vx;
 	float m_vy;
+	float mx{ 0 };
+	float my{ 0 };
 
-
-
-
-
-
-
-	float m_scroll_map;
+	float m_scroll_map_x{ 0 };
+	float m_scroll_map_y{ 0 };
+	
+	float m_speed{ 5 };
 
 };

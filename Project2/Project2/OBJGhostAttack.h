@@ -18,7 +18,8 @@ private:
 	float m_vx;
 	float m_vy;
 
-	float m_scroll_map;
+	float m_scroll_map_x{ 0 };
+	float m_scroll_map_y{ 0 };
 
 	int m_time = 0;
 };

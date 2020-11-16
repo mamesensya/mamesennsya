@@ -29,14 +29,15 @@ void CObjBoss::Init()
 	pbullet_enable = false; //貫通弾ダメージ有効
 
 	//HitBox追加
-	Hits::SetHitBox(this, m_x + 35, m_y + 40, 65, 65, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_x , m_y , 65, 65, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 }
 
 void CObjBoss::Action()
 {
 
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	m_scroll_map = block->GetS();
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
 
 	m_time++;
 	if (m_time > 100)
@@ -58,7 +59,10 @@ void CObjBoss::Action()
 		float hy = hero->GetY();
 
 		//敵から主人公のベクトルを求める
-		x = m_x - hx+m_scroll_map;
+		hx = hx - m_scroll_map_x;
+		hy = hy - m_scroll_map_y;
+
+		x = m_x - hx;
 		y = m_y - hy;
 
 
@@ -219,7 +223,7 @@ void CObjBoss::Action()
 			{
 				//敵弾丸発射
 				for (int i = 0; i < 3; i++) {
-					CObjBossBullet* obj_eb = new CObjBossBullet(m_x+m_scroll_map, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
+					CObjBossBullet* obj_eb = new CObjBossBullet(m_x+m_scroll_map_x, m_y+m_scroll_map_y, m_r - (m_r * 2) - (60 + (30 * i)));
 					Objs::InsertObj(obj_eb, OBJ_BOSS_BULLET, 16);
 				}
 			}
@@ -228,8 +232,17 @@ void CObjBoss::Action()
 		}
 	}
 
+	m_x += m_scroll_map_x;
+	m_y += m_scroll_map_y;
 
-	
+
+	//ブロックとの当たり判定
+	CObjBlock* eb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	eb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
+
+	m_x -= m_scroll_map_x;
+	m_y -= m_scroll_map_y;
+
 
 	m_x += m_vx;
 	m_y += m_vy;
@@ -237,7 +250,7 @@ void CObjBoss::Action()
 
 	//HitBoxの内容更新
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x + 35+ m_scroll_map, m_y + 40);
+	hit->SetPos(m_x+ m_scroll_map_x, m_y+m_scroll_map_y);
 
 	//弾丸と接触しているかを調べる
 	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
@@ -296,10 +309,10 @@ void CObjBoss::Draw()
 	src.m_bottom = 400.0f;
 
 	//出力位置
-	dst.m_top = 0.0f + m_y;
-	dst.m_left = 0.0f + m_x+m_scroll_map;
-	dst.m_right = 128.0f + m_x+m_scroll_map;
-	dst.m_bottom = 128.0f + m_y;
+	dst.m_top = 0.0f + m_y+m_scroll_map_y-40.0f;
+	dst.m_left = 0.0f + m_x+m_scroll_map_x-35.0f;
+	dst.m_right = 128.0f + m_x+m_scroll_map_x-35.0f;
+	dst.m_bottom = 128.0f + m_y+m_scroll_map_y-34.0f;
 
 	Draw::Draw(5, &src, &dst, c, m_r);
 }

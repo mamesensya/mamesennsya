@@ -9,8 +9,8 @@
 using namespace GameL;
 
 CObjEnemy3B::CObjEnemy3B(float x, float y, float r) {
-	m_x = x + 32;
-	m_y = y + 32;
+	m_x = x +10;
+	m_y = y +10;
 	m_r = r;
 };
 
@@ -20,7 +20,6 @@ void CObjEnemy3B::Init() {
 	mx=0;
 	my = 0;
 
-	m_scroll_map = 0;
 
 	m_speed = 5;
 	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_3BULLET, 1);
@@ -29,11 +28,6 @@ void CObjEnemy3B::Init() {
 void CObjEnemy3B::Action() {
 
 	CHitBox* Hit = Hits::GetHitBox(this);
-
-
-	//スクロールした分のベクトルを取得
-	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	m_scroll_map = block->GetS();
 
 
 	m_vx = cos(3.14 / 180.0f * m_r);
@@ -77,13 +71,13 @@ void CObjEnemy3B::Draw() {
 
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 768.0f;
-	src.m_bottom = 768.0f;
+	src.m_right = 200.0f;
+	src.m_bottom = 200.0f;
 
-	dst.m_top = 0.0f + m_y;
-	dst.m_left = 0.0f + m_x;
-	dst.m_right = 32.0f + m_x;
-	dst.m_bottom = 32.0f + m_y;
+	dst.m_top = 0.0f + m_y+m_scroll_map_y;
+	dst.m_left = 0.0f + m_x+m_scroll_map_x;
+	dst.m_right = 32.0f + m_x+m_scroll_map_x;
+	dst.m_bottom = 32.0f + m_y+m_scroll_map_y;
 
-	Draw::Draw(14, &src, &dst, c, 0);
+	Draw::Draw(2, &src, &dst, c, 0);
 };

@@ -21,7 +21,6 @@ void CObjGhost::Init()
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 	m_time = 0;
-	m_scroll_map = 0;
 
 	//当たり判定
 	Hits::SetHitBox(this, m_x+5, m_y+5, 30, 30, ELEMENT_ENEMY, OBJ_GHOST, 4);
@@ -32,7 +31,9 @@ void CObjGhost::Action()
 {
 
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	m_scroll_map = block->GetS();
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
+
 
 	if (m_time == 50) {
 		m_time = 0;
@@ -51,7 +52,7 @@ void CObjGhost::Action()
 
 	//内容更新
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x + 5+m_scroll_map, m_y + 5);
+	hit->SetPos(m_x + 5+m_scroll_map_x, m_y + 5+m_scroll_map_y);
 
 
 	//ベクトルを求める
@@ -67,8 +68,8 @@ void CObjGhost::Action()
 		float distance = 50.0f;
 
 		//敵から主人公のベクトルを求める
-		x = m_x - hx + m_scroll_map;
-		y = m_y - hy;
+		x = m_x - hx + m_scroll_map_x;
+		y = m_y - hy+m_scroll_map_y;
 
 		//ベクトルの長さを求める
 		float r = 0.0f;
@@ -200,10 +201,10 @@ void CObjGhost::Draw()
 	src.m_bottom = 200.0f;
 
 	//表示位置の設定
-	dst.m_top = 0.0f +m_y;
-	dst.m_left = 0.0f + m_x + m_scroll_map;
-	dst.m_right = 45.0f + m_x + m_scroll_map;
-	dst.m_bottom = 45.0f+m_y;
+	dst.m_top = 0.0f +m_y+m_scroll_map_y;
+	dst.m_left = 0.0f + m_x + m_scroll_map_x;
+	dst.m_right = 45.0f + m_x + m_scroll_map_x;
+	dst.m_bottom = 45.0f+m_y+m_scroll_map_y;
 
 	//描画
 	Draw::Draw(4, &src, &dst, c,0.0f);

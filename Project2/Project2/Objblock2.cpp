@@ -88,7 +88,7 @@ void CObjBlock::Init()
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 		{1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1},
 		{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-
+		
 
 	};
 	//マップデータをコピー
@@ -130,7 +130,7 @@ void CObjBlock::Action()
 		m_scroll2 -= hero->GetVY();
 	}
 
-
+	
 }
 
 //ドロー
@@ -159,7 +159,7 @@ void CObjBlock::Draw()
 	src.m_right = src.m_left + 64.0f;
 	src.m_bottom = 64.0f;
 
-
+	
 
 	for (int i = 0; i < 60; i++)
 	{
@@ -168,8 +168,8 @@ void CObjBlock::Draw()
 			if (m_map[i][j] > 0)
 			{
 				//表示位置の設定
-				dst.m_top = i * 64.0f + m_scroll2;
-				dst.m_left = j * 64.0f + m_scroll;
+				dst.m_top = i * 64.0f+m_scroll2;
+				dst.m_left = j * 64.0f+m_scroll;
 				dst.m_right = dst.m_left + 64.0;
 				dst.m_bottom = dst.m_top + 64.0;
 
@@ -190,7 +190,7 @@ void CObjBlock::Draw()
 //引数6 bool* right     :右部分に当たっているかを返す
 //引数7 float* vx       :左右判定時の反発による移動方向・力の値を変えて返す
 //引数8 float* vy       :上下判定時による自由落下運動の移動方向・力の値を変えて返す
-void CObjBlock::BlockHit(
+void BlockHit(
 	float* x, float* y, bool* up, bool* down,
 	bool* left, bool* right, float* vx, float* vy
 )
@@ -209,22 +209,22 @@ void CObjBlock::BlockHit(
 			if (m_map[i][j] == 1)
 			{
 				//要素番号を座標に変換
-				float bx = j * 64.0f;
-				float by = i * 64.0f;
+				float x = j * 64.0f;
+				float y = i * 64.0f;
 
 				//主人公とブロックのあたり判定
-				if ((*x + (-m_scroll) + 64.0f > bx) && (*x + (-m_scroll) < bx + 64.0f) && (*y + (-m_scroll2) + 64.0f > by) && (*y + (-m_scroll2) < by + 64.0f))
+				if ((hx + (-m_scroll) + 64.0f > x) && (hx + (-m_scroll) < x + 64.0f) && (hy + (-m_scroll2) + 64.0f > y) && (hy + (-m_scroll2) < y + 64.0f))
 				{
 					//上下左右の判定
 
 					//vectorのさくせい
-					float rvx = (*x + (-m_scroll)) - bx;
-					float rvy = (*y + (-m_scroll2)) - by;
+					float vx = (hx + (-m_scroll)) - x;
+					float vy = (hy + (-m_scroll2)) - y;
 
 					//長さを求める
-					float len = sqrt(rvx * rvx + rvy * rvy);
+					float len = sqrt(vx * vx + vy * vy);
 
-					float r = atan2(rvy, rvx);
+					float r = atan2(vy, vx);
 					r = r * 180.0f / 3.14f;
 
 
@@ -241,18 +241,19 @@ void CObjBlock::BlockHit(
 						if ((r < 45 && r>0) || r > 315)
 						{
 							//右
-							*right = true;
-							*x = bx + 64.0f + (m_scroll);
-							*vx = -(*vx) * 0.1f;
+							hero->SetLeft(true);
+							hero->SetX(x + 64.0f + (m_scroll));
+							hero->SetVX(-hero->GetVX() * 0.1f);
 
 
 						}
 						if (r > 45 && r < 135)
 						{
 							//上
-							*down = true;
-							*y = by - 64.0f + (m_scroll2);
-							*vy = -(*vy)*0.1f;
+							hero->SetDown(true);
+							hero->SetY(y - 64.0f + (m_scroll2));
+							hero->SetVY(-hero->GetVY() * 0.1f);
+
 
 
 
@@ -260,9 +261,9 @@ void CObjBlock::BlockHit(
 						if (r > 135 && r < 225)
 						{
 							//左
-							*left = true;
-							*x = bx - 64.0f + (m_scroll);
-							*vx = -(*vx) * 0.1f;
+							hero->SetRight(true);
+							hero->SetX(x - 64.0f + (m_scroll));
+							hero->SetVX(-hero->GetVX() * 0.1f);
 
 
 
@@ -271,9 +272,9 @@ void CObjBlock::BlockHit(
 						if (r > 225 && r < 315)
 						{
 							//下
-							*up = true;
-							*y = by + 64.0f + (m_scroll2);
-							*vy = -(*vy) * 0.1f;
+							hero->SetUp(true);
+							hero->SetY(y + 64.0f + (m_scroll2));
+							hero->SetVY(-hero->GetVY() * 0.1f);
 
 
 						}
@@ -290,6 +291,10 @@ void CObjBlock::BlockHit(
 
 
 		}
+		wchar_t str[128];
+		float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+		swprintf_s(str, L"<Hero Position> X=%f , Y=%f", hero->GetX(), hero->GetY());
+		Font::StrDraw(str, 10, 10, 20, c);
 	}
 
 }

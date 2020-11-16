@@ -15,7 +15,7 @@ CObjGhostAttack::CObjGhostAttack(float x, float y)
 
 void CObjGhostAttack::Init()
 {
-	m_scroll_map = 0;
+
 	Hits::SetHitBox(this, m_x+10, m_y+30 , 10, 30, ELEMENT_ENEMY, OBJ_GHOST_ATTACK, 6);
 }
 
@@ -24,7 +24,9 @@ void CObjGhostAttack::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	m_scroll_map = block->GetS();
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
+
 
 	m_time ++ ;
 	if (m_time == 30)
@@ -43,7 +45,7 @@ void CObjGhostAttack::Action()
 		
 	}
 	
-	hit->SetPos(m_x +10+ m_scroll_map, m_y +30);
+	hit->SetPos(m_x +10+ m_scroll_map_x, m_y +30+m_scroll_map_y);
 }
 
 void CObjGhostAttack::Draw()
@@ -61,10 +63,10 @@ void CObjGhostAttack::Draw()
 	src.m_bottom = 200.0f;
 
 	//ï\é¶à íuÇÃê›íË
-	dst.m_top = 35.0f + m_y;
-	dst.m_left = 0.0f + m_x+m_scroll_map;
-	dst.m_right = 30.0f + m_x+m_scroll_map;
-	dst.m_bottom = 30.0f + m_y+30;
+	dst.m_top = 35.0f + m_y+m_scroll_map_y;
+	dst.m_left = 0.0f + m_x+m_scroll_map_x;
+	dst.m_right = 30.0f + m_x+m_scroll_map_x;
+	dst.m_bottom = 30.0f + m_y+30+m_scroll_map_y;
 
 	//ï`âÊ
 	Draw::Draw(6, &src, &dst, c, 0.0f);

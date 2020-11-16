@@ -20,5 +20,8 @@ private:
 	float mx;
 	float my;
 
-	float m_scroll_map;
+	float m_scroll_map_x{ 0 };
+	float m_scroll_map_y{ 0 };
+	
+
 };

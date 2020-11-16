@@ -34,6 +34,7 @@ void CSceneMain::InitScene()
 
 	//“GíÔ
 	Draw::LoadImageW(L"“G_íÔ2.png", 1, TEX_SIZE_512);
+
 	CObjEnemy* obj_enemy = new CObjEnemy(350,250);
 	Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);
 

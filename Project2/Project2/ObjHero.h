@@ -21,11 +21,6 @@ public:
 	void SetY(float y) { m_y = y; }
 	void SetVY(float vy) { m_vy = vy; }
 	void SetVX(float vx) { m_vx = vx; }
-	
-	void SetUp(bool b) { m_hit_up = b; }
-	void SetDown(bool b) { m_hit_down = b; }
-	void SetLeft(bool b) { m_hit_left = b; }
-	void SetRight(bool b) { m_hit_right = b; }
 
 	void GetBullet(int bullet) { m_bullet += bullet; }
 	void GetUniqueBullet1(int unique_bullet_1)

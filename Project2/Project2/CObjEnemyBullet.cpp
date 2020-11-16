@@ -7,8 +7,8 @@ using namespace GameL;
 
 CObjEnemyBullet::CObjEnemyBullet(float x, float y,float r)
 {
-	m_x = x+45;
-	m_y = y+50;
+	m_x = x+10;
+	m_y = y+10;
 	m_r = r;
 }
 
@@ -20,7 +20,6 @@ void CObjEnemyBullet::Init()
 	mx = 0;
 	my = 0;
 
-	m_scroll_map = 0;
 	//HitBox作成
 	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
 }
@@ -32,7 +31,11 @@ void CObjEnemyBullet::Action()
 
 	//スクロールした分のベクトルを取得
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	m_scroll_map = block->GetS();
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
+
+
+
 
 
 	if (m_r == 0.0f)
@@ -66,7 +69,7 @@ void CObjEnemyBullet::Action()
 
 	//HitBoxの内容を更新
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x+m_scroll_map, m_y);
+	hit->SetPos(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
 
 	//主人公と接触しているかどうか調べる
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
@@ -110,10 +113,10 @@ void CObjEnemyBullet::Draw()
 	src.m_bottom = 200.0f;
 
 	//表示位置
-	dst.m_top = 0.0f+m_y;
-	dst.m_left = 0.0f + m_x+m_scroll_map ;
-	dst.m_right = 32.0f+m_x +m_scroll_map;
-    dst.m_bottom = 32.0f+m_y;
+	dst.m_top = 0.0f+m_y+m_scroll_map_y;
+	dst.m_left = 0.0f +m_x+m_scroll_map_x ;
+	dst.m_right = 32.0f+m_x +m_scroll_map_x;
+    dst.m_bottom = 32.0f+m_y+m_scroll_map_y;
 
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 }

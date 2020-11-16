@@ -32,9 +32,16 @@ private:
 	int m_time;//弾発射間隔制御用変数
 	int m_move_time;//敵戦車移動硬直用変数
 
-	float m_scroll_map;//mapのスクロールに合わせて動くための変数
+	float m_scroll_map_x{ 0 };//mapのスクロールに合わせて動くための変数
+	float m_scroll_map_y{ 0 };
 
 	int pbullet_interval;
 	bool pbullet_enable;
+
+
+	bool m_hit_up;
+	bool m_hit_down;
+	bool m_hit_left;
+	bool m_hit_right;
 
 };
