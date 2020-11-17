@@ -100,6 +100,9 @@
     <ClCompile Include="SceneTitle.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="SceneGameClear.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -315,6 +318,9 @@
       <Filter>ソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="SceneTitle.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneGameClear.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
   </ItemGroup>

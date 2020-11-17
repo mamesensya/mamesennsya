@@ -184,13 +184,13 @@ void CObjHero::Action()
 			}
 		}
 		//m_hpが０になると主人公を破棄
-		if (m_hp == 0)
-		{
-			this->SetStatus(false);//自身に削除命令を出す
-			Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+		//if (m_hp == 0)
+		//{
+		//	this->SetStatus(false);//自身に削除命令を出す
+		//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-			Scene::SetScene(new CSceneGameOver());
-		}
+		//	Scene::SetScene(new CSceneGameOver());
+		//}
 
 		//攻撃間隔制御
 		if (m_attack == false)
