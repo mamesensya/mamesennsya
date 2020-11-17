@@ -43,6 +43,7 @@ private:
 
 	float rad{ 0 };//ラジアン
 
+	int bullet{ 0 };//主人公の総弾数
 	int m_bullet;//主人公（戦車）：通常弾数
 	int m_unique_bullet_1;//主人公（戦車）：特殊弾（１）弾数
 	int m_unique_bullet_2;//主人公（戦車）：特殊弾（２）弾数
