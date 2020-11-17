@@ -2,6 +2,7 @@
 #include "GameL\DrawTexture.h"
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
+#include "GameL\Audio.h"
 #include "GameHead.h"
 #include "ObjBean.h"
 
@@ -39,6 +40,9 @@ void CObjBean::Action()
 	//ŽålŒöi‹ßÚUŒ‚j‚ÆÚG‚µ‚½‚ç“¤‚ðíœ
 	if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
+		//”­ŽË‰¹–Â‚ç‚·
+		Audio::Start(11);
+
 		//“¤‚ðíœ
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);

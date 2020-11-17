@@ -2,6 +2,7 @@
 #include"GameL/HitBoxManager.h"
 #include"GameL\SceneManager.h"
 #include"GameL/WinInputs.h"
+#include "GameL\Audio.h"
 
 #include"GameHead.h"
 #include"CObjBoss.h"
@@ -221,6 +222,9 @@ void CObjBoss::Action()
 
 			if (m_time == 100 && count == 1)
 			{
+				//発射音鳴らす
+				Audio::Start(10);
+
 				//敵弾丸発射
 				for (int i = 0; i < 3; i++) {
 					CObjBossBullet* obj_eb = new CObjBossBullet(m_x+m_scroll_map_x, m_y+m_scroll_map_y, m_r - (m_r * 2) - (60 + (30 * i)));
@@ -257,6 +261,9 @@ void CObjBoss::Action()
 	{
 		m_hp--;
 		if (m_hp <= 0) {
+			//爆発音鳴らす
+			Audio::Start(12);
+
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 		}
@@ -266,6 +273,9 @@ void CObjBoss::Action()
 			m_hp--;
 			pbullet_enable = true;
 			if (m_hp <= 0) {
+				//爆発音鳴らす
+				Audio::Start(12);
+
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 			}
