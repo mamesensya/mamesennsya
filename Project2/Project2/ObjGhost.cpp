@@ -23,7 +23,7 @@ void CObjGhost::Init()
 	m_time = 0;
 
 	//“–‚½‚è”»’è
-	Hits::SetHitBox(this, m_x+5, m_y+5, 30, 30, ELEMENT_ENEMY, OBJ_GHOST, 4);
+	Hits::SetHitBox(this, m_x, m_y, 30, 30, ELEMENT_ENEMY, OBJ_GHOST, 4);
 
 }
 
@@ -52,7 +52,7 @@ void CObjGhost::Action()
 
 	//“à—eXV
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x + 5+m_scroll_map_x, m_y + 5+m_scroll_map_y);
+	hit->SetPos(m_x+m_scroll_map_x, m_y +m_scroll_map_y);
 
 
 	//ƒxƒNƒgƒ‹‚ð‹‚ß‚é
@@ -132,6 +132,7 @@ void CObjGhost::Action()
 		if ((x >= -400.0f && x <= 400.0f) || (y >= -400.0f && y <= 400.0f))
 		{
 			//‚æ‚è‹ß‚Ã‚¢‚Ä‚«‚½‚ç“¦‚°‚é
+
 			if ((x >= -(25.0f + distance) && x <= 75.0f + distance) && (y >= -(25.0f + distance) && y <= 75.0f + distance)||m_time!=0)
 			{
 				//ƒxƒNƒgƒ‹‚ð^‹t‚É‚·‚é
@@ -142,27 +143,23 @@ void CObjGhost::Action()
 					m_y += m_vy;
 					m_time++;
 				}
+				
 			}
 			//ŽålŒö‚ÉÚ‹ß‚µ‚½‚çÃŽ~
 			else if ((x >= -(30.0f + distance) && x <= 80.0f + distance) && (y >= -(30.0f + distance) && y <= 80.0f + distance)||n!=0)
 			{
 				n+=1.0f;
-				if (n != 0.0f||100 < c < 350)//UŒ‚ŒãŽb‚­d’¼(‚³‚¹‚½‚¢)
-				{
-					m_x += m_vx*0;
-					m_y += m_vy*0;
-					
-
-				}
-
-				if (c == 100)
+				if (c == 50)
 				{
 					CObjGhostAttack* objAttack = new CObjGhostAttack(m_x, m_y);
 					Objs::InsertObj(objAttack, OBJ_GHOST_ATTACK, 6);
-
 				}
+				if (weit == false) {
+					weit = true;
+					waittimer = 0;
+				}
+				
 			}
-
 			if (m_time == 0) 
 			{
 				if (n == 0.0f)
@@ -170,6 +167,15 @@ void CObjGhost::Action()
 					m_x += m_vx;
 					m_y += m_vy;
 				}
+			}
+			if (weit == true) {
+				if (waittimer < 150) {
+					m_vx = 0.0f;
+					m_vy = 0.0f;
+					waittimer++;
+				}
+				weit == false;
+
 			}
 		}
 	}
@@ -201,10 +207,10 @@ void CObjGhost::Draw()
 	src.m_bottom = 200.0f;
 
 	//•\Ž¦ˆÊ’u‚ÌÝ’è
-	dst.m_top = 0.0f +m_y+m_scroll_map_y;
-	dst.m_left = 0.0f + m_x + m_scroll_map_x;
-	dst.m_right = 45.0f + m_x + m_scroll_map_x;
-	dst.m_bottom = 45.0f+m_y+m_scroll_map_y;
+	dst.m_top = 0.0f +m_y+m_scroll_map_y-5.0f;
+	dst.m_left = 0.0f + m_x + m_scroll_map_x-5.0f;
+	dst.m_right = 45.0f + m_x + m_scroll_map_x-5.0f;
+	dst.m_bottom = 45.0f+m_y+m_scroll_map_y-5.0f;
 
 	//•`‰æ
 	Draw::Draw(4, &src, &dst, c,0.0f);
