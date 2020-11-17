@@ -86,6 +86,8 @@ void CObjGhost::Action()
 			m_vy = -1.0f / r * y;
 		}
 
+		
+
 		//‹S‚ÆålŒö‚ÅŠp“xæ‚è
 		CObjHero* obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
 		
