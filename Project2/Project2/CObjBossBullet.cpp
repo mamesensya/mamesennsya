@@ -7,8 +7,8 @@ using namespace GameL;
 
 CObjBossBullet::CObjBossBullet(float x, float y,float r)
 {
-	m_x = x + 15;
-	m_y = y + 15;
+	m_x = x + 85;
+	m_y = y + 85;
 	m_r = r;
 }
 

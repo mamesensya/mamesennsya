@@ -33,18 +33,18 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
 
 	//敵戦車
-	Draw::LoadImageW(L"敵_戦車2.png", 1, TEX_SIZE_512);
+	//Draw::LoadImageW(L"敵_戦車2.png", 1, TEX_SIZE_512);
 
-	CObjEnemy* obj_enemy = new CObjEnemy(350,250);
-	Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);
+	//CObjEnemy* obj_enemy = new CObjEnemy(350,250);
+	//Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);
 
-	//敵戦車（3方向弾）
-	CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 400);
-	Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
+	////敵戦車（3方向弾）
+	//CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 400);
+	//Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
 
 	//ボス戦車
 	Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
-	CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
+	CObjBoss* obj_bossenemy = new CObjBoss(100,100);
 	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
 
 	Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
@@ -56,7 +56,7 @@ void CSceneMain::InitScene()
 	//主人公グラフィック読み込み(400×400)
 	Draw::LoadImageW(L"test.png", 20, TEX_SIZE_512);
 	//主人公表示
-	CObjHero* obj = new CObjHero(700,500);
+	CObjHero* obj = new CObjHero(64,64);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	//弾

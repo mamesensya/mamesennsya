@@ -27,4 +27,14 @@ private:
 	int c{0};//UŒ‚‚·‚éŠÔŠu
 
 	float n{0.0f};//§Œä
+
+
+
+	bool m_hit_up;
+	bool m_hit_down;
+	bool m_hit_left;
+	bool m_hit_right;
+
+
+
 };
