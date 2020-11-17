@@ -147,10 +147,10 @@ void CObjBlock::Draw()
 	src.m_left = 0.0f;
 	src.m_right = 512.0f;
 	src.m_bottom = 512.0f;
-	dst.m_top = 0.0f;
-	dst.m_left = 0.0f;
-	dst.m_right = 800.0f;
-	dst.m_bottom = 600.0f;
+	dst.m_top = 0.0f+m_scroll2;
+	dst.m_left = 0.0f+m_scroll;
+	dst.m_right = 800.0f+m_scroll;
+	dst.m_bottom = 600.0f+m_scroll2;
 	Draw::Draw(3, &src, &dst, c, 0.0f);
 
 	//Ø‚èæ‚èˆÊ’u‚Ìİ’è

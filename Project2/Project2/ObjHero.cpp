@@ -5,6 +5,7 @@
 #include "GameL\WinInputs.h"
 #include "CObjPlayerBullet.h"
 #include "CObjpenetrateBullet.h"
+#include "GameL\Audio.h"
 
 #include "GameHead.h"
 #include "ObjHero.h"
@@ -128,18 +129,27 @@ void CObjHero::Action()
 		if (m_attack == true) {
 			if (Input::GetVKey('Z') == true && m_bullet > 0)
 			{
+				//発射音鳴らす
+				Audio::Start(10);
+
 				CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - 90);
 				Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 14);
 				m_bullet -= 1;
 				m_attack = false;
 			}
 			if (Input::GetVKey('X') == true && m_unique_bullet_1 > 0) {
+				//発射音鳴らす
+				Audio::Start(10);
+
 				CObjPenetrateBullet* obj_pb = new CObjPenetrateBullet(m_x, m_y, m_r - (m_r * 2) - 90);
 				Objs::InsertObj(obj_pb, OBJ_PENETRATE_BULLET, 15);
 				m_unique_bullet_1 -= 1;
 				m_attack = false;
 			}
 			if (Input::GetVKey('C') == true && m_unique_bullet_2 > 0) {
+				//発射音鳴らす
+				Audio::Start(10);
+				
 				for (int i = 0; i < 3; i++) {
 					CObjPlayerBullet* obj_db = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
 					Objs::InsertObj(obj_db, OBJ_ANGLE_BULLET, 16);
@@ -173,14 +183,14 @@ void CObjHero::Action()
 				}
 			}
 		}
-		////m_hpが０になると主人公を破棄
-		//if (m_hp == 0)
-		//{
-		//	this->SetStatus(false);//自身に削除命令を出す
-		//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+		//m_hpが０になると主人公を破棄
+		if (m_hp == 0)
+		{
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-		//	Scene::SetScene(new CSceneGameOver());
-		//}
+			Scene::SetScene(new CSceneGameOver());
+		}
 
 		//攻撃間隔制御
 		if (m_attack == false)
