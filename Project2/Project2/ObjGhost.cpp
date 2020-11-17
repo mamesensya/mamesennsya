@@ -21,6 +21,7 @@ void CObjGhost::Init()
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 	m_time = 0;
+	m_r = 0.0f;
 
 	//“–‚½‚è”»’è
 	Hits::SetHitBox(this, m_x, m_y, 30, 30, ELEMENT_ENEMY, OBJ_GHOST, 4);
@@ -39,7 +40,7 @@ void CObjGhost::Action()
 		m_time = 0;
 	}
 
-	if (n ==50.0f)
+	if (n ==200.0f)
 	{
 		n = 0.0f;
 	}
@@ -48,7 +49,7 @@ void CObjGhost::Action()
 	{
 		c = 0;
 	}
-	c++;
+
 
 	//“à—eXV
 	CHitBox* hit = Hits::GetHitBox(this);
@@ -148,15 +149,12 @@ void CObjGhost::Action()
 			//ŽålŒö‚ÉÚ‹ß‚µ‚½‚çÃŽ~
 			else if ((x >= -(30.0f + distance) && x <= 80.0f + distance) && (y >= -(30.0f + distance) && y <= 80.0f + distance)||n!=0)
 			{
-				n+=1.0f;
-				if (c == 50)
+				
+				n += 1.0f;
+				if (n == 100.0)
 				{
 					CObjGhostAttack* objAttack = new CObjGhostAttack(m_x, m_y);
 					Objs::InsertObj(objAttack, OBJ_GHOST_ATTACK, 6);
-				}
-				if (weit == false) {
-					weit = true;
-					waittimer = 0;
 				}
 				
 			}
@@ -168,15 +166,7 @@ void CObjGhost::Action()
 					m_y += m_vy;
 				}
 			}
-			if (weit == true) {
-				if (waittimer < 150) {
-					m_vx = 0.0f;
-					m_vy = 0.0f;
-					waittimer++;
-				}
-				weit == false;
-
-			}
+			
 		}
 	}
 		//ˆÚ“®•ûŒü‰Šú‰»
@@ -213,5 +203,5 @@ void CObjGhost::Draw()
 	dst.m_bottom = 45.0f+m_y+m_scroll_map_y-5.0f;
 
 	//•`‰æ
-	Draw::Draw(4, &src, &dst, c,0.0f);
+	Draw::Draw(4, &src, &dst, c,m_r);
 }

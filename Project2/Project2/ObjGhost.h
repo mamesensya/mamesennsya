@@ -22,6 +22,8 @@ private:
 	bool weit;
 	int waittimer = 0;
 
+	float m_r;
+
 	float m_scroll_map_x;
 	float m_scroll_map_y;
 
