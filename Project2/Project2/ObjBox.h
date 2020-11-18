@@ -20,4 +20,7 @@ public:
 private:
 	float m_x;//ˆÊ’u
 	float m_y;
+
+	float m_scroll_map_x;
+	float m_scroll_map_y;
 };

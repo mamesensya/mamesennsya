@@ -49,14 +49,20 @@ void CObjBox::Init()
 	//}
 
 	//当たり判定用HitBox作成
-	Hits::SetHitBox(this, m_x+16, m_y+16, 64, 64, ELEMENT_ITEM, OBJ_BOX, 1);
+	Hits::SetHitBox(this, m_x, m_y, 64, 64, ELEMENT_ITEM, OBJ_BOX, 1);
 }
 
 //アクション
 void CObjBox::Action()
 {
+
+
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
+
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x, m_y);
+	hit->SetPos(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
 
 	//主人公（近接攻撃）と接触したらボックスを削除
 	if(hit->CheckObjNameHit(OBJ_ATTACK)!=nullptr)
@@ -85,10 +91,10 @@ void CObjBox::Draw()
 	src.m_right = 240.0f;
 	src.m_bottom = 240.0f;
 	//描画位置の設定
-	dst.m_top = 0.0f + m_y;
-	dst.m_left = 0.0f + m_x;
-	dst.m_right = 64.0f + m_x;
-	dst.m_bottom = 64.0f + m_y;
+	dst.m_top = 0.0f + m_y+m_scroll_map_y;
+	dst.m_left = 0.0f + m_x+m_scroll_map_x;
+	dst.m_right = 64.0f + m_x+m_scroll_map_x;
+	dst.m_bottom = 64.0f + m_y+m_scroll_map_y;
 
 	//描画
 	Draw::Draw(15, &src, &dst, c, 0.0f);

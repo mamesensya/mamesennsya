@@ -40,7 +40,7 @@ void CObjGhost::Action()
 		m_time = 0;
 	}
 
-	if (n ==200.0f)
+	if (n == 200.0f)
 	{
 		n = 0.0f;
 	}
@@ -53,7 +53,7 @@ void CObjGhost::Action()
 
 	//内容更新
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x+m_scroll_map_x, m_y +m_scroll_map_y);
+	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
 
 	//ベクトルを求める
@@ -70,12 +70,19 @@ void CObjGhost::Action()
 
 		//敵から主人公のベクトルを求める
 		x = m_x - hx + m_scroll_map_x;
-		y = m_y - hy+m_scroll_map_y;
+		y = m_y - hy + m_scroll_map_y;
+
+
+		
+
 
 		//ベクトルの長さを求める
 		float r = 0.0f;
 		r = x * x + y * y;
 		r = sqrt(r);
+
+		
+
 
 		if (r == 0.0f)//0なら何もしない
 			;
@@ -85,8 +92,10 @@ void CObjGhost::Action()
 			m_vx = -1.0f / r * x;//正規化を行う
 			m_vy = -1.0f / r * y;
 		}
+		m_r = atan2(x, y) * 180.0f / 3.14f;
 
-		
+		if (m_r < 0)
+			m_r = 360 - abs(m_r);
 
 		//鬼と主人公で角度取り
 		CObjHero* obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -106,6 +115,9 @@ void CObjGhost::Action()
 
 			if (br < 0)
 				br = 360 - abs(br);
+
+			//m_r = br;
+
 
 			//かけ離れたら移動方向を主人公にする
 			if (ar - br > 20)
@@ -136,31 +148,32 @@ void CObjGhost::Action()
 		{
 			//より近づいてきたら逃げる
 
-			if ((x >= -(25.0f + distance) && x <= 75.0f + distance) && (y >= -(25.0f + distance) && y <= 75.0f + distance)||m_time!=0)
+			if ((x >= -(-5.0f + distance) && x <= 65.0f + distance) && (y >= -(-5.0f + distance) && y <= 65.0f + distance) || m_time != 0)
 			{
 				//ベクトルを真逆にする
 				m_vx = m_vx - m_vx - m_vx;
 				m_vy = m_vy - m_vy - m_vy;
+				m_r = m_r - m_r - m_r;
 				if (m_time < 50) {
 					m_x += m_vx;
 					m_y += m_vy;
 					m_time++;
 				}
-				
+
 			}
 			//主人公に接近したら静止
-			else if ((x >= -(30.0f + distance) && x <= 80.0f + distance) && (y >= -(30.0f + distance) && y <= 80.0f + distance)||n!=0)
+			else if ((x >= -(0.0f + distance) && x <= 70.0f + distance) && (y >= -(0.0f + distance) && y <= 70.0f + distance) || n != 0)
 			{
-				
+
 				n += 1.0f;
 				if (n == 100.0)
 				{
-					CObjGhostAttack* objAttack = new CObjGhostAttack(m_x, m_y);
+					CObjGhostAttack* objAttack = new CObjGhostAttack(m_x, m_y,m_r);
 					Objs::InsertObj(objAttack, OBJ_GHOST_ATTACK, 6);
 				}
-				
+
 			}
-			if (m_time == 0) 
+			if (m_time == 0)
 			{
 				if (n == 0.0f)
 				{
@@ -168,12 +181,12 @@ void CObjGhost::Action()
 					m_y += m_vy;
 				}
 			}
-			
+
 		}
 	}
-		//移動方向初期化
-		m_vx = 0.0f;
-		m_vy = 0.0f;
+	//移動方向初期化
+	m_vx = 0.0f;
+	m_vy = 0.0f;
 
 	//主人公弾と接触しているかどうか調べる
 	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
@@ -199,11 +212,11 @@ void CObjGhost::Draw()
 	src.m_bottom = 200.0f;
 
 	//表示位置の設定
-	dst.m_top = 0.0f +m_y+m_scroll_map_y-5.0f;
-	dst.m_left = 0.0f + m_x + m_scroll_map_x-5.0f;
-	dst.m_right = 45.0f + m_x + m_scroll_map_x-5.0f;
-	dst.m_bottom = 45.0f+m_y+m_scroll_map_y-5.0f;
+	dst.m_top = 0.0f + m_y + m_scroll_map_y - 5.0f;
+	dst.m_left = 0.0f + m_x + m_scroll_map_x - 5.0f;
+	dst.m_right = 45.0f + m_x + m_scroll_map_x - 5.0f;
+	dst.m_bottom = 45.0f + m_y + m_scroll_map_y - 5.0f;
 
 	//描画
-	Draw::Draw(4, &src, &dst, c,m_r);
+	Draw::Draw(4, &src, &dst, c, m_r);
 }
