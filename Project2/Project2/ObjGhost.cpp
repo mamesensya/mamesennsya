@@ -6,6 +6,7 @@
 #include"GameHead.h"
 #include"ObjGhost.h"
 #include"OBJGhostAttack.h"
+#include"Objbreakblock.h"
 
 //ネームスペース
 using namespace GameL;
@@ -170,6 +171,9 @@ void CObjGhost::Action()
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
+
+		CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
+		Bblock->Enemycount--;
 	}
 
 }

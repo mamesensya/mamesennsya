@@ -25,6 +25,10 @@ enum OBJ_NAME
 	OBJ_TITLE,
 	OBJ_TITLEFONT,
 	OBJ_SAVE,
+	OBJ_USERINTERFACE,
+	OBJ_BOSS2,
+	OBJ_BOSS_BULLET2,
+	OBJ_BREAK_BLOCK,
 	OBJ_ANGLE_BULLET2,
 };
 //------------------------------------------------
@@ -91,6 +95,9 @@ struct UserData
 #include"OBJGhostAttack.h"
 #include"objTitle.h"
 #include "ObjSaveSys.h"
+#include "ObjUserInterface.h"
+#include "CObjBoss2.h"
+#include "CObjBossBullet2.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -105,6 +112,6 @@ struct UserData
 
 
 //ゲーム開始時のシーンクラス登録
-//#define SET_GAME_START SceneTitle
-#define SET_GAME_START CSceneMain
+#define SET_GAME_START SceneTitle
+//#define SET_GAME_START CSceneMain
 //-----------------------------------------------

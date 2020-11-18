@@ -6,6 +6,7 @@
 #include "GameL\SceneObjManager.h"
 #include"GameL\DrawTexture.h"
 #include "GameL\DrawFont.h"
+#include"GameL\UserData.h"
 #include "GameL\Audio.h"
 //使用するネームスペース
 using namespace GameL;
@@ -14,6 +15,7 @@ using namespace GameL;
 #include"SceneMain.h"
 #include"GameHead.h"
 #include "Objblock.h"
+#include"Objbreakblock.h"
 //コンストラクタ
 CSceneMain::CSceneMain()
 {
@@ -48,15 +50,24 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
 
 	//敵戦車
-	//Draw::LoadImageW(L"敵_戦車2.png", 1, TEX_SIZE_512);
+	Draw::LoadImageW(L"敵_戦車2.png", 1, TEX_SIZE_512);
 
-	//CObjEnemy* obj_enemy = new CObjEnemy(350,250);
-	//Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);
+	CObjEnemy* obj_enemy = new CObjEnemy(350,250);
+	Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);
 
-	////敵戦車（3方向弾）
-	//CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 400);
-	//Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
+	//敵戦車（3方向弾）
+	CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 400);
+	Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
 
+	//ボス戦車
+	Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
+	CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
+	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
+
+	//ボス戦車2
+	Draw::LoadImageW(L"ボス_ステージ2（仮）.png", 7, TEX_SIZE_512);
+	CObjBoss2* obj_boss2 = new CObjBoss2(400, 300);
+	Objs::InsertObj(obj_boss2, OBJ_BOSS2, 53);
 	//ボス戦車
 	Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
 	CObjBoss* obj_bossenemy = new CObjBoss(100,100);
@@ -96,12 +107,18 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"heart.png", 23, TEX_SIZE_512);	    //戦車　の体力表示
 	Draw::LoadImageW(L"heart2.png", 24, TEX_SIZE_512);      //人　　の体力表示
 	Draw::LoadImageW(L"testsave.png", 25, TEX_SIZE_512);
+	Draw::LoadImageW(L"alphaboard.png", 26, TEX_SIZE_512);
 	//-------------------------------------------------------------------------------------/
 
 	//壊すと豆が出る箱
 	Draw::LoadImageW(L"豆箱.jpg", 15, TEX_SIZE_512);
 	CObjBox* obj_box = new CObjBox(400, 300);
 	Objs::InsertObj(obj_box, OBJ_BOX, 11);
+
+	//壊れる壁
+	Draw::LoadImageW(L"hako.png", 17, TEX_SIZE_512);
+	CObjbreakblock* obj_break_block = new CObjbreakblock(200, 300);
+	Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
 }
 
 //実行中メソッド

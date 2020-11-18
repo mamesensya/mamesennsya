@@ -7,6 +7,7 @@
 #include"GameHead.h"
 #include"CObjBoss.h"
 #include"CObjAngleBullet.h"
+#include "Objbreakblock.h"
 
 using namespace GameL;
 
@@ -281,6 +282,9 @@ void CObjBoss::Action()
 
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
+
+				CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
+				Bblock->Enemycount--;
 			}
 		}
 	}

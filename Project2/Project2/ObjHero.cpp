@@ -186,13 +186,13 @@ void CObjHero::Action()
 				int state = savesys->GetState();
 				if (state == 0) {
 					savesys->SetState(1);
-					Objs::InsertObj(savesys, OBJ_SAVE, 1000);
+					Objs::InsertObj(savesys, OBJ_SAVE, 17);
 				};
 			};
 		}
 
 		//当たり判定を行うオブジェクト情報部
-		int data_base[8] =
+		int data_base[10] =
 		{
 			OBJ_ENEMY,
 			OBJ_ENEMY_BULLET,
@@ -202,11 +202,13 @@ void CObjHero::Action()
 			OBJ_BOSS_BULLET,
 			OBJ_GHOST,
 			OBJ_GHOST_ATTACK,
+			OBJ_BOSS2,
+			OBJ_BOSS_BULLET2,
 		};
 		//敵オブジェクトと接触したら主人公のm_hpが減少
 		if (m_hit == true)
 		{
-			for (int i = 0; i < 8; i++)
+			for (int i = 0; i < 10; i++)
 			{
 				if (hit->CheckObjNameHit(data_base[i]) != nullptr)
 				{
