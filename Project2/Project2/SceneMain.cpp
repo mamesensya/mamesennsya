@@ -41,7 +41,7 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(12, L"SE敵爆破音.wav", EFFECT);
 
 	//ボリュームを1.5増やす
-	float v = Audio::VolumeMaster(1.5f);
+	float v = Audio::VolumeMaster(-0.5f);
 
 	//音楽スタート
 	Audio::Start(0);
@@ -78,8 +78,9 @@ void CSceneMain::InitScene()
 
 	//主人公グラフィック読み込み(400×400)
 	Draw::LoadImageW(L"test.png", 20, TEX_SIZE_512);
+
 	//主人公表示
-	CObjHero* obj = new CObjHero(200,200);
+	CObjHero* obj = new CObjHero(400,200);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	//弾

@@ -14,6 +14,7 @@ public:
 	void Draw();
 
 
+	int count{ 0 };
 
 private:
 	float m_x;
@@ -24,7 +25,6 @@ private:
 	float mx{ 0 };
 	float my{ 0 };
 	float m_time{ 0 };
-
 
 	float m_scroll_map_x{ 0 };
 	float m_scroll_map_y{ 0 };

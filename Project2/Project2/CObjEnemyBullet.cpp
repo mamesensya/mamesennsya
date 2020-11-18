@@ -27,7 +27,6 @@ void CObjEnemyBullet::Init()
 //アクション
 void CObjEnemyBullet::Action()
 {
-	float er = 0.0f;
 
 	//スクロールした分のベクトルを取得
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);

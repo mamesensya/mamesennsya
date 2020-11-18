@@ -16,13 +16,12 @@ public:
 private:
 	float m_x;//À•W
 	float m_y;
-	float m_vx;//ˆÚ“®—p
-	float m_vy;
+	float m_vx{ 0 };//ˆÚ“®—p
+	float m_vy{ 0 };
 	float m_r;//•ûŒü
-	float mx;//ˆÚ“®—Ê
-	float my;
+	float mx{ 0 };//ˆÚ“®—Ê
+	float my{ 0 };
 
-	float m_time;
 
 	float m_scroll_map_x{ 0 };
 	float m_scroll_map_y{ 0 };

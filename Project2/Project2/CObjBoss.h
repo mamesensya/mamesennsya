@@ -18,6 +18,7 @@ public:
 	float GetY() { return m_y; }
 	float GetR() { return m_r; }
 
+	int m_Bcount{ 0 };
 private:
 	float m_x;//xÀ•W
 	float m_y;//yÀ•W
@@ -33,6 +34,9 @@ private:
 	int m_move_time;
 	int pbullet_interval;
 	bool pbullet_enable;
+
+
+	float m_oni_time{ 0 };
 
 	float m_scroll_map_x{ 0 };
 	float m_scroll_map_y{ 0 };

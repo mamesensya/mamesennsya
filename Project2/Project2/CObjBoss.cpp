@@ -32,7 +32,7 @@ void CObjBoss::Init()
 	pbullet_enable = false; //貫通弾ダメージ有効
 
 	//HitBox追加
-	Hits::SetHitBox(this, m_x , m_y , 172, 172, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_x , m_y , 100, 100, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 }
 
 void CObjBoss::Action()
@@ -43,10 +43,15 @@ void CObjBoss::Action()
 	m_scroll_map_y = block->GetSY();
 
 	m_time++;
-	if (m_time > 100)
+	m_oni_time++;
+	if (m_time > 300)
 	{
 		m_time = 0;
 
+	}
+	if (m_oni_time > 1000)
+	{
+		m_oni_time = 0;
 	}
 
 	//ある程度近づくと主人公と並行な位置まで移動
@@ -71,7 +76,7 @@ void CObjBoss::Action()
 		x += 60;
 		y += 60;
 
-		if ((x >= -400.0f && x <= 400.0f) || (y >= -400.0f && y <= 400.0f))
+		if ((x >= -600.0f && x <= 600.0f) || (y >= -600.0f && y <= 600.0f))
 		{
 
 			//(-x,-y)の時
@@ -153,14 +158,14 @@ void CObjBoss::Action()
 				float py = y - y - y;
 				if (x < py)
 				{
-					if (x <= 60.0f && count == 0)
+					if (x <= 0.0f && count == 0)
 					{
 						//x軸がほぼ垂直
 						m_r = 180.0f;
 						m_vy = -0.1f;
 						count = 1;
 					}
-					if (x > 60.0f && m_move_time == 0)
+					if (x > 0.0f && m_move_time == 0)
 					{
 						//x軸の方が近い
 						m_r = 90.0f;
@@ -169,14 +174,14 @@ void CObjBoss::Action()
 				}
 				if (x > py)
 				{
-					if (y >= -60.0f && count == 0)
+					if (y >= 0.0f && count == 0)
 					{
 						//y軸がほぼ平行
 						m_r = 90.0f;
 						m_vx = -0.1f;
 						count = 1;
 					}
-					if (y < -60.0f && m_move_time == 0)
+					if (y < 0.0f && m_move_time == 0)
 					{
 						//y軸の方が近い
 						m_r = 180.0f;
@@ -190,14 +195,14 @@ void CObjBoss::Action()
 				float px = x - x - x;
 				if (px < y)
 				{
-					if (x >= -60.0f && count == 0)
+					if (x >= 0.0f && count == 0)
 					{
 						//x軸がほぼ垂直
 						m_r = 0.0f;
 						m_vy = -0.1;
 						count = 1;
 					}
-					if (x < -60.0f && m_move_time == 0)
+					if (x < 0.0f && m_move_time == 0)
 					{
 						//x軸の方が近い　
 						m_r = -90.0f;
@@ -206,14 +211,14 @@ void CObjBoss::Action()
 				}
 				if (px > y)
 				{
-					if (y <= 60.0f && count == 0)
+					if (y <= 0.0f && count == 0)
 					{
 						//y軸がほぼ平行
 						m_r = -90.0f;
 						m_vx = 0.1f;
 						count = 1;
 					}
-					if (y > 60.0f && m_move_time == 0)
+					if (y > 0.0f && m_move_time == 0)
 					{
 						//y軸の方が近い
 						m_r = 0.0f;
@@ -223,18 +228,51 @@ void CObjBoss::Action()
 			}
 
 
-			if (m_time == 100 && count == 1)
+			if (m_time == 300 && count == 1)
 			{
 				//発射音鳴らす
 				Audio::Start(10);
 				
 				//敵弾丸発射
-				CObjAngleBullet* obj_eb = new CObjAngleBullet(m_x+m_scroll_map_x, m_y+m_scroll_map_y, m_r - (m_r * 2) - (60 + 30));
-				Objs::InsertObj(obj_eb, OBJ_ANGLE_BULLET, 16);
+				CObjBossBullet* obj_bb = new CObjBossBullet(m_x, m_y, m_r );
+				Objs::InsertObj(obj_bb, OBJ_BOSS_BULLET, 16);
 				
+				if (m_Bcount == 0)
+				{
+					m_Bcount = 1;
+				}
+				else if (m_Bcount == 1)
+				{
+					m_Bcount = 0;
+				}
+
 			}
 
-			
+
+			if (m_oni_time == 600)
+			{
+				if (m_r == 0)
+				{
+					CObjGhost* obj_g = new CObjGhost(m_x + m_scroll_map_x, (m_y+172) + m_scroll_map_y);
+					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
+				}
+				if (m_r == 90)
+				{
+					CObjGhost* obj_g = new CObjGhost((m_x+172) + m_scroll_map_x, m_y + m_scroll_map_y);
+					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
+				}
+				if (m_r == 180)
+				{
+					CObjGhost* obj_g = new CObjGhost(m_x + m_scroll_map_x, (m_y-172) + m_scroll_map_y);
+					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
+				}
+				if (m_r == -90)
+				{
+					CObjGhost* obj_g = new CObjGhost((m_x-172) + m_scroll_map_x, m_y + m_scroll_map_y);
+					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
+				}
+				
+			}
 
 
 		}
@@ -325,11 +363,42 @@ void CObjBoss::Draw()
 	src.m_right = 400.0f;
 	src.m_bottom = 400.0f;
 
-	//出力位置
-	dst.m_top = -20.0f + m_y+m_scroll_map_y-40.0f;
-	dst.m_left = -20.0f + m_x+m_scroll_map_x-35.0f;
-	dst.m_right = 280.0f + m_x+m_scroll_map_x-35.0f;
-	dst.m_bottom = 280.0f + m_y+m_scroll_map_y-34.0f;
+	//出力位置調整用条件
+	if (m_r==0)
+	{
 
+		//出力位置
+		dst.m_top = -20.0f + m_y + m_scroll_map_y - 40.0f;
+		dst.m_left = -60.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_right = 240.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_bottom = 280.0f + m_y + m_scroll_map_y - 34.0f;
+	}
+	if (m_r==90)
+	{
+
+		//出力位置
+		dst.m_top = -60.0f + m_y + m_scroll_map_y - 40.0f;
+		dst.m_left = -20.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_right = 280.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_bottom = 240.0f + m_y + m_scroll_map_y - 34.0f;
+	}
+	if (m_r==180)
+	{
+
+		//出力位置
+		dst.m_top = -120.0f + m_y + m_scroll_map_y - 40.0f;
+		dst.m_left = -60.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_right = 240.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_bottom = 180.0f + m_y + m_scroll_map_y - 34.0f;
+	}
+	if (m_r==-90)
+	{
+
+		//出力位置
+		dst.m_top = -60.0f + m_y + m_scroll_map_y - 40.0f;
+		dst.m_left = -120.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_right = 180.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_bottom = 240.0f + m_y + m_scroll_map_y - 34.0f;
+	}
 	Draw::Draw(5, &src, &dst, c, m_r);
 }

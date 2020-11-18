@@ -2,14 +2,15 @@
 #include"GameL/HitBoxManager.h"
 #include"GameHead.h"
 #include"CObjBossBullet.h"
+#include"CObjAngleBullet.h"
 
 using namespace GameL;
 
 CObjBossBullet::CObjBossBullet(float x, float y,float r)
 {
-	m_x = x + 85;
-	m_y = y + 85;
 	m_r = r;
+	m_x = x + 40;
+	m_y = y + 40;
 }
 
 //イニシャライズ
@@ -19,107 +20,115 @@ void CObjBossBullet::Init()
 	m_vy = 0.0f;
 
 
+	//スクロールした分のベクトルを取得
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
+
 	//HitBox作成
-	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
+	Hits::SetHitBox(this, m_x-m_scroll_map_x, m_y-m_scroll_map_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
 }
 
 //アクション
 void CObjBossBullet::Action()
 {
 
-	CHitBox* Hit = Hits::GetHitBox(this);
+
+	CObjBoss* bb = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
+	count = bb->m_Bcount;
+
+	m_time ++ ;
+
+	//スクロールした分のベクトルを取得
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
 
 
-	m_vx = cos(3.14 / 180.0f * m_r);
-	m_vy = sin(3.14 / 180.0f * m_r);
 
 
 
-	m_x += m_vx * m_speed;
-	m_y += m_vy * m_speed;
+	if (m_r == 0.0f)
+	{
+		m_vy = -2.0f;
+		m_vx = 0.0f;
+	}
+	else if (m_r == 90.0f)
+	{
+		m_vx = -2.0f;
+		m_vy = 0.0f;
+	}
+	else if (m_r == 180.0f)
+	{
+		m_vy = +2.0f;
+		m_vx = 0.0f;
+	}
+	else if (m_r == -90.0f)
+	{
+		m_vx = +2.0f;
+		m_vy = 0.0f;
+	}
 
-	mx += m_vx * m_speed;
-	my += m_vy * m_speed;
 
+	m_x += m_vx;
+	m_y += m_vy;
+
+	mx += m_vx;
+	my += m_vy;
+
+
+	//HitBoxの内容を更新
+	CHitBox* hit = Hits::GetHitBox(this);
+	hit->SetPos(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
+
+
+
+	if (m_time == 100)
+	{
+		if (count == 0) {
+			for (float i = 45.0; i != 405.0; i += 90.0) {
+				CObjAngleBullet* obj_eb = new CObjAngleBullet(m_x , m_y , i);
+				Objs::InsertObj(obj_eb, OBJ_ANGLE_BULLET, 16);
+			}
+			
+		}
+		else if(count==1){
+		    for (float i = 0.0; i != 360.0; i += 90.0) {
+				CObjAngleBullet* obj_eb = new CObjAngleBullet(m_x , m_y , i);
+				Objs::InsertObj(obj_eb, OBJ_ANGLE_BULLET, 16);
+			}
+			
+		}
+		this->SetStatus(false);//削除命令
+		Hits::DeleteHitBox(this);//削除
+
+	}
 
 	
-	Hit->SetPos(m_x, m_y);
+	//主人公と接触しているかどうか調べる
+	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	{
+		this->SetStatus(false);//削除命令
+		Hits::DeleteHitBox(this);//削除
+	}
+	//主人公（人）と接触しているか調べる
+	if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
+	{
+		this->SetStatus(false);//削除命令
+		Hits::DeleteHitBox(this);//削除
+	}
+	////弾丸と接触しているかを調べる
+	//if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	//{
+	//	this->SetStatus(false);//自身に削除命令を出す
+	//	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
+	//}
 
-		if (Hit->CheckObjNameHit(OBJ_HERO) != nullptr) {
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-		}
-		//主人公（人）と接触しているか調べる
-		if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
-		{
-			this->SetStatus(false);//削除命令
-			Hits::DeleteHitBox(this);//削除
-		}
-
-
-		if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
-		{
-			this->SetStatus(false);//削除命令
-			Hits::DeleteHitBox(this);//削除
-		}
-
-
-		////if (m_r == 0.0f)
-		////{
-		////	m_vy = -5.0f;
-		////	m_vx = 0.0f;
-		////}
-		////else if (m_r == 90.0f)
-		////{
-		////	m_vx = -5.0f;
-		////	m_vy = 0.0f;
-		////}
-		////else if (m_r == 180.0f)
-		////{
-		////	m_vy = +5.0f;
-		////	m_vx = 0.0f;
-		////}
-		////else if (m_r == -90.0f)
-		////{
-		////	m_vx = +5.0f;
-		////	m_vy = 0.0f;
-		////}
-
-
-		////m_x += m_vx;
-		////m_y += m_vy;
-
-
-		//////HitBoxの内容を更新
-		////CHitBox* hit = Hits::GetHitBox(this);
-		////hit->SetPos(m_x + m_scroll_map_x, m_y+m_scroll_map_y);
-
-		//////主人公と接触しているかどうか調べる
-		////if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
-		////{
-		////	this->SetStatus(false);//削除命令
-		////	Hits::DeleteHitBox(this);//削除
-		////}
-		//////主人公（人）と接触しているか調べる
-		////if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
-		////{
-		////	this->SetStatus(false);//削除命令
-		////	Hits::DeleteHitBox(this);//削除
-		////}
-		////////弾丸と接触しているかを調べる
-		//////if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
-		//////{
-		//////	this->SetStatus(false);//自身に削除命令を出す
-		//////	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
-		//////}
-
-		//////if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
-		//////{
-		//////	this->SetStatus(false);//削除命令
-		//////	Hits::DeleteHitBox(this);//削除
-		//////}
-	
-
+	if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
+	{
+		this->SetStatus(false);//削除命令
+		Hits::DeleteHitBox(this);//削除
+	}
 }
 
 //ドロー
@@ -137,10 +146,10 @@ void CObjBossBullet::Draw()
 	src.m_bottom = 200.0f;
 
 	//表示位置
-	dst.m_top = 0.0f + m_y+m_scroll_map_y;
-	dst.m_left = 0.0f + m_x + m_scroll_map_x;
-	dst.m_right = 32.0f + m_x + m_scroll_map_x;
-	dst.m_bottom = 32.0f + m_y+m_scroll_map_y;
+	dst.m_top = 0.0f+m_y+m_scroll_map_y;
+	dst.m_left = 0.0f+m_x+m_scroll_map_x;
+	dst.m_right = 32.0f+m_x+m_scroll_map_x;
+	dst.m_bottom = 32.0f+m_y+m_scroll_map_y;
 
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 }
