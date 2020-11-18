@@ -57,10 +57,10 @@ void CSceneMain::InitScene()
 	//CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 400);
 	//Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
 
-	////ボス戦車
-	//Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
-	//CObjBoss* obj_bossenemy = new CObjBoss(100,100);
-	//Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
+	//ボス戦車
+	Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
+	CObjBoss* obj_bossenemy = new CObjBoss(100,100);
+	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
 
 	//敵　鬼
 	Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);

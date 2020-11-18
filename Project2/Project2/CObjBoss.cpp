@@ -6,6 +6,7 @@
 
 #include"GameHead.h"
 #include"CObjBoss.h"
+#include"CObjAngleBullet.h"
 
 using namespace GameL;
 
@@ -225,13 +226,14 @@ void CObjBoss::Action()
 			{
 				//”­ŽË‰¹–Â‚ç‚·
 				Audio::Start(10);
-
+				
 				//“G’eŠÛ”­ŽË
-				for (int i = 0; i < 3; i++) {
-					CObjBossBullet* obj_eb = new CObjBossBullet(m_x+m_scroll_map_x, m_y+m_scroll_map_y, m_r - (m_r * 2) - (60 + (30 * i)));
-					Objs::InsertObj(obj_eb, OBJ_BOSS_BULLET, 16);
-				}
+				CObjAngleBullet* obj_eb = new CObjAngleBullet(m_x+m_scroll_map_x, m_y+m_scroll_map_y, m_r - (m_r * 2) - (60 + 30));
+				Objs::InsertObj(obj_eb, OBJ_ANGLE_BULLET, 16);
+				
 			}
+
+			
 
 
 		}

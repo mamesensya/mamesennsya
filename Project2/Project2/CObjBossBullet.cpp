@@ -42,81 +42,83 @@ void CObjBossBullet::Action()
 	my += m_vy * m_speed;
 
 
+	
 	Hit->SetPos(m_x, m_y);
 
-	if (Hit->CheckObjNameHit(OBJ_HERO) != nullptr) {
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-	}
-	//主人公（人）と接触しているか調べる
-	if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
-	{
-		this->SetStatus(false);//削除命令
-		Hits::DeleteHitBox(this);//削除
-	}
+		if (Hit->CheckObjNameHit(OBJ_HERO) != nullptr) {
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+		//主人公（人）と接触しているか調べる
+		if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
+		{
+			this->SetStatus(false);//削除命令
+			Hits::DeleteHitBox(this);//削除
+		}
 
 
-	if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
-	{
-		this->SetStatus(false);//削除命令
-		Hits::DeleteHitBox(this);//削除
-	}
+		if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
+		{
+			this->SetStatus(false);//削除命令
+			Hits::DeleteHitBox(this);//削除
+		}
 
+
+		////if (m_r == 0.0f)
+		////{
+		////	m_vy = -5.0f;
+		////	m_vx = 0.0f;
+		////}
+		////else if (m_r == 90.0f)
+		////{
+		////	m_vx = -5.0f;
+		////	m_vy = 0.0f;
+		////}
+		////else if (m_r == 180.0f)
+		////{
+		////	m_vy = +5.0f;
+		////	m_vx = 0.0f;
+		////}
+		////else if (m_r == -90.0f)
+		////{
+		////	m_vx = +5.0f;
+		////	m_vy = 0.0f;
+		////}
+
+
+		////m_x += m_vx;
+		////m_y += m_vy;
+
+
+		//////HitBoxの内容を更新
+		////CHitBox* hit = Hits::GetHitBox(this);
+		////hit->SetPos(m_x + m_scroll_map_x, m_y+m_scroll_map_y);
+
+		//////主人公と接触しているかどうか調べる
+		////if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+		////{
+		////	this->SetStatus(false);//削除命令
+		////	Hits::DeleteHitBox(this);//削除
+		////}
+		//////主人公（人）と接触しているか調べる
+		////if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
+		////{
+		////	this->SetStatus(false);//削除命令
+		////	Hits::DeleteHitBox(this);//削除
+		////}
+		////////弾丸と接触しているかを調べる
+		//////if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+		//////{
+		//////	this->SetStatus(false);//自身に削除命令を出す
+		//////	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
+		//////}
+
+		//////if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
+		//////{
+		//////	this->SetStatus(false);//削除命令
+		//////	Hits::DeleteHitBox(this);//削除
+		//////}
 	
-	////if (m_r == 0.0f)
-	////{
-	////	m_vy = -5.0f;
-	////	m_vx = 0.0f;
-	////}
-	////else if (m_r == 90.0f)
-	////{
-	////	m_vx = -5.0f;
-	////	m_vy = 0.0f;
-	////}
-	////else if (m_r == 180.0f)
-	////{
-	////	m_vy = +5.0f;
-	////	m_vx = 0.0f;
-	////}
-	////else if (m_r == -90.0f)
-	////{
-	////	m_vx = +5.0f;
-	////	m_vy = 0.0f;
-	////}
-
-
-	////m_x += m_vx;
-	////m_y += m_vy;
-
-
-	//////HitBoxの内容を更新
-	////CHitBox* hit = Hits::GetHitBox(this);
-	////hit->SetPos(m_x + m_scroll_map_x, m_y+m_scroll_map_y);
-
-	//////主人公と接触しているかどうか調べる
-	////if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
-	////{
-	////	this->SetStatus(false);//削除命令
-	////	Hits::DeleteHitBox(this);//削除
-	////}
-	//////主人公（人）と接触しているか調べる
-	////if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
-	////{
-	////	this->SetStatus(false);//削除命令
-	////	Hits::DeleteHitBox(this);//削除
-	////}
-	////////弾丸と接触しているかを調べる
-	//////if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
-	//////{
-	//////	this->SetStatus(false);//自身に削除命令を出す
-	//////	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
-	//////}
-
-	//////if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
-	//////{
-	//////	this->SetStatus(false);//削除命令
-	//////	Hits::DeleteHitBox(this);//削除
-	//////}
 
 }
 

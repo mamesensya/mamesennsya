@@ -25,6 +25,7 @@ enum OBJ_NAME
 	OBJ_TITLE,
 	OBJ_TITLEFONT,
 	OBJ_SAVE,
+	OBJ_ANGLE_BULLET2,
 };
 //------------------------------------------------
 
