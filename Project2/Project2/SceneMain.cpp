@@ -91,6 +91,12 @@ void CSceneMain::InitScene()
 	//床
 	Draw::LoadImageW(L"yuka.png", 3, TEX_SIZE_512);
 
+	//ユーザーインターフェースで使用する画像集---------------------------------------------/
+	Draw::LoadImageW(L"heart.png", 23, TEX_SIZE_512);	    //戦車　の体力表示
+	Draw::LoadImageW(L"heart2.png", 24, TEX_SIZE_512);      //人　　の体力表示
+	Draw::LoadImageW(L"testsave.png", 25, TEX_SIZE_512);
+	//-------------------------------------------------------------------------------------/
+
 	//壊すと豆が出る箱
 	Draw::LoadImageW(L"豆箱.jpg", 15, TEX_SIZE_512);
 	CObjBox* obj_box = new CObjBox(400, 300);
