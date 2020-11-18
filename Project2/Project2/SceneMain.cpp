@@ -68,10 +68,6 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"ボス_ステージ2（仮）.png", 7, TEX_SIZE_512);
 	CObjBoss2* obj_boss2 = new CObjBoss2(400, 300);
 	Objs::InsertObj(obj_boss2, OBJ_BOSS2, 53);
-	//ボス戦車
-	Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
-	CObjBoss* obj_bossenemy = new CObjBoss(100,100);
-	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
 
 	//敵　鬼
 	Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
