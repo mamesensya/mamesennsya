@@ -96,6 +96,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"heart.png", 23, TEX_SIZE_512);	    //戦車　の体力表示
 	Draw::LoadImageW(L"heart2.png", 24, TEX_SIZE_512);      //人　　の体力表示
 	Draw::LoadImageW(L"testsave.png", 25, TEX_SIZE_512);
+	Draw::LoadImageW(L"alphaboard.png", 26, TEX_SIZE_512);
 	//-------------------------------------------------------------------------------------/
 
 	//壊すと豆が出る箱
