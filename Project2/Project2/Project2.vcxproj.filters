@@ -103,6 +103,15 @@
     <ClCompile Include="SceneGameClear.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="ObjSaveSys.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjUserInterface.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="CObjBoss2.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
     <ClCompile Include="Objbreakblock.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
@@ -324,6 +333,15 @@
       <Filter>ソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="SceneGameClear.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjSaveSys.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjUserInterface.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjBoss2.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="Objbreakblock.h">

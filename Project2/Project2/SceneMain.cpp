@@ -61,11 +61,17 @@ void CSceneMain::InitScene()
 
 	//ボス戦車
 	Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
-	CObjBoss* obj_bossenemy = new CObjBoss(100,100);
+	CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
 	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
 
+	//ボス戦車2
+	Draw::LoadImageW(L"ボス_ステージ2（仮）.png", 7, TEX_SIZE_512);
+	CObjBoss2* obj_boss2 = new CObjBoss2(400, 300);
+	Objs::InsertObj(obj_boss2, OBJ_BOSS2, 53);
+
+	//敵　鬼
 	Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
-	CObjGhost* obj_ghost = new CObjGhost(400, 300);
+	CObjGhost* obj_ghost = new CObjGhost(200, 300);
 	Objs::InsertObj(obj_ghost, OBJ_GHOST, 52);
 
 	Draw::LoadImageW(L"仮棒.png", 6, TEX_SIZE_512);
@@ -73,7 +79,7 @@ void CSceneMain::InitScene()
 	//主人公グラフィック読み込み(400×400)
 	Draw::LoadImageW(L"test.png", 20, TEX_SIZE_512);
 	//主人公表示
-	CObjHero* obj = new CObjHero(64,64);
+	CObjHero* obj = new CObjHero(200,200);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	//弾
@@ -92,6 +98,12 @@ void CSceneMain::InitScene()
 	
 	//床
 	Draw::LoadImageW(L"yuka.png", 3, TEX_SIZE_512);
+
+	//ユーザーインターフェースで使用する画像集---------------------------------------------/
+	Draw::LoadImageW(L"heart.png", 23, TEX_SIZE_512);	    //戦車　の体力表示
+	Draw::LoadImageW(L"heart2.png", 24, TEX_SIZE_512);      //人　　の体力表示
+	Draw::LoadImageW(L"testsave.png", 25, TEX_SIZE_512);
+	//-------------------------------------------------------------------------------------/
 
 	//壊すと豆が出る箱
 	Draw::LoadImageW(L"豆箱.jpg", 15, TEX_SIZE_512);

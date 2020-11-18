@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CObjBoss2.cpp" />
     <ClCompile Include="CObjBossBullet.cpp" />
     <ClCompile Include="CObjBoss.cpp" />
     <ClCompile Include="CObjEnemy3.cpp" />
@@ -146,6 +147,7 @@
     <ClCompile Include="CObjEnemyBullet.cpp" />
     <ClCompile Include="CObjpenetrateBullet.cpp" />
     <ClCompile Include="CObjPlayerBullet.cpp" />
+    <ClCompile Include="CObjUserInterface.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="GameL\DirectXDevice.cpp" />
@@ -173,6 +175,7 @@
     <ClCompile Include="OBJGhostAttack.cpp" />
     <ClCompile Include="ObjHero.cpp" />
     <ClCompile Include="ObjChara.cpp" />
+    <ClCompile Include="ObjSaveSys.cpp" />
     <ClCompile Include="objtitle.cpp" />
     <ClCompile Include="SceneGameClear.cpp" />
     <ClCompile Include="SceneGameOver.cpp" />
@@ -183,6 +186,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAttack.h" />
+    <ClInclude Include="CObjBoss2.h" />
     <ClInclude Include="CObjBossBullet.h" />
     <ClInclude Include="CObjBoss.h" />
     <ClInclude Include="CObjEnemy3.h" />
@@ -214,7 +218,9 @@
     <ClInclude Include="OBJGhostAttack.h" />
     <ClInclude Include="ObjHero.h" />
     <ClInclude Include="ObjChara.h" />
+    <ClInclude Include="ObjSaveSys.h" />
     <ClInclude Include="objTitle.h" />
+    <ClInclude Include="ObjUserInterface.h" />
     <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneMain.h" />
