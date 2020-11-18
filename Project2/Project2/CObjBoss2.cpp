@@ -17,12 +17,13 @@ CObjBoss2::CObjBoss2(float x, float y)
 
 void CObjBoss2::Init()
 {
+	m_hp = 20;
 	m_attack = false;
 	pbullet_interval = 0; //ŠÑ’Ê’eƒqƒbƒg‚ÌŠÔŠu
 	pbullet_enable = false; //ŠÑ’Ê’eƒ_ƒ[ƒW—LŒø
 
 	//HitBox’Ç‰Á
-	Hits::SetHitBox(this, m_x, m_y, 172, 172, ELEMENT_ENEMY, OBJ_BOSS2, 1);
+	Hits::SetHitBox(this, m_x, m_y, 172, 172, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 }
 
 void CObjBoss2::Action()
@@ -58,23 +59,56 @@ void CObjBoss2::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
-
 	//true‚È‚ç’e”­ŽË
 	if (m_attack == true)
 	{
 		//”­ŽË‰¹–Â‚ç‚·
 		Audio::Start(10);
 
-		//CObjBossBullet* obj_eb = new CObjBossBullet(m_x + m_scroll_map_x, m_y + m_scroll_map_y, m_r + 90.0f);
-		//Objs::InsertObj(obj_eb, OBJ_BOSS_BULLET, 16);
+		CObjBossBullet2* obj_eb = new CObjBossBullet2(m_x + m_scroll_map_x, m_y + m_scroll_map_y, -m_r-90);
+		Objs::InsertObj(obj_eb, OBJ_BOSS_BULLET2, 16);
 
 		m_attack = false;
 	}
 
+	//’eŠÛ‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ð’²‚×‚é
+	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
+	{
+		m_hp--;
+		if (m_hp <= 0) {
+			//”š”­‰¹–Â‚ç‚·
+			Audio::Start(12);
+
+			this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
+			Hits::DeleteHitBox(this);//’eŠÛ‚ªŠ—L‚·‚éHitBox‚Éíœ‚·‚éB
+		}
+	}
+	if (pbullet_enable == false) {
+		if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
+			m_hp--;
+			pbullet_enable = true;
+			if (m_hp <= 0) {
+				//”š”­‰¹–Â‚ç‚·
+				Audio::Start(12);
+
+				this->SetStatus(false);
+				Hits::DeleteHitBox(this);
+			}
+		}
+	}
+	else if (pbullet_enable == true) {
+		pbullet_interval++;
+		if (pbullet_interval > 7) {
+			pbullet_interval = 0;
+			pbullet_enable = false;
+		}
+	}
+
+
 	if (m_attack == false)
 	{
 		m_attack_time++;
-		if (m_attack_time == 100)
+		if (m_attack_time == 200)
 		{
 			m_attack = true;
 			m_attack_time = 0;

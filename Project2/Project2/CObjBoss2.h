@@ -21,6 +21,8 @@ private:
 	float m_y{ 0 };//yÀ•W
 	float m_r{ 0 };//Šp“x
 
+	int m_hp{ 0 };//HP
+
 	bool m_attack;//’e”­ËŠÔŠu§Œä—p
 	int m_attack_time{ 0 };//’e”­ËŠÔŠuŠÔ
 	int pbullet_interval;//ŠÑ’Ê’e§Œä—p
