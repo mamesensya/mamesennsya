@@ -101,6 +101,9 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"豆箱.jpg", 15, TEX_SIZE_512);
 	CObjBox* obj_box = new CObjBox(400, 300);
 	Objs::InsertObj(obj_box, OBJ_BOX, 11);
+
+	CObjUserInterface* obj_ui = new CObjUserInterface();
+	Objs::InsertObj(obj_ui, OBJ_USERINTERFACE, 18);
 }
 
 //実行中メソッド

@@ -186,7 +186,7 @@ void CObjHero::Action()
 				int state = savesys->GetState();
 				if (state == 0) {
 					savesys->SetState(1);
-					Objs::InsertObj(savesys, OBJ_SAVE, 1000);
+					Objs::InsertObj(savesys, OBJ_SAVE, 17);
 				};
 			};
 		}

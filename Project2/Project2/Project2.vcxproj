@@ -146,6 +146,7 @@
     <ClCompile Include="CObjEnemyBullet.cpp" />
     <ClCompile Include="CObjpenetrateBullet.cpp" />
     <ClCompile Include="CObjPlayerBullet.cpp" />
+    <ClCompile Include="CObjUserInterface.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="GameL\DirectXDevice.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="ObjChara.h" />
     <ClInclude Include="ObjSaveSys.h" />
     <ClInclude Include="objTitle.h" />
+    <ClInclude Include="ObjUserInterface.h" />
     <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneMain.h" />
