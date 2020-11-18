@@ -24,6 +24,7 @@ enum OBJ_NAME
 	OBJ_GHOST_ATTACK,
 	OBJ_TITLE,
 	OBJ_TITLEFONT,
+	OBJ_BREAK_BLOCK,
 };
 //------------------------------------------------
 

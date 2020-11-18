@@ -15,6 +15,7 @@ using namespace GameL;
 #include"SceneMain.h"
 #include"GameHead.h"
 #include "Objblock.h"
+#include"Objbreakblock.h"
 //コンストラクタ
 CSceneMain::CSceneMain()
 {
@@ -49,14 +50,14 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
 
 	//敵戦車
-	//Draw::LoadImageW(L"敵_戦車2.png", 1, TEX_SIZE_512);
+	Draw::LoadImageW(L"敵_戦車2.png", 1, TEX_SIZE_512);
 
-	//CObjEnemy* obj_enemy = new CObjEnemy(350,250);
-	//Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);
+	CObjEnemy* obj_enemy = new CObjEnemy(350,250);
+	Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);
 
-	////敵戦車（3方向弾）
-	//CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 400);
-	//Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
+	//敵戦車（3方向弾）
+	CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 400);
+	Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
 
 	//ボス戦車
 	Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
@@ -97,6 +98,10 @@ void CSceneMain::InitScene()
 	CObjBox* obj_box = new CObjBox(400, 300);
 	Objs::InsertObj(obj_box, OBJ_BOX, 11);
 
+	//壊れる壁
+	Draw::LoadImageW(L"hako.png", 17, TEX_SIZE_512);
+	CObjbreakblock* obj_break_block = new CObjbreakblock(200, 300);
+	Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
 }
 
 //実行中メソッド
