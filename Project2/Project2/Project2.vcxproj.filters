@@ -109,6 +109,9 @@
     <ClCompile Include="CObjUserInterface.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="CObjBoss2.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -333,6 +336,9 @@
       <Filter>ソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="ObjUserInterface.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjBoss2.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
   </ItemGroup>
