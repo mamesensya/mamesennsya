@@ -23,6 +23,8 @@ void CObjGhost::Init()
 	m_time = 0;
 	m_r = 0.0f;
 
+
+
 	//“–‚½‚è”»’è
 	Hits::SetHitBox(this, m_x, m_y, 30, 30, ELEMENT_ENEMY, OBJ_GHOST, 4);
 
@@ -111,49 +113,6 @@ void CObjGhost::Action()
 		if (m_r < 0)
 			m_r = 360 - abs(m_r);
 
-		//‹S‚ÆŽålŒö‚ÅŠp“xŽæ‚è
-		CObjHero* obj = (CObjHero*)Objs::GetObj(OBJ_HERO);
-		
-		//ŽålŒö‚ª‘¶Ý‚µ‚Ä‚¢‚éê‡Šp“xŒvŽZ
-		if (obj != nullptr)
-		{
-			float sx = obj->GetX() - m_x;
-			float sy = obj->GetY() - m_y;
-			float ar = atan2(-sy, sx) * 180.0f / 3.14f;
-
-			if (ar < 0)
-				ar = 360 - abs(ar);
-
-			//Œ»ÝŒü‚¢‚Ä‚¢‚é•ûŒü‚ÅŠp“xŽæ‚è
-			float br = atan2(-m_vy, m_vx) * 180.0f / 3.14f;
-
-			if (br < 0)
-				br = 360 - abs(br);
-
-			//m_r = br;
-
-
-			//‚©‚¯—£‚ê‚½‚çˆÚ“®•ûŒü‚ðŽålŒö‚É‚·‚é
-			if (ar - br > 20)
-			{
-				m_vx = cos(3.14 / 180 * ar);
-				m_vy = cos(3.14 / 180 * ar);
-			}
-
-			r = 3.14 / 180.0f;//Šp“x1
-			if (ar < br)//ˆÚ“®•ûŒü‚É+1
-			{
-				m_vx = m_vx * cos(r) - m_vy * sin(r);
-				m_vy = m_vy * cos(r) - m_vx * sin(r);
-			}
-			else//ˆÚ“®•ûŒü‚É-1
-			{
-				m_vx = m_vx * cos(-r) - m_vy * sin(-r);
-				m_vy = m_vy * cos(-r) - m_vy * sin(-r);
-			}
-			
-		}
-
 
 		m_vx *= 1.5f;
 		m_vy *= 1.5f;
@@ -162,7 +121,7 @@ void CObjGhost::Action()
 		{
 			//‚æ‚è‹ß‚Ã‚¢‚Ä‚«‚½‚ç“¦‚°‚é
 
-			if ((x >= -(-5.0f + distance) && x <= 65.0f + distance) && (y >= -(-5.0f + distance) && y <= 65.0f + distance) || m_time != 0)
+			if ((x >= -35.0f) && x <= 70.0f  && (y >= -35.0f) && y <= 70.0f || m_time != 0)
 			{
 				//ƒxƒNƒgƒ‹‚ð^‹t‚É‚·‚é
 				m_vx = m_vx - m_vx - m_vx;
@@ -173,19 +132,23 @@ void CObjGhost::Action()
 					m_y += m_vy;
 					m_time++;
 				}
+				
 
 			}
 			//ŽålŒö‚ÉÚ‹ß‚µ‚½‚çÃŽ~
-			else if ((x >= -(0.0f + distance) && x <= 70.0f + distance) && (y >= -(0.0f + distance) && y <= 70.0f + distance) || n != 0)
+			else if ((x >= -50.0f  && x <= 90.0) && (y >= -50.0f) && y <= 90.0f  || n != 0)
 			{
 
 				n += 1.0f;
 				if (n == 100.0)
 				{
-					CObjGhostAttack* objAttack = new CObjGhostAttack(m_x, m_y,m_r);
-					Objs::InsertObj(objAttack, OBJ_GHOST_ATTACK, 6);
-				}
+					if (m_time == 0) {
+						//UŒ‚–½—ß
+						CObjGhostAttack* objAttack = new CObjGhostAttack(m_x + m_scroll_map_x, m_y + m_scroll_map_y, m_r);
+						Objs::InsertObj(objAttack, OBJ_GHOST_ATTACK, 6);
 
+					}
+				}
 			}
 			if (m_time == 0)
 			{
