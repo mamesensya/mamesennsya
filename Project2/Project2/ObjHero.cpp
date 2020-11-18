@@ -180,6 +180,15 @@ void CObjHero::Action()
 				bullet -= 1;
 				m_attack = false;
 			}
+
+			if (Input::GetVKey('Q') == true) {
+				CObjSaveSystem* savesys = new CObjSaveSystem();
+				int state = savesys->GetState();
+				if (state == 0) {
+					savesys->SetState(1);
+					Objs::InsertObj(savesys, OBJ_SAVE, 1000);
+				};
+			};
 		}
 
 		//当たり判定を行うオブジェクト情報部

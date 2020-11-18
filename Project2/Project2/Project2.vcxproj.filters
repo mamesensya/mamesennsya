@@ -103,6 +103,9 @@
     <ClCompile Include="SceneGameClear.cpp">
       <Filter>ソースファイル</Filter>
     </ClCompile>
+    <ClCompile Include="ObjSaveSys.cpp">
+      <Filter>ソースファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="GameL\Audio.cpp">
@@ -321,6 +324,9 @@
       <Filter>ソースファイル</Filter>
     </ClInclude>
     <ClInclude Include="SceneGameClear.h">
+      <Filter>ソースファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjSaveSys.h">
       <Filter>ソースファイル</Filter>
     </ClInclude>
   </ItemGroup>
