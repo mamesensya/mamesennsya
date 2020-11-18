@@ -26,6 +26,8 @@ enum OBJ_NAME
 	OBJ_TITLEFONT,
 	OBJ_SAVE,
 	OBJ_USERINTERFACE,
+	OBJ_BOSS2,
+	OBJ_BREAK_BLOCK,
 };
 //------------------------------------------------
 
@@ -92,6 +94,7 @@ struct UserData
 #include"objTitle.h"
 #include "ObjSaveSys.h"
 #include "ObjUserInterface.h"
+#include "CObjBoss2.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

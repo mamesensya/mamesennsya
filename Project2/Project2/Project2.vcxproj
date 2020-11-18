@@ -139,6 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CObjBoss2.cpp" />
     <ClCompile Include="CObjBossBullet.cpp" />
     <ClCompile Include="CObjBoss.cpp" />
     <ClCompile Include="CObjEnemy3.cpp" />
@@ -167,6 +168,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="ObjBox.cpp" />
+    <ClCompile Include="Objbreakblock.cpp" />
     <ClCompile Include="ObjGhost.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -178,10 +180,13 @@
     <ClCompile Include="SceneGameClear.cpp" />
     <ClCompile Include="SceneGameOver.cpp" />
     <ClCompile Include="SceneMain.cpp" />
-    <ClCompile Include="SceneTitle.cpp" />
+    <ClCompile Include="SceneTitle.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAttack.h" />
+    <ClInclude Include="CObjBoss2.h" />
     <ClInclude Include="CObjBossBullet.h" />
     <ClInclude Include="CObjBoss.h" />
     <ClInclude Include="CObjEnemy3.h" />
@@ -208,6 +213,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="ObjBox.h" />
+    <ClInclude Include="Objbreakblock.h" />
     <ClInclude Include="ObjGhost.h" />
     <ClInclude Include="OBJGhostAttack.h" />
     <ClInclude Include="ObjHero.h" />
@@ -218,10 +224,14 @@
     <ClInclude Include="SceneGameClear.h" />
     <ClInclude Include="SceneGameOver.h" />
     <ClInclude Include="SceneMain.h" />
-    <ClInclude Include="SceneTitle.h" />
+    <ClInclude Include="SceneTitle.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="title.png" />
+    <Image Include="title.png">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </Image>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

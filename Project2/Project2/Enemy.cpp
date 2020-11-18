@@ -6,6 +6,7 @@
 
 #include"GameHead.h"
 #include"Enemy.h"
+#include"Objbreakblock.h"
 
 using namespace GameL;
 
@@ -273,6 +274,10 @@ void CObjEnemy::Action()
 
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
+
+
+			CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
+			Bblock->Enemycount--;
 		}
 	}
 	if (pbullet_enable == false) {
@@ -286,6 +291,7 @@ void CObjEnemy::Action()
 
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
+
 			}
 		}
 	}
