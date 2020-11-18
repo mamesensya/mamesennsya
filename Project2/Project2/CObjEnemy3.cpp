@@ -2,6 +2,7 @@
 #include"GameL/HitBoxManager.h"
 #include"GameL\SceneManager.h"
 #include"GameL/WinInputs.h"
+#include "GameL\Audio.h"
 
 #include"GameHead.h"
 #include"CObjEnemy3.h"
@@ -217,6 +218,9 @@ void CObjEnemy3::Action()
 
 			if (m_time == 100 && count == 1)
 			{
+				//”­Ë‰¹–Â‚ç‚·
+				Audio::Start(10);
+
 				//“G’eŠÛ”­Ë
 				for (int i = 0; i < 3; i++) {
 					CObjEnemy3B* obj_eb = new CObjEnemy3B(m_x+m_scroll_map_x , m_y+m_scroll_map_y, m_r - (m_r * 2) - (60 + (30 * i)));
@@ -253,6 +257,9 @@ void CObjEnemy3::Action()
 	{
 		m_hp--;
 		if (m_hp <= 0) {
+			//”š”­‰¹–Â‚ç‚·
+			Audio::Start(12);
+
 			this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 			Hits::DeleteHitBox(this);//’eŠÛ‚ªŠ—L‚·‚éHitBox‚Éíœ‚·‚éB
 		}
@@ -262,6 +269,9 @@ void CObjEnemy3::Action()
 			m_hp--;
 			pbullet_enable = true;
 			if (m_hp <= 0) {
+				//”š”­‰¹–Â‚ç‚·
+				Audio::Start(12);
+
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 			}

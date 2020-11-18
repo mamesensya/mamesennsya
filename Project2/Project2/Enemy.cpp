@@ -2,6 +2,7 @@
 #include"GameL/HitBoxManager.h"
 #include"GameL\SceneManager.h"
 #include"GameL/WinInputs.h"
+#include "GameL\Audio.h"
 
 #include"GameHead.h"
 #include"Enemy.h"
@@ -227,6 +228,9 @@ void CObjEnemy::Action()
 
 			if (m_time == 100 && count == 1)
 			{
+				//”­ŽË‰¹–Â‚ç‚·
+				Audio::Start(10);
+
 				//“G’eŠÛ”­ŽË
 				CObjEnemyBullet* obj_enemybullet = new CObjEnemyBullet(m_x, m_y, m_r);
 				Objs::InsertObj(obj_enemybullet, OBJ_ENEMY_BULLET, 60);
@@ -264,15 +268,22 @@ void CObjEnemy::Action()
 	{
 		m_hp--;
 		if (m_hp <= 0) {
+			//”š”­‰¹–Â‚ç‚·
+			Audio::Start(12);
+
 			this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
 			Hits::DeleteHitBox(this);//’eŠÛ‚ªŠ—L‚·‚éHitBox‚Éíœ‚·‚éB
 		}
 	}
 	if (pbullet_enable == false) {
 		if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
+			
 			m_hp--;
 			pbullet_enable = true;
 			if (m_hp <= 0) {
+				//”š”­‰¹–Â‚ç‚·
+				Audio::Start(12);
+
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 			}

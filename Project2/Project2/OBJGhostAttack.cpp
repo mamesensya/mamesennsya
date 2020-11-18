@@ -29,7 +29,7 @@ void CObjGhostAttack::Action()
 
 
 	m_time ++ ;
-	if (m_time == 30)
+	if (m_time == 20)
 	{
 		//ì‡óeçXêV
 		
