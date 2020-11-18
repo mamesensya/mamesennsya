@@ -49,7 +49,7 @@ void CObjBox::Init()
 	//}
 
 	//当たり判定用HitBox作成
-	Hits::SetHitBox(this, m_x+16, m_y+16, 64, 64, ELEMENT_ITEM, OBJ_BOX, 1);
+	Hits::SetHitBox(this, m_x, m_y, 64, 64, ELEMENT_ITEM, OBJ_BOX, 1);
 }
 
 //アクション

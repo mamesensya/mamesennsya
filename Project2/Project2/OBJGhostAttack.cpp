@@ -3,20 +3,25 @@
 #include"GameL/SceneObjManager.h"
 #include"GameL/HitBoxManager.h"
 
+
 #include"GameHead.h"
 #include"OBJGhostAttack.h"
 
 
-CObjGhostAttack::CObjGhostAttack(float x, float y)
+CObjGhostAttack::CObjGhostAttack(float x, float y,float r)
 {
+	
 	m_x = x;
 	m_y = y;
+	m_r = r;
+	
+	
 }
 
 void CObjGhostAttack::Init()
 {
 
-	Hits::SetHitBox(this, m_x+10, m_y+30 , 10, 30, ELEMENT_ENEMY, OBJ_GHOST_ATTACK, 6);
+	Hits::SetHitBox(this, m_x, m_y , 25, 25, ELEMENT_ENEMY, OBJ_GHOST_ATTACK, 6);
 }
 
 void CObjGhostAttack::Action()
@@ -26,6 +31,25 @@ void CObjGhostAttack::Action()
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
+
+
+
+	if ((m_r < 45 && m_r>0) || m_r > 315)
+	{
+		m_x = m_x + 30;
+	}
+	if (m_r > 45 && m_r < 135)
+	{
+		m_y = m_y - 30;
+	}
+	if (m_r > 135 && m_r < 225)
+	{
+		m_x = m_x - 30;
+	}
+	if (m_r > 225 && m_r < 315)
+	{
+		m_y = m_y + 30;
+	}
 
 
 	m_time ++ ;
@@ -45,7 +69,24 @@ void CObjGhostAttack::Action()
 		
 	}
 	
-	hit->SetPos(m_x +10+ m_scroll_map_x, m_y +30+m_scroll_map_y);
+	hit->SetPos(m_x + m_scroll_map_x, m_y +m_scroll_map_y);
+
+	if ((m_r < 45 && m_r>0) || m_r > 315)
+	{
+		m_x = m_x - 30;
+	}
+	if (m_r > 45 && m_r < 135)
+	{
+		m_y = m_y + 30;
+	}
+	if (m_r > 135 && m_r < 225)
+	{
+		m_x = m_x + 30;
+	}
+	if (m_r > 225 && m_r < 315)
+	{
+		m_y = m_y - 30;
+	}
 }
 
 void CObjGhostAttack::Draw()
@@ -63,11 +104,11 @@ void CObjGhostAttack::Draw()
 	src.m_bottom = 200.0f;
 
 	//•\Ž¦ˆÊ’u‚ÌÝ’è
-	dst.m_top = 35.0f + m_y+m_scroll_map_y;
+	dst.m_top = 35.0f + m_y+m_scroll_map_y-30;
 	dst.m_left = 0.0f + m_x+m_scroll_map_x;
 	dst.m_right = 30.0f + m_x+m_scroll_map_x;
-	dst.m_bottom = 30.0f + m_y+30+m_scroll_map_y;
+	dst.m_bottom = 30.0f + m_y+30+m_scroll_map_y-30;
 
 	//•`‰æ
-	Draw::Draw(6, &src, &dst, c, 0.0f);
+	Draw::Draw(6, &src, &dst, c, m_r);
 }

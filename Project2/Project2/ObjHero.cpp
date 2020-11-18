@@ -26,6 +26,21 @@ inline void sin_cos(float r,float *sin,float *cos)
 	*cos = cosf(rad);
 }
 
+//弾をたくさん持っていると主人公の速度が変化
+inline void VectorChange(int bullet, float* sin, float* cos)
+{
+	if (bullet >= 40)
+	{
+		*sin *= 0.1f;
+		*cos *= 0.1f;
+	}
+	else if (bullet >= 30)
+	{
+		*sin *= 0.5f;
+		*cos *= 0.5f;
+	}
+}
+
 bool VectorNormalize(float* vx, float* vy);//ベクトル正規化関数
 
 //コンストラクタ
@@ -43,6 +58,7 @@ void CObjHero::Init()
 	m_unique_bullet_2 = 3;
 	m_hero_flag = false;
 	m_hp = HP;
+	bullet = m_bullet + m_unique_bullet_1 + m_unique_bullet_2;
 
 	//当たり判定
 	Hits::SetHitBox(this, m_x, m_y, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);
@@ -94,8 +110,10 @@ void CObjHero::Action()
 		{
 			//角度をラジアンに変換してsin cosの計算
 			sin_cos(m_r, &sin_f, &cos_f);
-
+			//ベクトルの正規化
 			VectorNormalize(&sin_f, &cos_f);
+			//弾の所持数に応じて速度変更
+			VectorChange(bullet, &sin_f, &cos_f);
 
 			m_vx = -sin_f;
 			m_vy = -cos_f;
@@ -105,8 +123,10 @@ void CObjHero::Action()
 		{
 			//角度をラジアンに変換してsin cosの計算
 			sin_cos(m_r, &sin_f, &cos_f);
-
+			//ベクトルの正規化
 			VectorNormalize(&sin_f, &cos_f);
+			//弾の所持数に応じて速度変更
+			VectorChange(bullet, &sin_f, &cos_f);
 
 			m_vx = +sin_f;
 			m_vy = +cos_f;
@@ -135,6 +155,7 @@ void CObjHero::Action()
 				CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - 90);
 				Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 14);
 				m_bullet -= 1;
+				bullet -= 1;
 				m_attack = false;
 			}
 			if (Input::GetVKey('X') == true && m_unique_bullet_1 > 0) {
@@ -144,6 +165,7 @@ void CObjHero::Action()
 				CObjPenetrateBullet* obj_pb = new CObjPenetrateBullet(m_x, m_y, m_r - (m_r * 2) - 90);
 				Objs::InsertObj(obj_pb, OBJ_PENETRATE_BULLET, 15);
 				m_unique_bullet_1 -= 1;
+				bullet -= 1;
 				m_attack = false;
 			}
 			if (Input::GetVKey('C') == true && m_unique_bullet_2 > 0) {
@@ -155,6 +177,7 @@ void CObjHero::Action()
 					Objs::InsertObj(obj_db, OBJ_ANGLE_BULLET, 16);
 				}
 				m_unique_bullet_2 -= 1;
+				bullet -= 1;
 				m_attack = false;
 			}
 		}

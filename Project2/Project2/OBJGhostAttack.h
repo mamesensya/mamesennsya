@@ -7,7 +7,7 @@ using namespace GameL;
 class CObjGhostAttack :public CObj
 {
 public:
-	CObjGhostAttack(float x, float y) ;
+	CObjGhostAttack(float x, float y,float r) ;
 	~CObjGhostAttack() {};
 	void Init();
 	void Action();
@@ -17,6 +17,7 @@ private:
 	float m_y;
 	float m_vx;
 	float m_vy;
+	float m_r;
 
 	float m_scroll_map_x{ 0 };
 	float m_scroll_map_y{ 0 };
