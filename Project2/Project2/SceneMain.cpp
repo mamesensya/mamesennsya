@@ -6,6 +6,7 @@
 #include "GameL\SceneObjManager.h"
 #include"GameL\DrawTexture.h"
 #include "GameL\DrawFont.h"
+#include"GameL\UserData.h"
 #include "GameL\Audio.h"
 //使用するネームスペース
 using namespace GameL;
@@ -95,6 +96,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"豆箱.jpg", 15, TEX_SIZE_512);
 	CObjBox* obj_box = new CObjBox(400, 300);
 	Objs::InsertObj(obj_box, OBJ_BOX, 11);
+
 }
 
 //実行中メソッド
