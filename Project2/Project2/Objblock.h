@@ -21,7 +21,7 @@ public:
 		float* x, float* y, bool* up, bool* down,
 		bool* left, bool* right, float* vx, float* vy
 	);
-	int m_map[60][80];//マップ情報（仮）
+	int m_map[60][80];//マップ情報
 private:
 
 
