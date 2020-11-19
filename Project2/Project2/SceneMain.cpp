@@ -8,6 +8,7 @@
 #include "GameL\DrawFont.h"
 #include"GameL\UserData.h"
 #include "GameL\Audio.h"
+
 //使用するネームスペース
 using namespace GameL;
 
@@ -44,7 +45,7 @@ void CSceneMain::InitScene()
 	float v = Audio::VolumeMaster(-0.5f);
 
 	//音楽スタート
-	Audio::Start(0);
+	//Audio::Start(0);
 
 	//敵の弾（BB弾）
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
@@ -105,6 +106,8 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"heart2.png", 24, TEX_SIZE_512);      //人　　の体力表示
 	Draw::LoadImageW(L"testsave.png", 25, TEX_SIZE_512);
 	Draw::LoadImageW(L"alphaboard.png", 26, TEX_SIZE_512);
+	Draw::LoadImageW(L"button.png", 27, TEX_SIZE_512);
+	Draw::LoadImageW(L"buttonstr.png", 28, TEX_SIZE_512);
 	//-------------------------------------------------------------------------------------/
 
 	//壊すと豆が出る箱
@@ -116,7 +119,12 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"hako.png", 17, TEX_SIZE_512);
 	CObjbreakblock* obj_break_block = new CObjbreakblock(200, 300);
 	Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
+
+	//ユーザーインタフェース
+	CObjUserInterface* obj_ui = new CObjUserInterface();
+	Objs::InsertObj(obj_ui, OBJ_USERINTERFACE, 18);
 }
+
 
 //実行中メソッド
 void CSceneMain::Scene()

@@ -17,6 +17,12 @@ public:
 	float GetVY() { return m_vy; }
 	float GetVX() { return m_vx; }
 	int GetHP() {return m_hp;}
+	int GetBullet() {return m_bullet;}
+	int GetUBulletA() {return m_unique_bullet_1;}
+	int GetUBulletB() {return m_unique_bullet_2;}
+	bool GetHeroState() {
+		return m_hero_flag;
+	}
 
 	void SetX(float x) { m_x = x; }
 	void SetY(float y) { m_y = y; }

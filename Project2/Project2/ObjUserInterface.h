@@ -11,4 +11,5 @@ public:
 	void Action();
 	void Draw();
 private:
+	char keystr[4] = { 'Z','X','C','V' };
 };
