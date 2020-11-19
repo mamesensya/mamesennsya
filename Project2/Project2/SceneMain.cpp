@@ -31,6 +31,11 @@ CSceneMain::~CSceneMain()
 //初期化メソッド
 void CSceneMain::InitScene()
 {
+	//外部データの読み込み（ステージ情報）
+	unique_ptr<wchar_t>p;//ステージ情報ポインター
+	int size;            //ステージ情報の大きさ
+	p = Save::ExternalDataOpen(L"Book1.csv" &size);//外部データ読み込み
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"BGMGame（仮）.wav", BACK_MUSIC);
 	Audio::LoadAudio(1, L"BGMGame2（仮）.wav", BACK_MUSIC);
