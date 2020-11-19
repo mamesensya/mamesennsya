@@ -117,7 +117,7 @@ void CSceneMain::InitScene()
 	
 
 	//主人公（人）
-	Draw::LoadImageW(L"主人公_人（仮）.jpg", 21, TEX_SIZE_512);
+	Draw::LoadImageW(L"豆　静止.png", 21, TEX_SIZE_512);
 
 	//主人公（人）の攻撃
 	Draw::LoadImageW(L"主人公近接攻撃（仮）.png", 22, TEX_SIZE_512);
