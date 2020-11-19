@@ -87,9 +87,9 @@ void CSceneMain::InitScene()
 	//Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
 
 	//ボス戦車
-	//Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
-	//CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
-	//Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
+	Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
+	CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
+	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
 
 	////ボス戦車2
 	//Draw::LoadImageW(L"ボス_ステージ2（仮）.png", 7, TEX_SIZE_512);

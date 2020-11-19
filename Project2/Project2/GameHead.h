@@ -30,6 +30,7 @@ enum OBJ_NAME
 	OBJ_BOSS_BULLET2,
 	OBJ_BREAK_BLOCK,
 	OBJ_ANGLE_BULLET2,
+	OBJ_BOSS_BULLET4,
 };
 //------------------------------------------------
 
@@ -98,6 +99,7 @@ struct UserData
 #include "ObjUserInterface.h"
 #include "CObjBoss2.h"
 #include "CObjBossBullet2.h"
+#include "CObjBossBullet4.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

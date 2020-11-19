@@ -1,35 +1,28 @@
-#include"GameL/DrawTexture.h"
-#include"GameL/HitBoxManager.h"
-#include"GameHead.h"
-#include"CObjBossBullet2.h"
+#include "GameL\DrawTexture.h"
+#include "GameL\HitBoxManager.h"
+#include "GameHead.h"
+#include "CObjBossBullet4.h"
 
 using namespace GameL;
 
-CObjBossBullet2::CObjBossBullet2(float x, float y, float r)
+CObjBossBullet4::CObjBossBullet4(float x, float y, float r)
 {
 	m_x = x + 85;
 	m_y = y + 85;
 	m_r = r;
 }
 
-//イニシャライズ
-void CObjBossBullet2::Init()
+void CObjBossBullet4::Init()
 {
-	m_vx = 0.0f;
-	m_vy = 0.0f;
-
-
 	//HitBox作成
-	Hits::SetHitBox(this, m_x, m_y, 100, 100, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
+	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
 }
 
-//アクション
-void CObjBossBullet2::Action()
+void CObjBossBullet4::Action()
 {
-
 	CHitBox* Hit = Hits::GetHitBox(this);
 
-
+	//スクロール情報をもらう
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
@@ -43,8 +36,9 @@ void CObjBossBullet2::Action()
 	mx += m_vx * m_speed;
 	my += m_vy * m_speed;
 
-	Hit->SetPos(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
+	Hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
+	//主人公と接触しているか調べる
 	if (Hit->CheckObjNameHit(OBJ_HERO) != nullptr) {
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
@@ -55,8 +49,7 @@ void CObjBossBullet2::Action()
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
 	}
-
-
+	//範囲外に出ると弾を削除
 	if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
 	{
 		this->SetStatus(false);//削除命令
@@ -64,8 +57,7 @@ void CObjBossBullet2::Action()
 	}
 }
 
-//ドロー
-void CObjBossBullet2::Draw()
+void CObjBossBullet4::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -79,10 +71,10 @@ void CObjBossBullet2::Draw()
 	src.m_bottom = 200.0f;
 
 	//表示位置
-	dst.m_top = -10.0f + m_y + m_scroll_map_y;
-	dst.m_left = -10.0f + m_x + m_scroll_map_x;
-	dst.m_right = 110.0f + m_x + m_scroll_map_x;
-	dst.m_bottom = 110.0f + m_y + m_scroll_map_y;
+	dst.m_top = 0.0f + m_y + m_scroll_map_y;
+	dst.m_left = 0.0f + m_x + m_scroll_map_x;
+	dst.m_right = 32.0f + m_x + m_scroll_map_x;
+	dst.m_bottom = 32.0f + m_y + m_scroll_map_y;
 
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 }
