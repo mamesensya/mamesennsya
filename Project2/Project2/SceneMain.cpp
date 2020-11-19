@@ -32,6 +32,33 @@ CSceneMain::~CSceneMain()
 //初期化メソッド
 void CSceneMain::InitScene()
 {
+	//外部データの読み込み（ステージ情報）
+	unique_ptr<wchar_t>p;//ステージ情報ポインター
+	int size;            //ステージ情報の大きさ
+	p = Save::ExternalDataOpen(L"Book1.csv", &size);//外部データ読み込み
+
+	int map[60][80];
+	int count = 1;
+	for (int i = 0; i < 60; i++)
+	{
+		for (int j = 0; j < 80; j++)
+		{
+			int w = 0;
+			swscanf_s(&p.get()[count], L"%d", &w);
+
+			map[i][j] = w;
+			count += 2;
+		}
+	}
+	//p = Save::ExternalDataOpen(L"Book2.csv", &size);//外部データ読み込み
+
+	//p = Save::ExternalDataOpen(L"Book3.csv", &size);//外部データ読み込み
+
+	//p = Save::ExternalDataOpen(L"Book4.csv", &size);//外部データ読み込み
+
+	//p = Save::ExternalDataOpen(L"Book5.csv", &size);//外部データ読み込み
+
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"BGMGame（仮）.wav", BACK_MUSIC);
 	Audio::LoadAudio(1, L"BGMGame2（仮）.wav", BACK_MUSIC);
@@ -53,27 +80,27 @@ void CSceneMain::InitScene()
 	//敵戦車
 	Draw::LoadImageW(L"敵_戦車2.png", 1, TEX_SIZE_512);
 
-	CObjEnemy* obj_enemy = new CObjEnemy(350,250);
-	Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);
+	/*CObjEnemy* obj_enemy = new CObjEnemy(350,250);
+	Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);*/
 
 	//敵戦車（3方向弾）
-	CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 400);
-	Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
+	//CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 400);
+	//Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
 
 	//ボス戦車
 	Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
 	CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
 	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
 
-	//ボス戦車2
-	Draw::LoadImageW(L"ボス_ステージ2（仮）.png", 7, TEX_SIZE_512);
-	CObjBoss2* obj_boss2 = new CObjBoss2(400, 300);
-	Objs::InsertObj(obj_boss2, OBJ_BOSS2, 53);
+	////ボス戦車2
+	//Draw::LoadImageW(L"ボス_ステージ2（仮）.png", 7, TEX_SIZE_512);
+	//CObjBoss2* obj_boss2 = new CObjBoss2(400, 300);
+	//Objs::InsertObj(obj_boss2, OBJ_BOSS2, 53);
 
 	//敵　鬼
 	Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
-	CObjGhost* obj_ghost = new CObjGhost(200, 300);
-	Objs::InsertObj(obj_ghost, OBJ_GHOST, 52);
+	//CObjGhost* obj_ghost = new CObjGhost(200, 300);
+	//Objs::InsertObj(obj_ghost, OBJ_GHOST, 52);
 
 	Draw::LoadImageW(L"仮棒.png", 6, TEX_SIZE_512);
 
@@ -86,8 +113,8 @@ void CSceneMain::InitScene()
 
 	//弾
 	Draw::LoadImageW(L"大豆.jpg", 14, TEX_SIZE_512);
-	CObjBlock* obj_block = new CObjBlock;
-	Objs::InsertObj(obj_block, OBJ_BLOCK, 4);
+
+	
 
 	//主人公（人）
 	Draw::LoadImageW(L"主人公_人（仮）.jpg", 21, TEX_SIZE_512);
@@ -112,8 +139,8 @@ void CSceneMain::InitScene()
 
 	//壊すと豆が出る箱
 	Draw::LoadImageW(L"豆箱.jpg", 15, TEX_SIZE_512);
-	CObjBox* obj_box = new CObjBox(400, 300);
-	Objs::InsertObj(obj_box, OBJ_BOX, 11);
+	/*CObjBox* obj_box = new CObjBox(400, 300);
+	Objs::InsertObj(obj_box, OBJ_BOX, 11);*/
 
 	//壊れる壁
 	Draw::LoadImageW(L"hako.png", 17, TEX_SIZE_512);
@@ -123,6 +150,15 @@ void CSceneMain::InitScene()
 	//ユーザーインタフェース
 	CObjUserInterface* obj_ui = new CObjUserInterface();
 	Objs::InsertObj(obj_ui, OBJ_USERINTERFACE, 18);
+	//CObjbreakblock* obj_break_block = new CObjbreakblock(200, 300);
+	//Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
+
+	//blockオブジェクトの作成
+	CObjBlock* obj_b = new CObjBlock(map);
+	Objs::InsertObj(obj_b, OBJ_BLOCK, 4);
+
+
+
 }
 
 

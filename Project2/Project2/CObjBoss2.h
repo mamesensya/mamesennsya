@@ -16,6 +16,7 @@ public:
 	float GetY() { return m_y; }
 	float GetR() { return m_r; }
 
+	int m_bullet_type{ 0 };//ƒ{ƒX‚ÌUŒ‚•û–@•ÏX—p
 private:
 	float m_x{ 0 };//xÀ•W
 	float m_y{ 0 };//yÀ•W
@@ -23,6 +24,7 @@ private:
 
 	int m_hp{ 0 };//HP
 
+	int m_maelstrom_time{ 0 };//‰QŠª‚«ŠÔ§Œä—p
 	bool m_attack;//’e”­ËŠÔŠu§Œä—p
 	int m_attack_time{ 0 };//’e”­ËŠÔŠuŠÔ
 	int pbullet_interval;//ŠÑ’Ê’e§Œä—p

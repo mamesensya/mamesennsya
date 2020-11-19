@@ -59,18 +59,53 @@ void CObjBoss2::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
-	//true‚È‚ç’e”­ŽË
-	if (m_attack == true)
+	if (m_bullet_type == 0)
 	{
-		//”­ŽË‰¹–Â‚ç‚·
-		Audio::Start(10);
+		//true‚È‚ç’e”­ŽË
+		if (m_attack == true)
+		{
+			//”­ŽË‰¹–Â‚ç‚·
+			Audio::Start(10);
 
-		CObjBossBullet2* obj_eb = new CObjBossBullet2(m_x + m_scroll_map_x, m_y + m_scroll_map_y, -m_r-90);
-		Objs::InsertObj(obj_eb, OBJ_BOSS_BULLET2, 16);
+			CObjBossBullet2* obj_eb = new CObjBossBullet2(m_x + m_scroll_map_x, m_y + m_scroll_map_y, -m_r - 90);
+			Objs::InsertObj(obj_eb, OBJ_BOSS_BULLET2, 16);
 
-		m_attack = false;
+			m_attack = false;
+		}
 	}
+	if (m_bullet_type == 1)
+	{
+		if (m_attack == true)
+		{
+			bool reflect = true;
+			if (m_maelstrom_time == 10)
+			{
+				if (m_r >= 0.0 && reflect == true)
+				{
+					//Šp“xm_angle‚ÅŠp“x’eŠÛ”­ŽË
+					m_r += 5.0;
+					CObjBossBullet4* obj_bossbullet = new CObjBossBullet4(300, 300, m_r);
+					Objs::InsertObj(obj_bossbullet, OBJ_BOSS_BULLET4, 1);
+					if (m_r >= 360.0)
+					{
+						reflect = false;
+					}
+				}
+				else if (m_r <= 360 && reflect == false)
+				{
+					//Šp“xm_angle‚ÅŠp“x’eŠÛ”­ŽË
+					m_r -= 5.0;
+					if (m_r <= 0)
+					{
+						reflect = true;
+					}
+				}
+				m_maelstrom_time = 0;
+			}
+			m_maelstrom_time++;
 
+		}
+	}
 	//’eŠÛ‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ð’²‚×‚é
 	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
 	{

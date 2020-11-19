@@ -29,44 +29,44 @@ void CObjAngleBullet::Init()
     m_scroll_map_x = block->GetSX();
     m_scroll_map_y = block->GetSY();
 
-    if (m_r == 45.0)
-    {
-        m_vx = +0.5;
-        m_vy = -0.5;
-    }
-    if (m_r == 135.0)
-    {
-        m_vx = -0.5;
-        m_vy = -0.5;
-    }
-    if (m_r == 225.0)
-    {
-        m_vx = -0.5;
-        m_vy = +0.5;
-    }
-    if (m_r == 315.0)
-    {
-        m_vx = +0.5;
-        m_vy = +0.5;
-    }
+    //if (m_r == 45.0)
+    //{
+    //    m_vx = +0.5;
+    //    m_vy = -0.5;
+    //}
+    //if (m_r == 135.0)
+    //{
+    //    m_vx = -0.5;
+    //    m_vy = -0.5;
+    //}
+    //if (m_r == 225.0)
+    //{
+    //    m_vx = -0.5;
+    //    m_vy = +0.5;
+    //}
+    //if (m_r == 315.0)
+    //{
+    //    m_vx = +0.5;
+    //    m_vy = +0.5;
+    //}
 
 
-    if (m_r == 0.0)
-    {
-        m_vx += 0.5;
-    }
-    if (m_r == 90.0)
-    {
-        m_vy -= 0.5;
-    }
-    if (m_r == 180.0)
-    {
-        m_vx -= 0.5;
-    }
-    if (m_r == 270.0)
-    {
-        m_vy += 0.5;
-    }
+    //if (m_r == 0.0)
+    //{
+    //    m_vx += 0.5;
+    //}
+    //if (m_r == 90.0)
+    //{
+    //    m_vy -= 0.5;
+    //}
+    //if (m_r == 180.0)
+    //{
+    //    m_vx -= 0.5;
+    //}
+    //if (m_r == 270.0)
+    //{
+    //    m_vy += 0.5;
+    //}
 
     //当たり判定用ヒットボックスを作成
     Hits::SetHitBox(this, m_x-m_scroll_map_x, m_y-m_scroll_map_y, 32, 32, ELEMENT_ENEMY, OBJ_ANGLE_BULLET2, 1);
@@ -85,6 +85,9 @@ void CObjAngleBullet::Action()
 
     CHitBox* hit = Hits::GetHitBox(this);
     //移動
+    m_vx = cos(3.14 / 180.0f * m_r);
+    m_vy = sin(3.14 / 180.0f * m_r);
+
     m_x += m_vx ;
     m_y -= m_vy ;
 

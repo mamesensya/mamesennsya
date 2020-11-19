@@ -247,6 +247,32 @@ void CObjBoss::Action()
 				}
 
 			}
+		//bool reflect = true;
+		//if (m_time == 10)
+		//{
+		//	if (m_r >= 0.0 && reflect == true)
+		//	{
+		//		//Šp“xm_angle‚ÅŠp“x’eŠÛ”­ŽË
+		//		m_r += 5.0;
+		//		CObjAngleBullet* obj_a = new CObjAngleBullet(300, 300, m_r);
+		//		Objs::InsertObj(obj_a, OBJ_ANGLE_BULLET, 1);
+		//		if (m_r >= 360.0)
+		//		{
+		//			reflect = false;
+		//		}
+		//	}
+		//	else if (m_r <= 360 && reflect == false)
+		//	{
+		//		//Šp“xm_angle‚ÅŠp“x’eŠÛ”­ŽË
+		//		m_r -= 5.0;
+		//		if (m_r <= 0)
+		//		{
+		//			reflect = true;
+		//		}
+		//	}
+		//	m_time = 0;
+		//}
+		//m_time++;
 
 
 			if (m_oni_time == 600)
