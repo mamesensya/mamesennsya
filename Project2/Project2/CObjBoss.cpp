@@ -32,7 +32,7 @@ void CObjBoss::Init()
 	pbullet_enable = false; //貫通弾ダメージ有効
 
 	//HitBox追加
-	Hits::SetHitBox(this, m_x , m_y , 100, 100, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_x , m_y , 100, 200, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 }
 
 void CObjBoss::Action()
@@ -386,8 +386,8 @@ void CObjBoss::Draw()
 	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 400.0f;
-	src.m_bottom = 400.0f;
+	src.m_right = 300.0f;
+	src.m_bottom = 300.0f;
 
 	//出力位置調整用条件
 	if (m_r==0)

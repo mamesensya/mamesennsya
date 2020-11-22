@@ -30,7 +30,7 @@ void CObjEnemy3::Init()
 	pbullet_enable = false; //貫通弾ダメージ有効
 
 	//HitBox追加
-	Hits::SetHitBox(this, m_x , m_y , 55, 55, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_x , m_y , 100, 80, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 }
 
 void CObjEnemy3::Action()
@@ -316,8 +316,8 @@ void CObjEnemy3::Draw()
 	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 400.0f;
-	src.m_bottom = 400.0f;
+	src.m_right = 300.0f;
+	src.m_bottom = 300.0f;
 
 	//出力位置
 	dst.m_top = 0.0f + m_y+m_scroll_map_y-40;

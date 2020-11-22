@@ -78,7 +78,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
 
 	//敵戦車
-	Draw::LoadImageW(L"敵_戦車2.png", 1, TEX_SIZE_512);
+	Draw::LoadImageW(L"鬼トランプJ.png", 1, TEX_SIZE_512);
 
 	/*CObjEnemy* obj_enemy = new CObjEnemy(350,250);
 	Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);*/
@@ -88,7 +88,7 @@ void CSceneMain::InitScene()
 	//Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
 
 	//ボス戦車
-	Draw::LoadImageW(L"ボス戦車.png", 5, TEX_SIZE_512);
+	Draw::LoadImageW(L"おにゴム　赤.png", 5, TEX_SIZE_512);
 	CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
 	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
 
@@ -126,7 +126,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"hako.png", 13, TEX_SIZE_512);
 	
 	//床
-	Draw::LoadImageW(L"yuka.png", 3, TEX_SIZE_512);
+	Draw::LoadImageW(L"床改.png", 3, TEX_SIZE_512);
 
 	//ユーザーインターフェースで使用する画像集---------------------------------------------/
 	Draw::LoadImageW(L"heart.png", 23, TEX_SIZE_512);	    //戦車　の体力表示
