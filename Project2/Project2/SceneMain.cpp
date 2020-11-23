@@ -82,28 +82,23 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"鬼トランプK.png", 7, TEX_SIZE_512);
 	//Draw::LoadImageW(L"鬼トランプQ.png", 8, TEX_SIZE_512);
 
-	//CObjEnemy* obj_enemy = new CObjEnemy(350,250);
-	//Objs::InsertObj(obj_enemy, OBJ_ENEMY, 50);
-
 	////敵戦車（3方向弾）
 	//CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 250);
 	//Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
 
-	//ボス戦車
-	Draw::LoadImageW(L"おにゴム　赤.png", 5, TEX_SIZE_512);
-	CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
-	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
+	////ボス戦車
+	//Draw::LoadImageW(L"おにゴム　赤.png", 5, TEX_SIZE_512);
+	//CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
+	//Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
 
 	//ボス戦車2
-	Draw::LoadImageW(L"土台.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"土台.png", 9, TEX_SIZE_512);
 	Draw::LoadImageW(L"砲　青.png", 8, TEX_SIZE_512);
 	//CObjBoss2* obj_boss2 = new CObjBoss2(400, 300);
 	//Objs::InsertObj(obj_boss2, OBJ_BOSS2, 20);
 
 	//敵　鬼
 	Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
-	//CObjGhost* obj_ghost = new CObjGhost(200, 300);
-	//Objs::InsertObj(obj_ghost, OBJ_GHOST, 52);
 
 	Draw::LoadImageW(L"仮棒.png", 6, TEX_SIZE_512);
 

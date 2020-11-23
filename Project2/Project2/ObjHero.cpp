@@ -82,7 +82,7 @@ void CObjHero::Action()
 				m_hero_flag = true;
 
 				//主人公（人）を作成
-				CObjChara* obj_chara = new CObjChara(m_x+20, m_y+20);
+				CObjChara* obj_chara = new CObjChara(m_x, m_y);
 				Objs::InsertObj(obj_chara, OBJ_CHARA, 11);
 				//チャタリング防止用
 				while (Input::GetVKey('V') == true);

@@ -39,10 +39,6 @@ void CObjPlayerBullet::Action() {
 		m_x += m_vx * m_speed;
 		m_y += m_vy * m_speed;
 
-		if (Hit->CheckObjNameHit(OBJ_ENEMY) != nullptr) {
-			
-		}
-
 		Hit->SetPos(m_x, m_y);
 
 		

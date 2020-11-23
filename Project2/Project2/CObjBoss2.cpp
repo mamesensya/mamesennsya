@@ -172,7 +172,7 @@ void CObjBoss2::Draw()
 	dst.m_right = 180.0f + m_x + m_scroll_map_x - 35.0f;
 	dst.m_bottom = 200.0f + m_y + m_scroll_map_y - 34.0f;
 
-	Draw::Draw(7, &src, &dst, c, 0);
+	Draw::Draw(9, &src, &dst, c, 0);
 
 	RECT_F src2;
 	RECT_F dst2;

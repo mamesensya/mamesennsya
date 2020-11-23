@@ -5,6 +5,7 @@
 #include "GameL\Audio.h"
 #include "GameHead.h"
 #include "ObjBean.h"
+#include "time.h"
 
 //使用するネームスペース
 using namespace GameL;
@@ -34,10 +35,14 @@ void CObjBean::Init()
 //アクション
 void CObjBean::Action()
 {
+	//弾の取得数をランダムで指定
+	srand(time(NULL));
+	int r = (rand() % (7 - 4 + 1)) + 4;
+
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x, m_y);
 
-	//主人公（近接攻撃）と接触したら豆を削除
+	//主人公と接触したら豆を取得
 	if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
 		//発射音鳴らす
@@ -49,8 +54,8 @@ void CObjBean::Action()
 
 		CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 		//主人公の持っている弾の数を増加させる
-		hero->GetBullet(3);
-		hero->GetUniqueBullet1(3);
+		hero->GetBullet(r);
+		hero->GetUniqueBullet1(2);
 		hero->GetUniqueBullet2(3);
 	}
 }
