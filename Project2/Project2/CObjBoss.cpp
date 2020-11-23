@@ -32,7 +32,7 @@ void CObjBoss::Init()
 	pbullet_enable = false; //貫通弾ダメージ有効
 
 	//HitBox追加
-	Hits::SetHitBox(this, m_x , m_y , 100, 200, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_x , m_y , 120, 120, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 }
 
 void CObjBoss::Action()
@@ -66,20 +66,22 @@ void CObjBoss::Action()
 		float hx = hero->GetX();
 		float hy = hero->GetY();
 
-		//敵から主人公のベクトルを求める
+
+		//スクロールをした分ずれているから本当の座標を出す
 		hx = hx - m_scroll_map_x;
 		hy = hy - m_scroll_map_y;
 
+		//敵の座標はもともとスクロールの値が入っていない
+		//敵から主人公のベクトルを求める　
 		x = m_x - hx;
 		y = m_y - hy;
 
-		x += 60;
-		y += 60;
+		
 
 		if ((x >= -600.0f && x <= 600.0f) || (y >= -600.0f && y <= 600.0f))
 		{
-
-			//(-x,-y)の時
+			//主人公の方に向くプログラムは調整済み----------------------------
+			//敵の位置が(-x,-y)の時
 			if (x <= 0.0f && y <= 0.0f)
 			{
 				if (x > y)
@@ -120,14 +122,14 @@ void CObjBoss::Action()
 			{
 				if (x < y)
 				{
-					if (x <= 60.0f && count == 0)
+					if (x <= 0.0f && count == 0)
 					{
 						//x軸がほぼ垂直
 						m_r = 0.0f;
 						m_vy = -0.1f;
 						count = 1;
 					}
-					if (x > 60.0f && m_move_time == 0)
+					if (x > 0.0f && m_move_time == 0)
 					{
 						//x軸の方が近い
 						m_r = 90.0f;
@@ -136,14 +138,14 @@ void CObjBoss::Action()
 				}
 				if (x > y)
 				{
-					if (y <= 60.0f && count == 0)
+					if (y <= 0.0f && count == 0)
 					{
 						//y軸がほぼ平行
 						m_r = 90.0f;
 						m_vx = -0.1f;
 						count = 1;
 					}
-					if (y > 60.0f && m_move_time == 0)
+					if (y > 0.0f && m_move_time == 0)
 					{
 						//y軸の方が近い
 						m_r = 0.0f;
@@ -174,14 +176,14 @@ void CObjBoss::Action()
 				}
 				if (x > py)
 				{
-					if (y >= 0.0f && count == 0)
+					if (y >= -60.0f && count == 0)
 					{
 						//y軸がほぼ平行
 						m_r = 90.0f;
 						m_vx = -0.1f;
 						count = 1;
 					}
-					if (y < 0.0f && m_move_time == 0)
+					if (y < -60.0f && m_move_time == 0)
 					{
 						//y軸の方が近い
 						m_r = 180.0f;
@@ -195,14 +197,14 @@ void CObjBoss::Action()
 				float px = x - x - x;
 				if (px < y)
 				{
-					if (x >= 0.0f && count == 0)
+					if (x >= -60.0f && count == 0)
 					{
 						//x軸がほぼ垂直
 						m_r = 0.0f;
 						m_vy = -0.1;
 						count = 1;
 					}
-					if (x < 0.0f && m_move_time == 0)
+					if (x < -60.0f && m_move_time == 0)
 					{
 						//x軸の方が近い　
 						m_r = -90.0f;
@@ -211,14 +213,14 @@ void CObjBoss::Action()
 				}
 				if (px > y)
 				{
-					if (y <= 0.0f && count == 0)
+					if (y <= -60.0f && count == 0)
 					{
 						//y軸がほぼ平行
 						m_r = -90.0f;
 						m_vx = 0.1f;
 						count = 1;
 					}
-					if (y > 0.0f && m_move_time == 0)
+					if (y > -60.0f && m_move_time == 0)
 					{
 						//y軸の方が近い
 						m_r = 0.0f;
@@ -226,14 +228,14 @@ void CObjBoss::Action()
 					}
 				}
 			}
-
+			//---------------------
 
 			if (m_time == 300 && count == 1)
 			{
 				//発射音鳴らす
 				Audio::Start(10);
 				
-				//敵弾丸発射
+				//敵弾丸発射　　
 				CObjBossBullet* obj_bb = new CObjBossBullet(m_x, m_y, m_r );
 				Objs::InsertObj(obj_bb, OBJ_BOSS_BULLET, 16);
 				
@@ -255,7 +257,7 @@ void CObjBoss::Action()
 		//		//角度m_angleで角度弾丸発射
 		//		m_r += 5.0;
 		//		CObjAngleBullet* obj_a = new CObjAngleBullet(300, 300, m_r);
-		//		Objs::InsertObj(obj_a, OBJ_ANGLE_BULLET, 1);
+		//		Objs::InsertObj(obj_a, OBJ_ENEMY_BULLET, 1);
 		//		if (m_r >= 360.0)
 		//		{
 		//			reflect = false;
@@ -274,33 +276,37 @@ void CObjBoss::Action()
 		//}
 		//m_time++;
 
-
-			if (m_oni_time == 600)
+			//鬼召喚
+			/*if (m_oni_time == 600&&m_oni_count<=3)
 			{
 				if (m_r == 0)
 				{
 					CObjGhost* obj_g = new CObjGhost(m_x + m_scroll_map_x, (m_y+172) + m_scroll_map_y);
 					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
+					m_oni_count++;
 				}
 				if (m_r == 90)
 				{
 					CObjGhost* obj_g = new CObjGhost((m_x+172) + m_scroll_map_x, m_y + m_scroll_map_y);
 					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
+					m_oni_count++;
 				}
 				if (m_r == 180)
 				{
 					CObjGhost* obj_g = new CObjGhost(m_x + m_scroll_map_x, (m_y-172) + m_scroll_map_y);
 					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
+					m_oni_count++;
 				}
 				if (m_r == -90)
 				{
 					CObjGhost* obj_g = new CObjGhost((m_x-172) + m_scroll_map_x, m_y + m_scroll_map_y);
 					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
+					m_oni_count++;
 				}
 				
-			}
+			}*/
 
-
+		
 		}
 	}
 
@@ -325,7 +331,7 @@ void CObjBoss::Action()
 	hit->SetPos(m_x+ m_scroll_map_x, m_y+m_scroll_map_y);
 
 	//弾丸と接触しているかを調べる
-	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 		m_hp--;
 		if (m_hp <= 0) {
@@ -337,7 +343,7 @@ void CObjBoss::Action()
 		}
 	}
 	if (pbullet_enable == false) {
-		if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
+		if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr) {
 			m_hp--;
 			pbullet_enable = true;
 			if (m_hp <= 0) {

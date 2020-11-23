@@ -28,9 +28,19 @@ private:
 
 	float m_scroll_map_x{ 0 };
 	float m_scroll_map_y{ 0 };
+
+	//float m_scroll_map_x1{ 0 };
+	//float m_scroll_map_y1{ 0 };
 	
 	float m_speed{ 5 };
 
+	////ボス座標
+	//float Bx;
+	//float By;
 
-	bool m_hit;
+	//ブロックとの当たり判定用
+	bool m_up;
+	bool m_reft;
+	bool m_right;
+	bool m_down;
 };

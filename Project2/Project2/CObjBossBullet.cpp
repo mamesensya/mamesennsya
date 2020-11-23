@@ -8,6 +8,7 @@ using namespace GameL;
 
 CObjBossBullet::CObjBossBullet(float x, float y,float r)
 {
+	//敵の実際の座標を受け取る
 	m_r = r;
 	m_x = x + 40;
 	m_y = y + 40;
@@ -19,23 +20,26 @@ void CObjBossBullet::Init()
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 
-
 	//スクロールした分のベクトルを取得
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
 
+	
+
 	//HitBox作成
-	Hits::SetHitBox(this, m_x-m_scroll_map_x, m_y-m_scroll_map_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
+	Hits::SetHitBox(this, m_x+m_scroll_map_x, m_y+m_scroll_map_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
 }
 
 //アクション
 void CObjBossBullet::Action()
 {
-
+	CHitBox* hit = Hits::GetHitBox(this);
 
 	CObjBoss* bb = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
 	count = bb->m_Bcount;
+	float Bx = bb->GetX();
+	float By = bb->GetY();
 
 	m_time ++ ;
 
@@ -76,40 +80,50 @@ void CObjBossBullet::Action()
 	mx += m_vx;
 	my += m_vy;
 
-
+	Bx += mx+m_scroll_map_x;
+	By += my+m_scroll_map_y;
 	
 	//HitBoxの内容を更新
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
+	
+	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
 	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	bbh->Block_BulletHit(&m_x, &m_y, &m_hit, &m_vx, &m_vy);
-	if (m_hit == true)
+	bbh->BlockHit(&Bx, &By, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+	int data_base[4] =
 	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
+		m_up,m_down,m_reft,m_right
+	};
+
+	for (int i = 0; i <= 3; i++)
+	{
+		if (data_base[i] == true)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
 	}
 
-	if (m_time == 100)
-	{
-		if (count == 0) {
-			for (float i = 45.0; i != 405.0; i += 90.0) {
-				CObjAngleBullet* obj_eb = new CObjAngleBullet(m_x , m_y , i);
-				Objs::InsertObj(obj_eb, OBJ_ANGLE_BULLET, 16);
-			}
-			
-		}
-		else if(count==1){
-		    for (float i = 0.0; i != 360.0; i += 90.0) {
-				CObjAngleBullet* obj_eb = new CObjAngleBullet(m_x , m_y , i);
-				Objs::InsertObj(obj_eb, OBJ_ANGLE_BULLET, 16);
-			}
-			
-		}
-		this->SetStatus(false);//削除命令
-		Hits::DeleteHitBox(this);//削除
+	//if (m_time == 100)
+	//{
+	//	if (count == 0) {
+	//		for (float i = 45.0; i != 405.0; i += 90.0) {
+	//			CObjAngleBullet* obj_eb = new CObjAngleBullet(m_x , m_y , i);
+	//			Objs::InsertObj(obj_eb, OBJ_ENEMY_BULLET, 16);
+	//		}
+	//		
+	//	}
+	//	else if(count==1){
+	//	    for (float i = 0.0; i != 360.0; i += 90.0) {
+	//			CObjAngleBullet* obj_eb = new CObjAngleBullet(m_x , m_y , i);
+	//			Objs::InsertObj(obj_eb, OBJ_ENEMY_BULLET, 16);
+	//		}
+	//		
+	//	}
+	//	this->SetStatus(false);//削除命令
+	//	Hits::DeleteHitBox(this);//削除
 
-	}
+	//}
 
 	
 	//主人公と接触しているかどうか調べる
