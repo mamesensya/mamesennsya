@@ -18,17 +18,18 @@ void CObjBossBullet2::Init()
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
 
 	//HitBoxì¬
-	Hits::SetHitBox(this, m_x, m_y, 100, 100, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
+	Hits::SetHitBox(this, m_x+m_scroll_map_x, m_y+m_scroll_map_y, 100, 100, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
 }
 
 //ƒAƒNƒVƒ‡ƒ“
 void CObjBossBullet2::Action()
 {
-
 	CHitBox* Hit = Hits::GetHitBox(this);
-
 
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();

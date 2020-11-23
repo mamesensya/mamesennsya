@@ -87,15 +87,16 @@ void CSceneMain::InitScene()
 	//CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 400);
 	//Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
 
-	//ボス戦車
-	Draw::LoadImageW(L"おにゴム　赤.png", 5, TEX_SIZE_512);
-	CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
-	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
+	////ボス戦車
+	//Draw::LoadImageW(L"おにゴム　赤.png", 5, TEX_SIZE_512);
+	//CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
+	//Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
 
-	////ボス戦車2
-	//Draw::LoadImageW(L"ボス_ステージ2（仮）.png", 7, TEX_SIZE_512);
-	//CObjBoss2* obj_boss2 = new CObjBoss2(400, 300);
-	//Objs::InsertObj(obj_boss2, OBJ_BOSS2, 53);
+	//ボス戦車2
+	Draw::LoadImageW(L"土台.png", 7, TEX_SIZE_512);
+	Draw::LoadImageW(L"砲　青.png", 8, TEX_SIZE_512);
+	CObjBoss2* obj_boss2 = new CObjBoss2(400, 300);
+	Objs::InsertObj(obj_boss2, OBJ_BOSS2, 20);
 
 	//敵　鬼
 	Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
@@ -113,8 +114,6 @@ void CSceneMain::InitScene()
 
 	//弾
 	Draw::LoadImageW(L"大豆.jpg", 14, TEX_SIZE_512);
-
-	
 
 	//主人公（人）
 	Draw::LoadImageW(L"豆　静止.png", 21, TEX_SIZE_512);

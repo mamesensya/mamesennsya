@@ -14,8 +14,13 @@ CObjBossBullet4::CObjBossBullet4(float x, float y, float r)
 
 void CObjBossBullet4::Init()
 {
+	//スクロール情報をもらう
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
+
 	//HitBox作成
-	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
+	Hits::SetHitBox(this, m_x+m_scroll_map_x, m_y+m_scroll_map_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
 }
 
 void CObjBossBullet4::Action()
@@ -48,6 +53,12 @@ void CObjBossBullet4::Action()
 	{
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
+	}
+	//貫通弾と接触しているかを調べる
+	if (Hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr)
+	{
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 	}
 	//範囲外に出ると弾を削除
 	if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
