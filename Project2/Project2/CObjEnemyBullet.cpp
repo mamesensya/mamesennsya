@@ -33,51 +33,67 @@ void CObjEnemyBullet::Action()
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
 
-
+	CObjEnemy* Ebs = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+	float Bx = Ebs->GetX();
+	float By = Ebs->GetY();
 
 
 
 	if (m_r == 0.0f)
 	{
-		m_vy = -2.0f;
+		m_vy = -1.5f;
 		m_vx = 0.0f;
 	}
 	else if (m_r == 90.0f)
 	{
-		m_vx = -2.0f;
+		m_vx = -1.5f;
 		m_vy = 0.0f;
 	}
 	else if (m_r == 180.0f)
 	{
-		m_vy = +2.0f;
+		m_vy = +1.5f;
 		m_vx = 0.0f;
 	}
 	else if (m_r == -90.0f)
 	{
-		m_vx = +2.0f;
+		m_vx = +1.5f;
 		m_vy = 0.0f;
 	}
 
-
+	
 	m_x += m_vx;
 	m_y += m_vy;
 
 	mx += m_vx;
 	my += m_vy;
 
+	Bx += mx;
+	By += my;
 
 	
 	//HitBoxの内容を更新
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
+	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
+
+
 
 	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	bbh->Block_BulletHit(&m_x, &m_y, &m_hit, &m_vx, &m_vy);
-	if (m_hit == true)
+	bbh->BlockHit(&Bx, &By, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+	int data_base[4] =
 	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
+		m_up,m_down,m_reft,m_right
+	};
+
+	for (int i = 0; i <= 3; i++)
+	{
+		if (data_base[i] == true)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
 	}
+
 
 	//主人公と接触しているかどうか調べる
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)

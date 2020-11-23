@@ -9,8 +9,8 @@
 using namespace GameL;
 
 CObjEnemy3B::CObjEnemy3B(float x, float y, float r) {
-	m_x = x +10;
-	m_y = y +10;
+	m_x = x + 10 ;
+	m_y = y + 10 ;
 	m_r = r;
 };
 
@@ -28,7 +28,13 @@ void CObjEnemy3B::Init() {
 void CObjEnemy3B::Action() {
 
 	CHitBox* Hit = Hits::GetHitBox(this);
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
 
+	CObjEnemy3* Ebs = (CObjEnemy3*)Objs::GetObj(OBJ_ENEMY);
+	float Bx = Ebs->GetX();
+	float By = Ebs->GetY();
 
 	m_vx = cos(3.14 / 180.0f * m_r);
 	m_vy = sin(3.14 / 180.0f * m_r);
@@ -42,14 +48,36 @@ void CObjEnemy3B::Action() {
 	my += m_vy * m_speed;
 	
 	
-	Hit->SetPos(m_x, m_y);
+	m_x += m_vx;
+	m_y += m_vy;
+
+	mx += m_vx;
+	my += m_vy;
+
+	Bx += mx;
+	By += my;
+
+	//HitBox‚Ì“à—e‚ğXV
+	CHitBox* hit = Hits::GetHitBox(this);
+	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
+
+
 
 	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	bbh->Block_BulletHit(&m_x, &m_y, &m_hit, &m_vx, &m_vy);
-	if (m_hit == true)
+	bbh->BlockHit(&Bx, &By, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+	int data_base[4] =
 	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
+		m_up,m_down,m_reft,m_right
+	};
+
+	for (int i = 0; i <= 3; i++)
+	{
+		if (data_base[i] == true)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
 	}
 
 	if (Hit->CheckObjNameHit(OBJ_HERO) != nullptr) {
@@ -68,6 +96,8 @@ void CObjEnemy3B::Action() {
 	{
 		this->SetStatus(false);//íœ–½—ß
 		Hits::DeleteHitBox(this);//íœ
+		mx = 0;
+		my = 0;
 	}
 };
 

@@ -44,16 +44,24 @@ void CObjBossBullet2::Action()
 	mx += m_vx * m_speed;
 	my += m_vy * m_speed;
 
-
 	
 	Hit->SetPos(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
 
 	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	bbh->Block_BulletHit(&m_x, &m_y, &m_hit, &m_vx, &m_vy);
-	if (m_hit == true)
+	bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+	int data_base[4] =
 	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
+		m_up,m_down,m_reft,m_right
+	};
+
+	for (int i = 0; i <= 3; i++)
+	{
+		if (data_base[i] == true)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
 	}
 
 	if (Hit->CheckObjNameHit(OBJ_HERO) != nullptr) {

@@ -106,7 +106,7 @@ void CObjHero::Action()
 			m_r += 1.0f;
 		}
 		//上方向
-		else if (Input::GetVKey(VK_UP) == true)
+		if (Input::GetVKey(VK_UP) == true)
 		{
 			//角度をラジアンに変換してsin cosの計算
 			sin_cos(m_r, &sin_f, &cos_f);
@@ -153,7 +153,7 @@ void CObjHero::Action()
 				Audio::Start(10);
 
 				CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - 90);
-				Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 14);
+				Objs::InsertObj(obj_ab, OBJ_BULLET, 14);
 				m_bullet -= 1;
 				bullet -= 1;
 				m_attack = false;
@@ -163,7 +163,7 @@ void CObjHero::Action()
 				Audio::Start(10);
 
 				CObjPenetrateBullet* obj_pb = new CObjPenetrateBullet(m_x, m_y, m_r - (m_r * 2) - 90);
-				Objs::InsertObj(obj_pb, OBJ_PENETRATE_BULLET, 15);
+				Objs::InsertObj(obj_pb, OBJ_BULLET, 15);
 				m_unique_bullet_1 -= 1;
 				bullet -= 1;
 				m_attack = false;
@@ -174,7 +174,7 @@ void CObjHero::Action()
 				
 				for (int i = 0; i < 3; i++) {
 					CObjPlayerBullet* obj_db = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
-					Objs::InsertObj(obj_db, OBJ_ANGLE_BULLET, 16);
+					Objs::InsertObj(obj_db, OBJ_BULLET, 16);
 				}
 				m_unique_bullet_2 -= 1;
 				bullet -= 1;
@@ -217,14 +217,14 @@ void CObjHero::Action()
 				}
 			}
 		}
-		//m_hpが０になると主人公を破棄
-		if (m_hp == 0)
-		{
-			this->SetStatus(false);//自身に削除命令を出す
-			Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+		////m_hpが０になると主人公を破棄
+		//if (m_hp == 0)
+		//{
+		//	this->SetStatus(false);//自身に削除命令を出す
+		//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-			Scene::SetScene(new CSceneGameOver());
-		}
+		//	Scene::SetScene(new CSceneGameOver());
+		//}
 
 		//攻撃間隔制御
 		if (m_attack == false)

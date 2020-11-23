@@ -69,7 +69,7 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(12, L"SE敵爆破音.wav", EFFECT);
 
 	//ボリュームを1.5増やす
-	float v = Audio::VolumeMaster(1.5f);
+	float v = Audio::VolumeMaster(0.0f);
 
 	//音楽スタート
 	Audio::Start(0);

@@ -7,8 +7,8 @@
 using namespace GameL;
 
 CObjPenetrateBullet::CObjPenetrateBullet(float x, float y, float r) {
-	m_x = x+32;
-	m_y = y+32;
+	m_x = x+20;
+	m_y = y+20;
 	m_r = r;
 };
 
@@ -17,7 +17,7 @@ void CObjPenetrateBullet::Init() {
 	m_vy = 0;
 	interval = 0;
 	intervalEnable = false;
-	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_RED, OBJ_PENETRATE_BULLET, 1);
+	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_RED, OBJ_BULLET, 1);
 };
 
 void CObjPenetrateBullet::Action() {
@@ -32,12 +32,23 @@ void CObjPenetrateBullet::Action() {
 	
 	Hit->SetPos(m_x, m_y);
 
-	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	bbh->Block_BulletHit(&m_x, &m_y, &m_hit, &m_vx, &m_vy);
-	if (m_hit == true)
+	int data_base[4] =
 	{
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
+		m_up,m_down,m_reft,m_right
+	};
+
+	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+	
+
+	for (int i = 0; i <= 3; i++)
+	{
+		if (data_base[i] == true)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
 	}
 	
 };

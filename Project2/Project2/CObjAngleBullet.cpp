@@ -29,9 +29,9 @@ void CObjAngleBullet::Init()
     m_scroll_map_x = block->GetSX();
     m_scroll_map_y = block->GetSY();
 
-
+    
     //当たり判定用ヒットボックスを作成
-    Hits::SetHitBox(this, m_x-m_scroll_map_x, m_y-m_scroll_map_y, 32, 32, ELEMENT_ENEMY, OBJ_ANGLE_BULLET2, 1);
+    Hits::SetHitBox(this, m_x+m_scroll_map_x, m_y+m_scroll_map_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
 }
 
 
@@ -39,33 +39,52 @@ void CObjAngleBullet::Init()
 void CObjAngleBullet::Action()
 {
 
-
     //スクロールした分のベクトルを取得
     CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
     m_scroll_map_x = block->GetSX();
     m_scroll_map_y = block->GetSY();
 
+    CObjBoss* bb = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
+    //ボスの座標取得
+    float Bx = bb->GetX();
+    float By = bb->GetY();
+
     CHitBox* hit = Hits::GetHitBox(this);
     //移動
     m_vx = cos(3.14 / 180.0f * m_r);
     m_vy = sin(3.14 / 180.0f * m_r);
-
-    m_x += m_vx ;
-    m_y -= m_vy ;
+    
+    m_x += m_vx;
+    m_y += m_vy;
 
     mx += m_vx;
     my += m_vy;
 
-  
-    hit->SetPos(m_x + m_scroll_map_x, m_y+m_scroll_map_y);
+    Bx += mx+m_scroll_map_x;
+    By += my+m_scroll_map_y;
 
-    CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-    bbh->Block_BulletHit(&m_x, &m_y, &m_hit, &m_vx, &m_vy);
-    if (m_hit == true)
+    //HitBoxの内容を更新
+   
+    hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
+
+
+    //壁と当たっているか調べる関数
+    block->BlockHit(&Bx, &By, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+    //boolでtureなら当たり判定削除
+    int data_base[4] =
     {
-        this->SetStatus(false);
-        Hits::DeleteHitBox(this);
+        m_up,m_down,m_reft,m_right
+    }; 
+    for (int i = 0; i <= 3; i++)
+    {
+        if (data_base[i] == true)
+        {
+            this->SetStatus(false);
+            Hits::DeleteHitBox(this);
+        }
     }
+ 
 
     //主人公と接触しているかどうか調べる
     if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
@@ -86,11 +105,11 @@ void CObjAngleBullet::Action()
     //	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
     //}
 
-    if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
-    {
-        this->SetStatus(false);//削除命令
-        Hits::DeleteHitBox(this);//削除
-    }
+    //if (mx >= 500.0f || mx <= -500.0f || my >= 500.0f || my <= -500.0f)
+    //{
+    //    this->SetStatus(false);//削除命令
+    //    Hits::DeleteHitBox(this);//削除
+    //}
 
 }
 

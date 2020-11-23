@@ -38,6 +38,7 @@ void CObjBossBullet::Action()
 
 	CObjBoss* bb = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
 	count = bb->m_Bcount;
+	//ボスの座標取得
 	float Bx = bb->GetX();
 	float By = bb->GetY();
 
@@ -51,7 +52,7 @@ void CObjBossBullet::Action()
 
 
 
-
+	//移動ベクトル
 	if (m_r == 0.0f)
 	{
 		m_vy = -2.0f;
@@ -73,28 +74,32 @@ void CObjBossBullet::Action()
 		m_vy = 0.0f;
 	}
 
-
+	//移動ベクトルを座標に追加
 	m_x += m_vx;
 	m_y += m_vy;
 
+	//一定距離動くと弾を削除する変数にベクトル追加
 	mx += m_vx;
 	my += m_vy;
 
+	//取得したボスの座標にこれまで移動したベクトルとスクロールの値を追加
 	Bx += mx+m_scroll_map_x;
 	By += my+m_scroll_map_y;
 	
 	//HitBoxの内容を更新
-	
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
+	//ブロックと弾の当たり判定　関数に値を渡す
 	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	bbh->BlockHit(&Bx, &By, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
 
+	//比較するデータ配列
 	int data_base[4] =
 	{
 		m_up,m_down,m_reft,m_right
 	};
 
+	//for文で回してすべて確認　一つでもtrueなら弾を削除
 	for (int i = 0; i <= 3; i++)
 	{
 		if (data_base[i] == true)
@@ -104,26 +109,25 @@ void CObjBossBullet::Action()
 		}
 	}
 
-	//if (m_time == 100)
-	//{
-	//	if (count == 0) {
-	//		for (float i = 45.0; i != 405.0; i += 90.0) {
-	//			CObjAngleBullet* obj_eb = new CObjAngleBullet(m_x , m_y , i);
-	//			Objs::InsertObj(obj_eb, OBJ_ENEMY_BULLET, 16);
-	//		}
-	//		
-	//	}
-	//	else if(count==1){
-	//	    for (float i = 0.0; i != 360.0; i += 90.0) {
-	//			CObjAngleBullet* obj_eb = new CObjAngleBullet(m_x , m_y , i);
-	//			Objs::InsertObj(obj_eb, OBJ_ENEMY_BULLET, 16);
-	//		}
-	//		
-	//	}
-	//	this->SetStatus(false);//削除命令
-	//	Hits::DeleteHitBox(this);//削除
-
-	//}
+	if (m_time == 100)
+	{
+		if (count == 0) {
+			for (float i = 45.0; i != 405.0; i += 90.0) {
+				CObjAngleBullet* obj_eb = new CObjAngleBullet(m_x , m_y , i);
+				Objs::InsertObj(obj_eb, OBJ_ENEMY_BULLET, 16);
+			}
+			
+		}
+		else if(count==1){
+		    for (float i = 0.0; i != 360.0; i += 90.0) {
+				CObjAngleBullet* obj_eb = new CObjAngleBullet(m_x , m_y , i);
+				Objs::InsertObj(obj_eb, OBJ_ENEMY_BULLET, 16);
+			}
+			
+		}
+		this->SetStatus(false);//削除命令
+		Hits::DeleteHitBox(this);//削除
+	}
 
 	
 	//主人公と接触しているかどうか調べる
@@ -145,11 +149,7 @@ void CObjBossBullet::Action()
 	//	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 	//}
 
-	if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
-	{
-		this->SetStatus(false);//削除命令
-		Hits::DeleteHitBox(this);//削除
-	}
+	
 }
 
 //ドロー

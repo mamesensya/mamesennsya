@@ -20,5 +20,13 @@ private:
 
 	bool  intervalEnable;
 
-	bool m_hit;
+	bool m_up;
+	bool m_reft;
+	bool m_right;
+	bool m_down;
+
+
+
+	float m_scroll_map_x{ 0 };
+	float m_scroll_map_y{ 0 };
 };

@@ -24,5 +24,8 @@ private:
 	float m_scroll_map_y{ 0 };
 	
 
-	bool m_hit;
+	bool m_up;
+	bool m_reft;
+	bool m_right;
+	bool m_down;
 };

@@ -30,7 +30,7 @@ void CObjEnemy3::Init()
 	pbullet_enable = false; //貫通弾ダメージ有効
 
 	//HitBox追加
-	Hits::SetHitBox(this, m_x , m_y , 100, 80, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_x , m_y , 65, 65, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 }
 
 void CObjEnemy3::Action()
@@ -60,13 +60,13 @@ void CObjEnemy3::Action()
 		float hy = hero->GetY();
 
 		//敵から主人公のベクトルを求める
-		x = m_x - hx+m_scroll_map_x;
-		y = m_y - hy+m_scroll_map_y;
+		x = m_x - (hx-m_scroll_map_x);
+		y = m_y - (hy-m_scroll_map_y);
 
 
 		if ((x < -400.0f && x > 400.0f) || (y < -400.0f && y > 400.0f));
 
-		if ((x >= -400.0f && x <= 400.0f) || (y >= -400.0f && y <= 400.0f))
+		if ((x >= -400.0f && x <= 400.0f) && (y >= -400.0f && y <= 400.0f))
 		{
 
 			//(-x,-y)の時
@@ -225,7 +225,7 @@ void CObjEnemy3::Action()
 
 				//敵弾丸発射
 				for (int i = 0; i < 3; i++) {
-					CObjEnemy3B* obj_eb = new CObjEnemy3B(m_x+m_scroll_map_x , m_y+m_scroll_map_y, m_r - (m_r * 2) - (60 + (30 * i)));
+					CObjEnemy3B* obj_eb = new CObjEnemy3B(m_x , m_y, m_r - (m_r * 2) - (60 + (30 * i)));
 					Objs::InsertObj(obj_eb, OBJ_ENEMY_3BULLET, 16);
 				}
 			}
@@ -255,7 +255,7 @@ void CObjEnemy3::Action()
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
 	//弾丸と接触しているかを調べる
-	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 		m_hp--;
 		if (m_hp <= 0) {
@@ -270,7 +270,7 @@ void CObjEnemy3::Action()
 		}
 	}
 	if (pbullet_enable == false) {
-		if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
+		if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr) {
 			m_hp--;
 			pbullet_enable = true;
 			if (m_hp <= 0) {
@@ -320,11 +320,43 @@ void CObjEnemy3::Draw()
 	src.m_right = 300.0f;
 	src.m_bottom = 300.0f;
 
-	//出力位置
-	dst.m_top = 0.0f + m_y+m_scroll_map_y-40;
-	dst.m_left = 0.0f + m_x+ m_scroll_map_x-35;
-	dst.m_right = 128.0f + m_x+ m_scroll_map_x-35;
-	dst.m_bottom = 128.0f + m_y+m_scroll_map_y-40;
+	//出力位置調整用条件
+	if (m_r == 0)
+	{
 
-	Draw::Draw(1, &src, &dst, c, m_r);
+		//出力位置
+		dst.m_top = 0.0f + m_y + m_scroll_map_y - 20.0f;
+		dst.m_left = 0.0f + m_x + m_scroll_map_x - 30.0f;
+		dst.m_right = 128.0f + m_x + m_scroll_map_x - 30.0f;
+		dst.m_bottom = 128.0f + m_y + m_scroll_map_y - 20.0f;
+	}
+	if (m_r == 90)
+	{
+
+		//出力位置
+		dst.m_top = 0.0f + m_y + m_scroll_map_y - 30.0f;
+		dst.m_left = 0.0f + m_x + m_scroll_map_x - 20.0f;
+		dst.m_right = 128.0f + m_x + m_scroll_map_x - 20.0f;
+		dst.m_bottom = 128.0f + m_y + m_scroll_map_y - 30.0f;
+	}
+	if (m_r == 180)
+	{
+
+		//出力位置
+		dst.m_top = 0.0f + m_y + m_scroll_map_y - 50.0f;
+		dst.m_left = 0.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_right = 128.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_bottom = 128.0f + m_y + m_scroll_map_y - 50.0f;
+	}
+	if (m_r == -90)
+	{
+
+		//出力位置
+		dst.m_top = 0.0f + m_y + m_scroll_map_y - 30.0f;
+		dst.m_left = 0.0f + m_x + m_scroll_map_x - 50.0f;
+		dst.m_right = 128.0f + m_x + m_scroll_map_x - 50.0f;
+		dst.m_bottom = 128.0f + m_y + m_scroll_map_y - 30.0f;
+	}
+
+	Draw::Draw(7, &src, &dst, c, m_r);
 }

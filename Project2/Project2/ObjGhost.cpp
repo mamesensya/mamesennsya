@@ -31,6 +31,12 @@ void CObjGhost::Init()
 
 }
 
+/// <summary>
+/// 鬼が重ならないようにしたい
+/// その場合
+/// 当たり判定を持ってきて
+/// </summary>
+
 void CObjGhost::Action()
 {
 
@@ -118,11 +124,24 @@ void CObjGhost::Action()
 		m_vx *= 1.5f;
 		m_vy *= 1.5f;
 
+		
+
 		if ((x >= -400.0f && x <= 400.0f) || (y >= -400.0f && y <= 400.0f))
 		{
+
+			float sw = 0.0;
+
+			if (hit->CheckObjNameHit(OBJ_GHOST) != nullptr)
+			{
+
+				sw = m_vx;
+				m_vx = m_vy;
+				sw = m_vy;
+
+			}
 			//より近づいてきたら逃げる
 
-			if ((x >= -35.0f) && x <= 70.0f  && (y >= -35.0f) && y <= 70.0f || m_time != 0)
+			else if ((x >= -35.0f) && x <= 70.0f  && (y >= -35.0f) && y <= 70.0f || m_time != 0)
 			{
 				//ベクトルを真逆にする
 				m_vx = m_vx - m_vx - m_vx;
@@ -151,9 +170,10 @@ void CObjGhost::Action()
 					}
 				}
 			}
-			if (m_time == 0)
+			
+			if (m_time == 0||sw!=0.0)
 			{
-				if (n == 0.0f)
+				if (n == 0.0f||sw!=0.0)
 				{
 					m_x += m_vx;
 					m_y += m_vy;
@@ -167,15 +187,17 @@ void CObjGhost::Action()
 	m_vy = 0.0f;
 
 	//主人公弾と接触しているかどうか調べる
-	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
 		CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
 		Bblock->Enemycount--;
+		CObjBoss* Boss = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
+		Boss->m_oni_count--;
 	}
-
+	
 }
 
 void CObjGhost::Draw()

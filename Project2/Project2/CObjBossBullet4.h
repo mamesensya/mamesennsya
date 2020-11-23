@@ -29,5 +29,8 @@ private:
 	float m_speed{ 0.5 };
 
 
-	bool m_hit;
+	bool m_up;
+	bool m_reft;
+	bool m_right;
+	bool m_down;
 };
