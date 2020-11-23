@@ -152,16 +152,55 @@ void CObjBlock::Draw()
 	RECT_F src;//描画元切り取り位置
 	RECT_F dst;//描画先表示位置
 
-	//背景表示
-	src.m_top = 25.0f;
-	src.m_left = 0.0f;
-	src.m_right = 512.0f;
-	src.m_bottom = 512.0f;
-	dst.m_top = 0.0f+m_scroll2;
-	dst.m_left = 0.0f+m_scroll;
-	dst.m_right = 800.0f+m_scroll;
-	dst.m_bottom = 600.0f+m_scroll2;
-	Draw::Draw(3, &src, &dst, c, 0.0f);
+	////背景表示
+	//src.m_top = 0.0f;
+	//src.m_left = 0.0f;
+	//src.m_right = 800.0f;
+	//src.m_bottom = 560.0f;
+	//dst.m_top = 0.0f+m_scroll2;
+	//dst.m_left = 0.0f+m_scroll;
+	//dst.m_right = 800.0f+m_scroll;
+	//dst.m_bottom = 600.0f+m_scroll2;
+	//Draw::Draw(3, &src, &dst, c, 0.0f);
+
+
+
+
+
+	for (int i = 0; i < 30; i++)
+	{
+		for (int j = 0; j < 40; j++)
+		{
+			if (m_back[i][j] == 0 )
+			{
+				//表示位置の設定
+				dst.m_top = i * 600.0f + m_scroll2;
+				dst.m_left = j * 800.0f + m_scroll;
+				dst.m_right = dst.m_left + 800.0;
+				dst.m_bottom = dst.m_top + 600.0;
+				
+
+
+
+
+
+
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = src.m_left + 800.0f;
+				src.m_bottom =600.0f;
+				
+
+				//描画
+				Draw::Draw(3, &src, &dst, c, 0.0f);
+			}
+		}
+	}
+
+
+
+
+
 
 	//切り取り位置の設定
 	src.m_top = 0.0f;
@@ -230,7 +269,7 @@ void CObjBlock::Draw()
 //引数5 bool* left      :左部分に当たっているかを返す
 //引数6 bool* right     :右部分に当たっているかを返す
 //引数7 float* vx       :左右判定時の反発による移動方向・力の値を変えて返す
-//引数8 float* vy       :上下判定時による自由落下運動の移動方向・力の値を変えて返す
+//引数8 float* vy       :上下判定時による移動方向・力の値を変えて返す
 void CObjBlock::BlockHit(
 	float* x, float* y, bool* up, bool* down,
 	bool* left, bool* right, float* vx, float* vy
@@ -337,55 +376,88 @@ void CObjBlock::BlockHit(
 
 
 
-//Block_BulletHit関数
-//引数1 float* x        :判定を行うobjectのX位置
-//引数2 float* y        :判定を行うobjectのY位置
-//引数3 bool* hit       :当たったか確認する
-void CObjBlock::Block_BulletHit(
-	float* x, float* y, bool* hit,float* vx, float* vy
-)
-{
-	for (int k = 0; k < 60; k++)
-	{
-		for (int l = 0; l < 80; l++)
-		{
-			float bx = k * 64.0f;
-			float by = l * 64.0f;
-			if (m_map[k][l] == 1)
-			{
-				//弾とブロックのあたり判定
-				if ((*x + (-m_scroll) + 64.0f > bx) && (*x + (-m_scroll) < bx + 64.0f) && (*y + (-m_scroll2) + 64.0f > by) && (*y + (-m_scroll2) < by + 64.0f))
-				{
-
-
-					float rvx = (*x + (-m_scroll)) - bx;
-					float rvy = (*y + (-m_scroll2)) - by;
-
-					//長さを求める
-					float len = sqrt(rvx * rvx + rvy * rvy);
-
-					float r = atan2(rvy, rvx);
-					r = r * 180.0f / 3.14f;
-
-					if (r < 0.0f)
-						r = abs(r);
-					else
-						r = 360.0f - abs(r);
-
-					//要素番号を座標に変換
-					float bx = k * 64.0f;
-					float by = l * 64.0f;
-
-					if (len < 88.0f)
-					{
-						
-						
-						*hit = true;
-
-
-					}
-				}
-			}
-		}
-	}
-}
+////Block_BulletHit関数
+////引数1 float* x        :判定を行うobjectのX位置
+////引数2 float* y        :判定を行うobjectのY位置
+////引数3 bool* hit       :当たったか確認する
+//void CObjBlock::Block_BulletHit(
+//	float* x, float* y, bool* up, bool* down,
+//	bool* left, bool* right, float* vx, float* vy
+//)
+//{
+//	*up = false;
+//	*down = false;
+//	*left = false;
+//	*right = false;
+//	for (int i = 0; i < 60; i++)
+//	{
+//		for (int j = 0; j < 80; j++)
+//		{
+//			if (m_map[i][j] == 1)
+//			{
+//				float bx = i * 64.0f;
+//				float by = j * 64.0f;
+//				//弾とブロックのあたり判定
+//				if ((*x + (-m_scroll) + 64.0f > bx) && (*x + (-m_scroll) < bx + 64.0f) && (*y + (-m_scroll2) + 64.0f > by) && (*y + (-m_scroll2) < by + 64.0f))
+//				{
+//
+//
+//					float rvx = (*x + (-m_scroll)) - bx;
+//					float rvy = (*y + (-m_scroll2)) - by;
+//
+//					//長さを求める
+//					float len = sqrt(rvx * rvx + rvy * rvy);
+//
+//					float r = atan2(rvy, rvx);
+//					r = r * 180.0f / 3.14f;
+//
+//					if (r < 0.0f)
+//						r = abs(r);
+//					else
+//						r = 360.0f - abs(r);
+//
+//					
+//
+//					if (len < 88.0f)
+//					{
+//						
+//						//角度で上下左右を判定
+//						if ((r < 45 && r>0) || r > 315)
+//						{
+//							//右
+//							*right = true;
+//
+//
+//						}
+//						if (r > 45 && r < 135)
+//						{
+//							//上
+//							*down = true;
+//
+//
+//
+//						}
+//						if (r > 135 && r < 225)
+//						{
+//							//左
+//							*left = true;
+//
+//
+//
+//
+//						}
+//						if (r > 225 && r < 315)
+//						{
+//							//下
+//							*up = true;
+//
+//
+//						}
+//
+//
+//					}
+//				}
+//			}
+//		}
+//	}
+//}

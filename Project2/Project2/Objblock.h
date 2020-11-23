@@ -22,14 +22,15 @@ public:
 		bool* left, bool* right, float* vx, float* vy
 	);
 
-	void Block_BulletHit(
-		float* x, float* y, bool* hit, float* vx, float* vy
-	);
+	/*void Block_BulletHit(
+		float* x, float* y, bool* up, bool* down,
+		bool* left, bool* right, float* vx, float* vy
+	);*/
 
 	int m_map[60][80];//マップ情報
 private:
 
-
+	int m_back[30][40]{0};
 	float m_scroll;//左右スクロール用
 	float m_scroll2;//上下スクロール用
 
