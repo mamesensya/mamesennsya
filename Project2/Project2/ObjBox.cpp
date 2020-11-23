@@ -71,7 +71,7 @@ void CObjBox::Action()
 		Hits::DeleteHitBox(this);
 
 		//ì§ÇèoåªÇ≥ÇπÇÈ
-		CObjBean* obj_bean = new CObjBean(m_x, m_y);
+		CObjBean* obj_bean = new CObjBean(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
 		Objs::InsertObj(obj_bean, OBJ_BEAN, 9);
 	}
 }

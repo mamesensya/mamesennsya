@@ -11,8 +11,8 @@ using namespace GameL;
 //コンストラクタ
 CObjChara::CObjChara(float x, float y)
 {
-	m_x = x;
-	m_y = y;
+	m_x = x + 20.0f;
+	m_y = y + 20.0f;
 }
 
 void CObjChara::Init()
