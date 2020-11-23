@@ -99,6 +99,10 @@ void CObjChara::Action()
 			m_vx = 0;
 			m_vy = 0;
 
+			//ブロックとの当たり判定
+			CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+			pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
+
 			//当たり判定を行うオブジェクト情報部
 			int data_base[10] =
 			{
