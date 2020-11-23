@@ -44,8 +44,6 @@ void CObjEnemy3B::Action() {
 	m_x += m_vx * m_speed;
 	m_y += m_vy * m_speed;
 
-	mx += m_vx * m_speed;
-	my += m_vy * m_speed;
 	
 	
 	m_x += m_vx;
@@ -54,8 +52,8 @@ void CObjEnemy3B::Action() {
 	mx += m_vx;
 	my += m_vy;
 
-	Bx += mx;
-	By += my;
+	Bx += mx+m_scroll_map_x;
+	By += my+m_scroll_map_y;
 
 	//HitBoxÇÃì‡óeÇçXêV
 	CHitBox* hit = Hits::GetHitBox(this);
