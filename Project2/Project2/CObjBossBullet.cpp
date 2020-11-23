@@ -86,15 +86,11 @@ void CObjBossBullet::Action()
 
 	m_x += m_scroll_map_x;
 	m_y += m_scroll_map_y;
-	m_x -= 40;
-	m_y -= 40;
 
 	//ブロックと弾の当たり判定　関数に値を渡す
 	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	bbh->BlockHit(&Bx, &By, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
 
-	m_x += 40;
-	m_y += 40;
 	m_x -= m_scroll_map_x;
 	m_y -= m_scroll_map_y;
 
