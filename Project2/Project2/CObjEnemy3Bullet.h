@@ -24,4 +24,5 @@ private:
 	float m_scroll_map_y{ 0 };
 	
 
+	bool m_hit;
 };

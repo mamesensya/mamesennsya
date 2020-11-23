@@ -41,7 +41,16 @@ void CObjBossBullet4::Action()
 	mx += m_vx * m_speed;
 	my += m_vy * m_speed;
 
+	
 	Hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
+
+	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	bbh->Block_BulletHit(&m_x, &m_y, &m_hit, &m_vx, &m_vy);
+	if (m_hit == true)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 
 	//主人公と接触しているか調べる
 	if (Hit->CheckObjNameHit(OBJ_HERO) != nullptr) {
@@ -61,7 +70,7 @@ void CObjBossBullet4::Action()
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 	}
 	//範囲外に出ると弾を削除
-	if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
+	if (mx >= 500.0f || mx <= -500.0f || my >= 500.0f || my <= -500.0f)
 	{
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除

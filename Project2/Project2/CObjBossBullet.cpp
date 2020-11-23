@@ -77,11 +77,18 @@ void CObjBossBullet::Action()
 	my += m_vy;
 
 
+	
 	//HitBox‚Ì“à—e‚ðXV
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
 
-
+	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	bbh->Block_BulletHit(&m_x, &m_y, &m_hit, &m_vx, &m_vy);
+	if (m_hit == true)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 
 	if (m_time == 100)
 	{

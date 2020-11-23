@@ -2,7 +2,6 @@
 #include "CObjPlayerBullet.h"
 #include "GameL\HitBoxManager.h"
 #include "GameL\DrawTexture.h"
-#include "GameL\HitBoxManager.h"
 #include "GameL\SceneManager.h"
 
 
@@ -33,7 +32,19 @@ void CObjPlayerBullet::Action() {
 		m_x += m_vx * m_speed;
 		m_y += m_vy * m_speed;
 
+		if (Hit->CheckObjNameHit(OBJ_ENEMY) != nullptr) {
+			
+		}
+
 		Hit->SetPos(m_x, m_y);
+
+		CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		bbh->Block_BulletHit(&m_x, &m_y, &m_hit, &m_vx, &m_vy);
+		if (m_hit == true)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
 
 		if (Hit->CheckObjNameHit(OBJ_ENEMY) != nullptr) {
 			this->SetStatus(false);

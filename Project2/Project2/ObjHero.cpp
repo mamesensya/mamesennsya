@@ -217,7 +217,7 @@ void CObjHero::Action()
 				}
 			}
 		}
-		//m_hp‚ª‚O‚É‚È‚é‚ÆålŒö‚ğ”jŠü
+		////m_hp‚ª‚O‚É‚È‚é‚ÆålŒö‚ğ”jŠü
 		//if (m_hp == 0)
 		//{
 		//	this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·

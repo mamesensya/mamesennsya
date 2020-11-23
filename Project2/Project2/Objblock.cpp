@@ -14,6 +14,7 @@
 
 //デバッグ用にインクルードするヘッダー
 #include "GameL\DrawFont.h"
+#include"GameL/HitBoxManager.h"
 
 //使用するネームスペース
 
@@ -207,7 +208,6 @@ void CObjBlock::Draw()
 				}
 				else
 				{
-					
 					src.m_top = 0.0f;
 					src.m_left = 320.0f;
 					src.m_right = src.m_left + 64.0f;
@@ -333,4 +333,59 @@ void CObjBlock::BlockHit(
 		}
 	}
 
+}
+
+
+
+//Block_BulletHit関数
+//引数1 float* x        :判定を行うobjectのX位置
+//引数2 float* y        :判定を行うobjectのY位置
+//引数3 bool* hit       :当たったか確認する
+void CObjBlock::Block_BulletHit(
+	float* x, float* y, bool* hit,float* vx, float* vy
+)
+{
+	for (int k = 0; k < 60; k++)
+	{
+		for (int l = 0; l < 80; l++)
+		{
+			float bx = k * 64.0f;
+			float by = l * 64.0f;
+			if (m_map[k][l] == 1)
+			{
+				//弾とブロックのあたり判定
+				if ((*x + (-m_scroll) + 64.0f > bx) && (*x + (-m_scroll) < bx + 64.0f) && (*y + (-m_scroll2) + 64.0f > by) && (*y + (-m_scroll2) < by + 64.0f))
+				{
+
+
+					float rvx = (*x + (-m_scroll)) - bx;
+					float rvy = (*y + (-m_scroll2)) - by;
+
+					//長さを求める
+					float len = sqrt(rvx * rvx + rvy * rvy);
+
+					float r = atan2(rvy, rvx);
+					r = r * 180.0f / 3.14f;
+
+					if (r < 0.0f)
+						r = abs(r);
+					else
+						r = 360.0f - abs(r);
+
+					//要素番号を座標に変換
+					float bx = k * 64.0f;
+					float by = l * 64.0f;
+
+					if (len < 88.0f)
+					{
+						
+						
+						*hit = true;
+
+
+					}
+				}
+			}
+		}
+	}
 }

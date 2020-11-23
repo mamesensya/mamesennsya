@@ -39,22 +39,22 @@ void CObjEnemyBullet::Action()
 
 	if (m_r == 0.0f)
 	{
-		m_vy = -5.0f;
+		m_vy = -2.0f;
 		m_vx = 0.0f;
 	}
 	else if (m_r == 90.0f)
 	{
-		m_vx = -5.0f;
+		m_vx = -2.0f;
 		m_vy = 0.0f;
 	}
 	else if (m_r == 180.0f)
 	{
-		m_vy = +5.0f;
+		m_vy = +2.0f;
 		m_vx = 0.0f;
 	}
 	else if (m_r == -90.0f)
 	{
-		m_vx = +5.0f;
+		m_vx = +2.0f;
 		m_vy = 0.0f;
 	}
 
@@ -66,9 +66,18 @@ void CObjEnemyBullet::Action()
 	my += m_vy;
 
 
+	
 	//HitBoxの内容を更新
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
+
+	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	bbh->Block_BulletHit(&m_x, &m_y, &m_hit, &m_vx, &m_vy);
+	if (m_hit == true)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 
 	//主人公と接触しているかどうか調べる
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
@@ -89,7 +98,7 @@ void CObjEnemyBullet::Action()
 	//	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 	//}
 
-	if (mx >= 1000.0f||mx<=-1000.0f || my >= 1000.0f||my<=-1000.0f)
+	if (mx >= 500.0f||mx<=-500.0f || my >= 500.0f||my<=-500.0f)
 	{
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除

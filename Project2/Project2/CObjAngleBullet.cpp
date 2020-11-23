@@ -29,44 +29,6 @@ void CObjAngleBullet::Init()
     m_scroll_map_x = block->GetSX();
     m_scroll_map_y = block->GetSY();
 
-    //if (m_r == 45.0)
-    //{
-    //    m_vx = +0.5;
-    //    m_vy = -0.5;
-    //}
-    //if (m_r == 135.0)
-    //{
-    //    m_vx = -0.5;
-    //    m_vy = -0.5;
-    //}
-    //if (m_r == 225.0)
-    //{
-    //    m_vx = -0.5;
-    //    m_vy = +0.5;
-    //}
-    //if (m_r == 315.0)
-    //{
-    //    m_vx = +0.5;
-    //    m_vy = +0.5;
-    //}
-
-
-    //if (m_r == 0.0)
-    //{
-    //    m_vx += 0.5;
-    //}
-    //if (m_r == 90.0)
-    //{
-    //    m_vy -= 0.5;
-    //}
-    //if (m_r == 180.0)
-    //{
-    //    m_vx -= 0.5;
-    //}
-    //if (m_r == 270.0)
-    //{
-    //    m_vy += 0.5;
-    //}
 
     //当たり判定用ヒットボックスを作成
     Hits::SetHitBox(this, m_x-m_scroll_map_x, m_y-m_scroll_map_y, 32, 32, ELEMENT_ENEMY, OBJ_ANGLE_BULLET2, 1);
@@ -94,7 +56,16 @@ void CObjAngleBullet::Action()
     mx += m_vx;
     my += m_vy;
 
+  
     hit->SetPos(m_x + m_scroll_map_x, m_y+m_scroll_map_y);
+
+    CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+    bbh->Block_BulletHit(&m_x, &m_y, &m_hit, &m_vx, &m_vy);
+    if (m_hit == true)
+    {
+        this->SetStatus(false);
+        Hits::DeleteHitBox(this);
+    }
 
     //主人公と接触しているかどうか調べる
     if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)

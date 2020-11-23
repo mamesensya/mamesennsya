@@ -19,4 +19,6 @@ private:
 	int interval;
 
 	bool  intervalEnable;
+
+	bool m_hit;
 };

@@ -21,6 +21,11 @@ public:
 		float* x, float* y, bool* up, bool* down,
 		bool* left, bool* right, float* vx, float* vy
 	);
+
+	void Block_BulletHit(
+		float* x, float* y, bool* hit, float* vx, float* vy
+	);
+
 	int m_map[60][80];//ƒ}ƒbƒvî•ñ
 private:
 

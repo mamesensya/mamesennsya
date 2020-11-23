@@ -21,7 +21,7 @@ void CObjEnemy3B::Init() {
 	my = 0;
 
 
-	m_speed = 5;
+	m_speed = 2;
 	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_3BULLET, 1);
 };
 
@@ -41,8 +41,16 @@ void CObjEnemy3B::Action() {
 	mx += m_vx * m_speed;
 	my += m_vy * m_speed;
 	
-
+	
 	Hit->SetPos(m_x, m_y);
+
+	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	bbh->Block_BulletHit(&m_x, &m_y, &m_hit, &m_vx, &m_vy);
+	if (m_hit == true)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 
 	if (Hit->CheckObjNameHit(OBJ_HERO) != nullptr) {
 		this->SetStatus(false);
@@ -56,7 +64,7 @@ void CObjEnemy3B::Action() {
 	}
 
 
-	if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
+	if (mx >= 500.0f || mx <= -500.0f || my >= 500.0f || my <= -500.0f)
 	{
 		this->SetStatus(false);//íœ–½—ß
 		Hits::DeleteHitBox(this);//íœ

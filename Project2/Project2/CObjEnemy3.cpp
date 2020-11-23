@@ -64,6 +64,7 @@ void CObjEnemy3::Action()
 		y = m_y - hy+m_scroll_map_y;
 
 
+		if ((x < -400.0f && x > 400.0f) || (y < -400.0f && y > 400.0f));
 
 		if ((x >= -400.0f && x <= 400.0f) || (y >= -400.0f && y <= 400.0f))
 		{

@@ -31,4 +31,6 @@ private:
 	
 	float m_speed{ 5 };
 
+
+	bool m_hit;
 };
