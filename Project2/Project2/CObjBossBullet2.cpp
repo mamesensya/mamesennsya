@@ -47,8 +47,14 @@ void CObjBossBullet2::Action()
 	
 	Hit->SetPos(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
 
+	m_x += m_scroll_map_x;
+	m_y += m_scroll_map_y;
+
 	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+	m_x -= m_scroll_map_x;
+	m_y -= m_scroll_map_y;
 
 	int data_base[4] =
 	{

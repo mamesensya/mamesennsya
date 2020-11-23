@@ -8,6 +8,7 @@
 #include"CObjBoss.h"
 #include"CObjAngleBullet.h"
 #include "Objbreakblock.h"
+#include"CObjBossBullet2.h"
 
 using namespace GameL;
 
@@ -26,6 +27,7 @@ void CObjBoss::Init()
 	m_hp = 5;//体力
 	count = 0;//向きを固定するカウント
 	m_time = 0;//弾丸発射制御用time
+	m_time2 = 0;
 	m_move_time = 0;//移動硬直用time
 
 	pbullet_interval = 0; //貫通弾ヒットの間隔
@@ -42,8 +44,13 @@ void CObjBoss::Action()
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
 
+	m_time2++;
 	m_time++;
 	m_oni_time++;
+	if (m_time2 > 400)
+	{
+		m_time2 = 0;
+	}
 	if (m_time > 300)
 	{
 		m_time = 0;
@@ -278,7 +285,7 @@ void CObjBoss::Action()
 		//m_time++;
 
 			//鬼召喚
-			/*if (m_oni_time == 600&&m_oni_count<=3)
+			if (m_oni_time == 600&&m_oni_count<=3)
 			{
 				if (m_r == 0)
 				{
@@ -305,7 +312,18 @@ void CObjBoss::Action()
 					m_oni_count++;
 				}
 				
-			}*/
+			}
+
+
+			if (m_time2==400)
+			{
+				//発射音鳴らす
+				Audio::Start(10);
+
+				CObjBossBullet2* obj_eb = new CObjBossBullet2(m_x-80 , m_y-80 , -m_r - 90);
+				Objs::InsertObj(obj_eb, OBJ_BOSS_BULLET2, 50);
+			}
+
 
 		
 		}
@@ -402,8 +420,8 @@ void CObjBoss::Draw()
 
 		//出力位置
 		dst.m_top = -20.0f + m_y + m_scroll_map_y - 40.0f;
-		dst.m_left = -60.0f + m_x + m_scroll_map_x - 35.0f;
-		dst.m_right = 240.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_left = -50.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_right = 250.0f + m_x + m_scroll_map_x - 35.0f;
 		dst.m_bottom = 280.0f + m_y + m_scroll_map_y - 34.0f;
 	}
 	if (m_r==90)
@@ -419,19 +437,19 @@ void CObjBoss::Draw()
 	{
 
 		//出力位置
-		dst.m_top = -120.0f + m_y + m_scroll_map_y - 40.0f;
+		dst.m_top = -100.0f + m_y + m_scroll_map_y - 40.0f;
 		dst.m_left = -60.0f + m_x + m_scroll_map_x - 35.0f;
 		dst.m_right = 240.0f + m_x + m_scroll_map_x - 35.0f;
-		dst.m_bottom = 180.0f + m_y + m_scroll_map_y - 34.0f;
+		dst.m_bottom = 200.0f + m_y + m_scroll_map_y - 34.0f;
 	}
 	if (m_r==-90)
 	{
 
 		//出力位置
-		dst.m_top = -60.0f + m_y + m_scroll_map_y - 40.0f;
-		dst.m_left = -120.0f + m_x + m_scroll_map_x - 35.0f;
-		dst.m_right = 180.0f + m_x + m_scroll_map_x - 35.0f;
-		dst.m_bottom = 240.0f + m_y + m_scroll_map_y - 34.0f;
+		dst.m_top = -50.0f + m_y + m_scroll_map_y - 40.0f;
+		dst.m_left = -100.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_right = 200.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_bottom = 250.0f + m_y + m_scroll_map_y - 34.0f;
 	}
 	Draw::Draw(5, &src, &dst, c, m_r);
 }
