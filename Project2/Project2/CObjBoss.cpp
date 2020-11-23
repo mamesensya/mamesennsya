@@ -247,6 +247,7 @@ void CObjBoss::Action()
 				{
 					m_Bcount = 0;
 				}
+				
 
 			}
 		//bool reflect = true;

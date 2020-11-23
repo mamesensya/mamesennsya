@@ -20,21 +20,22 @@ void CObjEnemy3B::Init() {
 	mx=0;
 	my = 0;
 
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
 
 	m_speed = 2;
-	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_3BULLET, 1);
+	Hits::SetHitBox(this, m_x+m_scroll_map_x, m_y+m_scroll_map_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_3BULLET, 1);
 };
 
 void CObjEnemy3B::Action() {
 
 	CHitBox* Hit = Hits::GetHitBox(this);
+
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
 
-	CObjEnemy3* Ebs = (CObjEnemy3*)Objs::GetObj(OBJ_ENEMY);
-	float Bx = Ebs->GetX();
-	float By = Ebs->GetY();
 
 	m_vx = cos(3.14 / 180.0f * m_r);
 	m_vy = sin(3.14 / 180.0f * m_r);
@@ -44,25 +45,22 @@ void CObjEnemy3B::Action() {
 	m_x += m_vx * m_speed;
 	m_y += m_vy * m_speed;
 
-	
-	
-	m_x += m_vx;
-	m_y += m_vy;
-
 	mx += m_vx;
 	my += m_vy;
 
-	Bx += mx+m_scroll_map_x;
-	By += my+m_scroll_map_y;
 
 	//HitBox‚Ì“à—e‚ðXV
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
-
+	m_x += m_scroll_map_x;
+	m_y += m_scroll_map_y;
 
 	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	bbh->BlockHit(&Bx, &By, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+	bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+	m_x -= m_scroll_map_x;
+	m_y -= m_scroll_map_y;
 
 	int data_base[4] =
 	{

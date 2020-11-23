@@ -40,6 +40,7 @@ void CObjEnemy::Init()
 
 void CObjEnemy::Action()
 {
+
 	CHitBox* hit = Hits::GetHitBox(this);
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
@@ -88,7 +89,7 @@ void CObjEnemy::Action()
 					{
 						//x軸がほぼ垂直
 						m_r = 180.0f;
-						m_vy = +0.1;
+						m_vy = 0.0;
 						count = 1;
 					}
 					if (x < -20.0f && m_move_time == 0)
@@ -104,7 +105,7 @@ void CObjEnemy::Action()
 					{
 						//y軸がほぼ平行
 						m_r = -90.0f;
-						m_vx = 0.1f;
+						m_vx = 0.0f;
 						count = 1;
 					}
 					if (y < -20.0f && m_move_time == 0)
@@ -124,7 +125,7 @@ void CObjEnemy::Action()
 					{
 						//x軸がほぼ垂直
 						m_r = 0.0f;
-						m_vy = -0.1f;
+						m_vy = -0.0f;
 						count = 1;
 					}
 					if (x > 20.0f && m_move_time == 0)
@@ -140,7 +141,7 @@ void CObjEnemy::Action()
 					{
 						//y軸がほぼ平行
 						m_r = 90.0f;
-						m_vx = -0.1f;
+						m_vx = -0.0f;
 						count = 1;
 					}
 					if (y > 20.0f && m_move_time == 0)
@@ -162,7 +163,7 @@ void CObjEnemy::Action()
 					{
 						//x軸がほぼ垂直
 						m_r = 180.0f;
-						m_vy = -0.1f;
+						m_vy = -0.0f;
 						count = 1;
 					}
 					if (x > 20.0f && m_move_time == 0)
@@ -178,7 +179,7 @@ void CObjEnemy::Action()
 					{
 						//y軸がほぼ平行
 						m_r = 90.0f;
-						m_vx = -0.1f;
+						m_vx = -0.0f;
 						count = 1;
 					}
 					if (y < -20.0f && m_move_time == 0)
@@ -199,7 +200,7 @@ void CObjEnemy::Action()
 					{
 						//x軸がほぼ垂直
 						m_r = 0.0f;
-						m_vy = -0.1;
+						m_vy = -0.0;
 						count = 1;
 					}
 					if (x < -20.0f && m_move_time == 0)
@@ -215,7 +216,7 @@ void CObjEnemy::Action()
 					{
 						//y軸がほぼ平行
 						m_r = -90.0f;
-						m_vx = 0.1f;
+						m_vx = 0.0f;
 						count = 1;
 					}
 					if (y > 20.0f && m_move_time == 0)
@@ -304,9 +305,8 @@ void CObjEnemy::Action()
 			pbullet_enable = false;
 		}
 	}
-	m_vx = 0;
-	m_vy = 0;
-
+	m_vx = 0.0;
+	m_vy = 0.0;
 
 	//移動硬直制御
 	if (count == 1)

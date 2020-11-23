@@ -44,10 +44,6 @@ void CObjAngleBullet::Action()
     m_scroll_map_x = block->GetSX();
     m_scroll_map_y = block->GetSY();
 
-    CObjBoss* bb = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
-    //ボスの座標取得
-    float Bx = bb->GetX();
-    float By = bb->GetY();
 
     CHitBox* hit = Hits::GetHitBox(this);
     //移動
@@ -60,16 +56,19 @@ void CObjAngleBullet::Action()
     mx += m_vx;
     my += m_vy;
 
-    Bx += mx+m_scroll_map_x;
-    By += my+m_scroll_map_y;
 
     //HitBoxの内容を更新
    
     hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
+    m_x += m_scroll_map_x;
+    m_y += m_scroll_map_y;
 
     //壁と当たっているか調べる関数
-    block->BlockHit(&Bx, &By, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+    block->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+    m_x -= m_scroll_map_x;
+    m_y -= m_scroll_map_y;
 
     //boolでtureなら当たり判定削除
     int data_base[4] =
@@ -105,11 +104,11 @@ void CObjAngleBullet::Action()
     //	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
     //}
 
-    //if (mx >= 500.0f || mx <= -500.0f || my >= 500.0f || my <= -500.0f)
-    //{
-    //    this->SetStatus(false);//削除命令
-    //    Hits::DeleteHitBox(this);//削除
-    //}
+    if (mx >= 500.0f || mx <= -500.0f || my >= 500.0f || my <= -500.0f)
+    {
+        this->SetStatus(false);//削除命令
+        Hits::DeleteHitBox(this);//削除
+    }
 
 }
 

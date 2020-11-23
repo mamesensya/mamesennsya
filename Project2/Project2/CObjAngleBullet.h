@@ -26,9 +26,6 @@ private:
 	float m_scroll_map_x{ 0 };
 	float m_scroll_map_y{ 0 };
 
-	float m_scroll_map_x1{ 0 };
-	float m_scroll_map_y1{ 0 };
-
 	bool m_up;
 	bool m_reft;
 	bool m_right;

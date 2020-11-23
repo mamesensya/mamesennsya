@@ -17,6 +17,7 @@ public:
 	float GetX() { return m_x; }
 	float GetY() { return m_y; }
 	float GetR() { return m_r; }
+	bool Getcek() { return m_check; }
 
 	int m_Bcount{ 0 };
 	int m_oni_count{ 0 };
@@ -36,6 +37,7 @@ private:
 	int pbullet_interval;
 	bool pbullet_enable;
 
+	bool m_check{false};
 
 	float m_oni_time{ 0 };
 

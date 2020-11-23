@@ -38,9 +38,6 @@ void CObjBossBullet::Action()
 
 	CObjBoss* bb = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
 	count = bb->m_Bcount;
-	//ボスの座標取得
-	float Bx = bb->GetX();
-	float By = bb->GetY();
 
 	m_time ++ ;
 
@@ -55,22 +52,22 @@ void CObjBossBullet::Action()
 	//移動ベクトル
 	if (m_r == 0.0f)
 	{
-		m_vy = -2.0f;
+		m_vy = -1.5f;
 		m_vx = 0.0f;
 	}
 	else if (m_r == 90.0f)
 	{
-		m_vx = -2.0f;
+		m_vx = -1.5f;
 		m_vy = 0.0f;
 	}
 	else if (m_r == 180.0f)
 	{
-		m_vy = +2.0f;
+		m_vy = +1.5f;
 		m_vx = 0.0f;
 	}
 	else if (m_r == -90.0f)
 	{
-		m_vx = +2.0f;
+		m_vx = +1.5f;
 		m_vy = 0.0f;
 	}
 
@@ -82,16 +79,24 @@ void CObjBossBullet::Action()
 	mx += m_vx;
 	my += m_vy;
 
-	//取得したボスの座標にこれまで移動したベクトルとスクロールの値を追加
-	Bx += mx+m_scroll_map_x;
-	By += my+m_scroll_map_y;
+	
 	
 	//HitBoxの内容を更新
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
+	m_x += m_scroll_map_x;
+	m_y += m_scroll_map_y;
+	m_x -= 40;
+	m_y -= 40;
+
 	//ブロックと弾の当たり判定　関数に値を渡す
 	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	bbh->BlockHit(&Bx, &By, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+	m_x += 40;
+	m_y += 40;
+	m_x -= m_scroll_map_x;
+	m_y -= m_scroll_map_y;
 
 	//比較するデータ配列
 	int data_base[4] =
@@ -127,6 +132,7 @@ void CObjBossBullet::Action()
 		}
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
+
 	}
 
 	

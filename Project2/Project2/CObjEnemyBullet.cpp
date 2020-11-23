@@ -20,25 +20,35 @@ void CObjEnemyBullet::Init()
 	mx = 0;
 	my = 0;
 
+	//スクロールした分のベクトルを取得
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
+
 	//HitBox作成
-	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
+	Hits::SetHitBox(this, m_x+m_scroll_map_x, m_y+m_scroll_map_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
 }
 
 //アクション
 void CObjEnemyBullet::Action()
 {
 
+	CHitBox* hit = Hits::GetHitBox(this);
+
+	CObjEnemy* bb = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+	////敵の座標取得
+	//float Bx = bb->GetX();
+	//float By = bb->GetY();
+
 	//スクロールした分のベクトルを取得
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
 
-	CObjEnemy* Ebs = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
-	float Bx = Ebs->GetX();
-	float By = Ebs->GetY();
 
 
 
+	//移動ベクトル
 	if (m_r == 0.0f)
 	{
 		m_vy = -1.5f;
@@ -60,31 +70,34 @@ void CObjEnemyBullet::Action()
 		m_vy = 0.0f;
 	}
 
-	
+	//移動ベクトルを座標に追加
 	m_x += m_vx;
 	m_y += m_vy;
 
+	//一定距離動くと弾を削除する変数にベクトル追加
 	mx += m_vx;
 	my += m_vy;
 
-	Bx += mx;
-	By += my;
-
-	
 	//HitBoxの内容を更新
-	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
+	m_x += m_scroll_map_x;
+	m_y += m_scroll_map_y;
 
-
+	//ブロックと弾の当たり判定　関数に値を渡す
 	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	bbh->BlockHit(&Bx, &By, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+	bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
 
+	m_x -= m_scroll_map_x;
+	m_y -= m_scroll_map_y;
+
+	//比較するデータ配列
 	int data_base[4] =
 	{
 		m_up,m_down,m_reft,m_right
 	};
 
+	//for文で回してすべて確認　一つでもtrueなら弾を削除
 	for (int i = 0; i <= 3; i++)
 	{
 		if (data_base[i] == true)
