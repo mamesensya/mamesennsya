@@ -60,8 +60,8 @@ void CSceneMain::InitScene()
 
 
 	//音楽読み込み
-	Audio::LoadAudio(0, L"BGMGame（仮）.wav", BACK_MUSIC);
-	Audio::LoadAudio(1, L"BGMGame2（仮）.wav", BACK_MUSIC);
+	Audio::LoadAudio(0, L"BGMGame.wav", BACK_MUSIC);
+	Audio::LoadAudio(1, L"BGMGame2.wav", BACK_MUSIC);
 	Audio::LoadAudio(2, L"BGMBoss（仮）.wav", BACK_MUSIC);
 
 	Audio::LoadAudio(10, L"SE弾発射音.wav", EFFECT);
@@ -69,10 +69,10 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(12, L"SE敵爆破音.wav", EFFECT);
 
 	//ボリュームを1.5増やす
-	float v = Audio::VolumeMaster(-0.5f);
+	float v = Audio::VolumeMaster(1.5f);
 
 	//音楽スタート
-	//Audio::Start(0);
+	Audio::Start(0);
 
 	//敵の弾（BB弾）
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
