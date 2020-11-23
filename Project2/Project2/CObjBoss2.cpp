@@ -23,7 +23,7 @@ void CObjBoss2::Init()
 	pbullet_enable = false; //貫通弾ダメージ有効
 
 	//HitBox追加
-	Hits::SetHitBox(this, m_x, m_y, 172, 172, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_x, m_y, 150, 172, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 }
 
 void CObjBoss2::Action()
