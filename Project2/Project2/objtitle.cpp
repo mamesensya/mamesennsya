@@ -38,7 +38,18 @@ void CObjTitles::Draw() {
 
 	RECT_F src;
 	RECT_F dst;
-	
+
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = src.m_left + 400.0f;
+	src.m_bottom = src.m_top + 300.0f;
+
+	dst.m_top =150.0f;
+	dst.m_left = 200.0f;
+	dst.m_right = dst.m_left + 400.0f;
+	dst.m_bottom = dst.m_top + 300.0f;
+
+	Draw::Draw(29, &src, &dst, c, 0);
 
 	for (int i = 0; i < 24; i++) {
 		src.m_top = 0.0f;
@@ -54,4 +65,6 @@ void CObjTitles::Draw() {
 
 		Draw::Draw(15, &src, &dst, c, 0);
 	}
+
+	
 };

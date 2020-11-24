@@ -235,6 +235,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\..\Desktop\betatitle.png" />
     <Image Include="title.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </Image>
