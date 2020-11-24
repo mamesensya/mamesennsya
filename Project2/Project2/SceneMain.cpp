@@ -98,12 +98,13 @@ void CSceneMain::InitScene()
 	//Objs::InsertObj(obj_boss2, OBJ_BOSS2, 20);
 
 	//敵　鬼
-	Draw::LoadImageW(L"仮おに.png", 4, TEX_SIZE_512);
+	Draw::LoadImageW(L"おにボタン.png", 4, TEX_SIZE_512);
+	
 
-	Draw::LoadImageW(L"仮棒.png", 6, TEX_SIZE_512);
+	Draw::LoadImageW(L"折れた芯.png", 6, TEX_SIZE_512);
 
 	//主人公グラフィック読み込み(400×400)
-	Draw::LoadImageW(L"test.png", 20, TEX_SIZE_512);
+	Draw::LoadImageW(L"さいころ5.png", 20, TEX_SIZE_512);
 
 	//主人公表示
 	CObjHero* obj = new CObjHero(400,300);
