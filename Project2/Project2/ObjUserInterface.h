@@ -12,4 +12,5 @@ public:
 	void Draw();
 private:
 	char keystr[4] = { 'Z','X','C','V' };
+	bool flug;
 };

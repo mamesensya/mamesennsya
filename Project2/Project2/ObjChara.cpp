@@ -43,6 +43,7 @@ void CObjChara::Action()
 			//主人公（戦車）のHitBoxに当たっているときに切り替えができる
 			if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 			{
+				m_hit_tank = true;
 				//主人公が人状態に移行
 				if (Input::GetVKey('V') == true)
 				{
@@ -55,6 +56,8 @@ void CObjChara::Action()
 					//チャタリング防止用
 					while (Input::GetVKey('V') == true);
 				}
+			}else {
+				m_hit_tank = false;
 			}
 			//右方向
 			if (Input::GetVKey(VK_RIGHT) == true)

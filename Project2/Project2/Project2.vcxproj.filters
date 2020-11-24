@@ -88,5 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="title.png" />
+    <Image Include="..\..\..\..\..\Desktop\betatitle.png" />
   </ItemGroup>
 </Project>
