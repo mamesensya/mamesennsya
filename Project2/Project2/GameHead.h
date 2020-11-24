@@ -30,6 +30,7 @@ enum OBJ_NAME
 	OBJ_BREAK_BLOCK,
 	OBJ_ANGLE_BULLET2,
 	OBJ_BOSS_BULLET4,
+	OBJ_PENETRATE_BULLET,
 };
 //------------------------------------------------
 
@@ -113,7 +114,7 @@ struct UserData
 
 
 //ゲーム開始時のシーンクラス登録
-//#define SET_GAME_START SceneTitle
-#define SET_GAME_START CSceneMain
+#define SET_GAME_START SceneTitle
+//#define SET_GAME_START CSceneMain
 //#define SET_GAME_START CSceneGameClear
 //-----------------------------------------------

@@ -27,10 +27,9 @@ CObjBlock::CObjBlock(int map[60][80])
 
 //イニシャライズ
 void CObjBlock::Init()
-
 {
-	m_scroll = 0.0f;
-	m_scroll2 = 0.0f;
+	m_scroll = -0.0f;
+	m_scroll2 = -0.0f;
 }
 
 //アクション
@@ -38,46 +37,53 @@ void CObjBlock::Action()
 {
 	//	主人公の位置を取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+
 	float hx = hero->GetX();
 	float hy = hero->GetY();
-
 	//右方スクロールライン
-	if (hx < 80)
+	if (hx < 200)
 	{
-		hero->SetX(80);
+		hero->SetX(200);
 		m_scroll -= hero->GetVX();
 	}
-
 	//左方スクロールライン
-	if (hx > 300)
+	if (hx > 400)
 	{
-		hero->SetX(300);
+		hero->SetX(400);
 		m_scroll -= hero->GetVX();
 	}
 	//上方スクロールライン
-	if (hy < 80)
+	if (hy < 200)
 	{
-		hero->SetY(80);
+		hero->SetY(200);
 		m_scroll2 -= hero->GetVY();
 	}
 
 	//下方スクロールライン
-	if (hy > 300)
+	if (hy > 400)
 	{
-		hero->SetY(300);
+		hero->SetY(400);
 		m_scroll2 -= hero->GetVY();
 	}
-
 	//敵出現ライン
 	//主人公の位置＋500を敵出現ラインにする
-	float line = hx + (-m_scroll) + 500;
-	
+	float line = hx + (-m_scroll + 500);
+
 	//敵出現ラインを要素番号化
 	int ex = ((int)line) / 64;
 
 	//敵出現ラインの列を検索
 	for (int i = 0; i < 80; i++)
 	{
+		////8＝主人公
+		//if (m_map[i][ex] == 8)
+		//{
+		//	CObjHero* hero = new CObjHero(ex * 64.0f, i * 64.0f);
+		//	Objs::InsertObj(hero, OBJ_HERO, 10);
+
+		//	m_map[i][ex] = 0;
+		//}
+
 		//列の中から4を探す
 		if (m_map[i][ex] == 4)
 		{
@@ -113,7 +119,7 @@ void CObjBlock::Action()
 		if (m_map[i][ex] == 7)
 		{
 			//7があれば、ボス2を出現
-			CObjEnemy3* obje = new CObjEnemy3(ex * 64.0f, i * 64.0f);
+			CObjBoss2* obje = new CObjBoss2(ex * 64.0f, i * 64.0f);
 			Objs::InsertObj(obje, OBJ_ENEMY3, 51);
 
 			//敵出現場所の値を0にする
@@ -134,7 +140,7 @@ void CObjBlock::Action()
 		if (m_map[i][ex] == 2)
 		{
 			//2があれば箱を出現
-			CObjBox* obj_box = new CObjBox(ex*64.0f,i*64.0f);
+			CObjBox* obj_box = new CObjBox(ex * 64.0f, i * 64.0f);
 			Objs::InsertObj(obj_box, OBJ_BOX, 11);
 
 			//敵出現場所の値を0にする

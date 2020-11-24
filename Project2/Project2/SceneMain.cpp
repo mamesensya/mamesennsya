@@ -37,6 +37,9 @@ void CSceneMain::InitScene()
 	int size;            //ステージ情報の大きさ
 	p = Save::ExternalDataOpen(L"Book1.csv", &size);//外部データ読み込み
 
+	//p = Save::ExternalDataOpen(L"Book2.csv", &size);//外部データ読み込み
+
+
 	int map[60][80];
 	int count = 1;
 	for (int i = 0; i < 60; i++)
@@ -50,7 +53,6 @@ void CSceneMain::InitScene()
 			count += 2;
 		}
 	}
-	//p = Save::ExternalDataOpen(L"Book2.csv", &size);//外部データ読み込み
 
 	//p = Save::ExternalDataOpen(L"Book3.csv", &size);//外部データ読み込み
 
@@ -69,7 +71,7 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(12, L"SE敵爆破音.wav", EFFECT);
 
 	//ボリュームを1.5増やす
-	float v = Audio::VolumeMaster(0.0f);
+	float v = Audio::VolumeMaster(1.0f);
 
 	//音楽スタート
 	Audio::Start(0);
@@ -88,8 +90,8 @@ void CSceneMain::InitScene()
 
 	//ボス戦車
 	Draw::LoadImageW(L"おにゴム　赤.png", 5, TEX_SIZE_512);
-	/*CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
-	Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);*/
+	//CObjBoss* obj_bossenemy = new CObjBoss(400, 300);
+	//Objs::InsertObj(obj_bossenemy, OBJ_BOSS, 52);
 
 	//ボス戦車2
 	Draw::LoadImageW(L"土台.png", 9, TEX_SIZE_512);
@@ -106,7 +108,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"test.png", 20, TEX_SIZE_512);
 
 	//主人公表示
-	CObjHero* obj = new CObjHero(400,300);
+	CObjHero* obj = new CObjHero(150,150);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	//弾

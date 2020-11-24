@@ -17,7 +17,7 @@ void CObjPenetrateBullet::Init() {
 	m_vy = 0;
 	interval = 0;
 	intervalEnable = false;
-	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_RED, OBJ_BULLET, 1);
+	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_RED, OBJ_PENETRATE_BULLET, 1);
 };
 
 void CObjPenetrateBullet::Action() {
