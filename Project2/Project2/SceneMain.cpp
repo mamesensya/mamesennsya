@@ -99,11 +99,10 @@ void CSceneMain::InitScene()
 
 	//敵　鬼
 	Draw::LoadImageW(L"おにボタン.png", 4, TEX_SIZE_512);
-	
 
 	Draw::LoadImageW(L"折れた芯.png", 6, TEX_SIZE_512);
 
-	//主人公グラフィック読み込み(400×400)
+	//主人公グラフィック読み込み(300×300)
 	Draw::LoadImageW(L"さいころ5.png", 20, TEX_SIZE_512);
 
 	//主人公表示
