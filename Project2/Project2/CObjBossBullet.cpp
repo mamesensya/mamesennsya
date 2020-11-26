@@ -37,6 +37,7 @@ void CObjBossBullet::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 
 	CObjBoss* bb = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
+	if(bb!=nullptr)
 	count = bb->m_Bcount;
 
 	m_time ++ ;
