@@ -35,7 +35,7 @@ void CSceneMain::InitScene()
 	//外部データの読み込み（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;            //ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"Book1.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"Book2.csv", &size);//外部データ読み込み
 
 	//p = Save::ExternalDataOpen(L"Book2.csv", &size);//外部データ読み込み
 
@@ -48,12 +48,12 @@ void CSceneMain::InitScene()
 		{
 			int w = 0;
 			swscanf_s(&p.get()[count], L"%d", &w);
-
+			if (w == 4 || w==6) { GetenemyMax++; }
 			map[i][j] = w;
 			count += 2;
+			
 		}
 	}
-
 	//p = Save::ExternalDataOpen(L"Book3.csv", &size);//外部データ読み込み
 
 	//p = Save::ExternalDataOpen(L"Book4.csv", &size);//外部データ読み込み
@@ -147,6 +147,8 @@ void CSceneMain::InitScene()
 
 	//ユーザーインタフェース
 	CObjUserInterface* obj_ui = new CObjUserInterface();
+
+	obj_ui->setMAXenemy(GetenemyMax);
 	Objs::InsertObj(obj_ui, OBJ_USERINTERFACE, 18);
 	//CObjbreakblock* obj_break_block = new CObjbreakblock(200, 300);
 	//Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);

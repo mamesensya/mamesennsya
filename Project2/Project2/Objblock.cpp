@@ -73,6 +73,7 @@ void CObjBlock::Action()
 	int ex = ((int)line) / 64;
 
 	//敵出現ラインの列を検索
+	//enemies = 0;
 	for (int i = 0; i < 80; i++)
 	{
 		////8＝主人公
@@ -83,13 +84,13 @@ void CObjBlock::Action()
 
 		//	m_map[i][ex] = 0;
 		//}
-
 		//列の中から4を探す
 		if (m_map[i][ex] == 4)
 		{
 			//4があれば、敵を出現
 			CObjEnemy* obje = new CObjEnemy(ex * 64.0f, i * 64.0f);
 			Objs::InsertObj(obje, OBJ_ENEMY, 50);
+			enemies++;
 
 			//敵出現場所の値を0にする
 			m_map[i][ex] = 0;
@@ -101,7 +102,7 @@ void CObjBlock::Action()
 			//6があれば、散弾敵を出現
 			CObjEnemy3* obje = new CObjEnemy3(ex * 64.0f, i * 64.0f);
 			Objs::InsertObj(obje, OBJ_ENEMY3, 51);
-
+			
 			//敵出現場所の値を0にする
 			m_map[i][ex] = 0;
 		}

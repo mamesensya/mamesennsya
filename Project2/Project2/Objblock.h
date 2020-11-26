@@ -21,7 +21,9 @@ public:
 		float* x, float* y, bool* up, bool* down,
 		bool* left, bool* right, float* vx, float* vy
 	);
-
+	int GetEnemy() {
+		return enemies;
+	}
 	/*void Block_BulletHit(
 		float* x, float* y, bool* up, bool* down,
 		bool* left, bool* right, float* vx, float* vy
@@ -33,6 +35,7 @@ private:
 	int m_back[30][40]{0};
 	float m_scroll;//左右スクロール用
 	float m_scroll2;//上下スクロール用
+	int enemies = 0;
 
 
 };

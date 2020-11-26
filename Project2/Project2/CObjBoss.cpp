@@ -368,7 +368,6 @@ void CObjBoss::Action()
 			if (m_hp <= 0) {
 				//”š”­‰¹–Â‚ç‚·
 				Audio::Start(12);
-
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 

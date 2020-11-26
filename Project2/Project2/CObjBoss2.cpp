@@ -33,6 +33,7 @@ void CObjBoss2::Action()
 	m_scroll_map_y = block->GetSY();
 
 	//ålŒö‚ÌÀ•Wæ“¾
+
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	if (m_bullet_type == 0)
 	{
@@ -127,7 +128,6 @@ void CObjBoss2::Action()
 			if (m_hp <= 0) {
 				//”š”­‰¹–Â‚ç‚·
 				Audio::Start(12);
-
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 			}
