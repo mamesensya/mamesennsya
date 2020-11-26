@@ -30,6 +30,7 @@ enum OBJ_NAME
 	OBJ_BREAK_BLOCK,
 	OBJ_ANGLE_BULLET2,
 	OBJ_BOSS_BULLET4,
+	OBJ_PENETRATE_BULLET,
 };
 //------------------------------------------------
 
