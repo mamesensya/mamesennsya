@@ -40,9 +40,19 @@ void CObjUserInterface::Draw() {
 	dst.m_right = dst.m_left + 300.0f;
 	dst.m_bottom = dst.m_top + 48.0f;
 
-	
+	Draw::Draw(26, &src, &dst, c, 0);
+
+	dst.m_top = 64.0f;
+	dst.m_left = 0.0f;
+	dst.m_right = dst.m_left + 300.0f;
+	dst.m_bottom = dst.m_top + 32.0f;
 
 	Draw::Draw(26, &src, &dst, c, 0);
+
+	wchar_t str[128];
+	swprintf_s(str, L"Žc‚è“G‚Ì”F%d", setenemyMax);
+	Font::StrDraw(str,20,70,20,c);
+
 	Font::StrDraw(L"‘Ì—Í", 20, 10, 20, c);
 
 	src.m_top = 0.0f;
@@ -108,7 +118,7 @@ void CObjUserInterface::Draw() {
 			}
 			Draw::Draw(28, &src, &dst, c, 0);
 		}
-		wchar_t str[128];
+	
 
 		c[0] = 0.0f, c[1] = 0.0f, c[2] = 0.0f;
 		if (bullet[0] > 0) c[3] = 1.0f; else c[3] = 0.2f;

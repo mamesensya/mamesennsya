@@ -60,6 +60,7 @@ void CObjEnemy::Action()
 	float y = 0;//主人公から敵のベクトルy
 
 	//主人公の座標取得
+
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	if (hero != nullptr)
 	{
@@ -274,13 +275,15 @@ void CObjEnemy::Action()
 		if (m_hp <= 0) {
 			//爆発音鳴らす
 			Audio::Start(12);
-
+			CObjUserInterface* obj_ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+			obj_ui->setenemyMax--;
+			CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
+			Bblock->Enemycount--;
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 
 
-			CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
-			Bblock->Enemycount--;
+			
 		}
 	}
 	if (pbullet_enable == false) {
@@ -291,7 +294,8 @@ void CObjEnemy::Action()
 			if (m_hp <= 0) {
 				//爆発音鳴らす
 				Audio::Start(12);
-
+				CObjUserInterface* obj_ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+				obj_ui->setenemyMax--;
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 

@@ -13,5 +13,10 @@ public:
 	~CSceneMain() ;
 	void InitScene() ;//ゲームメインの初期化メソッド
 	void Scene();//ゲームメインの実行中メソッド
+	int GetEnemy() {
+		return GetenemyMax;
+	}
+
 private:
+	int GetenemyMax = 0;
 };
