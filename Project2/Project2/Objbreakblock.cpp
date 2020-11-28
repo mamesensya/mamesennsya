@@ -4,6 +4,7 @@
 #include "GameL\HitBoxManager.h"
 #include "GameHead.h"
 #include "Objbreakblock.h"
+#include"ObjUserInterface.h"
 
 //マップのX軸数
 #define MAP_X (100)
@@ -62,6 +63,18 @@ void CObjbreakblock::Action()
 
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
+
+	////敵のHitBoxの数を数えて抜ける(初回限定)
+	//for (;Enemycount== setenemyMax;)
+	//{
+	//	
+	//	CObjEnemy* count = Objs::GetObj(OBJ_ENEMY);
+	//	Enemycount++;
+
+	//	CObjEnemy3* count = Objs::GetObj(OBJ_ENEMY3);
+	//	Enemycount++;
+	//}
+
 
 	//敵を全員倒したらしたら壁を削除
 	if (Enemycount==0)
