@@ -25,5 +25,6 @@ private:
 	float m_scroll_map_x{ 0 };
 	float m_scroll_map_y{ 0 };
 
+
 	int setenemyMax;
 };

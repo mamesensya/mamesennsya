@@ -21,7 +21,6 @@ private:
 	
 	int nowenemy = 0;
 
-
 	
 	int Getset() { return setenemyMax; };
 };

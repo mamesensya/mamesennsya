@@ -70,6 +70,7 @@ void CObjbreakblock::Action()
 		CObjUserInterface* count = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
 		int num = count->Getset();
 
+
 		//“G‚ğ‘Sˆõ“|‚µ‚½‚ç‚µ‚½‚ç•Ç‚ğíœ
 		if (setenemyMax == 0)
 		{
