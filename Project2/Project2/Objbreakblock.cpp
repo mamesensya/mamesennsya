@@ -15,7 +15,7 @@
 using namespace GameL;
 
 //ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-CObjbreakblock::CObjbreakblock(float x, float y)
+CObjbreakblock::CObjbreakblock(float x, float y )
 {
 	m_x = x;
 	m_y = y;
@@ -66,18 +66,19 @@ void CObjbreakblock::Action()
 	////“G‚ÌHitBox‚Ì”‚ªŒ¸‚Á‚½‚çŒ¸‚ç‚·
 	if (Enemycount > 0)
 	{
-		//CObjUserInterface* count = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
-		//Objs::InsertObj(count, OBJ_USERINTERFACE,setenemyMax);
 
-		////“G‚ð‘Sˆõ“|‚µ‚½‚ç‚µ‚½‚ç•Ç‚ðíœ
-		//if (setenemyMax == 0)
-		//{
-		//	//•Ç‚ðíœ
-		//	this->SetStatus(false);
-		//	Hits::DeleteHitBox(this);
+		CObjUserInterface* count = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+		int num = count->Getset();
+
+		//“G‚ð‘Sˆõ“|‚µ‚½‚ç‚µ‚½‚ç•Ç‚ðíœ
+		if (setenemyMax == 0)
+		{
+			//•Ç‚ðíœ
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
 
 
-		//}
+		}
 	}
 }
 
