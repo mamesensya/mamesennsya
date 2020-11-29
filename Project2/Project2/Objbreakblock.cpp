@@ -24,7 +24,6 @@ CObjbreakblock::CObjbreakblock(float x, float y)
 //ƒCƒjƒVƒƒƒ‰ƒCƒY
 void CObjbreakblock::Init()
 {
-
 	//ƒ{ƒbƒNƒX‚Ì“–‚½‚è”»’è
 	//ŽålŒö‚ÌˆÊ’uŽæ“¾
 	//CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
@@ -64,26 +63,21 @@ void CObjbreakblock::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
-	////“G‚ÌHitBox‚Ì”‚ð”‚¦‚Ä”²‚¯‚é(‰‰ñŒÀ’è)
-	//for (;Enemycount== setenemyMax;)
-	//{
-	//	
-	//	CObjEnemy* count = Objs::GetObj(OBJ_ENEMY);
-	//	Enemycount++;
-
-	//	CObjEnemy3* count = Objs::GetObj(OBJ_ENEMY3);
-	//	Enemycount++;
-	//}
-
-
-	//“G‚ð‘Sˆõ“|‚µ‚½‚ç‚µ‚½‚ç•Ç‚ðíœ
-	if (Enemycount==0)
+	////“G‚ÌHitBox‚Ì”‚ªŒ¸‚Á‚½‚çŒ¸‚ç‚·
+	if (Enemycount > 0)
 	{
-		//•Ç‚ðíœ
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
+		//CObjUserInterface* count = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+		//Objs::InsertObj(count, OBJ_USERINTERFACE,setenemyMax);
 
-	
+		////“G‚ð‘Sˆõ“|‚µ‚½‚ç‚µ‚½‚ç•Ç‚ðíœ
+		//if (setenemyMax == 0)
+		//{
+		//	//•Ç‚ðíœ
+		//	this->SetStatus(false);
+		//	Hits::DeleteHitBox(this);
+
+
+		//}
 	}
 }
 
