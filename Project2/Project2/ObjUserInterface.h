@@ -15,13 +15,13 @@ public:
 		setenemyMax--;
 	}
 	int setenemyMax;
-	int Getset() { return setenemyMax; };
+
+	int GetEN() { return setenemyMax; };
 private:
 	char keystr[4] = { 'Z','X','C','V' };
 	bool flug;
 	
 	int nowenemy = 0;
 
-	
-	
+
 };

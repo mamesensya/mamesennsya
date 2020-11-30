@@ -6,6 +6,7 @@
 #include "CObjPlayerBullet.h"
 #include "CObjpenetrateBullet.h"
 #include "GameL\Audio.h"
+#include"Objbreakblock.h"
 
 #include "GameHead.h"
 #include "ObjHero.h"
@@ -136,8 +137,6 @@ void CObjHero::Action()
 		CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 		pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
 
-		
-
 		//ベクトルを位置に加算
 		m_x += m_vx;
 		m_y += m_vy;
@@ -190,6 +189,32 @@ void CObjHero::Action()
 				Objs::InsertObj(savesys, OBJ_SAVE, 17);
 			};
 		};
+
+		if (hit->CheckObjNameHit(OBJ_BREAK_BLOCK) != nullptr)
+		{
+			if (1)//上
+			{
+				m_vx = m_vx - m_vx - m_vx;
+			}
+
+			if (1)//下
+			{
+				m_vx = +m_vx + m_vx + m_vx;
+			}
+
+			if (1)//右
+			{
+				m_vy = m_vy - m_vy - m_vy;
+			}
+
+			if (1)//左
+			{
+				m_vy = m_vy + m_vy + m_vy;
+			}
+
+		}
+
+
 
 		//当たり判定を行うオブジェクト情報部
 		int data_base[10] =
