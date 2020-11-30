@@ -12,7 +12,7 @@
 #include "math.h"
 
 //主人公のHP（体力）
-#define HP 5
+#define HP 50
 
 //使用するネームスペース
 using namespace GameL;
