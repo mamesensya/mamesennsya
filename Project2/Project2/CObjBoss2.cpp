@@ -151,6 +151,13 @@ void CObjBoss2::Action()
 			m_attack_time = 0;
 		}
 	}
+
+	if (m_x >= (80 * 64) || m_y >= (60 * 64))
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 }
 
 void CObjBoss2::Draw()

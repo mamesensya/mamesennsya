@@ -15,6 +15,7 @@ public:
 		setenemyMax--;
 	}
 	int setenemyMax;
+	int Getset() { return setenemyMax; };
 private:
 	char keystr[4] = { 'Z','X','C','V' };
 	bool flug;
@@ -22,5 +23,5 @@ private:
 	int nowenemy = 0;
 
 	
-	int Getset() { return setenemyMax; };
+	
 };

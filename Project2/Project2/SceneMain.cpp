@@ -35,25 +35,27 @@ void CSceneMain::InitScene()
 	//外部データの読み込み（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;            //ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"Book2.csv", &size);//外部データ読み込み
+	p = Save::ExternalDataOpen(L"Book1.csv", &size);//外部データ読み込み
+
+		int map[60][80];
+		int count = 1;
+		for (int i = 0; i < 60; i++)
+		{
+			for (int j = 0; j < 80; j++)
+			{
+				int w = 0;
+				swscanf_s(&p.get()[count], L"%d", &w);
+				if (w == 4 || w == 6) { GetenemyMax++; }
+				map[i][j] = w;
+				count += 2;
+
+			}
+
+		}
+	
 
 	//p = Save::ExternalDataOpen(L"Book2.csv", &size);//外部データ読み込み
 
-
-	int map[60][80];
-	int count = 1;
-	for (int i = 0; i < 60; i++)
-	{
-		for (int j = 0; j < 80; j++)
-		{
-			int w = 0;
-			swscanf_s(&p.get()[count], L"%d", &w);
-			if (w == 4 || w==6) { GetenemyMax++; }
-			map[i][j] = w;
-			count += 2;
-			
-		}
-	}
 	//p = Save::ExternalDataOpen(L"Book3.csv", &size);//外部データ読み込み
 
 	//p = Save::ExternalDataOpen(L"Book4.csv", &size);//外部データ読み込み
@@ -108,7 +110,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"さいころ5.png", 20, TEX_SIZE_512);
 
 	//主人公表示
-	CObjHero* obj = new CObjHero(150,150);
+	CObjHero* obj = new CObjHero(0,0);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	//弾
@@ -142,8 +144,8 @@ void CSceneMain::InitScene()
 
 	//壊れる壁
 	Draw::LoadImageW(L"hako.png", 17, TEX_SIZE_512);
-	CObjbreakblock* obj_break_block = new CObjbreakblock(200, 300);
-	Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
+	//CObjbreakblock* obj_break_block = new CObjbreakblock(200, 300);
+	//Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
 
 	//ユーザーインタフェース
 	CObjUserInterface* obj_ui = new CObjUserInterface();

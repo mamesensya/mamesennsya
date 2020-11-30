@@ -307,6 +307,12 @@ void CObjEnemy3::Action()
 		}
 	}
 
+	if (m_x >= (80 * 64) || m_y >= (60 * 64))
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 }
 
 void CObjEnemy3::Draw()

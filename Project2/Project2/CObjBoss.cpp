@@ -371,8 +371,7 @@ void CObjBoss::Action()
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 
-				CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
-				Bblock->Enemycount--;
+
 			}
 		}
 	}
@@ -397,6 +396,12 @@ void CObjBoss::Action()
 		}
 	}
 
+	if (m_x >= (80 * 64) || m_y >= (60 * 64))
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 }
 
 void CObjBoss::Draw()

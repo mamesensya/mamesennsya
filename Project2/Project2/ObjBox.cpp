@@ -77,6 +77,14 @@ void CObjBox::Action()
 		CObjBean* obj_bean = new CObjBean(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
 		Objs::InsertObj(obj_bean, OBJ_BEAN, 9);
 	}
+
+	if (m_x >= (80 * 64) || m_y >= (60 * 64))
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
+
 }
 
 //ƒhƒ[

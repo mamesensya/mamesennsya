@@ -66,88 +66,98 @@ void CObjBlock::Action()
 		m_scroll2 -= hero->GetVY();
 	}
 	//敵出現ライン
+	float lineX = 0.0;
+	//float lineY = 0.0;
 	//主人公の位置＋500を敵出現ラインにする
-	float line = hx + (-m_scroll + 500);
+	lineX = hx + (-m_scroll +300);
+
+	//if (hy == 400)
+	//	lineY = hy + (-m_scroll + 400);
+	//if (hy == 200)
+	//	lineY = hy + (-m_scroll - 200);
+
+
 
 	//敵出現ラインを要素番号化
-	int ex = ((int)line) / 64;
+	int ex = ((int)lineX) / 64;
+	//int ey = ((int)lineY) / 64;
+
 
 	//敵出現ラインの列を検索
 	//enemies = 0;
-	for (int i = 0; i < 80; i++)
-	{
-		////8＝主人公
-		//if (m_map[i][ex] == 8)
-		//{
-		//	CObjHero* hero = new CObjHero(ex * 64.0f, i * 64.0f);
-		//	Objs::InsertObj(hero, OBJ_HERO, 10);
+	
 
-		//	m_map[i][ex] = 0;
-		//}
-		//列の中から4を探す
-		if (m_map[i][ex] == 4)
+		for (int i = 0; i < 80; i++)
 		{
-			//4があれば、敵を出現
-			CObjEnemy* obje = new CObjEnemy(ex * 64.0f, i * 64.0f);
-			Objs::InsertObj(obje, OBJ_ENEMY, 50);
-			enemies++;
+			////8＝主人公
+			//if (m_map[i][ex] == 8)
+			//{
+			//	CObjHero* hero = new CObjHero(ex * 64.0f, i * 64.0f);
+			//	Objs::InsertObj(hero, OBJ_HERO, 10);
+				//	m_map[i][ex] = 0;
+			//}
+			//列の中から4を探す
+			if (m_map[i][ex] == 4)
+			{
+				//4があれば、敵を出現
+				CObjEnemy* obje = new CObjEnemy(ex * 64.0f, i * 64.0f);
+				Objs::InsertObj(obje, OBJ_ENEMY, 50);
+				enemies++;
+				e++;
 
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
+				//敵出現場所の値を0にする
+				m_map[i][ex] = 0;
+			}
+			//列の中から6を探す
+			if (m_map[i][ex] == 6)
+			{
+				//6があれば、散弾敵を出現
+				CObjEnemy3* obje = new CObjEnemy3(ex * 64.0f, i * 64.0f);
+				Objs::InsertObj(obje, OBJ_ENEMY3, 51);
+				//敵出現場所の値を0にする
+				m_map[i][ex] = 0;
+			}
+			//列の中から5を探す
+			if (m_map[i][ex] == 5)
+			{
+				//5があれば、ボスを出現
+				CObjBoss* obje = new CObjBoss(ex * 64.0f, i * 64.0f);
+				Objs::InsertObj(obje, OBJ_BOSS, 51);
+				//敵出現場所の値を0にする
+				m_map[i][ex] = 0;
+			}
+			//列の中から7を探す
+			if (m_map[i][ex] == 7)
+			{
+				//7があれば、ボス2を出現
+				CObjBoss2* obje = new CObjBoss2(ex * 64.0f, i * 64.0f);
+				Objs::InsertObj(obje, OBJ_ENEMY3, 51);
+				//敵出現場所の値を0にする
+				m_map[i][ex] = 0;
+			}
+			//列の中から3を探す
+			if (m_map[i][ex] == 3)
+			{
+				//3があれば、壊れる壁を出現
+				CObjbreakblock* obj_break_block = new CObjbreakblock(ex * 64.0f, i * 64.0f);
+				Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
+
+				//敵出現場所の値を0にする
+				m_map[i][ex] = 0;
+			}
+			//列の中から2を探す
+			if (m_map[i][ex] == 2)
+			{
+				//2があれば箱を出現
+				CObjBox* obj_box = new CObjBox(ex * 64.0f, i * 64.0f);
+				Objs::InsertObj(obj_box, OBJ_BOX, 11);
+				//敵出現場所の値を0にする
+				m_map[i][ex] = 0;
+			}
 		}
-
-		//列の中から6を探す
-		if (m_map[i][ex] == 6)
-		{
-			//6があれば、散弾敵を出現
-			CObjEnemy3* obje = new CObjEnemy3(ex * 64.0f, i * 64.0f);
-			Objs::InsertObj(obje, OBJ_ENEMY3, 51);
-			
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
-		}
-		//列の中から5を探す
-		if (m_map[i][ex] == 5)
-		{
-			//5があれば、ボスを出現
-			CObjBoss* obje = new CObjBoss(ex * 64.0f, i * 64.0f);
-			Objs::InsertObj(obje, OBJ_BOSS, 51);
-
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
-		}
-		//列の中から7を探す
-		if (m_map[i][ex] == 7)
-		{
-			//7があれば、ボス2を出現
-			CObjBoss2* obje = new CObjBoss2(ex * 64.0f, i * 64.0f);
-			Objs::InsertObj(obje, OBJ_ENEMY3, 51);
-
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
-		}
-		//列の中から3を探す
-		if (m_map[i][ex] == 3)
-		{
-			//3があれば、壊れる壁を出現
-			CObjbreakblock* obj_break_block = new CObjbreakblock(ex * 64.0f, i * 64.0f);
-			Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
-
-
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
-		}
-		//列の中から2を探す
-		if (m_map[i][ex] == 2)
-		{
-			//2があれば箱を出現
-			CObjBox* obj_box = new CObjBox(ex * 64.0f, i * 64.0f);
-			Objs::InsertObj(obj_box, OBJ_BOX, 11);
-
-			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
-		}
-	}
+		
+		
+	
 }
 
 //ドロー
@@ -174,15 +184,15 @@ void CObjBlock::Draw()
 
 
 
-	for (int i = 0; i < 30; i++)
+	for (int i = 0; i < 6; i++)
 	{
-		for (int j = 0; j < 40; j++)
+		for (int j = 0; j <8 ; j++)
 		{
 			if (m_back[i][j] == 0 )
 			{
 				//表示位置の設定
-				dst.m_top = i * 600.0f + m_scroll2;
-				dst.m_left = j * 800.0f + m_scroll;
+				dst.m_top = i * 600.0f + m_scroll2-300;
+				dst.m_left = j * 800.0f + m_scroll-300;
 				dst.m_right = dst.m_left + 800.0;
 				dst.m_bottom = dst.m_top + 600.0;
 				
@@ -324,46 +334,46 @@ void CObjBlock::BlockHit(
 					{
 
 
-						//角度で上下左右を判定
-						if ((r < 45 && r>0) || r > 315)
-						{
-							//右
-							*right = true;
-							*x = bx + 64.0f + (m_scroll);
-							*vx = -(*vx) * 0.1f;
+						////角度で上下左右を判定
+						//if ((r < 45 && r>0) || r > 315)
+						//{
+						//	//右
+						//	*right = true;
+						//	*x = bx + 64.0f + (m_scroll);
+						//	*vx = -(*vx) * 0.1f;
 
 
-						}
-						if (r > 45 && r < 135)
-						{
-							//上
-							*down = true;
-							*y = by - 64.0f + (m_scroll2);
-							*vy = -(*vy)*0.1f;
-
-
-
-						}
-						if (r > 135 && r < 225)
-						{
-							//左
-							*left = true;
-							*x = bx - 64.0f + (m_scroll);
-							*vx = -(*vx) * 0.1f;
+						//}
+						//if (r > 45 && r < 135)
+						//{
+						//	//上
+						//	*down = true;
+						//	*y = by - 64.0f + (m_scroll2);
+						//	*vy = -(*vy)*0.1f;
 
 
 
+						//}
+						//if (r > 135 && r < 225)
+						//{
+						//	//左
+						//	*left = true;
+						//	*x = bx - 64.0f + (m_scroll);
+						//	*vx = -(*vx) * 0.1f;
 
-						}
-						if (r > 225 && r < 315)
-						{
-							//下
-							*up = true;
-							*y = by + 64.0f + (m_scroll2);
-							*vy = -(*vy) * 0.1f;
 
-							
-						}
+
+
+						//}
+						//if (r > 225 && r < 315)
+						//{
+						//	//下
+						//	*up = true;
+						//	*y = by + 64.0f + (m_scroll2);
+						//	*vy = -(*vy) * 0.1f;
+
+						//	
+						//}
 
 					}
 
