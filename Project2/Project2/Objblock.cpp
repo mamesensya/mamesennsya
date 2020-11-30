@@ -334,46 +334,46 @@ void CObjBlock::BlockHit(
 					{
 
 
-						////角度で上下左右を判定
-						//if ((r < 45 && r>0) || r > 315)
-						//{
-						//	//右
-						//	*right = true;
-						//	*x = bx + 64.0f + (m_scroll);
-						//	*vx = -(*vx) * 0.1f;
+						//角度で上下左右を判定
+						if ((r < 45 && r>0) || r > 315)
+						{
+							//右
+							*right = true;
+							*x = bx + 64.0f + (m_scroll);
+							*vx = -(*vx) * 0.1f;
 
 
-						//}
-						//if (r > 45 && r < 135)
-						//{
-						//	//上
-						//	*down = true;
-						//	*y = by - 64.0f + (m_scroll2);
-						//	*vy = -(*vy)*0.1f;
-
-
-
-						//}
-						//if (r > 135 && r < 225)
-						//{
-						//	//左
-						//	*left = true;
-						//	*x = bx - 64.0f + (m_scroll);
-						//	*vx = -(*vx) * 0.1f;
+						}
+						if (r > 45 && r < 135)
+						{
+							//上
+							*down = true;
+							*y = by - 64.0f + (m_scroll2);
+							*vy = -(*vy)*0.1f;
 
 
 
+						}
+						if (r > 135 && r < 225)
+						{
+							//左
+							*left = true;
+							*x = bx - 64.0f + (m_scroll);
+							*vx = -(*vx) * 0.1f;
 
-						//}
-						//if (r > 225 && r < 315)
-						//{
-						//	//下
-						//	*up = true;
-						//	*y = by + 64.0f + (m_scroll2);
-						//	*vy = -(*vy) * 0.1f;
 
-						//	
-						//}
+
+
+						}
+						if (r > 225 && r < 315)
+						{
+							//下
+							*up = true;
+							*y = by + 64.0f + (m_scroll2);
+							*vy = -(*vy) * 0.1f;
+
+							
+						}
 
 					}
 
