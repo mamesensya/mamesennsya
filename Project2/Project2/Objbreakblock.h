@@ -17,7 +17,10 @@ public:
 	float GetX() { return m_x; }
 	float GetY() { return m_y; }
 
+
+
 	int Enemycount{ 0 };
+
 private:
 	float m_x;//ˆÊ’u
 	float m_y;
@@ -25,6 +28,5 @@ private:
 	float m_scroll_map_x{ 0 };
 	float m_scroll_map_y{ 0 };
 
-
-	int setenemyMax;
+	
 };

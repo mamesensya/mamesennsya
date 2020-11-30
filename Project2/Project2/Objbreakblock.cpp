@@ -5,6 +5,7 @@
 #include "GameHead.h"
 #include "Objbreakblock.h"
 #include"ObjUserInterface.h"
+#include"ObjHero.h"
 
 //マップのX軸数
 #define MAP_X (100)
@@ -39,11 +40,11 @@ void CObjbreakblock::Init()
 	//		float y = i * 64.0f;
 
 	//		//主人公とボックスの当たり判定
-	//		if ((hx+64.0f>x)&&(hx<x+64.0f)&&(hy+64.0f>y)&&(hy<y+64.0f))
+	//		if ((hx + 64.0f > x) && (hx < x + 64.0f) && (hy + 64.0f > y) && (hy < y + 64.0f))
 	//		{
 	//			//当たっている場合
 	//			hero->SetX(hx);
-	//			hero->SetY(0.0f);
+	//			hero->SetY(hy);
 	//		}
 	//	}
 	//}
@@ -56,6 +57,14 @@ void CObjbreakblock::Init()
 void CObjbreakblock::Action()
 {
 
+	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	float hx = hero->GetX();
+	float hy = hero->GetY();
+
+	CObjUserInterface* count = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+	int Enemycount = count->GetEN();
+	
+
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
@@ -63,24 +72,17 @@ void CObjbreakblock::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
-	////敵のHitBoxの数が減ったら減らす
-	if (Enemycount > 0)
-	{
-
-		CObjUserInterface* count = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
-		int num = count->Getset();
-
+	
 
 		//敵を全員倒したらしたら壁を削除
-		if (setenemyMax == 0)
+		if (Enemycount==0)
 		{
 			//壁を削除
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
-
-
+			
 		}
-	}
+	
 }
 
 //ドロー
