@@ -116,8 +116,8 @@ void CObjHero::Action()
 			//弾の所持数に応じて速度変更
 			VectorChange(bullet, &sin_f, &cos_f);
 
-			m_vx = -sin_f * 5;
-			m_vy = -cos_f * 5;
+			m_vx = -sin_f*3;
+			m_vy = -cos_f*3;
 		}
 		//下方向
 		else if (Input::GetVKey(VK_DOWN) == true)
@@ -129,8 +129,8 @@ void CObjHero::Action()
 			//弾の所持数に応じて速度変更
 			VectorChange(bullet, &sin_f, &cos_f);
 
-			m_vx = +sin_f * 5;
-			m_vy = +cos_f * 5;
+			m_vx = +sin_f*3;
+			m_vy = +cos_f*3;
 		}
 
 		//ブロックとの当たり判定

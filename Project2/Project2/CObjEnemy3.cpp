@@ -267,8 +267,8 @@ void CObjEnemy3::Action()
 			Hits::DeleteHitBox(this);//’eŠÛ‚ªŠ—L‚·‚éHitBox‚Éíœ‚·‚éB
 			CObjUserInterface* obj_ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
 			obj_ui->setenemyMax--;
-			CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
-			Bblock->Enemycount--;
+			//CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
+			//Bblock->Enemycount--;
 		}
 	}
 	if (pbullet_enable == false) {

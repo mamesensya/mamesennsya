@@ -7,7 +7,6 @@
 
 //•Ï”‚Ì’l‚ðŠÄŽ‹‚·‚é‚½‚ß‚ÌDrawFont
 #include "GameL\DrawFont.h"
-
 #include "GameHead.h"
 #include "Objblock.h"
 #include"Objbreakblock.h"
@@ -72,158 +71,81 @@ void CObjBlock::Action()
 	//“GoŒ»ƒ‰ƒCƒ“
 	float lineX = 0.0;
 
-	//lineYŽŽ‚µ‚Éì‚Á‚Ä‚Ý‚½
-	float lineY = 0.0;
-	//ŽålŒö‚ÌˆÊ’u{500‚ð“GoŒ»ƒ‰ƒCƒ“‚É‚·‚é
+	//‚±‚±‚ð•Ï‚¦‚ê‚ÎoŒ»ƒ‰ƒCƒ“•Ï‚¦‚ê‚é
+	//---------------------------------------------------------------
 	if(hvx>0)
-		lineX = hx + (-m_scroll +300);
+		lineX = hx + (-m_scroll + 400);
 	else if(hvx<0)
-		lineX = hx + (-m_scroll - 100);
-
-	if (hvy>0)
-		lineY = hy + (-m_scroll2 + 200);
-	else if (hvy<0)
-		lineY = hy + (-m_scroll2 - 100);
-
-
-
+		lineX = hx + (-m_scroll - 300);
+	//---------------------------------------------------------------
 	//“GoŒ»ƒ‰ƒCƒ“‚ð—v‘f”Ô†‰»
 	int ex = ((int)lineX) / 64;
-	int ey = ((int)lineY) / 64;
 
 
 	//“GoŒ»ƒ‰ƒCƒ“‚Ì—ñ‚ðŒŸõ
 	//enemies = 0;
 
 
-		for (int i = 0; i < 80; i++)
+	for (int i = 0; i < 80; i++)
+	{
+		
+		//—ñ‚Ì’†‚©‚ç4‚ð’T‚·
+		if (m_map[i][ex] == 4)
 		{
-			
-			//—ñ‚Ì’†‚©‚ç4‚ð’T‚·
-			if (m_map[i][ex] == 4)
-			{
-				//4‚ª‚ ‚ê‚ÎA“G‚ðoŒ»
-				CObjEnemy* obje = new CObjEnemy(ex * 64.0f, i * 64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMY, 50);
-				enemies++;
-				e++;
-
-				//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
-				m_map[i][ex] = 0;
-			}
-			//—ñ‚Ì’†‚©‚ç6‚ð’T‚·
-			if (m_map[i][ex] == 6)
-			{
-				//6‚ª‚ ‚ê‚ÎAŽU’e“G‚ðoŒ»
-				CObjEnemy3* obje = new CObjEnemy3(ex * 64.0f, i * 64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMY3, 51);
-				//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
-				m_map[i][ex] = 0;
-			}
-			//—ñ‚Ì’†‚©‚ç5‚ð’T‚·
-			if (m_map[i][ex] == 5)
-			{
-				//5‚ª‚ ‚ê‚ÎAƒ{ƒX‚ðoŒ»
-				CObjBoss* obje = new CObjBoss(ex * 64.0f, i * 64.0f);
-				Objs::InsertObj(obje, OBJ_BOSS, 51);
-				//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
-				m_map[i][ex] = 0;
-			}
-			//—ñ‚Ì’†‚©‚ç7‚ð’T‚·
-			if (m_map[i][ex] == 7)
-			{
-				//7‚ª‚ ‚ê‚ÎAƒ{ƒX2‚ðoŒ»
-				CObjBoss2* obje = new CObjBoss2(ex * 64.0f, i * 64.0f);
-				Objs::InsertObj(obje, OBJ_ENEMY3, 51);
-				//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
-				m_map[i][ex] = 0;
-			}
-			//—ñ‚Ì’†‚©‚ç3‚ð’T‚·
-			if (m_map[i][ex] == 3)
-			{
-				//3‚ª‚ ‚ê‚ÎA‰ó‚ê‚é•Ç‚ðoŒ»
-				CObjbreakblock* obj_break_block = new CObjbreakblock(ex * 64.0f, i * 64.0f);
-				Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
-
-				//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
-				m_map[i][ex] = 0;
-			}
-			//—ñ‚Ì’†‚©‚ç2‚ð’T‚·
-			if (m_map[i][ex] == 2)
-			{
-				//2‚ª‚ ‚ê‚Î” ‚ðoŒ»
-				CObjBox* obj_box = new CObjBox(ex * 64.0f, i * 64.0f);
-				Objs::InsertObj(obj_box, OBJ_BOX, 11);
-				//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
-				m_map[i][ex] = 0;
-			}
+			//4‚ª‚ ‚ê‚ÎA“G‚ðoŒ»
+			CObjEnemy* obje = new CObjEnemy(ex * 64.0f, i * 64.0f);
+			Objs::InsertObj(obje, OBJ_ENEMY, 50);
+			enemies++;
+			e++;
+			//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
+			m_map[i][ex] = 0;
 		}
-		
-
-
-		//for (int i = 0; i < 60; i++)
-		//{
-
-		//	//—ñ‚Ì’†‚©‚ç4‚ð’T‚·
-		//	if (m_map[ey][i] == 4)
-		//	{
-		//		//4‚ª‚ ‚ê‚ÎA“G‚ðoŒ»
-		//		CObjEnemy* obje = new CObjEnemy(ex * 64.0f, i * 64.0f);
-		//		Objs::InsertObj(obje, OBJ_ENEMY, 50);
-		//		enemies++;
-		//		e++;
-
-		//		//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
-		//		m_map[ey][i] = 0;
-		//	}
-		//	//—ñ‚Ì’†‚©‚ç6‚ð’T‚·
-		//	if (m_map[ey][i] == 6)
-		//	{
-		//		//6‚ª‚ ‚ê‚ÎAŽU’e“G‚ðoŒ»
-		//		CObjEnemy3* obje = new CObjEnemy3(i * 64.0f, ey * 64.0f);
-		//		Objs::InsertObj(obje, OBJ_ENEMY3, 51);
-		//		//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
-		//		m_map[ey][i] = 0;
-		//	}
-		//	//—ñ‚Ì’†‚©‚ç5‚ð’T‚·
-		//	if (m_map[ey][i] == 5)
-		//	{
-		//		//5‚ª‚ ‚ê‚ÎAƒ{ƒX‚ðoŒ»
-		//		CObjBoss* obje = new CObjBoss(i * 64.0f, ey * 64.0f);
-		//		Objs::InsertObj(obje, OBJ_BOSS, 51);
-		//		//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
-		//		m_map[ey][i] = 0;
-		//	}
-		//	//—ñ‚Ì’†‚©‚ç7‚ð’T‚·
-		//	if (m_map[ey][i] == 7)
-		//	{
-		//		//7‚ª‚ ‚ê‚ÎAƒ{ƒX2‚ðoŒ»
-		//		CObjBoss2* obje = new CObjBoss2(i * 64.0f, ey * 64.0f);
-		//		Objs::InsertObj(obje, OBJ_ENEMY3, 51);
-		//		//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
-		//		m_map[ey][i] = 0;
-		//	}
-		//	//—ñ‚Ì’†‚©‚ç3‚ð’T‚·
-		//	if (m_map[ey][i] == 3)
-		//	{
-		//		//3‚ª‚ ‚ê‚ÎA‰ó‚ê‚é•Ç‚ðoŒ»
-		//		CObjbreakblock* obj_break_block = new CObjbreakblock(i * 64.0f, ey * 64.0f);
-		//		Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
-
-		//		//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
-		//		m_map[ey][i] = 0;
-		//	}
-		//	//—ñ‚Ì’†‚©‚ç2‚ð’T‚·
-		//	if (m_map[ey][i] == 2)
-		//	{
-		//		//2‚ª‚ ‚ê‚Î” ‚ðoŒ»
-		//		CObjBox* obj_box = new CObjBox(i * 64.0f, ey * 64.0f);
-		//		Objs::InsertObj(obj_box, OBJ_BOX, 11);
-		//		//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
-		//		m_map[ey][i] = 0;
-		//	}
-		//}
-		
+		//—ñ‚Ì’†‚©‚ç6‚ð’T‚·
+		if (m_map[i][ex] == 6)
+		{
+			//6‚ª‚ ‚ê‚ÎAŽU’e“G‚ðoŒ»
+			CObjEnemy3* obje = new CObjEnemy3(ex * 64.0f, i * 64.0f);
+			Objs::InsertObj(obje, OBJ_ENEMY3, 51);
+			//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
+			m_map[i][ex] = 0;
+		}
+		//—ñ‚Ì’†‚©‚ç5‚ð’T‚·
+		if (m_map[i][ex] == 5)
+		{
+			//5‚ª‚ ‚ê‚ÎAƒ{ƒX‚ðoŒ»
+			CObjBoss* obje = new CObjBoss(ex * 64.0f, i * 64.0f);
+			Objs::InsertObj(obje, OBJ_BOSS, 51);
+			//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
+			m_map[i][ex] = 0;
+		}
+		//—ñ‚Ì’†‚©‚ç7‚ð’T‚·
+		if (m_map[i][ex] == 7)
+		{
+			//7‚ª‚ ‚ê‚ÎAƒ{ƒX2‚ðoŒ»
+			CObjBoss2* obje = new CObjBoss2(ex * 64.0f, i * 64.0f);
+			Objs::InsertObj(obje, OBJ_ENEMY3, 51);
+			//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
+			m_map[i][ex] = 0;
+		}
+		//—ñ‚Ì’†‚©‚ç3‚ð’T‚·
+		if (m_map[i][ex] == 3)
+		{
+			//3‚ª‚ ‚ê‚ÎA‰ó‚ê‚é•Ç‚ðoŒ»
+			CObjbreakblock* obj_break_block = new CObjbreakblock(ex * 64.0f, i * 64.0f);
+			Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
+			//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
+			m_map[i][ex] = 0;
+		}
+		//—ñ‚Ì’†‚©‚ç2‚ð’T‚·
+		if (m_map[i][ex] == 2)
+		{
+			//2‚ª‚ ‚ê‚Î” ‚ðoŒ»
+			CObjBox* obj_box = new CObjBox(ex * 64.0f, i * 64.0f);
+			Objs::InsertObj(obj_box, OBJ_BOX, 11);
+			//“GoŒ»êŠ‚Ì’l‚ð0‚É‚·‚é
+			m_map[i][ex] = 0;
+		}
+	}
 	
 }
 
@@ -407,7 +329,7 @@ void CObjBlock::BlockHit(
 							//‰E
 							*right = true;
 							*x = bx + 64.0f + (m_scroll);
-							*vx = -(*vx) * 0.1f;
+							*vx = -(*vx) * 0.2f;
 
 
 						}
@@ -416,7 +338,7 @@ void CObjBlock::BlockHit(
 							//ã
 							*down = true;
 							*y = by - 64.0f + (m_scroll2);
-							*vy = -(*vy)*0.1f;
+							*vy = -(*vy)*0.2f;
 
 
 
@@ -426,7 +348,7 @@ void CObjBlock::BlockHit(
 							//¶
 							*left = true;
 							*x = bx - 64.0f + (m_scroll);
-							*vx = -(*vx) * 0.1f;
+							*vx = -(*vx) * 0.2f;
 
 
 
@@ -437,7 +359,7 @@ void CObjBlock::BlockHit(
 							//‰º
 							*up = true;
 							*y = by + 64.0f + (m_scroll2);
-							*vy = -(*vy) * 0.1f;
+							*vy = -(*vy) * 0.2f;
 
 							
 						}
