@@ -29,6 +29,12 @@ void CObjBlock::Init()
 {
 	m_scroll = -0.0f;
 	m_scroll2 = -0.0f;
+
+
+	for(int i=0;i>60;i++)
+		for (int j = 0; j > 80; j++)
+		     *m_map_c[i][j] = m_map[i][j];
+		
 }
 
 //アクション
@@ -83,7 +89,7 @@ void CObjBlock::Action()
 
 
 	//敵出現ラインの列を検索
-	//enemies = 0;
+	/*enemies = 0;*/
 
 
 	for (int i = 0; i < 80; i++)

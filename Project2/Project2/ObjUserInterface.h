@@ -16,7 +16,7 @@ public:
 	}
 	int setenemyMax;
 
-	int GetEN() { return setenemyMax; };
+	int GetEM() { return setenemyMax; };
 private:
 	char keystr[4] = { 'Z','X','C','V' };
 	bool flug;
