@@ -5,10 +5,6 @@
 #include "GameHead.h"
 #include "ObjBox.h"
 
-//マップのX軸数
-#define MAP_X (80)
-//マップのY軸数
-#define MAP_Y (60)
 
 //使用するネームスペース
 using namespace GameL;
@@ -24,32 +20,7 @@ CObjBox::CObjBox(float x, float y)
 void CObjBox::Init()
 {
 
-	//ボックスの当たり判定
-	//主人公の位置取得
-	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	if (hero != nullptr)
-	{
-		float hx = hero->GetX();
-		float hy = hero->GetY();
-		//マップの要素にアクセス
-		for (int i = 0; i < MAP_Y; i++)
-		{
-			for (int j = 0; j < MAP_X; j++)
-			{
-				//要素番号を座標に変更
-				float x = j * 64.0f;
-				float y = i * 64.0f;
-
-				//主人公とボックスの当たり判定
-				if ((hx + 64.0f > x) && (hx < x + 64.0f) && (hy + 64.0f > y) && (hy < y + 64.0f))
-				{
-					////当たっている場合
-					//hero->SetX(hx);
-					//hero->SetY(0.0f);
-				}
-			}
-		}
-	}
+	
 
 	//当たり判定用HitBox作成
 	Hits::SetHitBox(this, m_x, m_y, 64, 64, ELEMENT_ITEM, OBJ_BOX, 1);
@@ -58,12 +29,22 @@ void CObjBox::Init()
 //アクション
 void CObjBox::Action()
 {
-
+	CHitBox* hit = Hits::GetHitBox(this);
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
 
-	CHitBox* hit = Hits::GetHitBox(this);
+	/*CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	float hvx = hero->GetVX();*/
+
+	//// 主人公と接触しているかどうか調べる
+	//	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	//	{
+	//		hvx = hvx - hvx - hvx;
+	//		hero->SetVX(hvx);
+	//	}
+
+	
 	hit->SetPos(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
 
 	//主人公（近接攻撃）と接触したらボックスを削除
