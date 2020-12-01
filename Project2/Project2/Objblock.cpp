@@ -74,7 +74,7 @@ void CObjBlock::Action()
 
 	//lineYŽŽ‚µ‚Éì‚Á‚Ä‚Ý‚½
 	float lineY = 0.0;
-	//ŽålŒö‚ÌˆÊ’u{500‚ð“GoŒ»ƒ‰ƒCƒ“‚É‚·‚é
+	//ŽålŒö‚ÌˆÊ’u{300‚ð“GoŒ»ƒ‰ƒCƒ“‚É‚·‚é
 	if(hvx>0)
 		lineX = hx + (-m_scroll +300);
 	else if(hvx<0)
@@ -93,7 +93,7 @@ void CObjBlock::Action()
 
 
 	//“GoŒ»ƒ‰ƒCƒ“‚Ì—ñ‚ðŒŸõ
-	//enemies = 0;
+	/*enemies = 0;*/
 
 
 		for (int i = 0; i < 80; i++)
