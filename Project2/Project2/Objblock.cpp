@@ -46,6 +46,10 @@ void CObjBlock::Action()
 
 	float hx = hero->GetX();
 	float hy = hero->GetY();
+
+	float hvx = hero->GetVX();
+	float hvy = hero->GetVY();
+
 	//右方スクロールライン
 	if (hx < 200)
 	{
@@ -73,35 +77,34 @@ void CObjBlock::Action()
 	}
 	//敵出現ライン
 	float lineX = 0.0;
-	//float lineY = 0.0;
-	//主人公の位置＋500を敵出現ラインにする
-	lineX = hx + (-m_scroll +300);
 
-	//if (hy == 400)
-	//	lineY = hy + (-m_scroll + 400);
-	//if (hy == 200)
-	//	lineY = hy + (-m_scroll - 200);
+	//lineY試しに作ってみた
+	float lineY = 0.0;
+	//主人公の位置＋300を敵出現ラインにする
+	if(hvx>0)
+		lineX = hx + (-m_scroll +300);
+	else if(hvx<0)
+		lineX = hx + (-m_scroll - 100);
+
+	if (hvy>0)
+		lineY = hy + (-m_scroll2 + 200);
+	else if (hvy<0)
+		lineY = hy + (-m_scroll2 - 100);
 
 
 
 	//敵出現ラインを要素番号化
 	int ex = ((int)lineX) / 64;
-	//int ey = ((int)lineY) / 64;
+	int ey = ((int)lineY) / 64;
 
 
 	//敵出現ラインの列を検索
-	//enemies = 0;
-	
+	/*enemies = 0;*/
+
 
 		for (int i = 0; i < 80; i++)
 		{
-			////8＝主人公
-			//if (m_map[i][ex] == 8)
-			//{
-			//	CObjHero* hero = new CObjHero(ex * 64.0f, i * 64.0f);
-			//	Objs::InsertObj(hero, OBJ_HERO, 10);
-				//	m_map[i][ex] = 0;
-			//}
+			
 			//列の中から4を探す
 			if (m_map[i][ex] == 4)
 			{
@@ -162,6 +165,70 @@ void CObjBlock::Action()
 			}
 		}
 		
+
+
+		//for (int i = 0; i < 60; i++)
+		//{
+
+		//	//列の中から4を探す
+		//	if (m_map[ey][i] == 4)
+		//	{
+		//		//4があれば、敵を出現
+		//		CObjEnemy* obje = new CObjEnemy(ex * 64.0f, i * 64.0f);
+		//		Objs::InsertObj(obje, OBJ_ENEMY, 50);
+		//		enemies++;
+		//		e++;
+
+		//		//敵出現場所の値を0にする
+		//		m_map[ey][i] = 0;
+		//	}
+		//	//列の中から6を探す
+		//	if (m_map[ey][i] == 6)
+		//	{
+		//		//6があれば、散弾敵を出現
+		//		CObjEnemy3* obje = new CObjEnemy3(i * 64.0f, ey * 64.0f);
+		//		Objs::InsertObj(obje, OBJ_ENEMY3, 51);
+		//		//敵出現場所の値を0にする
+		//		m_map[ey][i] = 0;
+		//	}
+		//	//列の中から5を探す
+		//	if (m_map[ey][i] == 5)
+		//	{
+		//		//5があれば、ボスを出現
+		//		CObjBoss* obje = new CObjBoss(i * 64.0f, ey * 64.0f);
+		//		Objs::InsertObj(obje, OBJ_BOSS, 51);
+		//		//敵出現場所の値を0にする
+		//		m_map[ey][i] = 0;
+		//	}
+		//	//列の中から7を探す
+		//	if (m_map[ey][i] == 7)
+		//	{
+		//		//7があれば、ボス2を出現
+		//		CObjBoss2* obje = new CObjBoss2(i * 64.0f, ey * 64.0f);
+		//		Objs::InsertObj(obje, OBJ_ENEMY3, 51);
+		//		//敵出現場所の値を0にする
+		//		m_map[ey][i] = 0;
+		//	}
+		//	//列の中から3を探す
+		//	if (m_map[ey][i] == 3)
+		//	{
+		//		//3があれば、壊れる壁を出現
+		//		CObjbreakblock* obj_break_block = new CObjbreakblock(i * 64.0f, ey * 64.0f);
+		//		Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
+
+		//		//敵出現場所の値を0にする
+		//		m_map[ey][i] = 0;
+		//	}
+		//	//列の中から2を探す
+		//	if (m_map[ey][i] == 2)
+		//	{
+		//		//2があれば箱を出現
+		//		CObjBox* obj_box = new CObjBox(i * 64.0f, ey * 64.0f);
+		//		Objs::InsertObj(obj_box, OBJ_BOX, 11);
+		//		//敵出現場所の値を0にする
+		//		m_map[ey][i] = 0;
+		//	}
+		//}
 		
 	
 }
