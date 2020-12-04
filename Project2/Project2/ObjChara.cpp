@@ -17,7 +17,7 @@ CObjChara::CObjChara(float x, float y)
 
 void CObjChara::Init()
 {
-	m_hp = 5;
+	m_hp = 2;
 
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	//ヒーローからフラグ情報をもらって代入

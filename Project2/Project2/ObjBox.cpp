@@ -50,6 +50,10 @@ void CObjBox::Action()
 	//主人公（近接攻撃）と接触したらボックスを削除
 	if(hit->CheckObjNameHit(OBJ_ATTACK)!=nullptr)
 	{
+		int x = m_x;
+		int y = m_y;
+		block->m_map[x / 64][y / 64] == 0;
+
 		//豆箱を削除
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);

@@ -30,16 +30,18 @@ void CObjBlock::Init()
 	m_scroll = -0.0f;
 	m_scroll2 = -0.0f;
 
-
-	for(int i=0;i>60;i++)
-		for (int j = 0; j > 80; j++)
-		     *m_map_c[i][j] = m_map[i][j];
+	
+	
 		
 }
 
 //アクション
 void CObjBlock::Action()
 {
+
+	CObjUserInterface* count = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+	Enemycount = count->GetEM();
+
 	//	主人公の位置を取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 
@@ -101,7 +103,6 @@ void CObjBlock::Action()
 			//4があれば、敵を出現
 			CObjEnemy* obje = new CObjEnemy(ex * 64.0f, i * 64.0f);
 			Objs::InsertObj(obje, OBJ_ENEMY, 50);
-			enemies++;
 			e++;
 			//敵出現場所の値を0にする
 			m_map[i][ex] = 0;
@@ -140,7 +141,7 @@ void CObjBlock::Action()
 			CObjbreakblock* obj_break_block = new CObjbreakblock(ex * 64.0f, i * 64.0f);
 			Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
 			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
+			//m_map[i][ex] = 0;
 		}
 		//列の中から2を探す
 		if (m_map[i][ex] == 2)
@@ -185,14 +186,12 @@ void CObjBlock::Draw()
 		{
 			if (m_back[i][j] == 0 )
 			{
+
 				//表示位置の設定
-				dst.m_top = i * 600.0f + m_scroll2-300;
-				dst.m_left = j * 800.0f + m_scroll-300;
+				dst.m_top = i * 600.0f + m_scroll2 - 300;
+				dst.m_left = j * 800.0f + m_scroll - 300;
 				dst.m_right = dst.m_left + 800.0;
 				dst.m_bottom = dst.m_top + 600.0;
-				
-
-
 
 
 
@@ -200,7 +199,10 @@ void CObjBlock::Draw()
 				src.m_top = 0.0f;
 				src.m_left = 0.0f;
 				src.m_right = src.m_left + 800.0f;
-				src.m_bottom =600.0f;
+				src.m_bottom = 600.0f;
+
+
+			
 				
 
 				//描画
@@ -226,7 +228,7 @@ void CObjBlock::Draw()
 	{
 		for (int j = 0; j < 80; j++)
 		{
-			if (m_map[i][j] > 0 && m_map[i][j] != 7 && m_map[i][j] != 6 && m_map[i][j] != 5 &&m_map[i][j]!=4&& m_map[i][j] != 3 && m_map[i][j] != 2)
+			if (m_map[i][j] > 0 && m_map[i][j] != 7 && m_map[i][j] != 6 && m_map[i][j] != 5 &&m_map[i][j]!=4 &&m_map[i][j]!=3&& m_map[i][j] != 2)
 			{
 				//表示位置の設定
 				dst.m_top = i * 64.0f + m_scroll2;
@@ -253,7 +255,7 @@ void CObjBlock::Draw()
 				{
 					;
 				}
-				else if (m_map[i][j] == 7)
+				if (m_map[i][j] == 7)
 				{
 					;
 				}
@@ -298,7 +300,7 @@ void CObjBlock::BlockHit(
 	{
 		for (int j = 0; j < 80; j++)
 		{
-			if (m_map[i][j] == 1)
+			if (m_map[i][j] == 1||(m_map[i][j]==3&&Enemycount!=0)||(m_map[i][j]==2))
 			{
 				//要素番号を座標に変換
 				float bx = j * 64.0f;

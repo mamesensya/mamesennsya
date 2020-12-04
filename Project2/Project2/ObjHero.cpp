@@ -140,13 +140,6 @@ void CObjHero::Action()
 		//ブロックとの当たり判定
 		CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 		pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
-		
-		if (hit->CheckObjNameHit(OBJ_BREAK_BLOCK) != nullptr)
-		{
-			CObjbreakblock* pbb = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
-			pbb->BBlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
-			num++;
-		}
 
 		
 		//ベクトルを位置に加算
