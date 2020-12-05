@@ -68,6 +68,12 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+	//m_time++;
+	//if (m_time == 21.0f)
+	//{
+	//	m_time = 0;
+	//}
+
 	//主人公（人）の状態なら動作しない
 	if (m_hero_flag == false)
 	{
@@ -190,30 +196,34 @@ void CObjHero::Action()
 			};
 		};
 
-		if (hit->CheckObjNameHit(OBJ_BREAK_BLOCK) != nullptr)
+		//if (hit->CheckObjNameHit(OBJ_BREAK_BLOCK) != nullptr)
+		//{
+		//	if (1)//上
+		//	{
+		//		m_vx = m_vx - m_vx - m_vx;
+		//	}
+
+		//	if (1)//下
+		//	{
+		//		m_vx = +m_vx + m_vx + m_vx;
+		//	}
+
+		//	if (1)//右
+		//	{
+		//		m_vy = m_vy - m_vy - m_vy;
+		//	}
+
+		//	if (1)//左
+		//	{
+		//		m_vy = m_vy + m_vy + m_vy;
+		//	}
+
+		//}
+		/*if (m_time == 20.0f)
 		{
-			if (1)//上
-			{
-				m_vx = m_vx - m_vx - m_vx;
-			}
-
-			if (1)//下
-			{
-				m_vx = +m_vx + m_vx + m_vx;
-			}
-
-			if (1)//右
-			{
-				m_vy = m_vy - m_vy - m_vy;
-			}
-
-			if (1)//左
-			{
-				m_vy = m_vy + m_vy + m_vy;
-			}
-
-		}
-
+			m_vx = 0.0f;
+			m_vy = 0.0f;
+		}*/
 
 
 		//当たり判定を行うオブジェクト情報部
@@ -239,6 +249,7 @@ void CObjHero::Action()
 				{
 					m_hp -= 1;
 					m_hit = false;
+					Effect* EF = (Effect*)Objs::GetObj(OBJ_EFFECT);//エフェクトをだす
 				}
 			}
 		}

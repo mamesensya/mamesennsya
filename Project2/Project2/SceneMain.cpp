@@ -157,7 +157,9 @@ void CSceneMain::InitScene()
 	CObjBlock* obj_b = new CObjBlock(map);
 	Objs::InsertObj(obj_b, OBJ_BLOCK, 4);
 
-
+	//エフェクト
+	Draw::LoadImageW(L"エフェクト.png", 19,TEX_SIZE_512);
+	//Effect* of = new Effect(150,240);
 
 }
 

@@ -68,4 +68,6 @@ private:
 	bool m_hit_down;
 	bool m_hit_left;
 	bool m_hit_right;
+
+	//float m_time{ 0 };//BreakBlockに当たって一時的にブロックから離れる用
 };
