@@ -100,6 +100,7 @@ struct UserData
 #include "CObjBoss2.h"
 #include "CObjBossBullet2.h"
 #include "CObjBossBullet4.h"
+#include "SecondStage.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

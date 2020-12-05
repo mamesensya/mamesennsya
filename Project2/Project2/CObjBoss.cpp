@@ -360,7 +360,7 @@ void CObjBoss::Action()
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 
-			Scene::SetScene(new CSceneGameClear());
+			Scene::SetScene(new CSceneMainSecond());
 		}
 	}
 	if (pbullet_enable == false) {
