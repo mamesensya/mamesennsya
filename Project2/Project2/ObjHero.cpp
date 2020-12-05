@@ -74,6 +74,10 @@ void CObjHero::Action()
 	//	m_time = 0;
 	//}
 
+
+	//HitBoxの内容更新
+	CHitBox* hit = Hits::GetHitBox(this);
+
 	//主人公（人）の状態なら動作しない
 	if (m_hero_flag == false)
 	{
@@ -122,8 +126,8 @@ void CObjHero::Action()
 			//弾の所持数に応じて速度変更
 			VectorChange(bullet, &sin_f, &cos_f);
 
-			m_vx = -sin_f * 5;
-			m_vy = -cos_f * 5;
+			m_vx = -sin_f*3;
+			m_vy = -cos_f*3;
 		}
 		//下方向
 		else if (Input::GetVKey(VK_DOWN) == true)
@@ -135,20 +139,20 @@ void CObjHero::Action()
 			//弾の所持数に応じて速度変更
 			VectorChange(bullet, &sin_f, &cos_f);
 
-			m_vx = +sin_f * 5;
-			m_vy = +cos_f * 5;
+			m_vx = +sin_f*3;
+			m_vy = +cos_f*3;
 		}
 
 		//ブロックとの当たり判定
 		CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 		pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
 
+		
 		//ベクトルを位置に加算
 		m_x += m_vx;
 		m_y += m_vy;
 
-		//HitBoxの内容更新
-		CHitBox* hit = Hits::GetHitBox(this);
+		
 		hit->SetPos(m_x, m_y);
 
 		if (m_attack == true) {
@@ -196,36 +200,6 @@ void CObjHero::Action()
 			};
 		};
 
-		//if (hit->CheckObjNameHit(OBJ_BREAK_BLOCK) != nullptr)
-		//{
-		//	if (1)//上
-		//	{
-		//		m_vx = m_vx - m_vx - m_vx;
-		//	}
-
-		//	if (1)//下
-		//	{
-		//		m_vx = +m_vx + m_vx + m_vx;
-		//	}
-
-		//	if (1)//右
-		//	{
-		//		m_vy = m_vy - m_vy - m_vy;
-		//	}
-
-		//	if (1)//左
-		//	{
-		//		m_vy = m_vy + m_vy + m_vy;
-		//	}
-
-		//}
-		/*if (m_time == 20.0f)
-		{
-			m_vx = 0.0f;
-			m_vy = 0.0f;
-		}*/
-
-
 		//当たり判定を行うオブジェクト情報部
 		int data_base[10] =
 		{
@@ -254,13 +228,13 @@ void CObjHero::Action()
 			}
 		}
 		//m_hpが０になると主人公を破棄
-		if (m_hp <= 0)
-		{
-			this->SetStatus(false);//自身に削除命令を出す
-			Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+		//if (m_hp <= 0)
+		//{
+		//	this->SetStatus(false);//自身に削除命令を出す
+		//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-			Scene::SetScene(new CSceneGameOver());
-		}
+		//	Scene::SetScene(new CSceneGameOver());
+		//}
 
 		//攻撃間隔制御
 		if (m_attack == false)

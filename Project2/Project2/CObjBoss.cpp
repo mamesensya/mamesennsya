@@ -359,6 +359,8 @@ void CObjBoss::Action()
 
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
+
+			Scene::SetScene(new CSceneMainSecond());
 		}
 	}
 	if (pbullet_enable == false) {
@@ -371,8 +373,7 @@ void CObjBoss::Action()
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 
-				CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
-				Bblock->Enemycount--;
+				Scene::SetScene(new CSceneGameClear());
 			}
 		}
 	}
@@ -397,6 +398,12 @@ void CObjBoss::Action()
 		}
 	}
 
+	if (m_x >= (80 * 64) || m_y >= (60 * 64))
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 }
 
 void CObjBoss::Draw()

@@ -145,11 +145,18 @@ void CObjBoss2::Action()
 	if (m_attack == false)
 	{
 		m_attack_time++;
-		if (m_attack_time == 300)
+		if (m_attack_time == 100)
 		{
 			m_attack = true;
 			m_attack_time = 0;
 		}
+	}
+
+	if (m_x >= (80 * 64) || m_y >= (60 * 64))
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
 	}
 }
 

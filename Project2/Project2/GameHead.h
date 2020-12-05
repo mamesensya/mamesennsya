@@ -102,6 +102,7 @@ struct UserData
 #include "CObjBossBullet2.h"
 #include "CObjBossBullet4.h"
 #include"Effect.h"
+#include "SecondStage.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

@@ -17,7 +17,7 @@ CObjChara::CObjChara(float x, float y)
 
 void CObjChara::Init()
 {
-	m_hp = 5;
+	m_hp = 2;
 
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	//ヒーローからフラグ情報をもらって代入
@@ -63,25 +63,25 @@ void CObjChara::Action()
 			if (Input::GetVKey(VK_RIGHT) == true)
 			{
 				m_r = 270.0f;
-				m_vx = 1.0f;
+				m_vx = 1.0f*3;
 			}
 			//左方向
 			if (Input::GetVKey(VK_LEFT) == true)
 			{
 				m_r = 90.0f;
-				m_vx = -1.0f;
+				m_vx = -1.0f*3;
 			}
 			//上方向
 			if (Input::GetVKey(VK_UP) == true)
 			{
 				m_r = 0.0f;
-				m_vy = -1.0f;
+				m_vy = -1.0f*3;
 			}
 			//下方向
 			if (Input::GetVKey(VK_DOWN) == true)
 			{
 				m_r = 180.0f;
-				m_vy = 1.0f;
+				m_vy = 1.0f*3;
 			}
 
 			//主人公近接攻撃
@@ -133,14 +133,14 @@ void CObjChara::Action()
 					}
 				}
 			}
-			////m_hpが０になると主人公を破棄
-			//if (m_hp == 0)
-			//{
-			//	this->SetStatus(false);//自身に削除命令を出す
-			//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+			//m_hpが０になると主人公を破棄
+			if (m_hp == 0)
+			{
+				this->SetStatus(false);//自身に削除命令を出す
+				Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-			//	Scene::SetScene(new CSceneGameOver());
-			//}
+				Scene::SetScene(new CSceneGameOver());
+			}
 
 			//攻撃間隔制御用
 			if (m_attack == false)

@@ -43,6 +43,7 @@
     <ClCompile Include="SceneTitle.cpp" />
     <ClCompile Include="CObjBossBullet4.cpp" />
     <ClCompile Include="Effect.cpp" />
+    <ClCompile Include="SecondStage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h" />
@@ -87,6 +88,7 @@
     <ClInclude Include="SceneTitle.h" />
     <ClInclude Include="CObjBossBullet4.h" />
     <ClInclude Include="Effect.h" />
+    <ClInclude Include="SecondStage.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="title.png" />

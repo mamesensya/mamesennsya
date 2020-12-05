@@ -279,8 +279,8 @@ void CObjEnemy::Action()
 			Audio::Start(12);
 			CObjUserInterface* obj_ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
 			obj_ui->setenemyMax--;
-			CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
-			Bblock->Enemycount--;
+		/*	CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
+			Bblock->Enemycount--;*/
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 
@@ -325,6 +325,14 @@ void CObjEnemy::Action()
 			count = 0;
 		}
 	}
+
+	if (m_x >= (80 * 64) || m_y >= (60 * 64))
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
+
 
 }
 
