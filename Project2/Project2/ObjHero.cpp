@@ -221,6 +221,8 @@ void CObjHero::Action()
 			{
 				if (hit->CheckObjNameHit(data_base[i]) != nullptr)
 				{
+					//弾着弾音
+					Audio::Start(14);
 					m_hp -= 1;
 					m_hit = false;
 					Effect* EF = (Effect*)Objs::GetObj(OBJ_EFFECT);//エフェクトをだす

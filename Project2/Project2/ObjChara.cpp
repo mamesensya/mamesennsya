@@ -3,6 +3,7 @@
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
 #include "GameL\WinInputs.h"
+#include "GameL\Audio.h"
 #include "GameHead.h"
 #include "ObjChara.h"
 
@@ -128,6 +129,9 @@ void CObjChara::Action()
 				{
 					if (hit->CheckObjNameHit(data_base[i]) != nullptr)
 					{
+						//’e’…’e‰¹
+						Audio::Start(14);
+
 						m_hp -= 1;
 						m_hit = false;
 					}
