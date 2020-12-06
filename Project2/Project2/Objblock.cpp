@@ -279,7 +279,7 @@ void CObjBlock::Draw()
 				}
 				//if(m_map[i][j]==3)
 				//Draw::Draw(17, &src, &dst, c, 0.0f);
-				else
+				//else
 				Draw::Draw(13, &src, &dst, c, 0.0f);//•`‰æ
 			}
 		}
