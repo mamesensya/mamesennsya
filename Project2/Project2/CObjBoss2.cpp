@@ -112,6 +112,9 @@ void CObjBoss2::Action()
 	//’eŠÛ‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ð’²‚×‚é
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
+		//’e’…’e‰¹
+		Audio::Start(13);
+
 		m_hp--;
 		if (m_hp <= 0) {
 			//”š”­‰¹–Â‚ç‚·
@@ -123,6 +126,9 @@ void CObjBoss2::Action()
 	}
 	if (pbullet_enable == false) {
 		if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
+			//’e’…’e‰¹
+			Audio::Start(13);
+
 			m_hp--;
 			pbullet_enable = true;
 			if (m_hp <= 0) {

@@ -71,6 +71,8 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(10, L"SE’e”­Ë‰¹.wav", EFFECT);
 	Audio::LoadAudio(11, L"SE’eŠl“¾‰¹.wav", EFFECT);
 	Audio::LoadAudio(12, L"SE“G”š”j‰¹.wav", EFFECT);
+	Audio::LoadAudio(13, L"SE“G’e’…’e‰¹.wav", EFFECT);
+	Audio::LoadAudio(14, L"SEå’e’…’e‰¹.wav", EFFECT);
 
 	//ƒ{ƒŠƒ…[ƒ€‚ğ1.5‘‚â‚·
 	float v = Audio::VolumeMaster(1.0f);

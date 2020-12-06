@@ -272,6 +272,9 @@ void CObjEnemy::Action()
 	//’eŠÛ‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ð’²‚×‚é
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
+		//’e’…’e‰¹
+		Audio::Start(13);
+
 		m_hp--;
 		Effect* EF = (Effect*)Objs::GetObj(OBJ_EFFECT);
 		if (m_hp <= 0) {
@@ -291,6 +294,9 @@ void CObjEnemy::Action()
 	if (pbullet_enable == false) {
 		if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
 			
+			//’e’…’e‰¹
+			Audio::Start(13);
+
 			m_hp--;
 			pbullet_enable = true;
 			Effect* EF = (Effect*)Objs::GetObj(OBJ_EFFECT);
