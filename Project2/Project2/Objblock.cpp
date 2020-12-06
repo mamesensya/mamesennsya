@@ -92,7 +92,7 @@ void CObjBlock::Action()
 
 	//敵出現ラインの列を検索
 	/*enemies = 0;*/
-
+	//if((hx+m_scroll)<=m_map[0][0]&&>=m_map[0][80])
 
 	for (int i = 0; i < 80; i++)
 	{
@@ -103,7 +103,6 @@ void CObjBlock::Action()
 			//4があれば、敵を出現
 			CObjEnemy* obje = new CObjEnemy(ex * 64.0f, i * 64.0f);
 			Objs::InsertObj(obje, OBJ_ENEMY, 50);
-			e++;
 			//敵出現場所の値を0にする
 			m_map[i][ex] = 0;
 		}
@@ -135,13 +134,14 @@ void CObjBlock::Action()
 			m_map[i][ex] = 0;
 		}
 		//列の中から3を探す
-		if (m_map[i][ex] == 3)
+		if (m_map[i][ex] == 3&&f==false)
 		{
 			//3があれば、壊れる壁を出現
 			CObjbreakblock* obj_break_block = new CObjbreakblock(ex * 64.0f, i * 64.0f);
 			Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
 			//敵出現場所の値を0にする
-			//m_map[i][ex] = 0;
+			m_map[i][ex] = 0;
+			e++;
 		}
 		//列の中から2を探す
 		if (m_map[i][ex] == 2)
@@ -153,7 +153,11 @@ void CObjBlock::Action()
 			m_map[i][ex] = 0;
 		}
 	}
-	
+	/*if (e > 20)
+	{
+		f = true;
+	}
+	*/
 }
 
 //ドロー
@@ -239,10 +243,17 @@ void CObjBlock::Draw()
 				{
 					;
 				}
-				else if(m_map[i][j]==3)
-				{
-					;
-				}
+				//else if(m_map[i][j]==3)
+				//{
+				//	//切り取り位置の設定
+				//	src.m_top = 0.0f;
+				//	src.m_left = 320.0f;
+				//	src.m_right = src.m_left + 64.0f;
+				//	src.m_bottom = 64.0f;
+
+
+
+				//}
 				else if (m_map[i][j] == 4)
 				{
 					;
@@ -266,9 +277,10 @@ void CObjBlock::Draw()
 					src.m_right = src.m_left + 64.0f;
 					src.m_bottom = 64.0f;
 				}
-
-				//描画
-				Draw::Draw(13, &src, &dst, c, 0.0f);
+				//if(m_map[i][j]==3)
+				//Draw::Draw(17, &src, &dst, c, 0.0f);
+				else
+				Draw::Draw(13, &src, &dst, c, 0.0f);//描画
 			}
 		}
 	}

@@ -24,8 +24,7 @@ public:
 	
 	
 
-	int *m_map_c[60][80];
-	int m_map[60][80];//マップ情報
+	int m_map[60][80]{0};//マップ情報
 
 
 private:
@@ -34,7 +33,7 @@ private:
 	float m_scroll;//左右スクロール用
 	float m_scroll2;//上下スクロール用
 	int e{ 0 };
-
+	bool f=false;
 	int Enemycount{ 0 };
 
 };
