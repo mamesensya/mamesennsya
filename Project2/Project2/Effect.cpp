@@ -48,10 +48,10 @@ void Effect::Draw()
 	src.m_right = 400.0f;
 	src.m_bottom = 300.0f;
 	//ï`âÊà íuÇÃê›íË
-	dst.m_top = 0.0f ;
-	dst.m_left = 0.0f ;
-	dst.m_right = 80.0f ;
-	dst.m_bottom = 60.0f ;
+	dst.m_top = 0.0f + m_y + m_scroll_map_y;
+	dst.m_left = 0.0f + m_x + m_scroll_map_x;
+	dst.m_right = 80.0f + m_x + m_scroll_map_x;
+	dst.m_bottom = 60.0f + m_y + m_scroll_map_y;
 
 	//ï`âÊ
 	Draw::Draw(20, &src, &dst, c, 0.0f);
