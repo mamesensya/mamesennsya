@@ -4,7 +4,7 @@
 using namespace GameL;
 
 //
-class Effect
+class Effect :public CObj
 {
 	public:
 		Effect(float x, float y) ;

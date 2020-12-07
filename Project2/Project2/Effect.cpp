@@ -15,12 +15,12 @@ Effect::Effect(float x, float y)
 	m_y = y;
 }
 
-void Init()
+void Effect:: Init()
 {
 
 }
 
-void Action()
+void Effect::Action()
 {
 	/*out++;
 
@@ -35,7 +35,7 @@ void Action()
 	
 }
 
-void Draw()
+void Effect::Draw()
 {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 
@@ -50,8 +50,8 @@ void Draw()
 	//ï`âÊà íuÇÃê›íË
 	dst.m_top = 0.0f ;
 	dst.m_left = 0.0f ;
-	dst.m_right = 100.0f ;
-	dst.m_bottom = 100.0f ;
+	dst.m_right = 80.0f ;
+	dst.m_bottom = 60.0f ;
 
 	//ï`âÊ
 	Draw::Draw(20, &src, &dst, c, 0.0f);

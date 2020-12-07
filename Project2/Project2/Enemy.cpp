@@ -275,7 +275,8 @@ void CObjEnemy::Action()
 		Audio::Start(13);
 
 		m_hp--;
-		Effect* EF = (Effect*)Objs::GetObj(OBJ_EFFECT);
+		Effect* effect = new Effect(m_x, m_y);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 		if (m_hp <= 0) {
 			//”š”­‰¹–Â‚ç‚·
 			Audio::Start(12);
@@ -298,8 +299,9 @@ void CObjEnemy::Action()
 
 			m_hp--;
 			pbullet_enable = true;
-			Effect* EF = (Effect*)Objs::GetObj(OBJ_EFFECT);
-			//Objs::InsertObj(EF, OBJ_EFFECT, 20);
+			Effect* effect = new Effect(m_x, m_y);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
+		
 			if (m_hp <= 0) {
 				//”š”­‰¹–Â‚ç‚·
 				Audio::Start(12);
