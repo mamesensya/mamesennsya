@@ -109,7 +109,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"折れた芯.png", 6, TEX_SIZE_512);
 
 	//主人公グラフィック読み込み(300×300)
-	Draw::LoadImageW(L"さいころ5.png", 20, TEX_SIZE_512);
+	Draw::LoadImageW(L"さいころ5.png", 19, TEX_SIZE_512);
 
 	//主人公表示
 	CObjHero* obj = new CObjHero(0,0);
@@ -162,7 +162,7 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(obj_b, OBJ_BLOCK, 4);
 
 	//エフェクト
-	Draw::LoadImageW(L"エフェクト.png", 19,TEX_SIZE_512);
+	Draw::LoadImageW(L"当たりエフェクト.png", 20,TEX_SIZE_512);
 	//Effect* of = new Effect(150,240);
 
 }

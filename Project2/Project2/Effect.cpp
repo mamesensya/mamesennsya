@@ -2,9 +2,10 @@
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
 #include "GameHead.h"
-#include"Objblock.h"
+#include"GameL/SceneObjManager.h"
+
+#include"Objbreakblock.h"
 #include"Effect.h"
-#include "CObjPlayerBullet.h"
 
 using namespace GameL;
 
@@ -21,9 +22,17 @@ void Init()
 
 void Action()
 {
-	/*CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	/*out++;
+
+	if (out == 10)
+	{
+		this->SetStatus(false);
+	}
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();*/
+
+	
 }
 
 void Draw()
@@ -41,9 +50,9 @@ void Draw()
 	//ï`âÊà íuÇÃê›íË
 	dst.m_top = 0.0f ;
 	dst.m_left = 0.0f ;
-	dst.m_right = 80.0f ;
-	dst.m_bottom = 60.0f ;
+	dst.m_right = 100.0f ;
+	dst.m_bottom = 100.0f ;
 
 	//ï`âÊ
-	Draw::Draw(19, &src, &dst, c, 0.0f);
+	Draw::Draw(20, &src, &dst, c, 0.0f);
 }

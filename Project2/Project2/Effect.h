@@ -16,4 +16,9 @@ class Effect
 	private:
 		float m_x;
 		float m_y;
+
+		float m_scroll_map_x{ 0 };
+		float m_scroll_map_y{ 0 };
+
+		int out ;//íœ§Œä
 };
