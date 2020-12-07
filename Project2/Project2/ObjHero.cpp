@@ -283,7 +283,7 @@ void CObjHero::Draw()
 	dst.m_bottom =  70.0f + m_y;
 
 	//•`‰æ
-	Draw::Draw(20, &src, &dst, c, m_r);
+	Draw::Draw(19, &src, &dst, c, m_r);
 }
 
 //ƒxƒNƒgƒ‹‚Ì³‹K‰»ŠÖ”

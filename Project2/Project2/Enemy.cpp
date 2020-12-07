@@ -7,7 +7,6 @@
 #include"GameHead.h"
 #include"Enemy.h"
 #include"Objbreakblock.h"
-#include"Effect.h"
 
 using namespace GameL;
 
@@ -300,6 +299,7 @@ void CObjEnemy::Action()
 			m_hp--;
 			pbullet_enable = true;
 			Effect* EF = (Effect*)Objs::GetObj(OBJ_EFFECT);
+			//Objs::InsertObj(EF, OBJ_EFFECT, 20);
 			if (m_hp <= 0) {
 				//”š”­‰¹–Â‚ç‚·
 				Audio::Start(12);
