@@ -354,7 +354,8 @@ void CObjBoss::Action()
 	{
 		//’e’…’e‰¹
 		Audio::Start(13);
-
+		Effect* effect = new Effect(m_x, m_y);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 		m_hp--;
 		if (m_hp <= 0) {
 			//”š”­‰¹–Â‚ç‚·
@@ -373,6 +374,9 @@ void CObjBoss::Action()
 
 			m_hp--;
 			pbullet_enable = true;
+
+			Effect* effect = new Effect(m_x, m_y);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 			if (m_hp <= 0) {
 				//”š”­‰¹–Â‚ç‚·
 				Audio::Start(12);

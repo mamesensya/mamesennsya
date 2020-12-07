@@ -102,6 +102,9 @@ void CObjEnemyBullet::Action()
 	{
 		if (data_base[i] == true)
 		{
+			Effect* effect = new Effect(m_x, m_y);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
 		}
@@ -111,12 +114,18 @@ void CObjEnemyBullet::Action()
 	//主人公と接触しているかどうか調べる
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
+		Effect* effect = new Effect(m_x, m_y);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
 	}
 	//主人公（人）と接触しているか調べる
 	if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
+		Effect* effect = new Effect(m_x, m_y);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
 	}

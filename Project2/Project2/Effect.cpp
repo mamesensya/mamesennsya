@@ -22,7 +22,7 @@ void Effect:: Init()
 
 void Effect::Action()
 {
-	/*out++;
+	out++;
 
 	if (out == 10)
 	{
@@ -30,7 +30,7 @@ void Effect::Action()
 	}
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
-	m_scroll_map_y = block->GetSY();*/
+	m_scroll_map_y = block->GetSY();
 
 	
 }

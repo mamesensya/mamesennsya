@@ -223,9 +223,12 @@ void CObjHero::Action()
 				{
 					//弾着弾音
 					Audio::Start(14);
+
+					Effect* effect = new Effect(m_x, m_y);
+					Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
 					m_hp -= 1;
 					m_hit = false;
-					Effect* EF = (Effect*)Objs::GetObj(OBJ_EFFECT);//エフェクトをだす
 				}
 			}
 		}
