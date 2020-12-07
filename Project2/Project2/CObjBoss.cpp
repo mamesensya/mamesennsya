@@ -379,7 +379,8 @@ void CObjBoss::Action()
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 
-				Scene::SetScene(new CSceneGameClear());
+				Scene::SetScene(new CSceneMainSecond());
+			
 			}
 		}
 	}

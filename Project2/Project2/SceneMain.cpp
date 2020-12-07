@@ -80,6 +80,9 @@ void CSceneMain::InitScene()
 	//音楽スタート
 	Audio::Start(0);
 
+	////音楽ストップ
+	//Audio::Stop(0);
+
 	//敵の弾（BB弾）
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
 
