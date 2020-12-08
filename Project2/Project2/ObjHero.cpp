@@ -144,15 +144,26 @@ void CObjHero::Action()
 		}
 
 		//ブロックとの当たり判定
-		/*CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-		pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);*/
+		CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
 
 		
+
+
 		//ベクトルを位置に加算
 		m_x += m_vx;
 		m_y += m_vy;
 
-		
+		m_scroll = pb->GetSX();
+		m_scroll2 = pb->GetSY();
+		//スクロールが左上x500y500以上　右下x-5000y-2500以下なら初期値に戻す
+		if (m_scroll >= 500 || m_scroll <= -5000 || m_scroll2 >= 500 || m_scroll2 <= -2000)
+		{
+			m_scroll = 0;
+			m_scroll2 = 0;
+			pb->SetSX(m_scroll);
+			pb->SetSY(m_scroll2);
+		}
 		hit->SetPos(m_x, m_y);
 
 		if (m_attack == true) {
@@ -233,13 +244,13 @@ void CObjHero::Action()
 			}
 		}
 		//m_hpが０になると主人公を破棄
-		//if (m_hp <= 0)
-		//{
-		//	this->SetStatus(false);//自身に削除命令を出す
-		//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+		if (m_hp <= 0)
+		{
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-		//	Scene::SetScene(new CSceneGameOver());
-		//}
+			Scene::SetScene(new CSceneGameOver());
+		}
 
 		//攻撃間隔制御
 		if (m_attack == false)

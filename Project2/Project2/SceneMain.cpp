@@ -165,7 +165,7 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(obj_b, OBJ_BLOCK, 4);
 
 	//エフェクト
-	Draw::LoadImageW(L"当たりエフェクト.png", 20,TEX_SIZE_512);
+	Draw::LoadImageW(L"当たりエフェクト.png", 0,TEX_SIZE_512);
 	//Effect* of = new Effect(150,240);
 
 }

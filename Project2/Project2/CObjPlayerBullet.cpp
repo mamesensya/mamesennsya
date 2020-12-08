@@ -55,6 +55,10 @@ void CObjPlayerBullet::Action() {
 
 		for (int i = 0; i <= 3; i++)
 		{
+			/*if ((m_right == true && m_vx < 0) || (m_down == true && m_vy > 0))
+			{
+				;
+			}*/
 			if (data_base[i] == true)
 			{
 				this->SetStatus(false);

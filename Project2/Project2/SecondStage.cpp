@@ -60,8 +60,7 @@ void CSceneMainSecond::InitScene()
 
 	//p = Save::ExternalDataOpen(L"Book5.csv", &size);//外部データ読み込み
 
-
-	//音楽読み込み
+//音楽読み込み
 	Audio::LoadAudio(0, L"BGMGame.wav", BACK_MUSIC);
 	Audio::LoadAudio(1, L"BGMGame2.wav", BACK_MUSIC);
 	Audio::LoadAudio(2, L"BGMBoss（仮）.wav", BACK_MUSIC);
@@ -69,12 +68,17 @@ void CSceneMainSecond::InitScene()
 	Audio::LoadAudio(10, L"SE弾発射音.wav", EFFECT);
 	Audio::LoadAudio(11, L"SE弾獲得音.wav", EFFECT);
 	Audio::LoadAudio(12, L"SE敵爆破音.wav", EFFECT);
+	Audio::LoadAudio(13, L"SE敵弾着弾音.wav", EFFECT);
+	Audio::LoadAudio(14, L"SE主弾着弾音.wav", EFFECT);
 
 	//ボリュームを1.5増やす
 	float v = Audio::VolumeMaster(1.0f);
 
 	//音楽スタート
 	Audio::Start(0);
+
+	////音楽ストップ
+	//Audio::Stop(0);
 
 	//敵の弾（BB弾）
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
@@ -105,10 +109,10 @@ void CSceneMainSecond::InitScene()
 	Draw::LoadImageW(L"折れた芯.png", 6, TEX_SIZE_512);
 
 	//主人公グラフィック読み込み(300×300)
-	Draw::LoadImageW(L"さいころ5.png", 20, TEX_SIZE_512);
+	Draw::LoadImageW(L"さいころ5.png", 19, TEX_SIZE_512);
 
 	//主人公表示
-	CObjHero* obj = new CObjHero(150, 150);
+	CObjHero* obj = new CObjHero(0, 0);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	//弾
@@ -142,8 +146,8 @@ void CSceneMainSecond::InitScene()
 
 	//壊れる壁
 	Draw::LoadImageW(L"hako.png", 17, TEX_SIZE_512);
-	CObjbreakblock* obj_break_block = new CObjbreakblock(200, 300);
-	Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
+	//CObjbreakblock* obj_break_block = new CObjbreakblock(200, 300);
+	//Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
 
 	//ユーザーインタフェース
 	CObjUserInterface* obj_ui = new CObjUserInterface();
@@ -157,6 +161,9 @@ void CSceneMainSecond::InitScene()
 	CObjBlock* obj_b = new CObjBlock(map);
 	Objs::InsertObj(obj_b, OBJ_BLOCK, 4);
 
+	//エフェクト
+	Draw::LoadImageW(L"当たりエフェクト.png", 0, TEX_SIZE_512);
+	//Effect* of = new Effect(150,240)
 
 
 }
