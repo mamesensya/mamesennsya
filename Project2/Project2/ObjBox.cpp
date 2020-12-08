@@ -50,8 +50,7 @@ void CObjBox::Action()
 	//主人公（近接攻撃）と接触したらボックスを削除
 	if(hit->CheckObjNameHit(OBJ_ATTACK)!=nullptr)
 	{
-		Effect* effect = new Effect(m_x, m_y);
-		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+	
 
 		int x = m_x;
 		int y = m_y;

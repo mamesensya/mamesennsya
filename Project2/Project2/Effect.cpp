@@ -9,10 +9,11 @@
 
 using namespace GameL;
 
-Effect::Effect(float x, float y)
+Effect::Effect(float x, float y,float r)
 {
 	m_x = x;
 	m_y = y;
+	m_r = r;
 }
 
 void Effect:: Init()
@@ -60,5 +61,5 @@ void Effect::Draw()
 	dst.m_bottom = 45.0f + m_y + m_scroll_map_y;
 
 	//•`‰æ
-	Draw::Draw(0, &src, &dst, c, 0.0f);
+	Draw::Draw(0, &src, &dst, c, m_r);
 }

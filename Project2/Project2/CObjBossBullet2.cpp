@@ -71,7 +71,7 @@ void CObjBossBullet2::Action()
 	}
 
 	if (Hit->CheckObjNameHit(OBJ_HERO) != nullptr) {
-		Effect* effect = new Effect(m_x, m_y);
+		Effect* effect = new Effect(m_x, m_y,m_r);
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 
 		this->SetStatus(false);
@@ -80,7 +80,7 @@ void CObjBossBullet2::Action()
 	//主人公（人）と接触しているか調べる
 	if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
-		Effect* effect = new Effect(m_x, m_y);
+		Effect* effect = new Effect(m_x, m_y,m_r);
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 
 		this->SetStatus(false);//削除命令
