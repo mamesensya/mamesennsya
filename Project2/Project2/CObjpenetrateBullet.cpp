@@ -37,9 +37,6 @@ void CObjPenetrateBullet::Action() {
 		m_up,m_down,m_reft,m_right
 	};
 
-	//Effect* effect = new Effect(m_x, m_y);
-	//Objs::InsertObj(effect, OBJ_EFFECT, 20);
-
 
 	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
@@ -54,8 +51,8 @@ void CObjPenetrateBullet::Action() {
 		}*/
 		if (data_base[i] == true)
 		{
-			//Effect* effect = new Effect(m_x, m_y);
-			//Objs::InsertObj(effect, OBJ_EFFECT, 20);
+			Effect* effect = new Effect(m_x, m_y, m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);

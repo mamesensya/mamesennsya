@@ -9,30 +9,37 @@
 
 using namespace GameL;
 
-Effect::Effect(float x, float y)
+Effect::Effect(float x, float y,float r)
 {
 	m_x = x;
 	m_y = y;
+	m_r = r;
 }
 
 void Effect:: Init()
 {
+	out = 0;
 
+	Hits::SetHitBox(this, m_x, m_y, 8, 8, ELEMENT_ENEMY, OBJ_EFFECT, 1);
 }
 
 void Effect::Action()
 {
-	out++;
+	if (out > 10)
+	{
+		out = 0;
+	}
 
 	if (out == 10)
 	{
 		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
 	}
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
 
-	
+	out++;
 }
 
 void Effect::Draw()
@@ -50,9 +57,9 @@ void Effect::Draw()
 	//ï`âÊà íuÇÃê›íË
 	dst.m_top = 0.0f + m_y + m_scroll_map_y;
 	dst.m_left = 0.0f + m_x + m_scroll_map_x;
-	dst.m_right = 80.0f + m_x + m_scroll_map_x;
-	dst.m_bottom = 60.0f + m_y + m_scroll_map_y;
+	dst.m_right = 60.0f + m_x + m_scroll_map_x;
+	dst.m_bottom = 45.0f + m_y + m_scroll_map_y;
 
 	//ï`âÊ
-	Draw::Draw(20, &src, &dst, c, 0.0f);
+	Draw::Draw(0, &src, &dst, c, m_r);
 }

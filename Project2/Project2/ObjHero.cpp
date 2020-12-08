@@ -235,7 +235,7 @@ void CObjHero::Action()
 					//’e’…’e‰¹
 					Audio::Start(14);
 
-					Effect* effect = new Effect(m_x, m_y);
+					Effect* effect = new Effect(m_x, m_y,m_r);
 					Objs::InsertObj(effect, OBJ_EFFECT, 20);
 
 					m_hp -= 1;

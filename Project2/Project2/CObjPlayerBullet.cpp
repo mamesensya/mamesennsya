@@ -61,6 +61,9 @@ void CObjPlayerBullet::Action() {
 			}*/
 			if (data_base[i] == true)
 			{
+				Effect* effect = new Effect(m_x, m_y, m_r);
+				Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 			}
@@ -69,8 +72,7 @@ void CObjPlayerBullet::Action() {
 		
 
 		if (Hit->CheckObjNameHit(OBJ_ENEMY) != nullptr) {
-			Effect* effect = new Effect(m_x, m_y);
-			Objs::InsertObj(effect, OBJ_EFFECT, 20);
+			
 
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
