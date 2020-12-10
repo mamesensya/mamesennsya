@@ -28,5 +28,7 @@ private:
 	float m_scroll;//左右スクロール用
 	float m_scroll2;//上下スクロール用
 
+	int back[30][40]{0};
+
 
 };

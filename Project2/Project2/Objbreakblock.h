@@ -18,10 +18,13 @@ public:
 	float GetY() { return m_y; }
 
 	int Enemycount{ 4 };
+	
 private:
 	float m_x;//ˆÊ’u
 	float m_y;
 
 	float m_scroll_map_x{ 0 };
 	float m_scroll_map_y{ 0 };
+
+	bool m_hit{ true };
 };

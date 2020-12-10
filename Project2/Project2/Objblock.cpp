@@ -41,29 +41,29 @@ void CObjBlock::Action()
 	float hy = hero->GetY();
 
 	//右方スクロールライン
-	if (hx < 80)
+	if (hx < 200)
 	{
-		hero->SetX(80);
+		hero->SetX(200);
 		m_scroll -= hero->GetVX();
 	}
 
 	//左方スクロールライン
-	if (hx > 300)
+	if (hx > 500)
 	{
-		hero->SetX(300);
+		hero->SetX(500);
 		m_scroll -= hero->GetVX();
 	}
 	//上方スクロールライン
-	if (hy < 80)
+	if (hy < 200)
 	{
-		hero->SetY(80);
+		hero->SetY(200);
 		m_scroll2 -= hero->GetVY();
 	}
 
 	//下方スクロールライン
-	if (hy > 300)
+	if (hy > 400)
 	{
-		hero->SetY(300);
+		hero->SetY(400);
 		m_scroll2 -= hero->GetVY();
 	}
 
@@ -152,21 +152,32 @@ void CObjBlock::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//背景表示
-	src.m_top = 25.0f;
-	src.m_left = 0.0f;
-	src.m_right = 512.0f;
-	src.m_bottom = 512.0f;
-	dst.m_top = 0.0f+m_scroll2;
-	dst.m_left = 0.0f+m_scroll;
-	dst.m_right = 800.0f+m_scroll;
-	dst.m_bottom = 600.0f+m_scroll2;
+	
+	
 	Draw::Draw(3, &src, &dst, c, 0.0f);
 
-	//切り取り位置の設定
-	src.m_top = 0.0f;
-	src.m_left = 320.0f;
-	src.m_right = src.m_left + 64.0f;
-	src.m_bottom = 64.0f;
+	for (int i = 0; i < 30; i++)
+	{
+		for (int j = 0; j < 40; j++)
+		{
+			if (back[i][j] == 0)
+			{
+				dst.m_top = ((i * 600.0f) - 137.0f) + m_scroll2;
+				dst.m_left = ((j * 800.0f) - 137.0f) + m_scroll;
+				dst.m_right = dst.m_left +800.0;
+				dst.m_bottom = dst.m_top + 600.0;
+
+				src.m_top = 25.0f;
+				src.m_left = 0.0f;
+				src.m_right = 512.0f;
+				src.m_bottom = 512.0f;
+			}
+			
+
+				//描画
+				Draw::Draw(3, &src, &dst, c,0.0f);
+		}
+    }
 
 
 
@@ -205,9 +216,10 @@ void CObjBlock::Draw()
 				{
 					;
 				}
+				if (m_map[0][0] == 1)m_map[0][0] = 0;
 				else
 				{
-					
+					//切り取り位置
 					src.m_top = 0.0f;
 					src.m_left = 320.0f;
 					src.m_right = src.m_left + 64.0f;

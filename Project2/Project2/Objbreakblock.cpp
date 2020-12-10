@@ -49,7 +49,7 @@ void CObjbreakblock::Init()
 	//}
 
 	//当たり判定用HitBox作成
-	Hits::SetHitBox(this, m_x, m_y, 64, 64, ELEMENT_ITEM, OBJ_BOX, 1);
+	Hits::SetHitBox(this, m_x, m_y, 64, 64, ELEMENT_ITEM, OBJ_BREAK_BLOCK, 1);
 }
 
 //アクション
@@ -63,14 +63,29 @@ void CObjbreakblock::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
-	//敵を全員倒したらしたら壁を削除
-	if (Enemycount==0)
-	{
-		//壁を削除
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-
 	
+	int data_base[3] =
+	{
+		OBJ_ENEMY,
+		OBJ_ENEMY3,
+		OBJ_GHOST,
+	};
+	//敵を全員倒したらしたら壁を削除
+	if (m_hit == true)
+	{
+		{
+
+		}
+		
+		for (int i = 0; i < 3; i++)
+		{
+			if (hit->CheckObjNameHit(data_base[i]) == nullptr)
+			{
+				//壁を削除
+				this->SetStatus(false);
+				Hits::DeleteHitBox(this);
+			}
+		}
 	}
 }
 
