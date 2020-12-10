@@ -93,7 +93,9 @@ void CObjBlock::Action()
 	//“GoŒ»ƒ‰ƒCƒ“‚Ì—ñ‚ğŒŸõ
 	/*enemies = 0;*/
 	//if((hx+m_scroll)<=m_map[0][0]&&>=m_map[0][80])
-
+	if (ex < 0) 
+		;
+	else
 	for (int i = 0; i < 60; i++)
 	{
 		
