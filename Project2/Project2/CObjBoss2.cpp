@@ -110,6 +110,8 @@ void CObjBoss2::Action()
 		}
 	}
 	//’eŠÛ‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ğ’²‚×‚é
+	CSceneMain* main = new CSceneMain();
+
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 		//’e’…’e‰¹
@@ -122,10 +124,11 @@ void CObjBoss2::Action()
 		if (m_hp <= 0) {
 			//”š”­‰¹–Â‚ç‚·
 			Audio::Start(12);
-
+			main->RoundChange();
 			this->SetStatus(false);//©g‚Éíœ–½—ß‚ğo‚·
 			Hits::DeleteHitBox(this);//’eŠÛ‚ªŠ—L‚·‚éHitBox‚Éíœ‚·‚éB
-			Scene::SetScene(new CSceneGameClear());
+
+			
 		}
 	}
 	if (pbullet_enable == false) {
@@ -141,6 +144,8 @@ void CObjBoss2::Action()
 			if (m_hp <= 0) {
 				//”š”­‰¹–Â‚ç‚·
 				Audio::Start(12);
+
+				main->RoundChange();
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 				Scene::SetScene(new CSceneGameClear());

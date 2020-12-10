@@ -59,7 +59,7 @@ enum HIT_ELEMENTS
 //セーブ＆ロードとシーン間のやり取りするデータ
 struct UserData
 {
-	int mSeveData;	//サンプルセーブデータ
+	int mSeveData = 0;	//サンプルセーブデータ
 	
 };
 //------------------------------------------------
