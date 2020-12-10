@@ -189,9 +189,6 @@ void CObjGhost::Action()
 	//ŽålŒö’e‚ÆÚG‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
-		Effect* effect = new Effect(m_x, m_y,m_r);
-		Objs::InsertObj(effect, OBJ_EFFECT, 20);
-
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 

@@ -56,39 +56,40 @@ void CObjBossBullet4::Action()
 	{
 		if (data_base[i] == true)
 		{
-			Effect* effect = new Effect(m_x, m_y,m_r);
-			Objs::InsertObj(effect, OBJ_EFFECT, 20);
-
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
+
+			Effect* effect = new Effect(m_x, m_y, m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 		}
 	}
 
 	//ŽålŒö‚ÆÚG‚µ‚Ä‚¢‚é‚©’²‚×‚é
 	if (Hit->CheckObjNameHit(OBJ_HERO) != nullptr) {
-		Effect* effect = new Effect(m_x, m_y,m_r);
-		Objs::InsertObj(effect, OBJ_EFFECT, 20);
-
+		
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
+
+		Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 	}
 	//ŽålŒöilj‚ÆÚG‚µ‚Ä‚¢‚é‚©’²‚×‚é
 	if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
-		Effect* effect = new Effect(m_x, m_y,m_r);
-		Objs::InsertObj(effect, OBJ_EFFECT, 20);
-
 		this->SetStatus(false);//íœ–½—ß
 		Hits::DeleteHitBox(this);//íœ
+
+		Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 	}
 	//ŠÑ’Ê’e‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ð’²‚×‚é
 	if (Hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
-		Effect* effect = new Effect(m_x, m_y,m_r);
-		Objs::InsertObj(effect, OBJ_EFFECT, 20);
-
 		this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
 		Hits::DeleteHitBox(this);//’eŠÛ‚ªŠ—L‚·‚éHitBox‚Éíœ‚·‚éB
+
+		Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 	}
 	//”ÍˆÍŠO‚Éo‚é‚Æ’e‚ðíœ
 	if (mx >= 500.0f || mx <= -500.0f || my >= 500.0f || my <= -500.0f)

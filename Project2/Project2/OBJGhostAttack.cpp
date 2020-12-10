@@ -92,6 +92,9 @@ void CObjGhostAttack::Action()
 		{
 			this->SetStatus(false);//ålŒö‚É“–‚½‚Á‚½‚ç”jŠü
 			Hits::DeleteHitBox(this);
+
+			Effect* effect = new Effect(m_x, m_y, m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 		}
 
 		this->SetStatus(false);//ˆê’èŠÔŒo‰ß‚µ‚½‚ç‚¢‚Á‚½‚ñ”jŠü
