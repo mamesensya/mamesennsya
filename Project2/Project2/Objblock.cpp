@@ -220,15 +220,6 @@ void CObjBlock::Draw()
 		}
 	}
 
-
-
-
-
-				//•`‰æ
-				Draw::Draw(3, &src, &dst, c,0.0f);
-		}
-    }
-
 	//Ø‚èæ‚èˆÊ’u‚Ìİ’è
 	src.m_top = 0.0f;
 	src.m_left = 320.0f;

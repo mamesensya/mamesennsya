@@ -126,9 +126,9 @@ void CSceneMain::InitScene()
 	//’Êí’e
 	Draw::LoadImageW(L"‘å“¤.jpg", 14, TEX_SIZE_512);
 	//ŠÑ’Ê’e
-	Draw::LoadImageW(L"ŠÑ’Ê.jpg", 29, TEX_SIZE_512);
+	Draw::LoadImageW(L"ŠÑ’Ê.png", 29, TEX_SIZE_512);
 	//ŠgU’e
-	Draw::LoadImageW(L"ŠgU.jpg", 28, TEX_SIZE_512);
+	Draw::LoadImageW(L"ŠgU.png", 30, TEX_SIZE_512);
 
 
 	//ålŒöilj
