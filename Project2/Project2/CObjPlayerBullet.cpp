@@ -18,7 +18,7 @@ void CObjPlayerBullet::Init() {
 	m_vx = 0;
 	m_vy = 0;
 
-	m_speed = 7;
+	m_speed = 6;
 	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_RED, OBJ_BULLET, 1);
 };
 

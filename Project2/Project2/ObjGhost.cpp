@@ -195,8 +195,6 @@ void CObjGhost::Action()
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 
-		CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
-		Bblock->Enemycount--;
 		CObjBoss* Boss = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
 		Boss->m_oni_count--;
 	}

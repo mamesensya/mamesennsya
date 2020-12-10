@@ -134,13 +134,13 @@ void CObjBossBullet::Action()
 
 	
 	//主人公と接触しているかどうか調べる
-	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+	else if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
 	}
 	//主人公（人）と接触しているか調べる
-	if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
+	else if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除

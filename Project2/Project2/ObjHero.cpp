@@ -145,7 +145,7 @@ void CObjHero::Action()
 
 		//ブロックとの当たり判定
 		CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-		pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
+		//pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
 
 		
 
@@ -210,25 +210,28 @@ void CObjHero::Action()
 				Objs::InsertObj(savesys, OBJ_SAVE, 17);
 			};
 		};
+		if (Input::GetVKey('B') == true) {
+			Scene::SetScene(new CSceneMain());
+		}
 
 		//当たり判定を行うオブジェクト情報部
-		int data_base[10] =
+		int data_base[5] =
 		{
-			OBJ_ENEMY,
+			//OBJ_ENEMY,
 			OBJ_ENEMY_BULLET,
-			OBJ_ENEMY3,
+			//OBJ_ENEMY3,
 			OBJ_ENEMY_3BULLET,
-			OBJ_BOSS,
+			//OBJ_BOSS,
 			OBJ_BOSS_BULLET,
-			OBJ_GHOST,
+			//OBJ_GHOST,
 			OBJ_GHOST_ATTACK,
-			OBJ_BOSS2,
+			//OBJ_BOSS2,
 			OBJ_BOSS_BULLET2,
 		};
 		//敵オブジェクトと接触したら主人公のm_hpが減少
 		if (m_hit == true)
 		{
-			for (int i = 0; i < 10; i++)
+			for (int i = 0; i < 5; i++)
 			{
 				if (hit->CheckObjNameHit(data_base[i]) != nullptr)
 				{

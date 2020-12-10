@@ -28,6 +28,13 @@ void CObjBoss2::Init()
 
 void CObjBoss2::Action()
 {
+	if (m_x >= (80 * 64) || m_y >= (60 * 64))
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
+
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
@@ -171,12 +178,7 @@ void CObjBoss2::Action()
 		}
 	}
 
-	if (m_x >= (80 * 64) || m_y >= (60 * 64))
-	{
-
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-	}
+	
 }
 
 void CObjBoss2::Draw()

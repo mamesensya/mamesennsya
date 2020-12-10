@@ -95,7 +95,7 @@ void CObjAngleBullet::Action()
         Hits::DeleteHitBox(this);//削除
     }
     //主人公（人）と接触しているか調べる
-    if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
+    else if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
     {
         Effect* effect = new Effect(m_x, m_y,m_r);
         Objs::InsertObj(effect, OBJ_EFFECT, 20);
@@ -110,7 +110,7 @@ void CObjAngleBullet::Action()
     //	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
     //}
 
-    if (mx >= 500.0f || mx <= -500.0f || my >= 500.0f || my <= -500.0f)
+    else if (mx >= 500.0f || mx <= -500.0f || my >= 500.0f || my <= -500.0f)
     {
         this->SetStatus(false);//削除命令
         Hits::DeleteHitBox(this);//削除

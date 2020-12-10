@@ -21,6 +21,7 @@ void Effect:: Init()
 	out = 0;
 
 	Hits::SetHitBox(this, m_x, m_y, 8, 8, ELEMENT_ENEMY, OBJ_EFFECT, 1);
+	
 }
 
 void Effect::Action()
@@ -59,7 +60,7 @@ void Effect::Draw()
 	dst.m_left = 0.0f + m_x + m_scroll_map_x;
 	dst.m_right = 60.0f + m_x + m_scroll_map_x;
 	dst.m_bottom = 45.0f + m_y + m_scroll_map_y;
-
+	SetPrio(25);
 	//•`‰æ
-	Draw::Draw(0, &src, &dst, c, m_r);
+	Draw::Draw(30, &src, &dst, c, m_r);
 }
