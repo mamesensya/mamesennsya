@@ -4,17 +4,19 @@
 #include "GameL\HitBoxManager.h"
 #include "GameHead.h"
 #include "Objbreakblock.h"
+#include"ObjUserInterface.h"
+#include"ObjHero.h"
 
-//マップのX軸数
-#define MAP_X (100)
-//マップのY軸数
-#define MAP_Y (10)
+
 
 //使用するネームスペース
 using namespace GameL;
 
+
+
+
 //コンストラクタ
-CObjbreakblock::CObjbreakblock(float x, float y)
+CObjbreakblock::CObjbreakblock(float x, float y )
 {
 	m_x = x;
 	m_y = y;
@@ -56,12 +58,20 @@ void CObjbreakblock::Init()
 void CObjbreakblock::Action()
 {
 
+	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	float hx = hero->GetX();
+	float hy = hero->GetY();
+
+	CObjUserInterface* count = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+	int Enemycount = count->GetEM();
+	
+
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
+	
 
 	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
 	
 	int data_base[3] =
@@ -111,3 +121,8 @@ void CObjbreakblock::Draw()
 	//描画
 	Draw::Draw(17, &src, &dst, c, 0.0f);
 }
+
+
+
+
+

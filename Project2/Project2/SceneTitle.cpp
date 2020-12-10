@@ -17,9 +17,10 @@ using namespace GameL;
 void SceneTitle::InitScene() {
 
 	Draw::LoadImageW(L"title.png", 15, TEX_SIZE_1024);
-	
+
+	Draw::LoadImageW(L"betatitle.png", 29, TEX_SIZE_512);
 	CObjTitles* tobj = new CObjTitles();
-	Objs::InsertObj(tobj, OBJ_TITLEFONT, 100);
+	Objs::InsertObj(tobj, OBJ_TITLEFONT, 150);
 
 	//âπäyèÓïÒÇÃì«Ç›çûÇ›
 	Audio::LoadAudio(0, L"BGMTitleÅiâºÅj.wav", SOUND_TYPE::BACK_MUSIC);
@@ -29,7 +30,7 @@ void SceneTitle::InitScene() {
 };
 
 void SceneTitle::Scene() {
-	if (Input::GetVKey('Z') == true) {
+	if (Input::GetVKey(VK_RETURN) == true) {
 		if (keyover == false) {
 			Scene::SetScene(new CSceneMain);
 			keyover = true;
@@ -39,7 +40,7 @@ void SceneTitle::Scene() {
 		keyover = false;
 	}
 	float c[4] = {1.0f,1.0f,1.0f,1.0f};
-	Font::StrDraw(L"ì§êÌé‘",208,100 ,128, c);
+	//Font::StrDraw(L"ì§êÌé‘",208,100 ,128, c);
 	Font::StrDraw(L"(C) CopyRight 2020 Team.Inverse", 245,580,20, c);
 	
 

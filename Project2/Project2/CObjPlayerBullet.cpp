@@ -2,7 +2,6 @@
 #include "CObjPlayerBullet.h"
 #include "GameL\HitBoxManager.h"
 #include "GameL\DrawTexture.h"
-#include "GameL\HitBoxManager.h"
 #include "GameL\SceneManager.h"
 
 
@@ -10,8 +9,8 @@
 using namespace GameL;
 
 CObjPlayerBullet::CObjPlayerBullet(float x, float y, float r) {
-	m_x = x+32;
-	m_y = y+32;
+	m_x = x+20;
+	m_y = y+20;
 	m_r = r;
 };
 
@@ -20,13 +19,20 @@ void CObjPlayerBullet::Init() {
 	m_vy = 0;
 
 	m_speed = 7;
-	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_RED, OBJ_ANGLE_BULLET, 1);
+	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_RED, OBJ_BULLET, 1);
 };
 
 void CObjPlayerBullet::Action() {
 
+
 		CHitBox* Hit = Hits::GetHitBox(this);
 		
+		//スクロールした分のベクトルを取得
+		CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		m_scroll_map_x = block->GetSX();
+		m_scroll_map_y = block->GetSY();
+
+
 		m_vx = cos(3.14 / 180.0f * m_r);
 		m_vy = sin(3.14 / 180.0f * m_r);
 
@@ -35,7 +41,39 @@ void CObjPlayerBullet::Action() {
 
 		Hit->SetPos(m_x, m_y);
 
+		
+
+		int data_base[4] =
+		{
+			m_up,m_down,m_reft,m_right
+		};
+
+		CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+		
+
+		for (int i = 0; i <= 3; i++)
+		{
+			/*if ((m_right == true && m_vx < 0) || (m_down == true && m_vy > 0))
+			{
+				;
+			}*/
+			if (data_base[i] == true)
+			{
+				Effect* effect = new Effect(m_x, m_y, m_r);
+				Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+				this->SetStatus(false);
+				Hits::DeleteHitBox(this);
+			}
+		}
+
+		
+
 		if (Hit->CheckObjNameHit(OBJ_ENEMY) != nullptr) {
+			
+
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
 		}

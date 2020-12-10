@@ -10,9 +10,8 @@ enum OBJ_NAME
 	OBJ_ENEMY,
 	OBJ_ENEMY_BULLET,
 	OBJ_BLOCK,
-	OBJ_ANGLE_BULLET,
+	OBJ_BULLET,
 	OBJ_GHOST,
-	OBJ_PENETRATE_BULLET,
 	OBJ_CHARA,
 	OBJ_ENEMY_3BULLET,
 	OBJ_ENEMY3,
@@ -30,6 +29,9 @@ enum OBJ_NAME
 	OBJ_BOSS_BULLET2,
 	OBJ_BREAK_BLOCK,
 	OBJ_ANGLE_BULLET2,
+	OBJ_BOSS_BULLET4,
+	OBJ_PENETRATE_BULLET,
+	OBJ_EFFECT,
 };
 //------------------------------------------------
 
@@ -98,6 +100,8 @@ struct UserData
 #include "ObjUserInterface.h"
 #include "CObjBoss2.h"
 #include "CObjBossBullet2.h"
+#include "CObjBossBullet4.h"
+#include"Effect.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -105,6 +109,7 @@ struct UserData
 #include "SceneTitle.h"
 #include "SceneGameOver.h"
 #include "SceneGameClear.h"
+#include "SecondStage.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
@@ -112,6 +117,8 @@ struct UserData
 
 
 //ゲーム開始時のシーンクラス登録
-//#define SET_GAME_START SceneTitle
-#define SET_GAME_START CSceneMain
+//#define SET_GAME_START CSceneMain
+#define SET_GAME_START SceneTitle
+//#define SET_GAME_START CSceneGameClear
+//#define SET_GAME_START CSceneMainSecond
 //-----------------------------------------------

@@ -17,8 +17,10 @@ public:
 	float GetX() { return m_x; }
 	float GetY() { return m_y; }
 	float GetR() { return m_r; }
+	bool Getcek() { return m_check; }
 
 	int m_Bcount{ 0 };
+	int m_oni_count{ 0 };
 private:
 	float m_x;//x座標
 	float m_y;//y座標
@@ -31,10 +33,12 @@ private:
 	int m_hp;//HP
 	int count;//主人公の位置を向く為の変数
 	int m_time;//弾発射間隔制御用変数
+	int m_time2;
 	int m_move_time;
 	int pbullet_interval;
 	bool pbullet_enable;
 
+	bool m_check{false};
 
 	float m_oni_time{ 0 };
 

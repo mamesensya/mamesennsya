@@ -17,14 +17,26 @@ public:
 	float GetX() { return m_x; }
 	float GetY() { return m_y; }
 
-	int Enemycount{ 4 };
-	
+
+	void BBlockHit(
+		float* x, float* y, bool* up, bool* down,
+		bool* left, bool* right, float* vx, float* vy
+	);
+
+	int Enemycount{ 0 };
+
 private:
 	float m_x;//ˆÊ’u
 	float m_y;
 
+	float m_vx;
+	float m_vy;
+
 	float m_scroll_map_x{ 0 };
 	float m_scroll_map_y{ 0 };
+
+	int num{0};
+	int *m_map[60][80];
 
 	bool m_hit{ true };
 };

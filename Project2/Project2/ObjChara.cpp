@@ -3,6 +3,7 @@
 #include "GameL\SceneManager.h"
 #include "GameL\HitBoxManager.h"
 #include "GameL\WinInputs.h"
+#include "GameL\Audio.h"
 #include "GameHead.h"
 #include "ObjChara.h"
 
@@ -11,13 +12,13 @@ using namespace GameL;
 //コンストラクタ
 CObjChara::CObjChara(float x, float y)
 {
-	m_x = x;
-	m_y = y;
+	m_x = x + 20.0f;
+	m_y = y + 20.0f;
 }
 
 void CObjChara::Init()
 {
-	m_hp = 5;
+	m_hp = 2;
 
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	//ヒーローからフラグ情報をもらって代入
@@ -43,6 +44,7 @@ void CObjChara::Action()
 			//主人公（戦車）のHitBoxに当たっているときに切り替えができる
 			if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 			{
+				m_hit_tank = true;
 				//主人公が人状態に移行
 				if (Input::GetVKey('V') == true)
 				{
@@ -55,30 +57,32 @@ void CObjChara::Action()
 					//チャタリング防止用
 					while (Input::GetVKey('V') == true);
 				}
+			}else {
+				m_hit_tank = false;
 			}
 			//右方向
 			if (Input::GetVKey(VK_RIGHT) == true)
 			{
 				m_r = 270.0f;
-				m_vx = 1.0f;
+				m_vx = 1.0f*3;
 			}
 			//左方向
 			if (Input::GetVKey(VK_LEFT) == true)
 			{
 				m_r = 90.0f;
-				m_vx = -1.0f;
+				m_vx = -1.0f*3;
 			}
 			//上方向
 			if (Input::GetVKey(VK_UP) == true)
 			{
 				m_r = 0.0f;
-				m_vy = -1.0f;
+				m_vy = -1.0f*3;
 			}
 			//下方向
 			if (Input::GetVKey(VK_DOWN) == true)
 			{
 				m_r = 180.0f;
-				m_vy = 1.0f;
+				m_vy = 1.0f*3;
 			}
 
 			//主人公近接攻撃
@@ -98,6 +102,10 @@ void CObjChara::Action()
 			//ベクトルを0に戻す
 			m_vx = 0;
 			m_vy = 0;
+
+			//ブロックとの当たり判定
+			CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+			pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
 
 			//当たり判定を行うオブジェクト情報部
 			int data_base[10] =
@@ -121,19 +129,22 @@ void CObjChara::Action()
 				{
 					if (hit->CheckObjNameHit(data_base[i]) != nullptr)
 					{
+						//弾着弾音
+						Audio::Start(14);
+
 						m_hp -= 1;
 						m_hit = false;
 					}
 				}
 			}
-			////m_hpが０になると主人公を破棄
-			//if (m_hp == 0)
-			//{
-			//	this->SetStatus(false);//自身に削除命令を出す
-			//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+			//m_hpが０になると主人公を破棄
+			if (m_hp == 0)
+			{
+				this->SetStatus(false);//自身に削除命令を出す
+				Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-			//	Scene::SetScene(new CSceneGameOver());
-			//}
+				Scene::SetScene(new CSceneGameOver());
+			}
 
 			//攻撃間隔制御用
 			if (m_attack == false)

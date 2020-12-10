@@ -23,7 +23,7 @@ void CObjBoss2::Init()
 	pbullet_enable = false; //貫通弾ダメージ有効
 
 	//HitBox追加
-	Hits::SetHitBox(this, m_x, m_y, 172, 172, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_x, m_y, 150, 172, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 }
 
 void CObjBoss2::Action()
@@ -33,22 +33,25 @@ void CObjBoss2::Action()
 	m_scroll_map_y = block->GetSY();
 
 	//主人公の座標取得
+
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	if (hero != nullptr)
+	if (m_bullet_type == 0)
 	{
-		float hx = hero->GetX();
-		float hy = hero->GetY();
+		if (hero != nullptr)
+		{
+			float hx = hero->GetX();
+			float hy = hero->GetY();
 
-		//敵から主人公のベクトルを求める
-		float x = m_x - hx + m_scroll_map_x;
-		float y = m_y - hy + m_scroll_map_y;
+			//敵から主人公のベクトルを求める
+			float x = m_x - hx + m_scroll_map_x;
+			float y = m_y - hy + m_scroll_map_y;
 
-		m_r = atan2(x, y) * 180.0f / 3.14f;
+			m_r = atan2(x, y) * 180.0f / 3.14f;
 
-		if (m_r < 0)
-			m_r = 360 - abs(m_r);
+			if (m_r < 0)
+				m_r = 360 - abs(m_r);
+		}
 	}
-
 	m_x += m_scroll_map_x;
 	m_y += m_scroll_map_y;
 
@@ -59,40 +62,88 @@ void CObjBoss2::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
-	//trueなら弾発射
-	if (m_attack == true)
+	if (m_bullet_type == 0)
 	{
-		//発射音鳴らす
-		Audio::Start(10);
+		//trueなら弾発射
+		if (m_attack == true)
+		{
+			//発射音鳴らす
+			Audio::Start(10);
 
-		CObjBossBullet2* obj_eb = new CObjBossBullet2(m_x + m_scroll_map_x, m_y + m_scroll_map_y, -m_r-90);
-		Objs::InsertObj(obj_eb, OBJ_BOSS_BULLET2, 16);
+			CObjBossBullet2* obj_eb = new CObjBossBullet2(m_x-40.0f, m_y-30.0f, -m_r - 90);
+			Objs::InsertObj(obj_eb, OBJ_BOSS_BULLET2, 50);
 
-		m_attack = false;
+			m_attack = false;
+		}
 	}
-
-	//弾丸と接触しているかを調べる
-	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
+	if (m_bullet_type == 1)
 	{
+		if (m_attack == true)
+		{
+			bool reflect = true;
+			if (m_maelstrom_time == 10)
+			{
+				if (m_r >= 0.0 && reflect == true)
+				{
+					//角度m_angleで角度弾丸発射
+					m_r += 5.0;
+					CObjBossBullet4* obj_bossbullet = new CObjBossBullet4(m_x-15.0f, m_y-10.0f, -m_r-95.0f);
+					Objs::InsertObj(obj_bossbullet, OBJ_BOSS_BULLET4, 50);
+					if (m_r >= 360.0)
+					{
+						reflect = false;
+					}
+				}
+				else if (m_r <= 360 && reflect == false)
+				{
+					//角度m_angleで角度弾丸発射
+					m_r -= 5.0;
+					if (m_r <= 0)
+					{
+						reflect = true;
+					}
+				}
+				m_maelstrom_time = 0;
+			}
+			m_maelstrom_time++;
+
+		}
+	}
+	//弾丸と接触しているかを調べる
+	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	{
+		//弾着弾音
+		Audio::Start(13);
+
 		m_hp--;
+
+		Effect* effect = new Effect(m_x, m_y,m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 		if (m_hp <= 0) {
 			//爆発音鳴らす
 			Audio::Start(12);
 
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
+			Scene::SetScene(new CSceneGameClear());
 		}
 	}
 	if (pbullet_enable == false) {
 		if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
+			//弾着弾音
+			Audio::Start(13);
+
 			m_hp--;
+
+			Effect* effect = new Effect(m_x, m_y,m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 			pbullet_enable = true;
 			if (m_hp <= 0) {
 				//爆発音鳴らす
 				Audio::Start(12);
-
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
+				Scene::SetScene(new CSceneGameClear());
 			}
 		}
 	}
@@ -108,11 +159,18 @@ void CObjBoss2::Action()
 	if (m_attack == false)
 	{
 		m_attack_time++;
-		if (m_attack_time == 200)
+		if (m_attack_time == 100)
 		{
 			m_attack = true;
 			m_attack_time = 0;
 		}
+	}
+
+	if (m_x >= (80 * 64) || m_y >= (60 * 64))
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
 	}
 }
 
@@ -126,8 +184,8 @@ void CObjBoss2::Draw()
 	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 230.0f;
-	src.m_bottom = 400.0f;
+	src.m_right = 300.0f;
+	src.m_bottom = 300.0f;
 
 	//出力位置
 	dst.m_top = 40.0f + m_y + m_scroll_map_y - 40.0f;
@@ -135,5 +193,22 @@ void CObjBoss2::Draw()
 	dst.m_right = 180.0f + m_x + m_scroll_map_x - 35.0f;
 	dst.m_bottom = 200.0f + m_y + m_scroll_map_y - 34.0f;
 
-	Draw::Draw(7, &src, &dst, c, m_r);
+	Draw::Draw(9, &src, &dst, c, 0);
+
+	RECT_F src2;
+	RECT_F dst2;
+
+	//切り取り位置
+	src2.m_top = 0.0f;
+	src2.m_left = 0.0f;
+	src2.m_right = 300.0f;
+	src2.m_bottom = 300.0f;
+
+	//出力位置
+	dst2.m_top = 40.0f + m_y + m_scroll_map_y - 40.0f;
+	dst2.m_left = 40.0f + m_x + m_scroll_map_x - 35.0f;
+	dst2.m_right = 180.0f + m_x + m_scroll_map_x - 35.0f;
+	dst2.m_bottom = 200.0f + m_y + m_scroll_map_y - 34.0f;
+
+	Draw::Draw(8, &src, &dst, c, m_r);
 }

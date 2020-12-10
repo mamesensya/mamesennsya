@@ -6,6 +6,7 @@
 #include "CObjPlayerBullet.h"
 #include "CObjpenetrateBullet.h"
 #include "GameL\Audio.h"
+#include"Objbreakblock.h"
 
 #include "GameHead.h"
 #include "ObjHero.h"
@@ -67,6 +68,16 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
+	//m_time++;
+	//if (m_time == 21.0f)
+	//{
+	//	m_time = 0;
+	//}
+
+
+	//HitBoxの内容更新
+	CHitBox* hit = Hits::GetHitBox(this);
+
 	//主人公（人）の状態なら動作しない
 	if (m_hero_flag == false)
 	{
@@ -82,7 +93,7 @@ void CObjHero::Action()
 				m_hero_flag = true;
 
 				//主人公（人）を作成
-				CObjChara* obj_chara = new CObjChara(m_x+20, m_y+20);
+				CObjChara* obj_chara = new CObjChara(m_x, m_y);
 				Objs::InsertObj(obj_chara, OBJ_CHARA, 11);
 				//チャタリング防止用
 				while (Input::GetVKey('V') == true);
@@ -106,7 +117,7 @@ void CObjHero::Action()
 			m_r += 1.0f;
 		}
 		//上方向
-		else if (Input::GetVKey(VK_UP) == true)
+		if (Input::GetVKey(VK_UP) == true)
 		{
 			//角度をラジアンに変換してsin cosの計算
 			sin_cos(m_r, &sin_f, &cos_f);
@@ -115,8 +126,8 @@ void CObjHero::Action()
 			//弾の所持数に応じて速度変更
 			VectorChange(bullet, &sin_f, &cos_f);
 
-			m_vx = -sin_f;
-			m_vy = -cos_f;
+			m_vx = -sin_f*3;
+			m_vy = -cos_f*3;
 		}
 		//下方向
 		else if (Input::GetVKey(VK_DOWN) == true)
@@ -128,22 +139,31 @@ void CObjHero::Action()
 			//弾の所持数に応じて速度変更
 			VectorChange(bullet, &sin_f, &cos_f);
 
-			m_vx = +sin_f;
-			m_vy = +cos_f;
+			m_vx = +sin_f*3;
+			m_vy = +cos_f*3;
 		}
 
 		//ブロックとの当たり判定
 		CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 		pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
 
+		
 
 
 		//ベクトルを位置に加算
 		m_x += m_vx;
 		m_y += m_vy;
 
-		//HitBoxの内容更新
-		CHitBox* hit = Hits::GetHitBox(this);
+		m_scroll = pb->GetSX();
+		m_scroll2 = pb->GetSY();
+		//スクロールが左上x500y500以上　右下x-5000y-2500以下なら初期値に戻す
+		if (m_scroll >= 500 || m_scroll <= -5000 || m_scroll2 >= 500 || m_scroll2 <= -2000)
+		{
+			m_scroll = 0;
+			m_scroll2 = 0;
+			pb->SetSX(m_scroll);
+			pb->SetSY(m_scroll2);
+		}
 		hit->SetPos(m_x, m_y);
 
 		if (m_attack == true) {
@@ -153,7 +173,7 @@ void CObjHero::Action()
 				Audio::Start(10);
 
 				CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - 90);
-				Objs::InsertObj(obj_ab, OBJ_ANGLE_BULLET, 14);
+				Objs::InsertObj(obj_ab, OBJ_BULLET, 14);
 				m_bullet -= 1;
 				bullet -= 1;
 				m_attack = false;
@@ -163,7 +183,7 @@ void CObjHero::Action()
 				Audio::Start(10);
 
 				CObjPenetrateBullet* obj_pb = new CObjPenetrateBullet(m_x, m_y, m_r - (m_r * 2) - 90);
-				Objs::InsertObj(obj_pb, OBJ_PENETRATE_BULLET, 15);
+				Objs::InsertObj(obj_pb, OBJ_BULLET, 15);
 				m_unique_bullet_1 -= 1;
 				bullet -= 1;
 				m_attack = false;
@@ -174,22 +194,22 @@ void CObjHero::Action()
 				
 				for (int i = 0; i < 3; i++) {
 					CObjPlayerBullet* obj_db = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
-					Objs::InsertObj(obj_db, OBJ_ANGLE_BULLET, 16);
+					Objs::InsertObj(obj_db, OBJ_BULLET, 16);
 				}
 				m_unique_bullet_2 -= 1;
 				bullet -= 1;
 				m_attack = false;
 			}
-
-			if (Input::GetVKey('Q') == true) {
-				CObjSaveSystem* savesys = new CObjSaveSystem();
-				int state = savesys->GetState();
-				if (state == 0) {
-					savesys->SetState(1);
-					Objs::InsertObj(savesys, OBJ_SAVE, 17);
-				};
-			};
 		}
+
+		if (Input::GetVKey('Q') == true) {
+			CObjSaveSystem* savesys = new CObjSaveSystem();
+			int state = savesys->GetState();
+			if (state == 0) {
+				savesys->SetState(1);
+				Objs::InsertObj(savesys, OBJ_SAVE, 17);
+			};
+		};
 
 		//当たり判定を行うオブジェクト情報部
 		int data_base[10] =
@@ -212,19 +232,25 @@ void CObjHero::Action()
 			{
 				if (hit->CheckObjNameHit(data_base[i]) != nullptr)
 				{
+					//弾着弾音
+					Audio::Start(14);
+
+					Effect* effect = new Effect(m_x, m_y,m_r);
+					Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
 					m_hp -= 1;
 					m_hit = false;
 				}
 			}
 		}
 		//m_hpが０になると主人公を破棄
-		//if (m_hp == 0)
-		//{
-		//	this->SetStatus(false);//自身に削除命令を出す
-		//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+		if (m_hp <= 0)
+		{
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-		//	Scene::SetScene(new CSceneGameOver());
-		//}
+			Scene::SetScene(new CSceneGameOver());
+		}
 
 		//攻撃間隔制御
 		if (m_attack == false)
@@ -259,19 +285,19 @@ void CObjHero::Draw()
 	RECT_F dst;//描画先表示位置
 
 	//切り取り位置の設定
-	src.m_top = 15.0f;
-	src.m_left = 15.0f;
-	src.m_right = 400.0f;
-	src.m_bottom = 400.0f;
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = 300.0f;
+	src.m_bottom = 300.0f;
 
 	//表示位置の設定
-	dst.m_top = -20.0f + m_y;
-	dst.m_left = -20.0f + m_x;
-	dst.m_right = 27.0f + 64.0f + m_x;
-	dst.m_bottom = 22.0f + 64.0f + m_y;
+	dst.m_top = -10.0f+ m_y;
+	dst.m_left = -10.0f+ m_x;
+	dst.m_right = 70.0f + m_x;
+	dst.m_bottom =  70.0f + m_y;
 
 	//描画
-	Draw::Draw(20, &src, &dst, c, m_r);
+	Draw::Draw(19, &src, &dst, c, m_r);
 }
 
 //ベクトルの正規化関数

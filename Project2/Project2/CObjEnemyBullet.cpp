@@ -20,13 +20,25 @@ void CObjEnemyBullet::Init()
 	mx = 0;
 	my = 0;
 
+	//スクロールした分のベクトルを取得
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
+
 	//HitBox作成
-	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
+	Hits::SetHitBox(this, m_x+m_scroll_map_x, m_y+m_scroll_map_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
 }
 
 //アクション
 void CObjEnemyBullet::Action()
 {
+
+	CHitBox* hit = Hits::GetHitBox(this);
+
+	CObjEnemy* bb = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
+	////敵の座標取得
+	//float Bx = bb->GetX();
+	//float By = bb->GetY();
 
 	//スクロールした分のベクトルを取得
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -36,49 +48,84 @@ void CObjEnemyBullet::Action()
 
 
 
-
+	//移動ベクトル
 	if (m_r == 0.0f)
 	{
-		m_vy = -5.0f;
+		m_vy = -1.5f;
 		m_vx = 0.0f;
 	}
 	else if (m_r == 90.0f)
 	{
-		m_vx = -5.0f;
+		m_vx = -1.5f;
 		m_vy = 0.0f;
 	}
 	else if (m_r == 180.0f)
 	{
-		m_vy = +5.0f;
+		m_vy = +1.5f;
 		m_vx = 0.0f;
 	}
 	else if (m_r == -90.0f)
 	{
-		m_vx = +5.0f;
+		m_vx = +1.5f;
 		m_vy = 0.0f;
 	}
 
-
+	//移動ベクトルを座標に追加
 	m_x += m_vx;
 	m_y += m_vy;
 
+	//一定距離動くと弾を削除する変数にベクトル追加
 	mx += m_vx;
 	my += m_vy;
 
-
 	//HitBoxの内容を更新
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
+	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
+
+	m_x += m_scroll_map_x;
+	m_y += m_scroll_map_y;
+
+	//ブロックと弾の当たり判定　関数に値を渡す
+	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+	m_x -= m_scroll_map_x;
+	m_y -= m_scroll_map_y;
+
+	//比較するデータ配列
+	int data_base[4] =
+	{
+		m_up,m_down,m_reft,m_right
+	};
+
+	//for文で回してすべて確認　一つでもtrueなら弾を削除
+	for (int i = 0; i <= 3; i++)
+	{
+		if (data_base[i] == true)
+		{
+			Effect* effect = new Effect(m_x, m_y,m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+	}
+
 
 	//主人公と接触しているかどうか調べる
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
+		Effect* effect = new Effect(m_x, m_y,m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
 	}
 	//主人公（人）と接触しているか調べる
 	if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
+		Effect* effect = new Effect(m_x, m_y,m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
 	}
@@ -89,7 +136,7 @@ void CObjEnemyBullet::Action()
 	//	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 	//}
 
-	if (mx >= 1000.0f||mx<=-1000.0f || my >= 1000.0f||my<=-1000.0f)
+	if (mx >= 500.0f||mx<=-500.0f || my >= 500.0f||my<=-500.0f)
 	{
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除

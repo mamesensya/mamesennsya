@@ -18,17 +18,18 @@ void CObjBossBullet2::Init()
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
 
 	//HitBox作成
-	Hits::SetHitBox(this, m_x, m_y, 100, 100, ELEMENT_ENEMY, OBJ_BOSS_BULLET2, 1);
+	Hits::SetHitBox(this, m_x+m_scroll_map_x, m_y+m_scroll_map_y, 100, 100, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
 }
 
 //アクション
 void CObjBossBullet2::Action()
 {
-
 	CHitBox* Hit = Hits::GetHitBox(this);
-
 
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
@@ -37,24 +38,51 @@ void CObjBossBullet2::Action()
 	m_vx = cos(3.14 / 180.0f * m_r);
 	m_vy = sin(3.14 / 180.0f * m_r);
 
-
-
 	m_x += m_vx * m_speed;
 	m_y += m_vy * m_speed;
 
 	mx += m_vx * m_speed;
 	my += m_vy * m_speed;
 
-
+	
 	Hit->SetPos(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
 
+	m_x += m_scroll_map_x;
+	m_y += m_scroll_map_y;
+
+	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+	m_x -= m_scroll_map_x;
+	m_y -= m_scroll_map_y;
+
+	int data_base[4] =
+	{
+		m_up,m_down,m_reft,m_right
+	};
+
+	for (int i = 0; i <= 3; i++)
+	{
+		if (data_base[i] == true)
+		{
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+	}
+
 	if (Hit->CheckObjNameHit(OBJ_HERO) != nullptr) {
+		Effect* effect = new Effect(m_x, m_y,m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 	}
 	//主人公（人）と接触しているか調べる
 	if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
+		Effect* effect = new Effect(m_x, m_y,m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
 	}

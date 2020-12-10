@@ -7,8 +7,8 @@
 using namespace GameL;
 
 CObjPenetrateBullet::CObjPenetrateBullet(float x, float y, float r) {
-	m_x = x+32;
-	m_y = y+32;
+	m_x = x+20;
+	m_y = y+20;
 	m_r = r;
 };
 
@@ -29,8 +29,35 @@ void CObjPenetrateBullet::Action() {
 	m_x += m_vx * 7.0f;
 	m_y += m_vy * 7.0f;
 
+	
 	Hit->SetPos(m_x, m_y);
 
+	int data_base[4] =
+	{
+		m_up,m_down,m_reft,m_right
+	};
+
+
+	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+	
+
+	for (int i = 0; i <= 3; i++)
+	{
+		/*if ((m_right==true&&m_vx<0)||(m_down==true&&m_vy>0))
+		{
+			;
+		}*/
+		if (data_base[i] == true)
+		{
+			Effect* effect = new Effect(m_x, m_y, m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+	}
 	
 };
 

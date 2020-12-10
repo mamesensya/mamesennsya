@@ -16,6 +16,9 @@ public:
 
 	int count{ 0 };
 
+	float GetMX() { return mx; }
+	float GetMY() { return my; }
+
 private:
 	float m_x;
 	float m_y;
@@ -28,7 +31,18 @@ private:
 
 	float m_scroll_map_x{ 0 };
 	float m_scroll_map_y{ 0 };
-	
-	float m_speed{ 5 };
 
+
+	//ボス座標
+	float Bx;
+	float By;
+
+	//angleを実行するか判断する変数
+	bool m_check{false};
+
+	//ブロックとの当たり判定用
+	bool m_up;
+	bool m_reft;
+	bool m_right;
+	bool m_down;
 };

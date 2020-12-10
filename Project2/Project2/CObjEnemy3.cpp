@@ -30,7 +30,7 @@ void CObjEnemy3::Init()
 	pbullet_enable = false; //貫通弾ダメージ有効
 
 	//HitBox追加
-	Hits::SetHitBox(this, m_x , m_y , 55, 55, ELEMENT_ENEMY, OBJ_ENEMY, 1);
+	Hits::SetHitBox(this, m_x , m_y , 65, 65, ELEMENT_ENEMY, OBJ_ENEMY, 1);
 }
 
 void CObjEnemy3::Action()
@@ -53,6 +53,7 @@ void CObjEnemy3::Action()
 	float y = 0;//主人公から敵のベクトルy
 
 	//主人公の座標取得
+	
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	if (hero != nullptr)
 	{
@@ -60,12 +61,13 @@ void CObjEnemy3::Action()
 		float hy = hero->GetY();
 
 		//敵から主人公のベクトルを求める
-		x = m_x - hx+m_scroll_map_x;
-		y = m_y - hy+m_scroll_map_y;
+		x = m_x - (hx-m_scroll_map_x);
+		y = m_y - (hy-m_scroll_map_y);
 
 
+		if ((x < -400.0f && x > 400.0f) || (y < -400.0f && y > 400.0f));
 
-		if ((x >= -400.0f && x <= 400.0f) || (y >= -400.0f && y <= 400.0f))
+		if ((x >= -400.0f && x <= 400.0f) && (y >= -400.0f && y <= 400.0f))
 		{
 
 			//(-x,-y)の時
@@ -224,7 +226,7 @@ void CObjEnemy3::Action()
 
 				//敵弾丸発射
 				for (int i = 0; i < 3; i++) {
-					CObjEnemy3B* obj_eb = new CObjEnemy3B(m_x+m_scroll_map_x , m_y+m_scroll_map_y, m_r - (m_r * 2) - (60 + (30 * i)));
+					CObjEnemy3B* obj_eb = new CObjEnemy3B(m_x , m_y, m_r - (m_r * 2) - (60 + (30 * i)));
 					Objs::InsertObj(obj_eb, OBJ_ENEMY_3BULLET, 16);
 				}
 			}
@@ -254,28 +256,41 @@ void CObjEnemy3::Action()
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
 	//弾丸と接触しているかを調べる
-	if (hit->CheckObjNameHit(OBJ_ANGLE_BULLET) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
+		//弾着弾音
+		Audio::Start(13);
 		m_hp--;
+
+		Effect* effect = new Effect(m_x, m_y,m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 		if (m_hp <= 0) {
 			//爆発音鳴らす
 			Audio::Start(12);
 
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
-
-			CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
-			Bblock->Enemycount--;
+			CObjUserInterface* obj_ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+			obj_ui->setenemyMax--;
+			//CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
+			//Bblock->Enemycount--;
 		}
 	}
 	if (pbullet_enable == false) {
 		if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
+			//弾着弾音
+			Audio::Start(13);
+
 			m_hp--;
+
+			Effect* effect = new Effect(m_x, m_y,m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 			pbullet_enable = true;
 			if (m_hp <= 0) {
 				//爆発音鳴らす
 				Audio::Start(12);
-
+				CObjUserInterface* obj_ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+				obj_ui->setenemyMax--;
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 
@@ -303,6 +318,12 @@ void CObjEnemy3::Action()
 		}
 	}
 
+	if (m_x >= (80 * 64) || m_y >= (60 * 64))
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 }
 
 void CObjEnemy3::Draw()
@@ -316,14 +337,46 @@ void CObjEnemy3::Draw()
 	//切り取り位置
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 400.0f;
-	src.m_bottom = 400.0f;
+	src.m_right = 300.0f;
+	src.m_bottom = 300.0f;
 
-	//出力位置
-	dst.m_top = 0.0f + m_y+m_scroll_map_y-40;
-	dst.m_left = 0.0f + m_x+ m_scroll_map_x-35;
-	dst.m_right = 128.0f + m_x+ m_scroll_map_x-35;
-	dst.m_bottom = 128.0f + m_y+m_scroll_map_y-40;
+	//出力位置調整用条件
+	if (m_r == 0)
+	{
 
-	Draw::Draw(1, &src, &dst, c, m_r);
+		//出力位置
+		dst.m_top = 0.0f + m_y + m_scroll_map_y - 20.0f;
+		dst.m_left = 0.0f + m_x + m_scroll_map_x - 30.0f;
+		dst.m_right = 128.0f + m_x + m_scroll_map_x - 30.0f;
+		dst.m_bottom = 128.0f + m_y + m_scroll_map_y - 20.0f;
+	}
+	if (m_r == 90)
+	{
+
+		//出力位置
+		dst.m_top = 0.0f + m_y + m_scroll_map_y - 30.0f;
+		dst.m_left = 0.0f + m_x + m_scroll_map_x - 20.0f;
+		dst.m_right = 128.0f + m_x + m_scroll_map_x - 20.0f;
+		dst.m_bottom = 128.0f + m_y + m_scroll_map_y - 30.0f;
+	}
+	if (m_r == 180)
+	{
+
+		//出力位置
+		dst.m_top = 0.0f + m_y + m_scroll_map_y - 50.0f;
+		dst.m_left = 0.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_right = 128.0f + m_x + m_scroll_map_x - 35.0f;
+		dst.m_bottom = 128.0f + m_y + m_scroll_map_y - 50.0f;
+	}
+	if (m_r == -90)
+	{
+
+		//出力位置
+		dst.m_top = 0.0f + m_y + m_scroll_map_y - 30.0f;
+		dst.m_left = 0.0f + m_x + m_scroll_map_x - 50.0f;
+		dst.m_right = 128.0f + m_x + m_scroll_map_x - 50.0f;
+		dst.m_bottom = 128.0f + m_y + m_scroll_map_y - 30.0f;
+	}
+
+	Draw::Draw(7, &src, &dst, c, m_r);
 }

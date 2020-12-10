@@ -144,12 +144,14 @@
     <ClCompile Include="CObjBossBullet.cpp" />
     <ClCompile Include="CObjBoss.cpp" />
     <ClCompile Include="CObjBossBullet2.cpp" />
+    <ClCompile Include="CObjBossBullet4.cpp" />
     <ClCompile Include="CObjEnemy3.cpp" />
     <ClCompile Include="CObjEnemy3Bullet.cpp" />
     <ClCompile Include="CObjEnemyBullet.cpp" />
     <ClCompile Include="CObjpenetrateBullet.cpp" />
     <ClCompile Include="CObjPlayerBullet.cpp" />
     <ClCompile Include="CObjUserInterface.cpp" />
+    <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="GameL\DirectXDevice.cpp" />
@@ -185,6 +187,7 @@
     <ClCompile Include="SceneTitle.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
+    <ClCompile Include="SecondStage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h" />
@@ -193,11 +196,13 @@
     <ClInclude Include="CObjBossBullet.h" />
     <ClInclude Include="CObjBoss.h" />
     <ClInclude Include="CObjBossBullet2.h" />
+    <ClInclude Include="CObjBossBullet4.h" />
     <ClInclude Include="CObjEnemy3.h" />
     <ClInclude Include="CObjEnemy3Bullet.h" />
     <ClInclude Include="CObjEnemyBullet.h" />
     <ClInclude Include="CObjpenetrateBullet.h" />
     <ClInclude Include="CObjPlayerBullet.h" />
+    <ClInclude Include="Effect.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="GameHead.h" />
     <ClInclude Include="GameL\Audio.h" />
@@ -231,8 +236,10 @@
     <ClInclude Include="SceneTitle.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="SecondStage.h" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\..\Desktop\betatitle.png" />
     <Image Include="title.png">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </Image>
