@@ -39,6 +39,12 @@ void CObjBoss::Init()
 
 void CObjBoss::Action()
 {
+	if (m_x >= (80 * 64) || m_y >= (60 * 64))
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
@@ -56,7 +62,7 @@ void CObjBoss::Action()
 		m_time = 0;
 
 	}
-	if (m_oni_time > 1000)
+	if (m_oni_time > 100)
 	{
 		m_oni_time = 0;
 	}
@@ -285,31 +291,35 @@ void CObjBoss::Action()
 		//m_time++;
 
 			//ãSè¢ä´
-			if (m_oni_time == 600&&m_oni_count<=3)
+			if (m_oni_time == 50&&m_oni_count<=3)
 			{
 				if (m_r == 0)
 				{
+					m_oni_count++;
 					CObjGhost* obj_g = new CObjGhost(m_x + m_scroll_map_x, (m_y+172) + m_scroll_map_y);
 					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
-					m_oni_count++;
+					
 				}
 				if (m_r == 90)
 				{
+					m_oni_count++;
 					CObjGhost* obj_g = new CObjGhost((m_x+172) + m_scroll_map_x, m_y + m_scroll_map_y);
 					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
-					m_oni_count++;
+					
 				}
 				if (m_r == 180)
 				{
+					m_oni_count++;
 					CObjGhost* obj_g = new CObjGhost(m_x + m_scroll_map_x, (m_y-172) + m_scroll_map_y);
 					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
-					m_oni_count++;
+					
 				}
 				if (m_r == -90)
 				{
+					m_oni_count++;
 					CObjGhost* obj_g = new CObjGhost((m_x-172) + m_scroll_map_x, m_y + m_scroll_map_y);
 					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
-					m_oni_count++;
+					
 				}
 				
 			}
@@ -367,7 +377,7 @@ void CObjBoss::Action()
 			Scene::SetScene(new CSceneMainSecond());
 		}
 	}
-	if (pbullet_enable == false) {
+	else if (pbullet_enable == false) {
 		if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
 			//íeíÖíeâπ
 			Audio::Start(13);
@@ -409,12 +419,7 @@ void CObjBoss::Action()
 		}
 	}
 
-	if (m_x >= (80 * 64) || m_y >= (60 * 64))
-	{
-
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-	}
+	
 }
 
 void CObjBoss::Draw()

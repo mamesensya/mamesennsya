@@ -87,7 +87,7 @@ void CObjEnemy3B::Action() {
 		Hits::DeleteHitBox(this);
 	}
 	//主人公（人）と接触しているか調べる
-	if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
+	else if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
 		Effect* effect = new Effect(m_x, m_y,m_r);
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);

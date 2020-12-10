@@ -91,9 +91,9 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"鬼トランプK.png", 7, TEX_SIZE_512);
 	//Draw::LoadImageW(L"鬼トランプQ.png", 8, TEX_SIZE_512);
 
-	////敵戦車（3方向弾）
-	//CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 250);
-	//Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
+	//敵戦車（3方向弾）
+	CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 250);
+	Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
 
 	//ボス戦車
 	Draw::LoadImageW(L"おにゴム　赤.png", 5, TEX_SIZE_512);
@@ -108,6 +108,8 @@ void CSceneMain::InitScene()
 
 	//敵　鬼
 	Draw::LoadImageW(L"おにボタン.png", 4, TEX_SIZE_512);
+	/*CObjGhost* obj_g = new CObjGhost(400, 300);
+	Objs::InsertObj(obj_g, OBJ_GHOST, 20);*/
 
 	Draw::LoadImageW(L"折れた芯.png", 6, TEX_SIZE_512);
 
@@ -165,7 +167,7 @@ void CSceneMain::InitScene()
 	Objs::InsertObj(obj_b, OBJ_BLOCK, 4);
 
 	//エフェクト
-	Draw::LoadImageW(L"当たりエフェクト.png", 0,TEX_SIZE_512);
+	Draw::LoadImageW(L"当たりエフェクト.png", 30,TEX_SIZE_512);
 	Effect* f = new Effect(0,0,0);
 	Objs::InsertObj(f, OBJ_EFFECT, 0);
 	//Effect* of = new Effect(150,240);

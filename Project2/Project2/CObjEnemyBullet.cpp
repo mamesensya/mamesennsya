@@ -20,6 +20,8 @@ void CObjEnemyBullet::Init()
 	mx = 0;
 	my = 0;
 
+	m_speed = 3;
+
 	//スクロールした分のベクトルを取得
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
@@ -51,22 +53,22 @@ void CObjEnemyBullet::Action()
 	//移動ベクトル
 	if (m_r == 0.0f)
 	{
-		m_vy = -1.5f;
+		m_vy = -m_speed;
 		m_vx = 0.0f;
 	}
 	else if (m_r == 90.0f)
 	{
-		m_vx = -1.5f;
+		m_vx = -m_speed;
 		m_vy = 0.0f;
 	}
 	else if (m_r == 180.0f)
 	{
-		m_vy = +1.5f;
+		m_vy = +m_speed;
 		m_vx = 0.0f;
 	}
 	else if (m_r == -90.0f)
 	{
-		m_vx = +1.5f;
+		m_vx = +m_speed;
 		m_vy = 0.0f;
 	}
 
@@ -121,7 +123,7 @@ void CObjEnemyBullet::Action()
 		Hits::DeleteHitBox(this);//削除
 	}
 	//主人公（人）と接触しているか調べる
-	if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
+	else if (hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
 		Effect* effect = new Effect(m_x, m_y,m_r);
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);

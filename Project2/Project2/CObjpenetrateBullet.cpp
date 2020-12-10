@@ -26,8 +26,8 @@ void CObjPenetrateBullet::Action() {
 	m_vx = cos(3.14 / 180.0f * m_r);
 	m_vy = sin(3.14 / 180.0f * m_r);
 
-	m_x += m_vx * 7.0f;
-	m_y += m_vy * 7.0f;
+	m_x += m_vx * 6.0f;
+	m_y += m_vy * 6.0f;
 
 	
 	Hit->SetPos(m_x, m_y);

@@ -12,7 +12,6 @@ class Effect :public CObj
 		void Init();//イニシャライズ
 		void Action();//アクション
 		void Draw();//ドロー
-
 	private:
 		float m_x;
 		float m_y;

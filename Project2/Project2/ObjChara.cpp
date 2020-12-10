@@ -41,25 +41,7 @@ void CObjChara::Action()
 		//人状態→戦車状態へ
 		if (m_hero_flag == true)
 		{
-			//主人公（戦車）のHitBoxに当たっているときに切り替えができる
-			if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
-			{
-				m_hit_tank = true;
-				//主人公が人状態に移行
-				if (Input::GetVKey('V') == true)
-				{
-					m_hero_flag = false;
-
-					hero->m_hero_flag = false;
-
-					this->SetStatus(false);//自身に削除命令を出す
-					Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
-					//チャタリング防止用
-					while (Input::GetVKey('V') == true);
-				}
-			}else {
-				m_hit_tank = false;
-			}
+			
 			//右方向
 			if (Input::GetVKey(VK_RIGHT) == true)
 			{
@@ -165,6 +147,26 @@ void CObjChara::Action()
 					m_hit = true;
 					m_hit_time = 0;
 				}
+			}
+			//主人公（戦車）のHitBoxに当たっているときに切り替えができる
+			if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
+			{
+				m_hit_tank = true;
+				//主人公が人状態に移行
+				if (Input::GetVKey('V') == true)
+				{
+					m_hero_flag = false;
+
+					hero->m_hero_flag = false;
+
+					this->SetStatus(false);//自身に削除命令を出す
+					Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+					//チャタリング防止用
+					while (Input::GetVKey('V') == true);
+				}
+			}
+			else {
+				m_hit_tank = false;
 			}
 		}
 	}

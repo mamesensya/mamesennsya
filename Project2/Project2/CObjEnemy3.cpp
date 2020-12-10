@@ -10,6 +10,8 @@
 
 using namespace GameL;
 
+#define Vec 1.0
+
 CObjEnemy3::CObjEnemy3(float x, float y)
 {
 	m_x = x;
@@ -35,6 +37,12 @@ void CObjEnemy3::Init()
 
 void CObjEnemy3::Action()
 {
+	if (m_x >= (80 * 64) || m_y >= (60 * 64))
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
@@ -86,7 +94,7 @@ void CObjEnemy3::Action()
 					{
 						//x²‚Ì•û‚ª‹ß‚¢@
 						m_r = -90.0f;
-						m_vx = 0.7f;
+						m_vx = Vec;
 					}
 				}
 				if (x < y)
@@ -102,7 +110,7 @@ void CObjEnemy3::Action()
 					{
 						//y²‚Ì•û‚ª‹ß‚¢
 						m_r = 180.0f;
-						m_vy = 0.7f;
+						m_vy = Vec;
 					}
 				}
 			}
@@ -122,7 +130,7 @@ void CObjEnemy3::Action()
 					{
 						//x²‚Ì•û‚ª‹ß‚¢
 						m_r = 90.0f;
-						m_vx = -0.7f;
+						m_vx = -Vec;
 					}
 				}
 				if (x > y)
@@ -138,7 +146,7 @@ void CObjEnemy3::Action()
 					{
 						//y²‚Ì•û‚ª‹ß‚¢
 						m_r = 0.0f;
-						m_vy = -0.7f;
+						m_vy = -Vec;
 					}
 				}
 			}
@@ -160,7 +168,7 @@ void CObjEnemy3::Action()
 					{
 						//x²‚Ì•û‚ª‹ß‚¢
 						m_r = 90.0f;
-						m_vx = -0.7f;
+						m_vx = -Vec;
 					}
 				}
 				if (x > py)
@@ -176,7 +184,7 @@ void CObjEnemy3::Action()
 					{
 						//y²‚Ì•û‚ª‹ß‚¢
 						m_r = 180.0f;
-						m_vy = 0.7f;
+						m_vy = Vec;
 					}
 				}
 			}
@@ -197,7 +205,7 @@ void CObjEnemy3::Action()
 					{
 						//x²‚Ì•û‚ª‹ß‚¢@
 						m_r = -90.0f;
-						m_vx = 0.7f;
+						m_vx = Vec;
 					}
 				}
 				if (px > y)
@@ -213,7 +221,7 @@ void CObjEnemy3::Action()
 					{
 						//y²‚Ì•û‚ª‹ß‚¢
 						m_r = 0.0f;
-						m_vy = -0.7f;
+						m_vy = -Vec;
 					}
 				}
 			}
@@ -256,6 +264,7 @@ void CObjEnemy3::Action()
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
 	//’eŠÛ‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ğ’²‚×‚é
+	if (pbullet_enable == false) {
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 		//’e’…’e‰¹
@@ -276,8 +285,8 @@ void CObjEnemy3::Action()
 			//Bblock->Enemycount--;
 		}
 	}
-	if (pbullet_enable == false) {
-		if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
+	
+	    else if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
 			//’e’…’e‰¹
 			Audio::Start(13);
 
@@ -296,6 +305,7 @@ void CObjEnemy3::Action()
 
 			}
 		}
+	
 	}
 	else if (pbullet_enable == true) {
 		pbullet_interval++;
@@ -317,13 +327,8 @@ void CObjEnemy3::Action()
 			count = 0;
 		}
 	}
-
-	if (m_x >= (80 * 64) || m_y >= (60 * 64))
-	{
-
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-	}
+	
+	
 }
 
 void CObjEnemy3::Draw()
