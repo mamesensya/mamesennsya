@@ -27,8 +27,8 @@ CObjBlock::CObjBlock(int map[60][80])
 //イニシャライズ
 void CObjBlock::Init()
 {
-	m_scroll = -0.0f;
-	m_scroll2 = -0.0f;
+	m_scroll = 0.0f;
+	m_scroll2 = 0.0f;
 
 	
 	
@@ -38,7 +38,11 @@ void CObjBlock::Init()
 //アクション
 void CObjBlock::Action()
 {
-
+	t++;
+	if (t == 500)
+	{
+		t = 0;
+	}
 	CObjUserInterface* count = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
 	Enemycount = count->GetEM();
 
@@ -93,8 +97,7 @@ void CObjBlock::Action()
 	//敵出現ラインの列を検索
 	/*enemies = 0;*/
 	//if((hx+m_scroll)<=m_map[0][0]&&>=m_map[0][80])
-	if (ex < 0) 
-		;
+	if (ex < 0){;}
 	else
 	for (int i = 0; i < 60; i++)
 	{
@@ -142,7 +145,7 @@ void CObjBlock::Action()
 			CObjbreakblock* obj_break_block = new CObjbreakblock(ex * 64.0f, i * 64.0f);
 			Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
 			//敵出現場所の値を0にする
-			m_map[i][ex] = 0;
+			//m_map[i][ex] = 0;
 			e++;
 		}
 		//列の中から2を探す
@@ -155,11 +158,11 @@ void CObjBlock::Action()
 			m_map[i][ex] = 0;
 		}
 	}
-	/*if (e > 20)
+	if (e > 4)
 	{
 		f = true;
 	}
-	*/
+	//if(m_scroll>=||m_scroll<=||m_scroll2>=||m_scroll2<=)
 }
 
 //ドロー
@@ -245,17 +248,10 @@ void CObjBlock::Draw()
 				{
 					;
 				}
-				//else if(m_map[i][j]==3)
-				//{
-				//	//切り取り位置の設定
-				//	src.m_top = 0.0f;
-				//	src.m_left = 320.0f;
-				//	src.m_right = src.m_left + 64.0f;
-				//	src.m_bottom = 64.0f;
-
-
-
-				//}
+				else if(m_map[i][j]==3)
+				{
+					;
+				}
 				else if (m_map[i][j] == 4)
 				{
 					;
@@ -268,7 +264,7 @@ void CObjBlock::Draw()
 				{
 					;
 				}
-				if (m_map[i][j] == 7)
+				else if (m_map[i][j] == 7)
 				{
 					;
 				}
@@ -279,9 +275,6 @@ void CObjBlock::Draw()
 					src.m_right = src.m_left + 64.0f;
 					src.m_bottom = 64.0f;
 				}
-				//if(m_map[i][j]==3)
-				//Draw::Draw(17, &src, &dst, c, 0.0f);
-				//else
 				Draw::Draw(13, &src, &dst, c, 0.0f);//描画
 			}
 		}
@@ -351,6 +344,11 @@ void CObjBlock::BlockHit(
 							//右
 							*right = true;
 							*x = bx + 64.0f + (m_scroll);
+							if (&vx <= 0)
+							{
+								;
+							}
+							else
 							*vx = -(*vx) * 0.2f;
 
 
@@ -358,8 +356,13 @@ void CObjBlock::BlockHit(
 						if (r > 45 && r < 135)
 						{
 							//上
-							*down = true;
+							*up = true;
 							*y = by - 64.0f + (m_scroll2);
+							if (&vy <= 0)
+							{
+								;
+							}
+							else
 							*vy = -(*vy)*0.2f;
 
 
@@ -370,6 +373,11 @@ void CObjBlock::BlockHit(
 							//左
 							*left = true;
 							*x = bx - 64.0f + (m_scroll);
+							if (&vx <= 0)
+							{
+								;
+							}
+							else
 							*vx = -(*vx) * 0.2f;
 
 
@@ -379,8 +387,13 @@ void CObjBlock::BlockHit(
 						if (r > 225 && r < 315)
 						{
 							//下
-							*up = true;
+							*down = true;
 							*y = by + 64.0f + (m_scroll2);
+							if (&vy <= 0)
+							{
+								;
+							}
+							else
 							*vy = -(*vy) * 0.2f;
 
 							

@@ -261,6 +261,9 @@ void CObjEnemy3::Action()
 		//’e’…’e‰¹
 		Audio::Start(13);
 		m_hp--;
+
+		Effect* effect = new Effect(m_x, m_y,m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 		if (m_hp <= 0) {
 			//”š”­‰¹–Â‚ç‚·
 			Audio::Start(12);
@@ -279,6 +282,9 @@ void CObjEnemy3::Action()
 			Audio::Start(13);
 
 			m_hp--;
+
+			Effect* effect = new Effect(m_x, m_y,m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 			pbullet_enable = true;
 			if (m_hp <= 0) {
 				//”š”­‰¹–Â‚ç‚·

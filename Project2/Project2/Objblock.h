@@ -17,6 +17,9 @@ public:
 	float GetSX() { return m_scroll; };
 	float GetSY() { return m_scroll2; };
 
+	void SetSX(float x) { m_scroll = x; };
+	void SetSY(float y) { m_scroll2 = y; };
+
 	void BlockHit(
 		float* x, float* y, bool* up, bool* down,
 		bool* left, bool* right, float* vx, float* vy
@@ -36,4 +39,5 @@ private:
 	bool f=false;
 	int Enemycount{ 0 };
 
+	int t{ 0 };
 };

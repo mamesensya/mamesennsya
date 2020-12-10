@@ -109,8 +109,7 @@ struct UserData
 #include "SceneTitle.h"
 #include "SceneGameOver.h"
 #include "SceneGameClear.h"
-#include "ThirdStage.h"
-#include "FourthStage.h"
+#include "SecondStage.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
@@ -118,7 +117,8 @@ struct UserData
 
 
 //ゲーム開始時のシーンクラス登録
-//#define SET_GAME_START SceneTitle
+//#define SET_GAME_START CSceneMain
 #define SET_GAME_START SceneTitle
 //#define SET_GAME_START CSceneGameClear
+//#define SET_GAME_START CSceneMainSecond
 //-----------------------------------------------

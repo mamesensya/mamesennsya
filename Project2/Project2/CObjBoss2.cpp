@@ -118,6 +118,9 @@ void CObjBoss2::Action()
 		Audio::Start(13);
 
 		m_hp--;
+
+		Effect* effect = new Effect(m_x, m_y,m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 		if (m_hp <= 0) {
 			//”š”­‰¹–Â‚ç‚·
 			Audio::Start(12);
@@ -134,6 +137,9 @@ void CObjBoss2::Action()
 			Audio::Start(13);
 
 			m_hp--;
+
+			Effect* effect = new Effect(m_x, m_y,m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 			pbullet_enable = true;
 			if (m_hp <= 0) {
 				//”š”­‰¹–Â‚ç‚·
@@ -142,6 +148,7 @@ void CObjBoss2::Action()
 				main->RoundChange();
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
+				Scene::SetScene(new CSceneGameClear());
 			}
 		}
 	}

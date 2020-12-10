@@ -148,11 +148,22 @@ void CObjHero::Action()
 		pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
 
 		
+
+
 		//ベクトルを位置に加算
 		m_x += m_vx;
 		m_y += m_vy;
 
-		
+		m_scroll = pb->GetSX();
+		m_scroll2 = pb->GetSY();
+		//スクロールが左上x500y500以上　右下x-5000y-2500以下なら初期値に戻す
+		if (m_scroll >= 500 || m_scroll <= -5000 || m_scroll2 >= 500 || m_scroll2 <= -2000)
+		{
+			m_scroll = 0;
+			m_scroll2 = 0;
+			pb->SetSX(m_scroll);
+			pb->SetSY(m_scroll2);
+		}
 		hit->SetPos(m_x, m_y);
 
 		if (m_attack == true) {
@@ -223,20 +234,23 @@ void CObjHero::Action()
 				{
 					//弾着弾音
 					Audio::Start(14);
+
+					Effect* effect = new Effect(m_x, m_y,m_r);
+					Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
 					m_hp -= 1;
 					m_hit = false;
-					Effect* EF = (Effect*)Objs::GetObj(OBJ_EFFECT);//エフェクトをだす
 				}
 			}
 		}
-		////m_hpが０になると主人公を破棄
-		//if (m_hp <= 0)
-		//{
-		//	this->SetStatus(false);//自身に削除命令を出す
-		//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+		//m_hpが０になると主人公を破棄
+		if (m_hp <= 0)
+		{
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-		//	Scene::SetScene(new CSceneGameOver());
-		//}
+			Scene::SetScene(new CSceneGameOver());
+		}
 
 		//攻撃間隔制御
 		if (m_attack == false)
@@ -283,7 +297,7 @@ void CObjHero::Draw()
 	dst.m_bottom =  70.0f + m_y;
 
 	//描画
-	Draw::Draw(20, &src, &dst, c, m_r);
+	Draw::Draw(19, &src, &dst, c, m_r);
 }
 
 //ベクトルの正規化関数
