@@ -32,7 +32,7 @@ void SceneTitle::InitScene() {
 void SceneTitle::Scene() {
 	if (Input::GetVKey(VK_RETURN) == true) {
 		if (keyover == false) {
-			Scene::SetScene(new CSceneMain);
+			Scene::SetScene(new CSceneMain());
 			keyover = true;
 		}
 	}

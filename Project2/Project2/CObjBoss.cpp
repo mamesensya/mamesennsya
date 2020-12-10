@@ -358,7 +358,8 @@ void CObjBoss::Action()
 	//HitBoxの内容更新
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x+ m_scroll_map_x, m_y+m_scroll_map_y);
-
+	CSceneMain* main = new CSceneMain();
+	
 	//弾丸と接触しているかを調べる
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
@@ -373,8 +374,8 @@ void CObjBoss::Action()
 
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
-
-			Scene::SetScene(new CSceneMainSecond());
+			
+			main->RoundChange();
 		}
 	}
 	else if (pbullet_enable == false) {
@@ -393,8 +394,7 @@ void CObjBoss::Action()
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 
-				Scene::SetScene(new CSceneMainSecond());
-			
+				main->RoundChange();
 			}
 		}
 	}

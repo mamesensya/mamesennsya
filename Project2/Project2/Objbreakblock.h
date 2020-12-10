@@ -37,4 +37,6 @@ private:
 
 	int num{0};
 	int *m_map[60][80];
+
+	bool m_hit{ true };
 };

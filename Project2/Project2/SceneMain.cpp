@@ -17,10 +17,13 @@ using namespace GameL;
 #include"GameHead.h"
 #include "Objblock.h"
 #include"Objbreakblock.h"
+
+static StageManages Stg;
+
 //コンストラクタ
 CSceneMain::CSceneMain()
 {
-
+	
 }
 
 //デストラクタ
@@ -35,34 +38,36 @@ void CSceneMain::InitScene()
 	//外部データの読み込み（ステージ情報）
 	unique_ptr<wchar_t>p;//ステージ情報ポインター
 	int size;            //ステージ情報の大きさ
-	p = Save::ExternalDataOpen(L"Book1.csv", &size);//外部データ読み込み
 
-		int map[60][80];
-		int count = 1;
-		for (int i = 0; i < 60; i++)
+	int map[60][80];
+	int count = 1;
+	switch (Stg.Stage) {
+	case 0:
+		p = Save::ExternalDataOpen(L"Book1.csv", &size);
+		break;
+	case 1:
+		p = Save::ExternalDataOpen(L"Book2.csv", &size);
+		break;
+	case 2:
+		p = Save::ExternalDataOpen(L"Book3.csv", &size);
+		break;
+	case 3:
+		p = Save::ExternalDataOpen(L"Book4.csv", &size);
+	default:
+		break;
+	};
+
+	for (int i = 0; i < 60; i++)
+	{
+		for (int j = 0; j < 80; j++)
 		{
-			for (int j = 0; j < 80; j++)
-			{
-				int w = 0;
-				swscanf_s(&p.get()[count], L"%d", &w);
-				if (w == 4 || w == 6) { GetenemyMax++; }
-				map[i][j] = w;
-				count += 2;
-
-			}
-
+			int w = 0;
+			swscanf_s(&p.get()[count], L"%d", &w);
+			if (w == 4 || w == 6) { GetenemyMax++; }
+			map[i][j] = w;
+			count += 2;
 		}
-	
-
-	//p = Save::ExternalDataOpen(L"Book2.csv", &size);//外部データ読み込み
-
-	//p = Save::ExternalDataOpen(L"Book3.csv", &size);//外部データ読み込み
-
-	//p = Save::ExternalDataOpen(L"Book4.csv", &size);//外部データ読み込み
-
-	//p = Save::ExternalDataOpen(L"Book5.csv", &size);//外部データ読み込み
-
-
+	}
 	//音楽読み込み
 	Audio::LoadAudio(0, L"BGMGame.wav", BACK_MUSIC);
 	Audio::LoadAudio(1, L"BGMGame2.wav", BACK_MUSIC);
@@ -120,8 +125,13 @@ void CSceneMain::InitScene()
 	CObjHero* obj = new CObjHero(0,0);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
-	//弾
+	//通常弾
 	Draw::LoadImageW(L"大豆.jpg", 14, TEX_SIZE_512);
+	//貫通弾
+	Draw::LoadImageW(L"貫通.png", 29, TEX_SIZE_512);
+	//拡散弾
+	Draw::LoadImageW(L"拡散.png", 30, TEX_SIZE_512);
+
 
 	//主人公（人）
 	Draw::LoadImageW(L"豆　静止.png", 21, TEX_SIZE_512);
@@ -142,6 +152,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"alphaboard.png", 26, TEX_SIZE_512);
 	Draw::LoadImageW(L"button.png", 27, TEX_SIZE_512);
 	Draw::LoadImageW(L"buttonstr.png", 28, TEX_SIZE_512);
+	Draw::LoadImageW(L"fader.png", 29, TEX_SIZE_512);
 	//-------------------------------------------------------------------------------------/
 
 	//壊すと豆が出る箱
@@ -158,6 +169,9 @@ void CSceneMain::InitScene()
 	CObjUserInterface* obj_ui = new CObjUserInterface();
 
 	obj_ui->setMAXenemy(GetenemyMax);
+	obj_ui->setStage(Stg.Stage+1);
+	obj_ui->flugset(true);
+	//obj_ui->NextStageProcess();
 	Objs::InsertObj(obj_ui, OBJ_USERINTERFACE, 18);
 	//CObjbreakblock* obj_break_block = new CObjbreakblock(200, 300);
 	//Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
@@ -180,3 +194,8 @@ void CSceneMain::Scene()
 {
 
 }
+
+void CSceneMain::RoundChange() {
+	Stg.Stage++;
+	Scene::SetScene(new CSceneMain());
+};

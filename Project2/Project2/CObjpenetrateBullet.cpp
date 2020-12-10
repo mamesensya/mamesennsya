@@ -77,5 +77,5 @@ void CObjPenetrateBullet::Draw() {
 	dst.m_right = 32.0f + m_x;
 	dst.m_bottom = 32.0f + m_y;
 
-	Draw::Draw(14, &src, &dst, c, 0);
+	Draw::Draw(29, &src, &dst, c, 0);
 };
