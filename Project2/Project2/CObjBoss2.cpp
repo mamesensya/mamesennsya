@@ -83,7 +83,7 @@ void CObjBoss2::Action()
 			m_attack = false;
 		}
 	}
-	if (m_bullet_type == 1)
+	else if (m_bullet_type == 1)
 	{
 		if (m_attack == true)
 		{
@@ -138,7 +138,7 @@ void CObjBoss2::Action()
 			
 		}
 	}
-	if (pbullet_enable == false) {
+	else if (pbullet_enable == false) {
 		if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
 			//’e’…’e‰¹
 			Audio::Start(13);
@@ -155,7 +155,6 @@ void CObjBoss2::Action()
 				main->RoundChange();
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
-				Scene::SetScene(new CSceneGameClear());
 			}
 		}
 	}

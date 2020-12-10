@@ -153,7 +153,6 @@
     <ClCompile Include="CObjUserInterface.cpp" />
     <ClCompile Include="Effect.cpp" />
     <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="FourthStage.cpp" />
     <ClCompile Include="GameL\Audio.cpp" />
     <ClCompile Include="GameL\DirectXDevice.cpp" />
     <ClCompile Include="GameL\Draw2DTex_Source.cpp" />
@@ -188,8 +187,6 @@
     <ClCompile Include="SceneTitle.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="SecondStage.cpp" />
-    <ClCompile Include="ThirdStage.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CObjAngleBullet.h" />
@@ -206,7 +203,6 @@
     <ClInclude Include="CObjPlayerBullet.h" />
     <ClInclude Include="Effect.h" />
     <ClInclude Include="Enemy.h" />
-    <ClInclude Include="FourthStage.h" />
     <ClInclude Include="GameHead.h" />
     <ClInclude Include="GameL\Audio.h" />
     <ClInclude Include="GameL\DirectXDevice.h" />
@@ -239,8 +235,6 @@
     <ClInclude Include="SceneTitle.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="SecondStage.h" />
-    <ClInclude Include="ThirdStage.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="..\..\..\..\..\Desktop\betatitle.png" />

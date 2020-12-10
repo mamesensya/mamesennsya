@@ -22,6 +22,4 @@ private:
 	int GetenemyMax = 0;
 };
 
-struct StageManages {
-	int Stage;
-};
+static int Stage;

@@ -109,7 +109,6 @@ struct UserData
 #include "SceneTitle.h"
 #include "SceneGameOver.h"
 #include "SceneGameClear.h"
-#include "SecondStage.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------

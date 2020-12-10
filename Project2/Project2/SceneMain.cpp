@@ -18,7 +18,6 @@ using namespace GameL;
 #include "Objblock.h"
 #include"Objbreakblock.h"
 
-static StageManages Stg;
 
 //コンストラクタ
 CSceneMain::CSceneMain()
@@ -41,7 +40,7 @@ void CSceneMain::InitScene()
 
 	int map[60][80];
 	int count = 1;
-	switch (Stg.Stage) {
+	switch (Stage) {
 	case 0:
 		p = Save::ExternalDataOpen(L"Book1.csv", &size);
 		break;
@@ -164,7 +163,7 @@ void CSceneMain::InitScene()
 	CObjUserInterface* obj_ui = new CObjUserInterface();
 
 	obj_ui->setMAXenemy(GetenemyMax);
-	obj_ui->setStage(Stg.Stage+1);
+	obj_ui->setStage(Stage+1);
 	obj_ui->flugset(true);
 	//obj_ui->NextStageProcess();
 	Objs::InsertObj(obj_ui, OBJ_USERINTERFACE, 18);
@@ -191,6 +190,6 @@ void CSceneMain::Scene()
 }
 
 void CSceneMain::RoundChange() {
-	Stg.Stage++;
+	Stage++;
 	Scene::SetScene(new CSceneMain());
 };
