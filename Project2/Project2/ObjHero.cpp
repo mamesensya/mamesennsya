@@ -229,7 +229,7 @@ void CObjHero::Action()
 				}
 			}
 		}
-		//m_hpが０になると主人公を破棄
+		////m_hpが０になると主人公を破棄
 		//if (m_hp <= 0)
 		//{
 		//	this->SetStatus(false);//自身に削除命令を出す

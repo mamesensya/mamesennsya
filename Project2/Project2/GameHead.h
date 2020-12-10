@@ -59,7 +59,7 @@ enum HIT_ELEMENTS
 //セーブ＆ロードとシーン間のやり取りするデータ
 struct UserData
 {
-	int mSeveData;	//サンプルセーブデータ
+	int mSeveData = 0;	//サンプルセーブデータ
 	
 };
 //------------------------------------------------
@@ -102,7 +102,6 @@ struct UserData
 #include "CObjBossBullet2.h"
 #include "CObjBossBullet4.h"
 #include"Effect.h"
-#include "SecondStage.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------
@@ -110,6 +109,8 @@ struct UserData
 #include "SceneTitle.h"
 #include "SceneGameOver.h"
 #include "SceneGameClear.h"
+#include "ThirdStage.h"
+#include "FourthStage.h"
 //-----------------------------------------------
 
 //シーンスタートクラス---------------------------
