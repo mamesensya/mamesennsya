@@ -74,7 +74,7 @@ void CObjBossBullet4::Action()
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 	}
 	//主人公（人）と接触しているか調べる
-	if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
+	else if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
@@ -83,7 +83,7 @@ void CObjBossBullet4::Action()
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 	}
 	//貫通弾と接触しているかを調べる
-	if (Hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	else if (Hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
@@ -92,7 +92,7 @@ void CObjBossBullet4::Action()
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 	}
 	//範囲外に出ると弾を削除
-	if (mx >= 500.0f || mx <= -500.0f || my >= 500.0f || my <= -500.0f)
+	else if (mx >= 500.0f || mx <= -500.0f || my >= 500.0f || my <= -500.0f)
 	{
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除

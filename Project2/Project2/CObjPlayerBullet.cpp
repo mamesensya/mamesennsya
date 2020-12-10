@@ -8,17 +8,18 @@
 
 using namespace GameL;
 
-CObjPlayerBullet::CObjPlayerBullet(float x, float y, float r) {
+CObjPlayerBullet::CObjPlayerBullet(float x, float y, float r,int b) {
 	m_x = x+20;
 	m_y = y+20;
 	m_r = r;
+	bullet = b;
 };
 
 void CObjPlayerBullet::Init() {
 	m_vx = 0;
 	m_vy = 0;
 
-	m_speed = 7;
+	m_speed = 6;
 	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_RED, OBJ_BULLET, 1);
 };
 
@@ -94,6 +95,8 @@ void CObjPlayerBullet::Draw() {
 	dst.m_left = 0.0f+m_x;
 	dst.m_right = 32.0f+m_x;
 	dst.m_bottom = 32.0f+m_y;
-
+	if(bullet==1)
 	Draw::Draw(14, &src, &dst, c,0);
+	if(bullet==2)
+	Draw::Draw(30, &src, &dst, c, 0);
 };

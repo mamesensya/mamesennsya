@@ -21,6 +21,7 @@ public:
 
 	int m_Bcount{ 0 };
 	int m_oni_count{ 0 };
+	int round{ 0 };
 private:
 	float m_x;//xÀ•W
 	float m_y;//yÀ•W

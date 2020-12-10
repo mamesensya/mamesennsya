@@ -39,6 +39,12 @@ void CObjBoss::Init()
 
 void CObjBoss::Action()
 {
+	if (m_x >= (80 * 64) || m_y >= (60 * 64))
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
@@ -56,7 +62,7 @@ void CObjBoss::Action()
 		m_time = 0;
 
 	}
-	if (m_oni_time > 1000)
+	if (m_oni_time > 100)
 	{
 		m_oni_time = 0;
 	}
@@ -285,31 +291,35 @@ void CObjBoss::Action()
 		//m_time++;
 
 			//ãSè¢ä´
-			if (m_oni_time == 600&&m_oni_count<=3)
+			if (m_oni_time == 50&&m_oni_count<=3)
 			{
 				if (m_r == 0)
 				{
+					m_oni_count++;
 					CObjGhost* obj_g = new CObjGhost(m_x + m_scroll_map_x, (m_y+172) + m_scroll_map_y);
 					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
-					m_oni_count++;
+					
 				}
 				if (m_r == 90)
 				{
+					m_oni_count++;
 					CObjGhost* obj_g = new CObjGhost((m_x+172) + m_scroll_map_x, m_y + m_scroll_map_y);
 					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
-					m_oni_count++;
+					
 				}
 				if (m_r == 180)
 				{
+					m_oni_count++;
 					CObjGhost* obj_g = new CObjGhost(m_x + m_scroll_map_x, (m_y-172) + m_scroll_map_y);
 					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
-					m_oni_count++;
+					
 				}
 				if (m_r == -90)
 				{
+					m_oni_count++;
 					CObjGhost* obj_g = new CObjGhost((m_x-172) + m_scroll_map_x, m_y + m_scroll_map_y);
 					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
-					m_oni_count++;
+					
 				}
 				
 			}
@@ -348,7 +358,8 @@ void CObjBoss::Action()
 	//HitBoxÇÃì‡óeçXêV
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x+ m_scroll_map_x, m_y+m_scroll_map_y);
-
+	CSceneMain* main = new CSceneMain();
+	
 	//íeä€Ç∆ê⁄êGÇµÇƒÇ¢ÇÈÇ©Çí≤Ç◊ÇÈ
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
@@ -361,11 +372,11 @@ void CObjBoss::Action()
 
 			this->SetStatus(false);//é©êgÇ…çÌèúñΩóﬂÇèoÇ∑
 			Hits::DeleteHitBox(this);//íeä€Ç™èäóLÇ∑ÇÈHitBoxÇ…çÌèúÇ∑ÇÈÅB
-
-			Scene::SetScene(new CSceneMainSecond());
+			
+			main->RoundChange();
 		}
 	}
-	if (pbullet_enable == false) {
+	else if (pbullet_enable == false) {
 		if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
 			//íeíÖíeâπ
 			Audio::Start(13);
@@ -379,8 +390,7 @@ void CObjBoss::Action()
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 
-				Scene::SetScene(new CSceneMainSecond());
-			
+				main->RoundChange();
 			}
 		}
 	}
@@ -405,12 +415,7 @@ void CObjBoss::Action()
 		}
 	}
 
-	if (m_x >= (80 * 64) || m_y >= (60 * 64))
-	{
-
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-	}
+	
 }
 
 void CObjBoss::Draw()

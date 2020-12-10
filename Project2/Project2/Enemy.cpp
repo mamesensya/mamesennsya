@@ -10,7 +10,7 @@
 
 using namespace GameL;
 
-
+#define Vec 1.0
 
 
 CObjEnemy::CObjEnemy(float x, float y)
@@ -40,6 +40,12 @@ void CObjEnemy::Init()
 
 void CObjEnemy::Action()
 {
+	if (m_x >= (80 * 64) || m_y >= (60 * 64))
+	{
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
 
 	CHitBox* hit = Hits::GetHitBox(this);
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -97,7 +103,7 @@ void CObjEnemy::Action()
 					{
 						//xé≤ÇÃï˚Ç™ãﬂÇ¢Å@
 						m_r = -90.0f;
-						m_vx = 0.7f;
+						m_vx = Vec;
 					}
 				}
 				if (x < y)
@@ -113,7 +119,7 @@ void CObjEnemy::Action()
 					{
 						//yé≤ÇÃï˚Ç™ãﬂÇ¢
 						m_r = 180.0f;
-						m_vy = 0.7f;
+						m_vy = Vec;
 					}
 				}
 			}
@@ -133,7 +139,7 @@ void CObjEnemy::Action()
 					{
 						//xé≤ÇÃï˚Ç™ãﬂÇ¢
 						m_r = 90.0f;
-						m_vx = -0.7f;
+						m_vx = -Vec;
 					}
 				}
 				if (x > y)
@@ -149,7 +155,7 @@ void CObjEnemy::Action()
 					{
 						//yé≤ÇÃï˚Ç™ãﬂÇ¢
 						m_r = 0.0f;
-						m_vy = -0.7f;
+						m_vy = -Vec;
 					}
 				}
 			}
@@ -171,7 +177,7 @@ void CObjEnemy::Action()
 					{
 						//xé≤ÇÃï˚Ç™ãﬂÇ¢
 						m_r = 90.0f;
-						m_vx = -0.7f;
+						m_vx = -Vec;
 					}
 				}
 				if (x > py)
@@ -187,7 +193,7 @@ void CObjEnemy::Action()
 					{
 						//yé≤ÇÃï˚Ç™ãﬂÇ¢
 						m_r = 180.0f;
-						m_vy = 0.7f;
+						m_vy = Vec;
 					}
 				}
 			}
@@ -208,7 +214,7 @@ void CObjEnemy::Action()
 					{
 						//xé≤ÇÃï˚Ç™ãﬂÇ¢Å@
 						m_r = -90.0f;
-						m_vx = 0.7f;
+						m_vx = Vec;
 					}
 				}
 				if (px > y)
@@ -224,7 +230,7 @@ void CObjEnemy::Action()
 					{
 						//yé≤ÇÃï˚Ç™ãﬂÇ¢
 						m_r = 0.0f;
-						m_vy = -0.7f;
+						m_vy = -Vec;
 					}
 				}
 			}
@@ -332,12 +338,7 @@ void CObjEnemy::Action()
 		}
 	}
 
-	if (m_x >= (80 * 64) || m_y >= (60 * 64))
-	{
-
-		this->SetStatus(false);
-		Hits::DeleteHitBox(this);
-	}
+	
 
 
 }

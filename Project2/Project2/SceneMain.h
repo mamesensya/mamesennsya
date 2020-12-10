@@ -13,10 +13,15 @@ public:
 	~CSceneMain() ;
 	void InitScene() ;//ゲームメインの初期化メソッド
 	void Scene();//ゲームメインの実行中メソッド
+	void RoundChange();
 	int GetEnemy() {
 		return GetenemyMax;
 	}
 
 private:
 	int GetenemyMax = 0;
+};
+
+struct StageManages {
+	int Stage;
 };

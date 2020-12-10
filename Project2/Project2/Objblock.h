@@ -35,6 +35,9 @@ private:
 	int m_back[6][8]{0};
 	float m_scroll;//左右スクロール用
 	float m_scroll2;//上下スクロール用
+
+	int back[30][40]{0};
+
 	int e{ 0 };
 	bool f=false;
 	int Enemycount{ 0 };

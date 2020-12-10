@@ -2,8 +2,9 @@
 #include "ObjUserInterface.h"
 #include "GameL\DrawTexture.h"
 #include "GameL\DrawFont.h"
-
+#include <time.h>
 using namespace GameL;
+
 
 
 void CObjUserInterface::Init() {
@@ -16,6 +17,12 @@ void CObjUserInterface::Action() {
 
 void CObjUserInterface::Draw() {
 
+	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
+	RECT_F src;
+	RECT_F dst;
+	
+	clock_t timeset;timeset = clock();
+
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjChara* human = (CObjChara*)Objs::GetObj(OBJ_CHARA);
 
@@ -26,9 +33,6 @@ void CObjUserInterface::Draw() {
 		hero->GetUBulletA(),
 		hero->GetUBulletB()
 	};
-	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
-	RECT_F src;
-	RECT_F dst;
 
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
@@ -186,4 +190,21 @@ void CObjUserInterface::Draw() {
 		if (flug == false) c[3] = 0.2f; else c[3] = 1.0f;
 		Font::StrDraw(L"乗る", 655, 544, 20, c);
 	}
+
+	c[0] = 1.0f; c[1] = 1.0f; c[2] = 1.0f; c[3] = 1.0f;
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = src.m_left + 32.0f;
+	src.m_bottom = src.m_top + 32.0f;
+
+	dst.m_top = 0.0f;
+	dst.m_left = 650.0f;
+	dst.m_right = dst.m_left + 250.0f;
+	dst.m_bottom = dst.m_top + 48.0f;
+
+	Draw::Draw(26, &src, &dst, c, 0);
+
+	swprintf_s(str, L"ステージ%d", playstage);
+	Font::StrDraw(str, 680, 15, 20, c);
+
 };

@@ -25,7 +25,33 @@ CObjbreakblock::CObjbreakblock(float x, float y )
 //イニシャライズ
 void CObjbreakblock::Init()
 {
-	
+
+	//ボックスの当たり判定
+	//主人公の位置取得
+	//CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	//float hx = hero->GetX();
+	//float hy = hero->GetY();
+	////マップの要素にアクセス
+	//for (int i = 0; i < MAP_Y; i++)
+	//{
+	//	for (int j = 0; j < MAP_X; j++)
+	//	{
+	//		//要素番号を座標に変更
+	//		float x = j * 64.0f;
+	//		float y = i * 64.0f;
+
+	//		//主人公とボックスの当たり判定
+	//		if ((hx+64.0f>x)&&(hx<x+64.0f)&&(hy+64.0f>y)&&(hy<y+64.0f))
+	//		{
+	//			//当たっている場合
+	//			hero->SetX(hx);
+	//			hero->SetY(0.0f);
+	//		}
+	//	}
+	//}
+
+	//当たり判定用HitBox作成
+	Hits::SetHitBox(this, m_x, m_y, 64, 64, ELEMENT_ITEM, OBJ_BREAK_BLOCK, 1);
 }
 
 //アクション
@@ -47,24 +73,30 @@ void CObjbreakblock::Action()
 
 	CHitBox* hit = Hits::GetHitBox(this);
 
-
-
-		//敵を全員倒したらしたら壁を削除
-		if (Enemycount==0)
-		{
-			//壁を削除
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-			
-		}
-
-		if (m_x >= (80 * 64) || m_y >= (60 * 64))
-		{
-
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-		}
 	
+	int data_base[3] =
+	{
+		OBJ_ENEMY,
+		OBJ_ENEMY3,
+		OBJ_GHOST,
+	};
+	//敵を全員倒したらしたら壁を削除
+	if (m_hit == true)
+	{
+		{
+
+		}
+		
+		for (int i = 0; i < 3; i++)
+		{
+			if (hit->CheckObjNameHit(data_base[i]) == nullptr)
+			{
+				//壁を削除
+				this->SetStatus(false);
+				Hits::DeleteHitBox(this);
+			}
+		}
+	}
 }
 
 //ドロー

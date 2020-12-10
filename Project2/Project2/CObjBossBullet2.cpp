@@ -79,7 +79,7 @@ void CObjBossBullet2::Action()
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 	}
 	//主人公（人）と接触しているか調べる
-	if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
+	else if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
@@ -87,9 +87,7 @@ void CObjBossBullet2::Action()
 		Effect* effect = new Effect(m_x, m_y, m_r);
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 	}
-
-
-	if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
+	else if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
 	{
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除

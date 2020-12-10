@@ -5,7 +5,7 @@ using namespace GameL;
 
 class CObjPlayerBullet : public CObj {
 public:
-	CObjPlayerBullet(float x, float y, float r);
+	CObjPlayerBullet(float x, float y, float r,int b);
 	~CObjPlayerBullet() {};
 	void Init();
 	void Action();
@@ -23,7 +23,7 @@ private:
 	bool m_right;
 	bool m_down;
 
-
+	int bullet;
 	float m_scroll_map_x{ 0 };
 	float m_scroll_map_y{ 0 };
 };

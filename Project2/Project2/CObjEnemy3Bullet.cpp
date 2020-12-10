@@ -87,7 +87,7 @@ void CObjEnemy3B::Action() {
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 	}
 	//主人公（人）と接触しているか調べる
-	if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
+	else if (Hit->CheckObjNameHit(OBJ_CHARA) != nullptr)
 	{
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
@@ -122,5 +122,5 @@ void CObjEnemy3B::Draw() {
 	dst.m_right = 32.0f + m_x+m_scroll_map_x;
 	dst.m_bottom = 32.0f + m_y+m_scroll_map_y;
 
-	Draw::Draw(2, &src, &dst, c, 0);
+	Draw::Draw(14, &src, &dst, c, 0);
 };
