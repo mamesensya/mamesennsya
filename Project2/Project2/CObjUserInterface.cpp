@@ -20,13 +20,15 @@ void CObjUserInterface::Draw() {
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	RECT_F src;
 	RECT_F dst;
-	
-	clock_t timeset;timeset = clock();
+
+	clock_t timeset; timeset = clock();
 
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjChara* human = (CObjChara*)Objs::GetObj(OBJ_CHARA);
 
 	int viewhp = hero->GetHP();
+	int viewhpB;
+	if (human!=nullptr)viewhpB = human->GetHP();
 
 	int bullet[3] = {
 		hero->GetBullet(),
@@ -55,33 +57,56 @@ void CObjUserInterface::Draw() {
 
 	wchar_t str[128];
 	swprintf_s(str, L"écÇËìGÇÃêîÅF%d", setenemyMax);
-	Font::StrDraw(str,20,70,20,c);
+	Font::StrDraw(str, 20, 70, 20, c);
 
 	Font::StrDraw(L"ëÃóÕ", 20, 10, 20, c);
-
+	bool state = hero->GetHeroState();
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = src.m_left + 32.0f ;
+	src.m_right = src.m_left + 32.0f;
 	src.m_bottom = src.m_top + 32.0f;
-	for (int i = 0; i < 5; i++) {
-		dst.m_top = 8.0f;
-		dst.m_left = 100.0f + (32.0f * i);
-		dst.m_right = dst.m_left + 32.0f;
-		dst.m_bottom = dst.m_top + 32.0f;
-		c[0] = 0.0f, c[1] = 0.0f, c[2] = 0.0f;
-		Draw::Draw(23, &src, &dst, c, 0);
-	}
-	for (int i = 0; i < viewhp; i++) {
-		dst.m_top = 8.0f ;
-		dst.m_left = 100.0f + (32.0f * i);
-		dst.m_right = dst.m_left + 32.0f ;
-		dst.m_bottom = dst.m_top + 32.0f;
+	if (state == false) {
+		for (int i = 0; i < 5; i++) {
+			dst.m_top = 8.0f;
+			dst.m_left = 100.0f + (32.0f * i);
+			dst.m_right = dst.m_left + 32.0f;
+			dst.m_bottom = dst.m_top + 32.0f;
+			c[0] = 0.0f, c[1] = 0.0f, c[2] = 0.0f;
+			Draw::Draw(23, &src, &dst, c, 0);
+		}
 
-		c[0] = 1.0f, c[1] = 1.0f, c[2] = 1.0f;
-		Draw::Draw(23, &src, &dst, c, 0);
+		for (int i = 0; i < viewhp; i++) {
+			dst.m_top = 8.0f;
+			dst.m_left = 100.0f + (32.0f * i);
+			dst.m_right = dst.m_left + 32.0f;
+			dst.m_bottom = dst.m_top + 32.0f;
+
+			c[0] = 1.0f, c[1] = 1.0f, c[2] = 1.0f;
+			Draw::Draw(23, &src, &dst, c, 0);
+		}
+
+	}else {
+		for (int i = 0; i < 2; i++) {
+			dst.m_top = 8.0f;
+			dst.m_left = 100.0f + (32.0f * i);
+			dst.m_right = dst.m_left + 32.0f;
+			dst.m_bottom = dst.m_top + 32.0f;
+			c[0] = 0.0f, c[1] = 0.0f, c[2] = 0.0f;
+			Draw::Draw(23, &src, &dst, c, 0);
+		}
+		for (int i = 0; i < viewhpB; i++) {
+			dst.m_top = 8.0f;
+			dst.m_left = 100.0f + (32.0f * i);
+			dst.m_right = dst.m_left + 32.0f;
+			dst.m_bottom = dst.m_top + 32.0f;
+
+			c[0] = 1.0f, c[1] = 1.0f, c[2] = 1.0f;
+			Draw::Draw(24, &src, &dst, c, 0);
+		}
+
 	}
-	bool state = hero->GetHeroState();
 	
+
 	if (state == false) {
 		c[3] = 0.5f;
 
@@ -122,7 +147,7 @@ void CObjUserInterface::Draw() {
 			}
 			Draw::Draw(28, &src, &dst, c, 0);
 		}
-	
+
 
 		c[0] = 0.0f, c[1] = 0.0f, c[2] = 0.0f;
 		if (bullet[0] > 0) c[3] = 1.0f; else c[3] = 0.2f;
@@ -143,9 +168,10 @@ void CObjUserInterface::Draw() {
 		c[3] = 1.0f;
 		Font::StrDraw(L"ç~ÇËÇÈ", 655, 544, 20, c);
 
-	
 
-	}else {
+
+	}
+	else {
 
 		c[3] = 0.5f;
 		flug = human->m_hit_tank;
@@ -206,5 +232,54 @@ void CObjUserInterface::Draw() {
 
 	swprintf_s(str, L"ÉXÉeÅ[ÉW%d", playstage);
 	Font::StrDraw(str, 680, 15, 20, c);
+
+	c[0] = 1.0f; c[1] = 1.0f; c[2] = 1.0f; c[3] = 1.0f;
+
+	//344 - 404 - 464
+	if (getflugs) {
+		if (waitcount <= 200) {
+			if (state){
+			swprintf_s(uistr[0], L"Å@í èÌíe+%d", getguns[0]);
+			swprintf_s(uistr[1], L"Å@ä—í íe+%d", getguns[1]);
+			swprintf_s(uistr[2], L"ÇRï˚å¸íe+%d", getguns[2]);
+			for (int i = 0; i < 3; i++) {
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = src.m_left + 32.0f;
+				src.m_bottom = src.m_top + 32.0f;
+
+				dst.m_top = 344.0f + (60 * i);
+				dst.m_left = 655.0f;
+				dst.m_right = dst.m_left + 150.0f;
+				dst.m_bottom = dst.m_top + 20.0f;
+
+				Draw::Draw(26, &src, &dst, c, 0);
+
+				Font::StrDraw(uistr[i], 655, 344 + (60 * i), 20, c);
+			};
+		}else {
+			for (int i = 0; i < 3; i++) {
+				src.m_top = 0.0f;
+				src.m_left = 0.0f;
+				src.m_right = src.m_left + 32.0f;
+				src.m_bottom = src.m_top + 32.0f;
+
+				dst.m_top = 344.0f + (60 * i);
+				dst.m_left = 700.0f;
+				dst.m_right = dst.m_left + 50.0f;
+				dst.m_bottom = dst.m_top + 20.0f;
+
+				Draw::Draw(26, &src, &dst, c, 0);
+
+				swprintf_s(uistr[i], L"+%d", getguns[i]);
+				Font::StrDraw(uistr[i], 700, 344 + (60 * i), 20, c);
+			}
+		}
+		waitcount++;
+	}else {
+		waitcount = 0;
+		getflugs = false;
+	}
+	}
 
 };

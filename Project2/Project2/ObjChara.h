@@ -20,6 +20,7 @@ public:
 	void SetY(float y) { m_py = y; }
 	void SetVY(float vy) { m_vy = vy; }
 
+	int GetHP() {return m_hp;}
 	bool m_hero_flag{ false };//主人公の状態確認フラグ
 	bool m_hit_tank{ false };
 	//false：主人公（戦車）　true：主人公（人）

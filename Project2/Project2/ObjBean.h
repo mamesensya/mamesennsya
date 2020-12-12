@@ -17,4 +17,6 @@ public:
 private:
 	float m_x;//ˆÊ’u
 	float m_y;
+
+	int *getguns[3];
 };

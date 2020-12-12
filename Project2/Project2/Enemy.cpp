@@ -297,7 +297,7 @@ void CObjEnemy::Action()
 			
 		}
 	}
-	if (pbullet_enable == false) {
+	else if (pbullet_enable == false) {
 		if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr) {
 			
 			//’e’…’e‰¹

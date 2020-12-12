@@ -92,23 +92,19 @@ void CObjChara::Action()
 			//当たり判定を行うオブジェクト情報部
 			int data_base[10] =
 			{
-				OBJ_ENEMY,
 				OBJ_ENEMY_BULLET,
-				OBJ_ENEMY3,
 				OBJ_ENEMY_3BULLET,
-				OBJ_BOSS,
 				OBJ_BOSS_BULLET,
-				OBJ_GHOST,
 				OBJ_GHOST_ATTACK,
-				OBJ_BOSS2,
 				OBJ_BOSS_BULLET2,
 			};
 
 			//敵オブジェクトと接触したら主人公のm_hpが減少
 			if (m_hit == true)
 			{
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 5; i++)
 				{
+					
 					if (hit->CheckObjNameHit(data_base[i]) != nullptr)
 					{
 						//弾着弾音
@@ -124,7 +120,7 @@ void CObjChara::Action()
 			{
 				this->SetStatus(false);//自身に削除命令を出す
 				Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
-
+				
 				Scene::SetScene(new CSceneGameOver());
 			}
 
@@ -149,24 +145,26 @@ void CObjChara::Action()
 				}
 			}
 			//主人公（戦車）のHitBoxに当たっているときに切り替えができる
-			if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
-			{
-				m_hit_tank = true;
-				//主人公が人状態に移行
-				if (Input::GetVKey('V') == true)
+			if (m_hp > 0) {
+				if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 				{
-					m_hero_flag = false;
+					m_hit_tank = true;
+					//主人公が人状態に移行
+					if (Input::GetVKey('V') == true)
+					{
+						m_hero_flag = false;
 
-					hero->m_hero_flag = false;
+						hero->m_hero_flag = false;
 
-					this->SetStatus(false);//自身に削除命令を出す
-					Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
-					//チャタリング防止用
-					while (Input::GetVKey('V') == true);
+						this->SetStatus(false);//自身に削除命令を出す
+						Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+						//チャタリング防止用
+						while (Input::GetVKey('V') == true);
+					}
 				}
-			}
-			else {
-				m_hit_tank = false;
+				else {
+					m_hit_tank = false;
+				}
 			}
 		}
 	}

@@ -53,7 +53,9 @@ void CObjBean::Action()
 		Hits::DeleteHitBox(this);
 
 		CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+		CObjUserInterface* obj_ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
 		//ŽålŒö‚ÌŽ‚Á‚Ä‚¢‚é’e‚Ì”‚ð‘‰Á‚³‚¹‚é
+		obj_ui->SetterGetGun(r,2,3, true);
 		hero->GetBullet(r);
 		hero->GetUniqueBullet1(2);
 		hero->GetUniqueBullet2(3);
