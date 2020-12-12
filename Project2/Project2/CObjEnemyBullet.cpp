@@ -93,26 +93,9 @@ void CObjEnemyBullet::Action()
 	m_x -= m_scroll_map_x;
 	m_y -= m_scroll_map_y;
 
-	//比較するデータ配列
-	int data_base[4] =
-	{
-		m_up,m_down,m_reft,m_right
-	};
-
-	//for文で回してすべて確認　一つでもtrueなら弾を削除
-	for (int i = 0; i <= 3; i++)
-	{
-		if (data_base[i] == true)
-		{
-			Effect* effect = new Effect(m_x, m_y,m_r);
-			Objs::InsertObj(effect, OBJ_EFFECT, 20);
-
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-		}
-	}
 
 
+	//
 	//主人公と接触しているかどうか調べる
 	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
 	{
@@ -137,6 +120,27 @@ void CObjEnemyBullet::Action()
 	//	this->SetStatus(false);//自身に削除命令を出す
 	//	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 	//}
+
+
+	//比較するデータ配列
+	int data_base[4] =
+	{
+		m_up,m_down,m_reft,m_right
+	};
+
+	//for文で回してすべて確認　一つでもtrueなら弾を削除
+	for (int i = 0; i <= 3; i++)
+	{
+		if (data_base[i] == true)
+		{
+			Effect* effect = new Effect(m_x, m_y, m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+	}
+
 
 	if (mx >= 500.0f||mx<=-500.0f || my >= 500.0f||my<=-500.0f)
 	{
