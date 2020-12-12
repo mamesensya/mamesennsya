@@ -96,8 +96,8 @@ void CSceneMain::InitScene()
 	//Draw::LoadImageW(L"‹Sƒgƒ‰ƒ“ƒvQ.png", 8, TEX_SIZE_512);
 
 	//“GíŽÔi3•ûŒü’ej
-	CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 250);
-	Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);
+	/*CObjEnemy3* obj_enemy3 = new CObjEnemy3(350, 250);
+	Objs::InsertObj(obj_enemy3, OBJ_ENEMY3, 51);*/
 
 	//ƒ{ƒXíŽÔ
 	Draw::LoadImageW(L"‚¨‚ÉƒSƒ€@Ô.png", 5, TEX_SIZE_512);
@@ -166,7 +166,7 @@ void CSceneMain::InitScene()
 	obj_ui->setStage(Stage+1);
 	obj_ui->flugset(true);
 	//obj_ui->NextStageProcess();
-	Objs::InsertObj(obj_ui, OBJ_USERINTERFACE, 18);
+	Objs::InsertObj(obj_ui, OBJ_USERINTERFACE, 1000);
 	//CObjbreakblock* obj_break_block = new CObjbreakblock(200, 300);
 	//Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
 
@@ -191,5 +191,6 @@ void CSceneMain::Scene()
 
 void CSceneMain::RoundChange() {
 	Stage++;
-	Scene::SetScene(new CSceneMain());
+	CObjUserInterface* ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+	ui->setStageStatus(2);
 };

@@ -12,6 +12,7 @@ public:
 	void Draw();
 	void setMAXenemy(int setenemy) { setenemyMax = setenemy; nowenemy = setenemy; }
 	void setStage(int sets) { playstage = sets; }
+	void setStageStatus(int setstate) {stagestate = setstate;}
 	void DestroyedRequest() {
 		setenemyMax--;
 	}
@@ -31,17 +32,24 @@ public:
 private:
 	char keystr[4] = { 'Z','X','C','V' };
 	bool flug;
-	
-	int nowenemy = 0;
+	int viewhp    = 0;
+	int viewhpB   = 0;
+	int nowenemy  = 0;
 	int playstage = 0;
-	float ease = 0;
-	float easey = 0;
-	float alpha = 0; float alpha2 = 0.0f;
-	int phase = 0;
+	float ease    = 0;
+	float easey   = 0;
+	float alpha   = 0; 
+	float alpha2  = 0.0f;
+	
 
 	wchar_t uistr[3][128];
 	
-	int waitcount = 0;
+	int waitcount  = 0;
 	int getguns[3] = { 0 };
-	bool getflugs;
+	bool getflugs  =false;
+
+	int stagestate  = 0; //ステージステート　0：開始 1:プレイ中 2:クリア 3:ゲームオーバー
+	float faders[2] = { 300.0f,0.0f };
+	bool state      = false;
+	int bullet[3];
 };

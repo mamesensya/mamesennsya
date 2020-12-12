@@ -77,6 +77,7 @@ void CObjHero::Action()
 
 	//HitBoxの内容更新
 	CHitBox* hit = Hits::GetHitBox(this);
+	
 
 	//主人公（人）の状態なら動作しない
 	if (m_hero_flag == false)
@@ -145,7 +146,8 @@ void CObjHero::Action()
 
 		//ブロックとの当たり判定
 		CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-		//pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
+		CObjUserInterface* ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+		pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
 
 		
 
@@ -252,7 +254,8 @@ void CObjHero::Action()
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 
-			Scene::SetScene(new CSceneGameOver());
+			//Scene::SetScene(new CSceneGameOver());
+			ui->setStageStatus(3);
 		}
 
 		//攻撃間隔制御

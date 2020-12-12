@@ -8,7 +8,6 @@ using namespace GameL;
 
 
 void CObjUserInterface::Init() {
-
 };
 
 void CObjUserInterface::Action() {
@@ -25,22 +24,23 @@ void CObjUserInterface::Draw() {
 
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	CObjChara* human = (CObjChara*)Objs::GetObj(OBJ_CHARA);
-
-	int viewhp = hero->GetHP();
-	int viewhpB;
-	if (human!=nullptr)viewhpB = human->GetHP();
-
-	int bullet[3] = {
-		hero->GetBullet(),
-		hero->GetUBulletA(),
-		hero->GetUBulletB()
-	};
+	
+	if (hero != nullptr) {
+		viewhp = hero->GetHP();
+		bullet[0] = hero->GetBullet();
+		bullet[1] = hero->GetUBulletA();
+		bullet[2] = hero->GetUBulletB();
+		state = hero->GetHeroState();
+		
+	}
+	if (human != nullptr) {viewhpB = human->GetHP();}
+	
 
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = src.m_left + 32.0f;
 	src.m_bottom = src.m_top + 32.0f;
-
+	
 	dst.m_top = 0.0f;
 	dst.m_left = 0.0f;
 	dst.m_right = dst.m_left + 300.0f;
@@ -60,7 +60,6 @@ void CObjUserInterface::Draw() {
 	Font::StrDraw(str, 20, 70, 20, c);
 
 	Font::StrDraw(L"‘Ì—Í", 20, 10, 20, c);
-	bool state = hero->GetHeroState();
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = src.m_left + 32.0f;
@@ -174,7 +173,7 @@ void CObjUserInterface::Draw() {
 	else {
 
 		c[3] = 0.5f;
-		flug = human->m_hit_tank;
+		if (human!=nullptr)flug = human -> m_hit_tank;
 
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
@@ -281,5 +280,85 @@ void CObjUserInterface::Draw() {
 		getflugs = false;
 	}
 	}
+	src.m_top = 0.0f;
+	src.m_left = 0.0f;
+	src.m_right = src.m_left + 32.0f;
+	src.m_bottom = src.m_top + 32.0f;
+
+	switch (stagestate) {
+	case 0:
+
+		dst.m_top = 0.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = dst.m_left + 800.0f;
+		dst.m_bottom = dst.m_top + faders[0];
+		Draw::Draw(29, &src, &dst, c, 0.0f);
+		dst.m_top = 600.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = dst.m_left + 800.0f;
+		dst.m_bottom = dst.m_top - faders[0];
+		Draw::Draw(29, &src, &dst, c, 0.0f);
+		if (faders[0] > 0) {
+			faders[0] = faders[0] - ease;
+			ease+=0.5;
+		}
+		else {
+			faders[0] = 0;
+			faders[1] = 0;
+			stagestate++;
+		};
+		break;
+	case 2:
+		dst.m_top = 0.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = dst.m_left + 800.0f;
+		dst.m_bottom = dst.m_top + faders[0];
+		Draw::Draw(29, &src, &dst, c, 0.0f);
+		dst.m_top = 600.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = dst.m_left + 800.0f;
+		dst.m_bottom = dst.m_top - faders[0];
+		Draw::Draw(29, &src, &dst, c, 0.0f);
+		if (faders[0] < 300) {
+			faders[0] = faders[0] + ease;
+			ease += 0.5;
+		}
+		else {
+			faders[0] = 0;
+			faders[1] = 0;
+			stagestate = 0;
+			Scene::SetScene(new CSceneMain());
+		};
+		break;
+		break;
+	case 3:
+		dst.m_top = 0.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = dst.m_left + 800.0f;
+		dst.m_bottom = dst.m_top + faders[0];
+		Draw::Draw(29, &src, &dst, c, 0.0f);
+		dst.m_top = 600.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = dst.m_left + 800.0f;
+		dst.m_bottom = dst.m_top - faders[0];
+		Draw::Draw(29, &src, &dst, c, 0.0f);
+		dst.m_top = 0.0f;
+		dst.m_left = 0.0f;
+		dst.m_right = dst.m_left + faders[1];
+		dst.m_bottom = dst.m_top + 600.0f;
+		Draw::Draw(29, &src, &dst, c, 0.0f);
+		dst.m_top = 0.0f;
+		dst.m_left = 800.0f;
+		dst.m_right = dst.m_left - faders[1];
+		dst.m_bottom = dst.m_top + 600.0f;
+		Draw::Draw(29, &src, &dst, c, 0.0f);
+		if (faders[0] < 300) faders[0] = faders[0] + ease;
+		if (faders[1] < 400) faders[1] = faders[1] + ease;
+		if ((faders[0] + faders[1]) > 700)Scene::SetScene(new CSceneGameOver());
+		ease += 0.5;
+		break;
+	default:
+		break;
+	};
 
 };
