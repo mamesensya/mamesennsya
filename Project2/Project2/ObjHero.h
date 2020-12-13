@@ -72,5 +72,4 @@ private:
 	float m_scroll{ 0 };
 	float m_scroll2{ 0 };
 
-	//float m_time{ 0 };//BreakBlockに当たって一時的にブロックから離れる用
 };

@@ -147,7 +147,7 @@ void CObjHero::Action()
 		//ƒuƒƒbƒN‚Æ‚Ì“–‚½‚è”»’è
 		CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 		CObjUserInterface* ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
-		pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
+		//pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
 
 		
 
@@ -174,7 +174,7 @@ void CObjHero::Action()
 				//”­ŽË‰¹–Â‚ç‚·
 				Audio::Start(10);
 
-				CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - 90);
+				CObjPlayerBullet* obj_ab = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - 90,1);
 				Objs::InsertObj(obj_ab, OBJ_BULLET, 14);
 				m_bullet -= 1;
 				bullet -= 1;
@@ -195,7 +195,7 @@ void CObjHero::Action()
 				Audio::Start(10);
 				
 				for (int i = 0; i < 3; i++) {
-					CObjPlayerBullet* obj_db = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - (60 + (30 * i)));
+					CObjPlayerBullet* obj_db = new CObjPlayerBullet(m_x, m_y, m_r - (m_r * 2) - (60 + (30 * i)),2);
 					Objs::InsertObj(obj_db, OBJ_BULLET, 16);
 				}
 				m_unique_bullet_2 -= 1;
@@ -212,7 +212,7 @@ void CObjHero::Action()
 				Objs::InsertObj(savesys, OBJ_SAVE, 17);
 			};
 		};
-		if (Input::GetVKey('B') == true) {
+		if (Input::GetVKey('W') == true) {
 			Scene::SetScene(new CSceneMain());
 		}
 

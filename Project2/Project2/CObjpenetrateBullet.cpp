@@ -30,7 +30,10 @@ void CObjPenetrateBullet::Action() {
 	m_y += m_vy * 6.0f;
 
 	
+
 	Hit->SetPos(m_x, m_y);
+
+
 
 	int data_base[4] =
 	{
@@ -45,10 +48,7 @@ void CObjPenetrateBullet::Action() {
 
 	for (int i = 0; i <= 3; i++)
 	{
-		/*if ((m_right==true&&m_vx<0)||(m_down==true&&m_vy>0))
-		{
-			;
-		}*/
+		
 		if (data_base[i] == true)
 		{
 			Effect* effect = new Effect(m_x, m_y, m_r);
@@ -69,13 +69,13 @@ void CObjPenetrateBullet::Draw() {
 
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
-	src.m_right = 768.0f;
-	src.m_bottom = 768.0f;
+	src.m_right = 265.0f;
+	src.m_bottom = 265.0f;
 
 	dst.m_top = 0.0f + m_y;
 	dst.m_left = 0.0f + m_x;
 	dst.m_right = 32.0f + m_x;
 	dst.m_bottom = 32.0f + m_y;
 
-	Draw::Draw(14, &src, &dst, c, 0);
+	Draw::Draw(11, &src, &dst, c, 0);
 };

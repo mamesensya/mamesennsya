@@ -103,12 +103,12 @@ void CObjAngleBullet::Action()
         this->SetStatus(false);//削除命令
         Hits::DeleteHitBox(this);//削除
     }
-    ////弾丸と接触しているかを調べる
-    //if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
-    //{
-    //	this->SetStatus(false);//自身に削除命令を出す
-    //	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
-    //}
+    //弾丸と接触しているかを調べる
+    else if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+    {
+    	this->SetStatus(false);//自身に削除命令を出す
+    	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
+    }
 
     else if (mx >= 500.0f || mx <= -500.0f || my >= 500.0f || my <= -500.0f)
     {

@@ -8,10 +8,11 @@
 
 using namespace GameL;
 
-CObjPlayerBullet::CObjPlayerBullet(float x, float y, float r) {
+CObjPlayerBullet::CObjPlayerBullet(float x, float y, float r,int n) {
 	m_x = x+20;
 	m_y = y+20;
 	m_r = r;
+	num = n;
 };
 
 void CObjPlayerBullet::Init() {
@@ -39,9 +40,9 @@ void CObjPlayerBullet::Action() {
 		m_x += m_vx * m_speed;
 		m_y += m_vy * m_speed;
 
+
 		Hit->SetPos(m_x, m_y);
 
-		
 
 		int data_base[4] =
 		{
@@ -79,16 +80,31 @@ void CObjPlayerBullet::Draw() {
 
 	RECT_F src;
 	RECT_F dst;
+	if (num == 1) {
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 768.0f;
+		src.m_bottom = 768.0f;
 
-	src.m_top = 0.0f;
-	src.m_left = 0.0f;
-	src.m_right = 768.0f;
-	src.m_bottom = 768.0f;
+		dst.m_top = 0.0f + m_y;
+		dst.m_left = 0.0f + m_x;
+		dst.m_right = 32.0f + m_x;
+		dst.m_bottom = 32.0f + m_y;
 
-	dst.m_top = 0.0f+m_y;
-	dst.m_left = 0.0f+m_x;
-	dst.m_right = 32.0f+m_x;
-	dst.m_bottom = 32.0f+m_y;
+		Draw::Draw(14, &src, &dst, c, 0);
+	}
+	if (num == 2)
+	{
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = 265.0f;
+		src.m_bottom = 265.0f;
 
-	Draw::Draw(14, &src, &dst, c,0);
+		dst.m_top = 0.0f + m_y;
+		dst.m_left = 0.0f + m_x;
+		dst.m_right = 32.0f + m_x;
+		dst.m_bottom = 32.0f + m_y;
+
+		Draw::Draw(10, &src, &dst, c, 0);
+	}
 };

@@ -60,7 +60,7 @@ void Effect::Draw()
 	dst.m_left = 0.0f + m_x + m_scroll_map_x;
 	dst.m_right = 60.0f + m_x + m_scroll_map_x;
 	dst.m_bottom = 45.0f + m_y + m_scroll_map_y;
-	SetPrio(25);
+	SetPrio(100);
 	//•`‰æ
 	Draw::Draw(30, &src, &dst, c, m_r);
 }

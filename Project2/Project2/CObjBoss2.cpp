@@ -129,13 +129,21 @@ void CObjBoss2::Action()
 		Effect* effect = new Effect(m_x, m_y,m_r);
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 		if (m_hp <= 0) {
-			//爆発音鳴らす
-			Audio::Start(12);
-			main->RoundChange();
-			this->SetStatus(false);//自身に削除命令を出す
-			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
-
-			
+			if (Stage == 1) {
+				//爆発音鳴らす
+				Audio::Start(12);
+				Audio::Stop(0);
+				main->RoundChange();
+				this->SetStatus(false);
+				Hits::DeleteHitBox(this);
+			}
+			if (Stage == 3) {
+				Audio::Start(12);
+				Audio::Stop(0);
+				
+				this->SetStatus(false);
+				Hits::DeleteHitBox(this);
+			}
 		}
 	}
 	else if (pbullet_enable == false) {
@@ -149,12 +157,21 @@ void CObjBoss2::Action()
 			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 			pbullet_enable = true;
 			if (m_hp <= 0) {
-				//爆発音鳴らす
-				Audio::Start(12);
+				if (Stage == 1) {
+					//爆発音鳴らす
+					Audio::Start(12);
+					Audio::Stop(0);
+					main->RoundChange();
+					this->SetStatus(false);
+					Hits::DeleteHitBox(this);
+				}
+				if (Stage == 3) {
+					Audio::Start(12);
+					Audio::Stop(0);
 
-				main->RoundChange();
-				this->SetStatus(false);
-				Hits::DeleteHitBox(this);
+					this->SetStatus(false);
+					Hits::DeleteHitBox(this);
+				}
 			}
 		}
 	}

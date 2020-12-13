@@ -9,6 +9,7 @@
 #include"CObjAngleBullet.h"
 #include "Objbreakblock.h"
 #include"CObjBossBullet2.h"
+#include"SceneMain.h"
 
 using namespace GameL;
 
@@ -24,7 +25,7 @@ void CObjBoss::Init()
 	m_vx = 0.0f;    //移動方向
 	m_vy = 0.0f;
 	m_r = 0.0f;//向きを決める変数
-	m_hp = 5;//体力
+	m_hp = 20;//体力
 	count = 0;//向きを固定するカウント
 	m_time = 0;//弾丸発射制御用time
 	m_time2 = 0;
@@ -62,16 +63,12 @@ void CObjBoss::Action()
 		m_time = 0;
 
 	}
-	if (m_oni_time > 100)
+	if (m_oni_time > 200)
 	{
 		m_oni_time = 0;
 	}
 
 	//ある程度近づくと主人公と並行な位置まで移動
-
-	float x = 0;//主人公から敵のベクトルx
-	float y = 0;//主人公から敵のベクトルy
-
 	//主人公の座標取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	if (hero != nullptr)
@@ -83,6 +80,9 @@ void CObjBoss::Action()
 		//スクロールをした分ずれているから本当の座標を出す
 		hx = hx - m_scroll_map_x;
 		hy = hy - m_scroll_map_y;
+
+		float x = 0;//主人公から敵のベクトルx
+		float y = 0;//主人公から敵のベクトルy
 
 		//敵の座標はもともとスクロールの値が入っていない
 		//敵から主人公のベクトルを求める　
@@ -241,101 +241,144 @@ void CObjBoss::Action()
 					}
 				}
 			}
+			//攻撃方法
 			//---------------------
+			if (Stage == 0) {
+				if (m_time == 300 && count == 1)
+				{
+					//発射音鳴らす
+					Audio::Start(10);
 
-			if (m_time == 300 && count == 1)
-			{
-				//発射音鳴らす
-				Audio::Start(10);
-				
-				//敵弾丸発射　　
-				CObjBossBullet* obj_bb = new CObjBossBullet(m_x, m_y, m_r );
-				Objs::InsertObj(obj_bb, OBJ_BOSS_BULLET, 16);
-				
-				if (m_Bcount == 0)
-				{
-					m_Bcount = 1;
+					//敵弾丸発射　　
+					CObjBossBullet* obj_bb = new CObjBossBullet(m_x, m_y, m_r);
+					Objs::InsertObj(obj_bb, OBJ_BOSS_BULLET, 16);
+
+					if (m_Bcount == 0)
+					{
+						m_Bcount = 1;
+					}
+					else if (m_Bcount == 1)
+					{
+						m_Bcount = 0;
+					}
+
+
 				}
-				else if (m_Bcount == 1)
+
+				//鬼召喚
+				if (m_oni_time == 300&&m_oni_count<=3)
 				{
-					m_Bcount = 0;
+					if (m_r == 0)
+					{
+						m_oni_count++;
+						CObjGhost* obj_g = new CObjGhost(m_x , m_y+172);
+						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+
+					}
+					if (m_r == 90)
+					{
+						m_oni_count++;
+						CObjGhost* obj_g = new CObjGhost(m_x+172 , m_y );
+						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+
+					}
+					if (m_r == 180)
+					{
+						m_oni_count++;
+						CObjGhost* obj_g = new CObjGhost(m_x , m_y-172 );
+						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+
+					}
+					if (m_r == -90)
+					{
+						m_oni_count++;
+						CObjGhost* obj_g = new CObjGhost(m_x-172 , m_y);
+						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+
+					}
 				}
-				
+				if (m_time2 == 100)
+				{
+					//発射音鳴らす
+					Audio::Start(10);
+
+					CObjBossBullet2* obj_eb = new CObjBossBullet2(m_x - 80, m_y - 80, -m_r - 90);
+					Objs::InsertObj(obj_eb, OBJ_BOSS_BULLET2, 50);
+				}
 
 			}
-		//bool reflect = true;
-		//if (m_time == 10)
-		//{
-		//	if (m_r >= 0.0 && reflect == true)
-		//	{
-		//		//角度m_angleで角度弾丸発射
-		//		m_r += 5.0;
-		//		CObjAngleBullet* obj_a = new CObjAngleBullet(300, 300, m_r);
-		//		Objs::InsertObj(obj_a, OBJ_ENEMY_BULLET, 1);
-		//		if (m_r >= 360.0)
-		//		{
-		//			reflect = false;
-		//		}
-		//	}
-		//	else if (m_r <= 360 && reflect == false)
-		//	{
-		//		//角度m_angleで角度弾丸発射
-		//		m_r -= 5.0;
-		//		if (m_r <= 0)
-		//		{
-		//			reflect = true;
-		//		}
-		//	}
-		//	m_time = 0;
-		//}
-		//m_time++;
-
-			//鬼召喚
-			if (m_oni_time == 50&&m_oni_count<=3)
+			//-----------------------------------
+			//-----------------------------------
+			if (Stage == 3)
 			{
-				if (m_r == 0)
+				if (m_time ==150 && count == 1 ||m_time == 300 && count == 1)
 				{
-					m_oni_count++;
-					CObjGhost* obj_g = new CObjGhost(m_x + m_scroll_map_x, (m_y+172) + m_scroll_map_y);
-					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
-					
+					//発射音鳴らす
+					Audio::Start(10);
+
+					//敵弾丸発射　　
+					CObjBossBullet* obj_bb = new CObjBossBullet(m_x, m_y, m_r);
+					Objs::InsertObj(obj_bb, OBJ_BOSS_BULLET, 16);
+
+					if (m_Bcount == 0)
+					{
+						m_Bcount = 1;
+					}
+					else if (m_Bcount == 1)
+					{
+						m_Bcount = 0;
+					}
+
+
 				}
-				if (m_r == 90)
+
+				//鬼召喚
+				if (m_oni_time == 300&&m_oni_count<=3)
 				{
-					m_oni_count++;
-					CObjGhost* obj_g = new CObjGhost((m_x+172) + m_scroll_map_x, m_y + m_scroll_map_y);
-					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
-					
+					if (m_r == 0)
+					{
+						m_oni_count++;
+						CObjGhost* obj_g = new CObjGhost(m_x , m_y+172);
+						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+
+					}
+					if (m_r == 90)
+					{
+						m_oni_count++;
+						CObjGhost* obj_g = new CObjGhost(m_x+172 , m_y );
+						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+
+					}
+					if (m_r == 180)
+					{
+						m_oni_count++;
+						CObjGhost* obj_g = new CObjGhost(m_x , m_y-172 );
+						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+
+					}
+					if (m_r == -90)
+					{
+						m_oni_count++;
+						CObjGhost* obj_g = new CObjGhost(m_x-172 , m_y);
+						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+
+					}
+
 				}
-				if (m_r == 180)
+
+
+				if (m_time2 == 400)
 				{
-					m_oni_count++;
-					CObjGhost* obj_g = new CObjGhost(m_x + m_scroll_map_x, (m_y-172) + m_scroll_map_y);
-					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
-					
+					//発射音鳴らす
+					Audio::Start(10);
+
+					CObjBossBullet2* obj_eb = new CObjBossBullet2(m_x - 80, m_y - 80, -m_r - 90);
+					Objs::InsertObj(obj_eb, OBJ_BOSS_BULLET2, 50);
 				}
-				if (m_r == -90)
-				{
-					m_oni_count++;
-					CObjGhost* obj_g = new CObjGhost((m_x-172) + m_scroll_map_x, m_y + m_scroll_map_y);
-					Objs::InsertObj(obj_g, OBJ_GHOST, 16);
-					
-				}
-				
 			}
 
 
-			if (m_time2==400)
-			{
-				//発射音鳴らす
-				Audio::Start(10);
-
-				CObjBossBullet2* obj_eb = new CObjBossBullet2(m_x-80 , m_y-80 , -m_r - 90);
-				Objs::InsertObj(obj_eb, OBJ_BOSS_BULLET2, 50);
-			}
-
-
-		
+		    //--------------------------------
 		}
 	}
 
@@ -391,6 +434,7 @@ void CObjBoss::Action()
 			if (m_hp <= 0) {
 				//爆発音鳴らす
 				Audio::Start(12);
+				Audio::Stop(0);
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 

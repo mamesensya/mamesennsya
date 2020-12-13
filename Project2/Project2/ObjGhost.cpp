@@ -31,14 +31,11 @@ void CObjGhost::Init()
 
 }
 
-/// <summary>
-/// 鬼が重ならないようにしたい
-/// その場合
-/// 当たり判定を持ってきて
-/// </summary>
+
 
 void CObjGhost::Action()
 {
+	CHitBox* hit = Hits::GetHitBox(this);
 
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
@@ -58,26 +55,6 @@ void CObjGhost::Action()
 	{
 		c = 0;
 	}
-
-
-
-	m_x += m_scroll_map_x;
-	m_y += m_scroll_map_y;
-
-
-	//ブロックとの当たり判定
-	CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
-
-	m_x -= m_scroll_map_x;
-	m_y -= m_scroll_map_y;
-
-
-
-	//内容更新
-	CHitBox* hit = Hits::GetHitBox(this);
-	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
-
 
 	//ベクトルを求める
 	float x = 0;
@@ -181,16 +158,39 @@ void CObjGhost::Action()
 			}
 
 		}
+		m_x += m_scroll_map_x;
+		m_y += m_scroll_map_y;
+
+		//ブロックとの当たり判定
+		CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+		pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
+
+		m_x -= m_scroll_map_x;
+		m_y -= m_scroll_map_y;
+
+		//内容更新
+		hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
+
+		//移動方向初期化
+		m_vx = 0.0f;
+		m_vy = 0.0f;
 	}
-	//移動方向初期化
-	m_vx = 0.0f;
-	m_vy = 0.0f;
+
+	
 
 	//主人公弾と接触しているかどうか調べる
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
-		Effect* effect = new Effect(m_x, m_y,m_r);
-		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+
+		CObjBoss* Boss = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
+		Boss->m_oni_count--;
+	}
+	//主人公弾と接触しているかどうか調べる
+	else if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr)
+	{
 
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
@@ -216,11 +216,11 @@ void CObjGhost::Draw()
 	src.m_bottom = 200.0f;
 
 	//表示位置の設定
-	dst.m_top = 0.0f + m_y + m_scroll_map_y - 5.0f;
+	dst.m_top = 0.0f + m_y +m_scroll_map_y - 5.0f;
 	dst.m_left = 0.0f + m_x + m_scroll_map_x - 5.0f;
 	dst.m_right = 45.0f + m_x + m_scroll_map_x - 5.0f;
 	dst.m_bottom = 45.0f + m_y + m_scroll_map_y - 5.0f;
 
 	//描画
-	Draw::Draw(4, &src, &dst, c, m_r);
+	Draw::Draw(20, &src, &dst, c, m_r);
 }
