@@ -63,7 +63,7 @@ void CObjBoss::Action()
 		m_time = 0;
 
 	}
-	if (m_oni_time > 200)
+	if (m_oni_time > 300)
 	{
 		m_oni_time = 0;
 	}

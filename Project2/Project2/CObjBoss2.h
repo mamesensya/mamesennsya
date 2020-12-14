@@ -16,7 +16,7 @@ public:
 	float GetY() { return m_y; }
 	float GetR() { return m_r; }
 
-	int m_bullet_type{ 1 };//ボスの攻撃方法変更用
+	int m_bullet_type{ 0 };//ボスの攻撃方法変更用
 private:
 	float m_x{ 0 };//x座標
 	float m_y{ 0 };//y座標

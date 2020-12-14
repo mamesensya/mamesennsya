@@ -203,15 +203,6 @@ void CObjHero::Action()
 				m_attack = false;
 			}
 		}
-
-		if (Input::GetVKey('Q') == true) {
-			CObjSaveSystem* savesys = new CObjSaveSystem();
-			int state = savesys->GetState();
-			if (state == 0) {
-				savesys->SetState(1);
-				Objs::InsertObj(savesys, OBJ_SAVE, 17);
-			};
-		};
 		if (Input::GetVKey('W') == true) {
 			Scene::SetScene(new CSceneMain());
 		}
@@ -253,8 +244,6 @@ void CObjHero::Action()
 		{
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
-
-			//Scene::SetScene(new CSceneGameOver());
 			ui->setStageStatus(3);
 		}
 

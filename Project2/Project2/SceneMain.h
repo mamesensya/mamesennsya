@@ -5,6 +5,8 @@
 //使用するネームスペース
 using namespace GameL;
 
+static int Stage;
+
 //シーン　：　ゲームメイン
 class CSceneMain :public CScene
 {
@@ -17,9 +19,12 @@ public:
 	int GetEnemy() {
 		return GetenemyMax;
 	}
+	int GetStage()
+	{
+		return Stage;
+	};
 
 private:
 	int GetenemyMax = 0;
 };
 
-static int Stage;
