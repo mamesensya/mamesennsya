@@ -147,7 +147,7 @@ void CObjHero::Action()
 		//ブロックとの当たり判定
 		CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 		CObjUserInterface* ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
-		//pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
+		pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
 
 		
 
@@ -320,3 +320,16 @@ bool VectorNormalize(float* vx, float* vy)
 	//計算成功
 	return true;
 }
+
+
+///主人公が下りた状態で画面外に行かないように修正
+///正面がわかりづらいのを修正
+///敵hpをヘラる
+///ボスが出たらわかりやすく表示する
+///敵の弾と主人公の弾で相殺できるように修正
+///主人公（豆）が斧で敵に攻撃できるように修正
+///難易度調整（もうちょっと緩め）
+///アニメーション追加
+///主人公初期位置で下を向くように修正
+///主人公が下りた状態の時下りた主人公の方に向かって攻撃するように修正
+///主人公（豆）のグラフィックを箱より上に表示する
