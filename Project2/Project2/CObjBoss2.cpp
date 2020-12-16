@@ -6,6 +6,7 @@
 
 #include"GameHead.h"
 #include"CObjBoss2.h"
+#include"SceneMain.h"
 
 using namespace GameL;
 
@@ -17,7 +18,7 @@ CObjBoss2::CObjBoss2(float x, float y)
 
 void CObjBoss2::Init()
 {
-	m_hp = 20;
+	m_hp = 5;
 	m_attack = false;
 	pbullet_interval = 0; //ŠÑ’Ê’eƒqƒbƒg‚ÌŠÔŠu
 	pbullet_enable = false; //ŠÑ’Ê’eƒ_ƒ[ƒW—LŒø
@@ -42,7 +43,7 @@ void CObjBoss2::Action()
 	//ŽålŒö‚ÌÀ•WŽæ“¾
 
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	if (m_bullet_type == 0)
+	if (Stage == 1)
 	{
 		if (hero != nullptr)
 		{
@@ -69,7 +70,7 @@ void CObjBoss2::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
-	if (m_bullet_type == 0)
+	if (Stage == 1)
 	{
 		//true‚È‚ç’e”­ŽË
 		if (m_attack == true)
@@ -83,7 +84,7 @@ void CObjBoss2::Action()
 			m_attack = false;
 		}
 	}
-	else if (m_bullet_type == 1)
+	else if (Stage == 3)
 	{
 		if (m_attack == true)
 		{
@@ -129,7 +130,7 @@ void CObjBoss2::Action()
 		Effect* effect = new Effect(m_x, m_y,m_r);
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 		if (m_hp <= 0) {
-			if (Stage == 1) {
+			if (main->GetStage() == 1) {
 				//”š”­‰¹–Â‚ç‚·
 				Audio::Start(12);
 				Audio::Stop(0);
@@ -137,10 +138,10 @@ void CObjBoss2::Action()
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 			}
-			if (Stage == 3) {
+			if (main->GetStage() == 3) {
 				Audio::Start(12);
 				Audio::Stop(0);
-				
+				Scene::SetScene(new CSceneGameClear());
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 			}
@@ -157,7 +158,7 @@ void CObjBoss2::Action()
 			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 			pbullet_enable = true;
 			if (m_hp <= 0) {
-				if (Stage == 1) {
+				if (main->GetStage() == 1) {
 					//”š”­‰¹–Â‚ç‚·
 					Audio::Start(12);
 					Audio::Stop(0);
@@ -165,10 +166,10 @@ void CObjBoss2::Action()
 					this->SetStatus(false);
 					Hits::DeleteHitBox(this);
 				}
-				if (Stage == 3) {
+				if (main->GetStage() == 3) {
 					Audio::Start(12);
 					Audio::Stop(0);
-
+					Scene::SetScene(new CSceneGameClear());
 					this->SetStatus(false);
 					Hits::DeleteHitBox(this);
 				}

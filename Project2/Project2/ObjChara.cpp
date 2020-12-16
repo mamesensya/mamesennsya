@@ -77,6 +77,9 @@ void CObjChara::Action()
 					m_attack = false;
 				}
 			}
+			if (Input::GetVKey('W') == true) {
+				Scene::SetScene(new CSceneMain());
+			}
 			//ベクトルを位置に加算
 			m_x += +m_vx;
 			m_y += m_vy;
@@ -93,15 +96,15 @@ void CObjChara::Action()
 			//当たり判定を行うオブジェクト情報部
 			int data_base[10] =
 			{
-				OBJ_ENEMY,
+				//OBJ_ENEMY,
 				OBJ_ENEMY_BULLET,
-				OBJ_ENEMY3,
+				//OBJ_ENEMY3,
 				OBJ_ENEMY_3BULLET,
-				OBJ_BOSS,
+				//OBJ_BOSS,
 				OBJ_BOSS_BULLET,
-				OBJ_GHOST,
+				//OBJ_GHOST,
 				OBJ_GHOST_ATTACK,
-				OBJ_BOSS2,
+				//OBJ_BOSS2,
 				OBJ_BOSS_BULLET2,
 			};
 
