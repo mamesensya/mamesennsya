@@ -110,7 +110,7 @@ void CSceneMain::InitScene()
 	//弾
 	Draw::LoadImageW(L"大豆.jpg", 14, TEX_SIZE_512);
 	//壊すと豆が出る箱
-	Draw::LoadImageW(L"豆箱.jpg", 15, TEX_SIZE_512);
+	Draw::LoadImageW(L"豆箱.jpg", 21, TEX_SIZE_512);
 	//壊れる壁
 	Draw::LoadImageW(L"hako.png", 17, TEX_SIZE_512);
 	//主人公グラフィック読み込み(300×300)
@@ -121,7 +121,7 @@ void CSceneMain::InitScene()
 
 
 	//主人公（人）
-	Draw::LoadImageW(L"豆　静止.png", 21, TEX_SIZE_512);
+	Draw::LoadImageW(L"豆　静止.png", 15, TEX_SIZE_512);
 
 	//主人公（人）の攻撃
 	Draw::LoadImageW(L"主人公近接攻撃（仮）.png", 22, TEX_SIZE_512);

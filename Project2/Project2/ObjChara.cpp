@@ -201,5 +201,5 @@ void CObjChara::Draw()
 	dst.m_bottom = 32.0f + 16.0f + m_y;
 
 	//•`‰æ
-	Draw::Draw(21, &src, &dst, c, m_r);
+	Draw::Draw(15, &src, &dst, c, m_r);
 }

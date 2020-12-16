@@ -94,5 +94,5 @@ void CObjBox::Draw()
 	dst.m_bottom = 64.0f + m_y+m_scroll_map_y;
 
 	//•`‰æ
-	Draw::Draw(15, &src, &dst, c, 0.0f);
+	Draw::Draw(21, &src, &dst, c, 0.0f);
 }
