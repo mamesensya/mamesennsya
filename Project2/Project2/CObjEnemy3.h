@@ -27,7 +27,7 @@ private:
 	float m_vy;//ˆÚ“®•ûŒüy
 	float m_posture;//
 	float m_r;//ˆÚ“®•ûŒü‚É•`‰æ‚·‚é•Ï”
-	int m_hp;//HP
+	float m_hp;//HP
 	int count;//ålŒö‚ÌˆÊ’u‚ğŒü‚­ˆ×‚Ì•Ï”
 	int m_time;//’e”­ËŠÔŠu§Œä—p•Ï”
 	int m_move_time;

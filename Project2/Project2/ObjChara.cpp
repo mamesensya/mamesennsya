@@ -80,6 +80,9 @@ void CObjChara::Action()
 			if (Input::GetVKey('W') == true) {
 				Scene::SetScene(new CSceneMain());
 			}
+
+			MoveArea(m_x, m_y, &m_vx, &m_vy);
+
 			//ベクトルを位置に加算
 			m_x += +m_vx;
 			m_y += m_vy;
@@ -202,4 +205,29 @@ void CObjChara::Draw()
 
 	//描画
 	Draw::Draw(15, &src, &dst, c, m_r);
+}
+
+//画面内移動範囲関数
+//float x			m_x：X軸位置
+//float y			m_y：Y軸位置
+//float vx			m_vx：X軸ベクトル
+//float vy			m_vy：Y軸ベクトル
+void CObjChara::MoveArea(float x, float y,float *vx,float *vy)
+{
+	if (x <= 0.0f && Input::GetVKey(VK_LEFT) == true)
+	{
+		*vx = 0.0f;
+	}
+	if (x >= 750.0f && Input::GetVKey(VK_RIGHT) == true)
+	{
+		*vx = 0.0f;
+	}
+	if (y <= 0.0f && Input::GetVKey(VK_UP) == true)
+	{
+		*vy = 0.0f;
+	}
+	if (y >= 550.0f && Input::GetVKey(VK_DOWN) == true)
+	{
+		*vy = 0.0f;
+	}
 }

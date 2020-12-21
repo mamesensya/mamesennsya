@@ -42,14 +42,14 @@ private:
 	float alpha2  = 0.0f;
 	
 
-	wchar_t uistr[3][128];
+	wchar_t uistr[4][128];
 	
 	int waitcount  = 0;
 	int getguns[3] = { 0 };
 	bool getflugs  =false;
 
 	int stagestate  = 0; //ステージステート　0：開始 1:プレイ中 2:クリア 3:ゲームオーバー
-	float faders[2] = { 300.0f,0.0f };
+	float faders[3] = { 300.0f,0.0f,0.0f };
 	bool state      = false;
 	int bullet[3];
 };

@@ -67,6 +67,8 @@ void CSceneMain::InitScene()
 			count += 2;
 		}
 	}
+	
+
 	//音楽読み込み
 	Audio::LoadAudio(0, L"BGMGame.wav", BACK_MUSIC);
 	Audio::LoadAudio(1, L"BGMGame2.wav", BACK_MUSIC);
@@ -116,7 +118,7 @@ void CSceneMain::InitScene()
 	//主人公グラフィック読み込み(300×300)
 	Draw::LoadImageW(L"さいころ5.png", 1, TEX_SIZE_512);
 	//主人公表示
-	CObjHero* obj = new CObjHero(0,0);
+	CObjHero* obj = new CObjHero(0,0,180);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 
