@@ -20,7 +20,7 @@ void CObjEnemyBullet::Init()
 	mx = 0;
 	my = 0;
 
-	m_speed = 3;
+	m_speed = 2;
 
 	//スクロールした分のベクトルを取得
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
