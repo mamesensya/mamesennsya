@@ -45,10 +45,11 @@ inline void VectorChange(int bullet, float* sin, float* cos)
 bool VectorNormalize(float* vx, float* vy);//ベクトル正規化関数
 
 //コンストラクタ
-CObjHero::CObjHero(float x, float y)
+CObjHero::CObjHero(float x, float y,float r)
 {
 	m_x = x;
 	m_y = y;
+	m_r = r;
 }
 
 //イニシャライズ

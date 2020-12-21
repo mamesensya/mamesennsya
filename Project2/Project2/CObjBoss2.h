@@ -22,7 +22,7 @@ private:
 	float m_y{ 0 };//yÀ•W
 	float m_r{ 0 };//Šp“x
 
-	int m_hp{ 0 };//HP
+	float m_hp{ 0 };//HP
 
 	int m_maelstrom_time{ 0 };//‰QŠª‚«ŠÔ§Œä—p
 	bool m_attack;//’e”­ËŠÔŠu§Œä—p
