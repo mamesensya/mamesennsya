@@ -118,7 +118,7 @@ void CSceneMain::InitScene()
 	//主人公グラフィック読み込み(300×300)
 	Draw::LoadImageW(L"さいころ5.png", 1, TEX_SIZE_512);
 	//主人公表示
-	CObjHero* obj = new CObjHero(0,0,180);
+	CObjHero* obj = new CObjHero(0,0);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 
