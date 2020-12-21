@@ -25,7 +25,7 @@ void CObjBoss::Init()
 	m_vx = 0.0f;    //ˆÚ“®•ûŒü
 	m_vy = 0.0f;
 	m_r = 0.0f;//Œü‚«‚ðŒˆ‚ß‚é•Ï”
-	m_hp = 15;//‘Ì—Í
+	m_hp = 15.0f;//‘Ì—Í
 	count = 0;//Œü‚«‚ðŒÅ’è‚·‚éƒJƒEƒ“ƒg
 	m_time = 0;//’eŠÛ”­ŽË§Œä—ptime
 	m_time2 = 0;
@@ -272,7 +272,7 @@ void CObjBoss::Action()
 					{
 						m_oni_count++;
 						CObjGhost* obj_g = new CObjGhost(m_x , m_y+172);
-						Objs::InsertObj(obj_g, OBJ_GHOST, 8);
+						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
 
 					}
 					if (m_r == 90)
@@ -403,6 +403,23 @@ void CObjBoss::Action()
 	hit->SetPos(m_x+ m_scroll_map_x, m_y+m_scroll_map_y);
 	CSceneMain* main = new CSceneMain();
 	
+	//‹ßÚUŒ‚‚ª“–‚½‚Á‚Ä‚¢‚é‚©’²‚×‚é
+	if (hit->CheckObjNameHit(OBJ_ATTACK) != nullptr)
+	{
+		Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+		m_hp -= 0.05f;
+		if (m_hp <= 0) {
+			//”š”­‰¹–Â‚ç‚·
+			Audio::Start(12);
+
+			this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
+			Hits::DeleteHitBox(this);//’eŠÛ‚ªŠ—L‚·‚éHitBox‚Éíœ‚·‚éB
+
+			main->RoundChange();
+		}
+
+	}
 	//’eŠÛ‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ð’²‚×‚é
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{

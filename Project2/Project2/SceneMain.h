@@ -23,7 +23,7 @@ public:
 	{
 		return Stage;
 	};
-
+	
 private:
 	int GetenemyMax = 0;
 };
