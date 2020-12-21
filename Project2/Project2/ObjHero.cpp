@@ -110,12 +110,12 @@ void CObjHero::Action()
 		//右方向
 		if (Input::GetVKey(VK_RIGHT) == true)
 		{
-			m_r -= 1.0f;
+			m_r -= 2.0f;
 		}
 		//左方向
 		else if (Input::GetVKey(VK_LEFT) == true)
 		{
-			m_r += 1.0f;
+			m_r += 2.0f;
 		}
 		//上方向
 		if (Input::GetVKey(VK_UP) == true)
@@ -240,12 +240,12 @@ void CObjHero::Action()
 			}
 		}
 		//m_hpが０になると主人公を破棄
-		//if (m_hp <= 0)
-		//{
-		//	this->SetStatus(false);//自身に削除命令を出す
-		//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
-		//	ui->setStageStatus(3);
-		//}
+		if (m_hp <= 0)
+		{
+			this->SetStatus(false);//自身に削除命令を出す
+			Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+			ui->setStageStatus(3);
+		}
 
 		//攻撃間隔制御
 		if (m_attack == false)
