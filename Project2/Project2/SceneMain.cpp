@@ -89,7 +89,7 @@ void CSceneMain::InitScene()
 
 
 	//敵戦車
-	Draw::LoadImageW(L"鬼トランプJ.png", 1, TEX_SIZE_512);
+	Draw::LoadImageW(L"鬼トランプJ.png", 19, TEX_SIZE_512);
 	//敵の弾（BB弾）
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
 	//床
@@ -116,9 +116,9 @@ void CSceneMain::InitScene()
 	//壊れる壁
 	Draw::LoadImageW(L"hako.png", 17, TEX_SIZE_512);
 	//主人公グラフィック読み込み(300×300)
-	Draw::LoadImageW(L"さいころ5.png", 19, TEX_SIZE_512);
+	Draw::LoadImageW(L"さいころ5.png", 1, TEX_SIZE_512);
 	//主人公表示
-	CObjHero* obj = new CObjHero(0,0);
+	CObjHero* obj = new CObjHero(0,0,180);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 

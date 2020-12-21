@@ -18,7 +18,7 @@ CObjBoss2::CObjBoss2(float x, float y)
 
 void CObjBoss2::Init()
 {
-	m_hp = 5;
+	m_hp = 15.0f;
 	m_attack = false;
 	pbullet_interval = 0; //ŠÑ’Ê’eƒqƒbƒg‚ÌŠÔŠu
 	pbullet_enable = false; //ŠÑ’Ê’eƒ_ƒ[ƒW—LŒø
@@ -119,7 +119,23 @@ void CObjBoss2::Action()
 	}
 	//’eŠÛ‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ð’²‚×‚é
 	CSceneMain* main = new CSceneMain();
+	//‹ßÚUŒ‚‚ª“–‚½‚Á‚Ä‚¢‚é‚©’²‚×‚é
+	if (hit->CheckObjNameHit(OBJ_ATTACK) != nullptr)
+	{
+		Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+		m_hp -= 0.05f;
+		if (m_hp <= 0) {
+			//”š”­‰¹–Â‚ç‚·
+			Audio::Start(12);
 
+			this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
+			Hits::DeleteHitBox(this);//’eŠÛ‚ªŠ—L‚·‚éHitBox‚Éíœ‚·‚éB
+
+			main->RoundChange();
+		}
+
+	}
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 		//’e’…’e‰¹

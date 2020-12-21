@@ -6,7 +6,7 @@ using namespace GameL;
 class CObjHero :public CObj
 {
 public:
-	CObjHero(float x,float y) ;
+	CObjHero(float x,float y,float r) ;
 	~CObjHero() {};
 	void Init();//イニシャライズ
 	void Action();//アクション
@@ -37,6 +37,12 @@ public:
 
 	bool m_hero_flag;//主人公の状態確認フラグ
 	//false：主人公（戦車）　true：主人公（人）
+
+
+	bool Getup() { return m_hit_up; };
+	bool Getdown() { return m_hit_down; };
+	bool Getleft() { return m_hit_left; };
+	bool Getright() { return m_hit_right; };
 private:
 	int m_hp{ 0 };//主人公のヒットポイント（体力）
 

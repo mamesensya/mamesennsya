@@ -55,6 +55,10 @@ void CObjBlock::Action()
 		float hvx = hero->GetVX();
 		float hvy = hero->GetVY();
 
+		/*bool up = hero->Getup();
+		bool down = hero->Getdown();
+		bool */
+
 		//右方スクロールライン
 		if (hx < 200)
 		{
@@ -73,7 +77,6 @@ void CObjBlock::Action()
 			hero->SetY(200);
 			m_scroll2 -= hero->GetVY();
 		}
-
 		//下方スクロールライン
 		if (hy > 400)
 		{

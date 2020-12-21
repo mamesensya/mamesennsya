@@ -24,7 +24,7 @@ void CObjEnemy::Init()
 	m_vx = 0.0f;    //ˆÚ“®•ûŒü
 	m_vy = 0.0f;
 	m_r=0.0f;//Œü‚«‚ðŒˆ‚ß‚é•Ï”
-	m_hp=5;//‘Ì—Í
+	m_hp=3.0f;//‘Ì—Í
 	count = 0;//Œü‚«‚ðŒÅ’è‚·‚éƒJƒEƒ“ƒg
 	m_time = 0;//’eŠÛ”­ŽË§Œä—ptime
 	m_move_time = 0;//ˆÚ“®d’¼—ptime
@@ -274,6 +274,23 @@ void CObjEnemy::Action()
 		hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 	}
 
+	//‹ßÚUŒ‚‚ª“–‚½‚Á‚Ä‚¢‚é‚©’²‚×‚é
+	if (hit->CheckObjNameHit(OBJ_ATTACK) != nullptr)
+	{
+		Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+		m_hp -= 0.05f;
+
+		if (m_hp <= 0) {
+			//”š”­‰¹–Â‚ç‚·
+			Audio::Start(12);
+
+			this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
+			Hits::DeleteHitBox(this);//’eŠÛ‚ªŠ—L‚·‚éHitBox‚Éíœ‚·‚éB
+			CObjUserInterface* obj_ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+			obj_ui->setenemyMax--;
+		}
+	}
 	//’eŠÛ‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ð’²‚×‚é
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
@@ -400,5 +417,5 @@ void CObjEnemy::Draw()
 	}
 
 
-	Draw::Draw(1, &src, &dst, c, m_r);
+	Draw::Draw(19, &src, &dst, c, m_r);
 }

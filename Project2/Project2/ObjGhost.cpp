@@ -220,7 +220,7 @@ void CObjGhost::Draw()
 	dst.m_left = 0.0f + m_x + m_scroll_map_x - 5.0f;
 	dst.m_right = 45.0f + m_x + m_scroll_map_x - 5.0f;
 	dst.m_bottom = 45.0f + m_y + m_scroll_map_y - 5.0f;
-
+	SetPrio(10);
 	//•`‰æ
 	Draw::Draw(20, &src, &dst, c, m_r);
 }

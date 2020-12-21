@@ -45,10 +45,11 @@ inline void VectorChange(int bullet, float* sin, float* cos)
 bool VectorNormalize(float* vx, float* vy);//ベクトル正規化関数
 
 //コンストラクタ
-CObjHero::CObjHero(float x, float y)
+CObjHero::CObjHero(float x, float y,float r)
 {
 	m_x = x;
 	m_y = y;
+	m_r = r;
 }
 
 //イニシャライズ
@@ -240,12 +241,12 @@ void CObjHero::Action()
 			}
 		}
 		//m_hpが０になると主人公を破棄
-		if (m_hp <= 0)
-		{
-			this->SetStatus(false);//自身に削除命令を出す
-			Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
-			ui->setStageStatus(3);
-		}
+		//if (m_hp <= 0)
+		//{
+		//	this->SetStatus(false);//自身に削除命令を出す
+		//	Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+		//	ui->setStageStatus(3);
+		//}
 
 		//攻撃間隔制御
 		if (m_attack == false)
@@ -290,9 +291,9 @@ void CObjHero::Draw()
 	dst.m_left = -10.0f+ m_x;
 	dst.m_right = 70.0f + m_x;
 	dst.m_bottom =  70.0f + m_y;
-
+	SetPrio(99);
 	//描画
-	Draw::Draw(19, &src, &dst, c, m_r);
+	Draw::Draw(1, &src, &dst, c, m_r);
 }
 
 //ベクトルの正規化関数
