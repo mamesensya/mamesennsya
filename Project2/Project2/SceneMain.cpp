@@ -42,7 +42,7 @@ void CSceneMain::InitScene()
 	int count = 1;
 	switch (Stage) {
 	case 0:
-		p = Save::ExternalDataOpen(L"Book2.csv", &size);
+		p = Save::ExternalDataOpen(L"Book1.csv", &size);
 		break;
 	case 1:
 		p = Save::ExternalDataOpen(L"Book2.csv", &size);
