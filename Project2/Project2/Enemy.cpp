@@ -24,7 +24,7 @@ void CObjEnemy::Init()
 	m_vx = 0.0f;    //移動方向
 	m_vy = 0.0f;
 	m_r=0.0f;//向きを決める変数
-	m_hp=5;//体力
+	m_hp=3;//体力
 	count = 0;//向きを固定するカウント
 	m_time = 0;//弾丸発射制御用time
 	m_move_time = 0;//移動硬直用time
