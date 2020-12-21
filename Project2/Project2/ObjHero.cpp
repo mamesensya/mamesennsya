@@ -290,9 +290,9 @@ void CObjHero::Draw()
 	dst.m_left = -10.0f+ m_x;
 	dst.m_right = 70.0f + m_x;
 	dst.m_bottom =  70.0f + m_y;
-
+	SetPrio(99);
 	//•`‰æ
-	Draw::Draw(19, &src, &dst, c, m_r);
+	Draw::Draw(1, &src, &dst, c, m_r);
 }
 
 //ƒxƒNƒgƒ‹‚Ì³‹K‰»ŠÖ”
