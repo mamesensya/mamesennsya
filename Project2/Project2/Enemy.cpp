@@ -400,5 +400,5 @@ void CObjEnemy::Draw()
 	}
 
 
-	Draw::Draw(1, &src, &dst, c, m_r);
+	Draw::Draw(19, &src, &dst, c, m_r);
 }

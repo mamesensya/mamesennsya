@@ -272,7 +272,7 @@ void CObjBoss::Action()
 					{
 						m_oni_count++;
 						CObjGhost* obj_g = new CObjGhost(m_x , m_y+172);
-						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+						Objs::InsertObj(obj_g, OBJ_GHOST, 8);
 
 					}
 					if (m_r == 90)
