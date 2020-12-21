@@ -19,6 +19,12 @@ void CObjPlayerBullet::Init() {
 	m_vx = 0;
 	m_vy = 0;
 
+	//スクロールした分のベクトルを取得
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	m_scroll_map_x = block->GetSX();
+	m_scroll_map_y = block->GetSY();
+
+
 	m_speed = 6;
 	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_RED, OBJ_BULLET, 1);
 };
@@ -28,11 +34,14 @@ void CObjPlayerBullet::Action() {
 
 		CHitBox* Hit = Hits::GetHitBox(this);
 		
-		//スクロールした分のベクトルを取得
+		//主人公が打った球がスクロールの影響を受けるようにプログラム
 		CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-		m_scroll_map_x = block->GetSX();
-		m_scroll_map_y = block->GetSY();
-
+		float scrollx,scrolly;
+		scrollx = block->GetSX();
+		scrolly = block->GetSY();
+		
+		m_newscroll_x = scrollx;
+		m_newscroll_y = scrolly;
 
 		m_vx = cos(3.14 / 180.0f * m_r);
 		m_vy = sin(3.14 / 180.0f * m_r);
@@ -40,9 +49,13 @@ void CObjPlayerBullet::Action() {
 		m_x += m_vx * m_speed;
 		m_y += m_vy * m_speed;
 
+		m_x += m_newscroll_x -m_scroll_map_x;
+		m_y += m_newscroll_y -m_scroll_map_y;
 
 		Hit->SetPos(m_x, m_y);
 
+		m_x -= scrollx - m_scroll_map_x;
+		m_y -= scrolly - m_scroll_map_y;
 
 		int data_base[4] =
 		{
@@ -53,6 +66,12 @@ void CObjPlayerBullet::Action() {
 		bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
 
 		if (Hit->CheckObjNameHit(OBJ_ENEMY) != nullptr) {
+
+
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+		else if (Hit->CheckObjNameHit(OBJ_ENEMY_BULLET) != nullptr) {
 
 
 			this->SetStatus(false);
@@ -86,10 +105,10 @@ void CObjPlayerBullet::Draw() {
 		src.m_right = 768.0f;
 		src.m_bottom = 768.0f;
 
-		dst.m_top = 0.0f + m_y;
-		dst.m_left = 0.0f + m_x;
-		dst.m_right = 32.0f + m_x;
-		dst.m_bottom = 32.0f + m_y;
+		dst.m_top = 0.0f + m_y + (m_newscroll_y - m_scroll_map_y);
+		dst.m_left = 0.0f + m_x + (m_newscroll_x - m_scroll_map_x);
+		dst.m_right = 32.0f + m_x + (m_newscroll_x - m_scroll_map_x);
+		dst.m_bottom = 32.0f + m_y + (m_newscroll_y - m_scroll_map_y);
 
 		Draw::Draw(14, &src, &dst, c, 0);
 	}
@@ -100,10 +119,10 @@ void CObjPlayerBullet::Draw() {
 		src.m_right = 265.0f;
 		src.m_bottom = 265.0f;
 
-		dst.m_top = 0.0f + m_y;
-		dst.m_left = 0.0f + m_x;
-		dst.m_right = 32.0f + m_x;
-		dst.m_bottom = 32.0f + m_y;
+		dst.m_top = 0.0f + m_y + (m_newscroll_y - m_scroll_map_y);
+		dst.m_left = 0.0f + m_x + (m_newscroll_x - m_scroll_map_x);
+		dst.m_right = 32.0f + m_x + (m_newscroll_x - m_scroll_map_x);
+		dst.m_bottom = 32.0f + m_y + (m_newscroll_y - m_scroll_map_y);
 
 		Draw::Draw(10, &src, &dst, c, 0);
 	}
