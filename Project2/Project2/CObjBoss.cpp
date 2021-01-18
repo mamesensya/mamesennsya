@@ -265,36 +265,40 @@ void CObjBoss::Action()
 
 				}
 
-				//‹S¢Š«
-				if (m_oni_time == 300&&m_oni_count<=3)
+				CObjBoss* boss = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
+				if (boss != nullptr)
 				{
-					if (m_r == 0)
+					//‹S¢Š«
+					if (m_oni_time == 300 && m_oni_count <= 3)
 					{
-						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x , m_y+172);
-						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+						if (m_r == 0)
+						{
+							m_oni_count++;
+							CObjGhost* obj_g = new CObjGhost(m_x, m_y + 172);
+							Objs::InsertObj(obj_g, OBJ_GHOST, 4);
 
-					}
-					if (m_r == 90)
-					{
-						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x+172 , m_y );
-						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+						}
+						if (m_r == 90)
+						{
+							m_oni_count++;
+							CObjGhost* obj_g = new CObjGhost(m_x + 172, m_y);
+							Objs::InsertObj(obj_g, OBJ_GHOST, 4);
 
-					}
-					if (m_r == 180)
-					{
-						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x , m_y-172 );
-						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+						}
+						if (m_r == 180)
+						{
+							m_oni_count++;
+							CObjGhost* obj_g = new CObjGhost(m_x, m_y - 172);
+							Objs::InsertObj(obj_g, OBJ_GHOST, 4);
 
-					}
-					if (m_r == -90)
-					{
-						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x-172 , m_y);
-						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+						}
+						if (m_r == -90)
+						{
+							m_oni_count++;
+							CObjGhost* obj_g = new CObjGhost(m_x - 172, m_y);
+							Objs::InsertObj(obj_g, OBJ_GHOST, 4);
 
+						}
 					}
 				}
 				if (m_time2 == 100)
@@ -332,40 +336,42 @@ void CObjBoss::Action()
 
 				}
 
-				//‹S¢Š«
-				if (m_oni_time == 300&&m_oni_count<=3)
+				CObjBoss* boss = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
+				if (boss != nullptr)
 				{
-					if (m_r == 0)
+					//‹S¢Š«
+					if (m_oni_time == 300 && m_oni_count <= 3)
 					{
-						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x , m_y+172);
-						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+						if (m_r == 0)
+						{
+							m_oni_count++;
+							CObjGhost* obj_g = new CObjGhost(m_x, m_y + 172);
+							Objs::InsertObj(obj_g, OBJ_GHOST, 4);
 
+						}
+						if (m_r == 90)
+						{
+							m_oni_count++;
+							CObjGhost* obj_g = new CObjGhost(m_x + 172, m_y);
+							Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+
+						}
+						if (m_r == 180)
+						{
+							m_oni_count++;
+							CObjGhost* obj_g = new CObjGhost(m_x, m_y - 172);
+							Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+
+						}
+						if (m_r == -90)
+						{
+							m_oni_count++;
+							CObjGhost* obj_g = new CObjGhost(m_x - 172, m_y);
+							Objs::InsertObj(obj_g, OBJ_GHOST, 4);
+
+						}
 					}
-					if (m_r == 90)
-					{
-						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x+172 , m_y );
-						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
-
-					}
-					if (m_r == 180)
-					{
-						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x , m_y-172 );
-						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
-
-					}
-					if (m_r == -90)
-					{
-						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x-172 , m_y);
-						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
-
-					}
-
 				}
-
 
 				if (m_time2 == 400)
 				{
