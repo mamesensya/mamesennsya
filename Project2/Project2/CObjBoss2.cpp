@@ -43,7 +43,9 @@ void CObjBoss2::Action()
 	//ŽålŒö‚ÌÀ•WŽæ“¾
 
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	if (Stage == 1)
+	CObjUserInterface* UI = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+	int stage = UI->GetS();
+	if (stage == 2)
 	{
 		if (hero != nullptr)
 		{
@@ -70,7 +72,7 @@ void CObjBoss2::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
-	if (Stage == 1)
+	if (stage == 2)
 	{
 		//true‚È‚ç’e”­ŽË
 		if (m_attack == true)
@@ -84,7 +86,7 @@ void CObjBoss2::Action()
 			m_attack = false;
 		}
 	}
-	else if (Stage == 3)
+	else if (stage == 4)
 	{
 		if (m_attack == true)
 		{

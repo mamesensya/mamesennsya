@@ -243,7 +243,10 @@ void CObjBoss::Action()
 			}
 			//UŒ‚•û–@
 			//---------------------
-			if (Stage == 0) {
+			CObjUserInterface* UI = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+			int stage = UI->GetS();
+
+			if (stage == 1) {
 				if (m_time == 300 && count == 1)
 				{
 					//”­ŽË‰¹–Â‚ç‚·
@@ -309,7 +312,7 @@ void CObjBoss::Action()
 			}
 			//-----------------------------------
 			//-----------------------------------
-			if (Stage == 3)
+			if (stage == 3)
 			{
 				if (m_time ==150 && count == 1 ||m_time == 300 && count == 1)
 				{
