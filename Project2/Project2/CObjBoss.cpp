@@ -416,7 +416,7 @@ void CObjBoss::Action()
 
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
-
+			Audio::VolumeMaster(-1.0f);
 			main->RoundChange();
 		}
 
@@ -435,7 +435,9 @@ void CObjBoss::Action()
 
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
-			
+			Audio::VolumeMaster(-1.0f);
+
+
 			main->RoundChange();
 		}
 	}
@@ -455,6 +457,7 @@ void CObjBoss::Action()
 				Audio::Stop(0);
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
+				Audio::VolumeMaster(-1.0f);
 
 				main->RoundChange();
 			}

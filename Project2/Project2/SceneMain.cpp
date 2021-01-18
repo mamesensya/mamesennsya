@@ -80,13 +80,11 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(13, L"SE“G’e’…’e‰¹.wav", EFFECT);
 	Audio::LoadAudio(14, L"SEŽå’e’…’e‰¹.wav", EFFECT);
 
-	if(Stage==0)
 	//ƒ{ƒŠƒ…[ƒ€‚ð1.5‘‚â‚·
-	float v = Audio::VolumeMaster(1.0f);
+	Audio::VolumeMaster(1.0f);
 
 	//‰¹ŠyƒXƒ^[ƒg
 	Audio::Start(0);
-
 
 	//“GíŽÔ
 	Draw::LoadImageW(L"‹Sƒgƒ‰ƒ“ƒvJ.png", 19, TEX_SIZE_512);
@@ -172,6 +170,7 @@ void CSceneMain::Scene()
 
 void CSceneMain::RoundChange() {
 	Stage++;
+
 	CObjUserInterface* ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
 	ui->setStageStatus(2);
 };

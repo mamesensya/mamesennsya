@@ -133,6 +133,7 @@ void CObjBoss2::Action()
 
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
+			Audio::VolumeMaster(-1.0f);
 
 			main->RoundChange();
 		}
@@ -153,6 +154,7 @@ void CObjBoss2::Action()
 				Audio::Start(12);
 				Audio::Stop(0);
 				main->RoundChange();
+				Audio::VolumeMaster(-1.0f);
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 			}
@@ -181,6 +183,7 @@ void CObjBoss2::Action()
 					Audio::Start(12);
 					Audio::Stop(0);
 					main->RoundChange();
+					Audio::VolumeMaster(-1.0f);
 					this->SetStatus(false);
 					Hits::DeleteHitBox(this);
 				}
