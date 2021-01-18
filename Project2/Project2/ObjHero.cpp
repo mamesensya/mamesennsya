@@ -111,12 +111,12 @@ void CObjHero::Action()
 		//右方向
 		if (Input::GetVKey(VK_RIGHT) == true)
 		{
-			m_r -= 3.0f;
+			m_r -= 2.0f;
 		}
 		//左方向
 		else if (Input::GetVKey(VK_LEFT) == true)
 		{
-			m_r += 3.0f;
+			m_r += 2.0f;
 		}
 		//上方向
 		if (Input::GetVKey(VK_UP) == true)
@@ -128,8 +128,8 @@ void CObjHero::Action()
 			//弾の所持数に応じて速度変更
 			VectorChange(bullet, &sin_f, &cos_f);
 
-			m_vx = -sin_f*6;
-			m_vy = -cos_f*6;
+			m_vx = -sin_f*3;
+			m_vy = -cos_f*3;
 		}
 		//下方向
 		else if (Input::GetVKey(VK_DOWN) == true)
@@ -148,7 +148,7 @@ void CObjHero::Action()
 		//ブロックとの当たり判定
 		CObjBlock* pb = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 		CObjUserInterface* ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
-	//	pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
+		pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
 
 		
 
