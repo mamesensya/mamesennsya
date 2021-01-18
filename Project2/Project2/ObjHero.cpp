@@ -245,6 +245,7 @@ void CObjHero::Action()
 		{
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
+			Audio::VolumeMaster(-1.0f);
 			ui->setStageStatus(3);
 		}
 

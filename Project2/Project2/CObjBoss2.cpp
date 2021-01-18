@@ -43,7 +43,9 @@ void CObjBoss2::Action()
 	//主人公の座標取得
 
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	if (Stage == 1)
+	CObjUserInterface* UI = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+	int stage = UI->GetS();
+	if (stage == 2)
 	{
 		if (hero != nullptr)
 		{
@@ -70,7 +72,7 @@ void CObjBoss2::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
-	if (Stage == 1)
+	if (stage == 2)
 	{
 		//trueなら弾発射
 		if (m_attack == true)
@@ -84,7 +86,7 @@ void CObjBoss2::Action()
 			m_attack = false;
 		}
 	}
-	else if (Stage == 3)
+	else if (stage == 4)
 	{
 		if (m_attack == true)
 		{
@@ -131,6 +133,7 @@ void CObjBoss2::Action()
 
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
+			Audio::VolumeMaster(-1.0f);
 
 			main->RoundChange();
 		}
@@ -151,6 +154,7 @@ void CObjBoss2::Action()
 				Audio::Start(12);
 				Audio::Stop(0);
 				main->RoundChange();
+				Audio::VolumeMaster(-1.0f);
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 			}
@@ -179,6 +183,7 @@ void CObjBoss2::Action()
 					Audio::Start(12);
 					Audio::Stop(0);
 					main->RoundChange();
+					Audio::VolumeMaster(-1.0f);
 					this->SetStatus(false);
 					Hits::DeleteHitBox(this);
 				}

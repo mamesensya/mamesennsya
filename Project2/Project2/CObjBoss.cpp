@@ -243,7 +243,10 @@ void CObjBoss::Action()
 			}
 			//攻撃方法
 			//---------------------
-			if (Stage == 0) {
+			CObjUserInterface* UI = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+			int stage = UI->GetS();
+
+			if (stage == 1) {
 				if (m_time == 300 && count == 1)
 				{
 					//発射音鳴らす
@@ -266,33 +269,33 @@ void CObjBoss::Action()
 				}
 
 				//鬼召喚
-				if (m_oni_time == 300&&m_oni_count<=3)
+				if (m_oni_time == 300 && m_oni_count <= 3)
 				{
 					if (m_r == 0)
 					{
 						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x , m_y+172);
+						CObjGhost* obj_g = new CObjGhost(m_x, m_y + 172);
 						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
 
 					}
 					if (m_r == 90)
 					{
 						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x+172 , m_y );
+						CObjGhost* obj_g = new CObjGhost(m_x + 172, m_y);
 						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
 
 					}
 					if (m_r == 180)
 					{
 						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x , m_y-172 );
+						CObjGhost* obj_g = new CObjGhost(m_x, m_y - 172);
 						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
 
 					}
 					if (m_r == -90)
 					{
 						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x-172 , m_y);
+						CObjGhost* obj_g = new CObjGhost(m_x - 172, m_y);
 						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
 
 					}
@@ -309,7 +312,7 @@ void CObjBoss::Action()
 			}
 			//-----------------------------------
 			//-----------------------------------
-			if (Stage == 3)
+			if (stage == 3)
 			{
 				if (m_time ==150 && count == 1 ||m_time == 300 && count == 1)
 				{
@@ -333,39 +336,37 @@ void CObjBoss::Action()
 				}
 
 				//鬼召喚
-				if (m_oni_time == 300&&m_oni_count<=3)
+				if (m_oni_time == 300 && m_oni_count <= 3)
 				{
 					if (m_r == 0)
 					{
 						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x , m_y+172);
+						CObjGhost* obj_g = new CObjGhost(m_x, m_y + 172);
 						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
 
 					}
 					if (m_r == 90)
 					{
 						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x+172 , m_y );
+						CObjGhost* obj_g = new CObjGhost(m_x + 172, m_y);
 						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
 
 					}
 					if (m_r == 180)
 					{
 						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x , m_y-172 );
+						CObjGhost* obj_g = new CObjGhost(m_x, m_y - 172);
 						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
 
 					}
 					if (m_r == -90)
 					{
 						m_oni_count++;
-						CObjGhost* obj_g = new CObjGhost(m_x-172 , m_y);
+						CObjGhost* obj_g = new CObjGhost(m_x - 172, m_y);
 						Objs::InsertObj(obj_g, OBJ_GHOST, 4);
 
 					}
-
 				}
-
 
 				if (m_time2 == 400)
 				{
@@ -415,7 +416,7 @@ void CObjBoss::Action()
 
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
-
+			Audio::VolumeMaster(-1.0f);
 			main->RoundChange();
 		}
 
@@ -434,7 +435,9 @@ void CObjBoss::Action()
 
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
-			
+			Audio::VolumeMaster(-1.0f);
+
+
 			main->RoundChange();
 		}
 	}
@@ -454,6 +457,7 @@ void CObjBoss::Action()
 				Audio::Stop(0);
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
+				Audio::VolumeMaster(-1.0f);
 
 				main->RoundChange();
 			}
