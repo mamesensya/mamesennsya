@@ -292,7 +292,7 @@ void CObjEnemy::Action()
 		}
 	}
 	//’eŠÛ‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ð’²‚×‚é
-	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	else if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 		//’e’…’e‰¹
 		Audio::Start(13);
