@@ -266,8 +266,8 @@ void CObjEnemy3::Action()
 	//‹ßÚUŒ‚‚ª“–‚½‚Á‚Ä‚¢‚é‚©’²‚×‚é
 	if (hit->CheckObjNameHit(OBJ_ATTACK) != nullptr)
 	{
-		Effect* effect = new Effect(m_x, m_y, m_r);
-		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+	/*	Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);*/
 		m_hp -= 0.05f;
 		if (m_hp <= 0) {
 			//”š”­‰¹–Â‚ç‚·
@@ -287,8 +287,8 @@ void CObjEnemy3::Action()
 		Audio::Start(13);
 		m_hp--;
 
-		Effect* effect = new Effect(m_x, m_y,m_r);
-		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+		/*Effect* effect = new Effect(m_x, m_y,m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);*/
 		if (m_hp <= 0) {
 			//”š”­‰¹–Â‚ç‚·
 			Audio::Start(12);
