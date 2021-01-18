@@ -90,6 +90,15 @@ void CObjBossBullet4::Action()
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 	}
+	else if (Hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr)
+	{
+		Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+		this->SetStatus(false);//削除命令
+		Hits::DeleteHitBox(this);//削除
+	}
+
 	//範囲外に出ると弾を削除
 	else if (mx >= 500.0f || mx <= -500.0f || my >= 500.0f || my <= -500.0f)
 	{

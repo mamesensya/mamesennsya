@@ -55,35 +55,51 @@ void CObjBlock::Action()
 		float hvx = hero->GetVX();
 		float hvy = hero->GetVY();
 
-		/*bool up = hero->Getup();
+		bool up = hero->Getup();
 		bool down = hero->Getdown();
-		bool */
+		bool left = hero->Getleft();
+		bool right = hero->Getright();
 
-		//右方スクロールライン
-		if (hx < 200)
+		if (up == true || down == true || left == true || right == true)
 		{
-			hero->SetX(200);
-			m_scroll -= hero->GetVX();
+			;
 		}
-		//左方スクロールライン
-		if (hx > 400)
-		{
-			hero->SetX(400);
-			m_scroll -= hero->GetVX();
+		if (left == true) { ; }
+		else {
+			//右方スクロールライン
+			if (hx < 200)
+			{
+				hero->SetX(200);
+				m_scroll -= hero->GetVX();
+			}
 		}
-		//上方スクロールライン
-		if (hy < 200)
-		{
-			hero->SetY(200);
-			m_scroll2 -= hero->GetVY();
+		if (right == true) { ; }
+		else {
+			//左方スクロールライン
+			if (hx > 400)
+			{
+				hero->SetX(400);
+				m_scroll -= hero->GetVX();
+			}
 		}
-		//下方スクロールライン
-		if (hy > 400)
-		{
-			hero->SetY(400);
-			m_scroll2 -= hero->GetVY();
+		if (up == true) { ; }
+		else {
+			//上方スクロールライン
+			if (hy < 200)
+			{
+				hero->SetY(200);
+				m_scroll2 -= hero->GetVY();
+			}
 		}
-
+		if (down == true) { ; }
+		else {
+			//下方スクロールライン
+			if (hy > 400)
+			{
+				hero->SetY(400);
+				m_scroll2 -= hero->GetVY();
+			}
+		}
 		//敵出現ライン
 		float lineX = 0.0;
 
@@ -346,16 +362,16 @@ void CObjBlock::BlockHit(
 						//角度で上下左右を判定
 						if ((r < 45 && r>0) || r > 315)
 						{
-							//右
+							//ブロックの右側
 							*right = true;
 							*x = bx + 64.0f + (m_scroll);
-							if (&vx <= 0)
+							if (*vx >= 0)
 							{
 								;
 							}
-							else
-							*vx = -(*vx) * 0.2f;
-
+							else if (*vx < 0) {
+								*vx = -(*vx)*0.1f;
+							}
 
 						}
 						if (r > 45 && r < 135)
@@ -363,12 +379,14 @@ void CObjBlock::BlockHit(
 							//上
 							*up = true;
 							*y = by - 64.0f + (m_scroll2);
-							if (&vy <= 0)
+							if (*vy <= 0)
 							{
 								;
 							}
-							else
-							*vy = -(*vy)*0.2f;
+							else if (*vy > 0) {
+								*vy = -(*vy) * 0.1f;
+							}
+							
 
 
 
@@ -378,12 +396,14 @@ void CObjBlock::BlockHit(
 							//左
 							*left = true;
 							*x = bx - 64.0f + (m_scroll);
-							if (&vx <= 0)
+							if (*vx <= 0)
 							{
 								;
 							}
-							else
-							*vx = -(*vx) * 0.2f;
+							else if (*vx > 0) {
+								*vx = -(*vx) * 0.1f;
+							}
+							
 
 
 
@@ -394,13 +414,13 @@ void CObjBlock::BlockHit(
 							//下
 							*down = true;
 							*y = by + 64.0f + (m_scroll2);
-							if (&vy <= 0)
+							if (*vy >= 0)
 							{
 								;
 							}
-							else
-							*vy = -(*vy) * 0.2f;
-
+							else if (*vy < 0) {
+								*vy = -(*vy) * 0.1f;
+							}
 							
 						}
 

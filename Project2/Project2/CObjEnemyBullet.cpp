@@ -114,13 +114,23 @@ void CObjEnemyBullet::Action()
 		this->SetStatus(false);//削除命令
 		Hits::DeleteHitBox(this);//削除
 	}
-	////弾丸と接触しているかを調べる
-	//if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
-	//{
-	//	this->SetStatus(false);//自身に削除命令を出す
-	//	Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
-	//}
+	//弾丸と接触しているかを調べる
+	else if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	{
+		Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
+	}
+	else if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr)
+	{
+		Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+		this->SetStatus(false);//自身に削除命令を出す
+		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
+	}
 
 	//比較するデータ配列
 	int data_base[4] =

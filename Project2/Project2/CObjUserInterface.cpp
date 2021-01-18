@@ -56,7 +56,12 @@ void CObjUserInterface::Draw() {
 	Draw::Draw(26, &src, &dst, c, 0);
 
 	wchar_t str[128];
-	swprintf_s(str, L"残り敵の数：%d", setenemyMax);
+	if (setenemyMax > 0) {
+		swprintf_s(str, L"残り敵の数：%d", setenemyMax);
+	}
+	else {
+		swprintf_s(str, L"ゲート開放");
+	}
 	Font::StrDraw(str, 20, 70, 20, c);
 
 	Font::StrDraw(L"体力", 20, 10, 20, c);
@@ -280,6 +285,30 @@ void CObjUserInterface::Draw() {
 		getflugs = false;
 	}
 	}
+
+	if (setenemyMax == 0) {
+		CObjBoss* boss = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
+		if (boss != nullptr) {
+			if (faders[2] > 0)faders[2] -= 0.01f;
+		}
+		else {
+			if (faders[2] < 1.0f)faders[2] += 0.01f;
+		}
+		c[0] = 1.0f; c[1] = 1.0f; c[2] = 1.0f; c[3] = faders[2];
+		src.m_top = 0.0f;
+		src.m_left = 0.0f;
+		src.m_right = src.m_left + 32.0f;
+		src.m_bottom = src.m_top + 32.0f;
+
+		dst.m_top = 235.0f;
+		dst.m_left = 235.0f;
+		dst.m_right = dst.m_left + 325.0f;
+		dst.m_bottom = dst.m_top + 25.0f;
+
+		Draw::Draw(26, &src, &dst, c, 0);
+		Font::StrDraw(L"ボス戦車へのゲートが開放された！", 240, 237, 20, c);
+	}
+	c[0] = 1.0f; c[1] = 1.0f; c[2] = 1.0f; c[3] = 1.0f;
 	src.m_top = 0.0f;
 	src.m_left = 0.0f;
 	src.m_right = src.m_left + 32.0f;

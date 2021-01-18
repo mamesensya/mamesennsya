@@ -72,7 +72,19 @@ void CObjPlayerBullet::Action() {
 			Hits::DeleteHitBox(this);
 		}
 		else if (Hit->CheckObjNameHit(OBJ_ENEMY_BULLET) != nullptr) {
+			//“G‚Ì‹Ê
 
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+		else if (Hit->CheckObjNameHit(OBJ_BOSS_BULLET2) != nullptr) {
+			//BOSS‚Å‚©‚¢’e
+
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+		else if (Hit->CheckObjNameHit(OBJ_ENEMY_3BULLET) != nullptr) {
+			//“G3–”
 
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);

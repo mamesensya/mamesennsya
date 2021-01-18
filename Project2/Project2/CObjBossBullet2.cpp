@@ -23,7 +23,7 @@ void CObjBossBullet2::Init()
 	m_scroll_map_y = block->GetSY();
 
 	//HitBoxì¬
-	Hits::SetHitBox(this, m_x+m_scroll_map_x, m_y+m_scroll_map_y, 100, 100, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
+	Hits::SetHitBox(this, m_x+m_scroll_map_x, m_y+m_scroll_map_y, 100, 100, ELEMENT_ENEMY, OBJ_BOSS_BULLET2, 1);
 }
 
 //ƒAƒNƒVƒ‡ƒ“
@@ -86,6 +86,8 @@ void CObjBossBullet2::Action()
 		this->SetStatus(false);//íœ–½—ß
 		Hits::DeleteHitBox(this);//íœ
 	}
+	
+
 	else if (mx >= 1000.0f || mx <= -1000.0f || my >= 1000.0f || my <= -1000.0f)
 	{
 		this->SetStatus(false);//íœ–½—ß

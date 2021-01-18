@@ -67,6 +67,8 @@ void CSceneMain::InitScene()
 			count += 2;
 		}
 	}
+	
+
 	//âπäyì«Ç›çûÇ›
 	Audio::LoadAudio(0, L"BGMGame.wav", BACK_MUSIC);
 	Audio::LoadAudio(1, L"BGMGame2.wav", BACK_MUSIC);

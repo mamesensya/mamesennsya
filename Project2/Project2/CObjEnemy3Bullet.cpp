@@ -95,7 +95,22 @@ void CObjEnemy3B::Action() {
 		this->SetStatus(false);//íœ–½—ß
 		Hits::DeleteHitBox(this);//íœ
 	}
+	else if (Hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr)
+	{
+		Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 
+		this->SetStatus(false);//íœ–½—ß
+		Hits::DeleteHitBox(this);//íœ
+	}
+	else if (Hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	{
+		Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+		this->SetStatus(false);//íœ–½—ß
+		Hits::DeleteHitBox(this);//íœ
+	}
 
 	if (mx >= 500.0f || mx <= -500.0f || my >= 500.0f || my <= -500.0f)
 	{
