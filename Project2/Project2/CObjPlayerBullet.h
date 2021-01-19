@@ -18,6 +18,7 @@ private:
 	float m_r;
 	float m_speed;
 
+
 	bool m_up;
 	bool m_reft;
 	bool m_right;

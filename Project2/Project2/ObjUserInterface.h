@@ -16,7 +16,7 @@ public:
 	void DestroyedRequest() {
 		setenemyMax--;
 	}
-	
+	int GetS() { return playstage; }
 	int setenemyMax;
 	int GetEM() { return setenemyMax; };
 	void flugset(bool flugs) {

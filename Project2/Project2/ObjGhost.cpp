@@ -186,7 +186,10 @@ void CObjGhost::Action()
 		Hits::DeleteHitBox(this);
 
 		CObjBoss* Boss = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
-		Boss->m_oni_count--;
+		if (Boss != nullptr)
+		{
+			Boss->m_oni_count--;
+		}
 	}
 	//ŽålŒö’e‚ÆÚG‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é
 	else if (hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr)
@@ -196,7 +199,10 @@ void CObjGhost::Action()
 		Hits::DeleteHitBox(this);
 
 		CObjBoss* Boss = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
-		Boss->m_oni_count--;
+		if (Boss != nullptr)
+		{
+			Boss->m_oni_count--;
+		}
 	}
 	
 }

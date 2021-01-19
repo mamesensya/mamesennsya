@@ -56,11 +56,11 @@ void Effect::Draw()
 	src.m_right = 400.0f;
 	src.m_bottom = 300.0f;
 	//ï`âÊà íuÇÃê›íË
-	dst.m_top = 0.0f + m_y + m_scroll_map_y;
-	dst.m_left = 0.0f + m_x + m_scroll_map_x;
-	dst.m_right = 60.0f + m_x + m_scroll_map_x;
-	dst.m_bottom = 45.0f + m_y + m_scroll_map_y;
-	SetPrio(100);
+	dst.m_top = 0.0f + m_y ;
+	dst.m_left = 0.0f + m_x ;
+	dst.m_right = 60.0f + m_x ;
+	dst.m_bottom = 45.0f + m_y ;
+	SetPrio(80);
 	//ï`âÊ
-	Draw::Draw(30, &src, &dst, c, m_r);
+	Draw::Draw(30, &src, &dst, c, m_r+90);
 }

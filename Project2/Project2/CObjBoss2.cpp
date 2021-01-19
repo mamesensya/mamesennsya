@@ -40,15 +40,12 @@ void CObjBoss2::Action()
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
 
-	CSceneMain* m = (CSceneMain*)Objs::GetObj(OBJ_BLOCK);
-	int Stage = m->GetStage();
-
-	CObjUserInterface* u = (CObjUserInterface*)Objs::GetObj(OBJ_BLOCK);
-	int s = u->GetS();
-
 	//主人公の座標取得
+
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	if (Stage == 1||s == 1)
+	CObjUserInterface* UI = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
+	int stage = UI->GetS();
+	if (stage == 2)
 	{
 		if (hero != nullptr)
 		{
@@ -75,7 +72,7 @@ void CObjBoss2::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
-	if (Stage == 1||s==1)
+	if (stage == 2)
 	{
 		//trueなら弾発射
 		if (m_attack == true)
@@ -89,7 +86,7 @@ void CObjBoss2::Action()
 			m_attack = false;
 		}
 	}
-	else if (Stage == 3|| s == 3)
+	else if (stage == 4)
 	{
 		if (m_attack == true)
 		{
@@ -136,6 +133,7 @@ void CObjBoss2::Action()
 
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
+			Audio::VolumeMaster(-1.0f);
 
 			main->RoundChange();
 		}
@@ -148,8 +146,8 @@ void CObjBoss2::Action()
 
 		m_hp--;
 
-		Effect* effect = new Effect(m_x, m_y,m_r);
-		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+		/*Effect* effect = new Effect(m_x, m_y,m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);*/
 		if (m_hp <= 0) {
 			//if (main->GetStage() == 1) {
 			//	//爆発音鳴らす

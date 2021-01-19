@@ -80,13 +80,11 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(13, L"SE敵弾着弾音.wav", EFFECT);
 	Audio::LoadAudio(14, L"SE主弾着弾音.wav", EFFECT);
 
-	if(Stage==0)
 	//ボリュームを1.5増やす
-	float v = Audio::VolumeMaster(1.0f);
+	Audio::VolumeMaster(1.0f);
 
 	//音楽スタート
 	Audio::Start(0);
-
 
 	//敵戦車
 	Draw::LoadImageW(L"鬼トランプJ.png", 19, TEX_SIZE_512);
