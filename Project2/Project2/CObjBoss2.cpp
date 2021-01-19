@@ -127,7 +127,7 @@ void CObjBoss2::Action()
 		Effect* effect = new Effect(m_x, m_y, m_r);
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 		m_hp -= 0.05f;
-		if (m_hp <= 0) {
+		if (m_hp <= 0 && stage != 4) {
 			//”š”­‰¹–Â‚ç‚·
 			Audio::Start(12);
 
@@ -137,7 +137,14 @@ void CObjBoss2::Action()
 
 			main->RoundChange();
 		}
-
+		else if (m_hp <= 0 && stage == 4)
+		{
+			Audio::Start(12);
+			Audio::VolumeMaster(-1.0f);
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+			Scene::SetScene(new CSceneGameClear);
+		}
 	}
 	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
@@ -148,7 +155,7 @@ void CObjBoss2::Action()
 
 		/*Effect* effect = new Effect(m_x, m_y,m_r);
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);*/
-		if (m_hp <= 0) {
+		if (m_hp <= 0&&stage!=4) {
 			//if (main->GetStage() == 1) {
 			//	//”š”­‰¹–Â‚ç‚·
 			//	Audio::Start(12);
@@ -166,10 +173,18 @@ void CObjBoss2::Action()
 			//}
 			//”š”­‰¹–Â‚ç‚·
 			Audio::Start(12);
-			Audio::Stop(0);
+			Audio::VolumeMaster(-1.0f);
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
 			main->RoundChange();
+		}
+		else if (m_hp <= 0 && stage == 4)
+		{
+			Audio::Start(12);
+			Audio::VolumeMaster(-1.0f);
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+			Scene::SetScene(new CSceneGameClear);
 		}
 	}
 	else if (pbullet_enable == false) {
@@ -182,7 +197,7 @@ void CObjBoss2::Action()
 			Effect* effect = new Effect(m_x, m_y,m_r);
 			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 			pbullet_enable = true;
-			if (m_hp <= 0) {
+			if (m_hp <= 0 && stage != 4) {
 				//if (main->GetStage() == 1) {
 				//	//”š”­‰¹–Â‚ç‚·
 				//	Audio::Start(12);
@@ -201,11 +216,19 @@ void CObjBoss2::Action()
 				
 				//”š”­‰¹–Â‚ç‚·
 				Audio::Start(12);
-				Audio::Stop(0);
+				Audio::VolumeMaster(-1.0f);
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 				main->RoundChange();
 				
+			}
+			else if (m_hp <= 0 && stage == 4)
+			{
+				Audio::Start(12);
+				Audio::Stop(0);
+				this->SetStatus(false);
+				Hits::DeleteHitBox(this);
+				Scene::SetScene(new CSceneGameClear);
 			}
 		}
 	}
