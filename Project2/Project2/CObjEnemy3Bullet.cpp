@@ -62,23 +62,6 @@ void CObjEnemy3B::Action() {
 	m_x -= m_scroll_map_x;
 	m_y -= m_scroll_map_y;
 
-	int data_base[4] =
-	{
-		m_up,m_down,m_reft,m_right
-	};
-
-	for (int i = 0; i <= 3; i++)
-	{
-		if (data_base[i] == true)
-		{
-			Effect* effect = new Effect(m_x, m_y,m_r);
-			Objs::InsertObj(effect, OBJ_EFFECT, 20);
-
-			this->SetStatus(false);
-			Hits::DeleteHitBox(this);
-		}
-	}
-
 	if (Hit->CheckObjNameHit(OBJ_HERO) != nullptr) {
 		Effect* effect = new Effect(m_x, m_y,m_r);
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
@@ -110,6 +93,22 @@ void CObjEnemy3B::Action() {
 
 		this->SetStatus(false);//íœ–½—ß
 		Hits::DeleteHitBox(this);//íœ
+	}
+	int data_base[4] =
+	{
+		m_up,m_down,m_reft,m_right
+	};
+
+	for (int i = 0; i <= 3; i++)
+	{
+		if (data_base[i] == true)
+		{
+			Effect* effect = new Effect(m_x, m_y, m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
 	}
 
 	if (mx >= 500.0f || mx <= -500.0f || my >= 500.0f || my <= -500.0f)

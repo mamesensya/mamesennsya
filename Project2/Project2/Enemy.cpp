@@ -68,18 +68,31 @@ void CObjEnemy::Action()
 	//主人公の座標取得
 
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
+	CObjChara* chara = (CObjChara*)Objs::GetObj(OBJ_CHARA);
 	if (hero != nullptr)
 	{
 		float hx = hero->GetX();
 		float hy = hero->GetY();
-		//敵から主人公のベクトルを求める
+		float cx=0;
+		float cy=0;
 
+		//敵から主人公のベクトルを求める
 		hx = hx - m_scroll_map_x;
 		hy = hy - m_scroll_map_y;
-
 		x = m_x - hx;
 		y = m_y - hy;
+		if (chara != nullptr)
+		{
+			cx = chara->GetX();
+			cy = chara->GetY();
 
+
+			cx = cx - m_scroll_map_x;
+			cy = cy - m_scroll_map_y;
+
+			x = m_x - cx;
+			y = m_y - cy;
+		}
 
 		if ((x < -400.0f && x > 400.0f) || (y < -400.0f && y > 400.0f));
 

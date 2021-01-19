@@ -146,7 +146,7 @@ void CObjBossBullet::Action()
 		Hits::DeleteHitBox(this);//削除
 	}
 	////弾丸と接触しているかを調べる
-	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	else if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 		this->SetStatus(false);//自身に削除命令を出す
 		Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。

@@ -40,10 +40,15 @@ void CObjBoss2::Action()
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
 
-	//主人公の座標取得
+	CSceneMain* m = (CSceneMain*)Objs::GetObj(OBJ_BLOCK);
+	int Stage = m->GetStage();
 
+	CObjUserInterface* u = (CObjUserInterface*)Objs::GetObj(OBJ_BLOCK);
+	int s = u->GetS();
+
+	//主人公の座標取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	if (Stage == 1)
+	if (Stage == 1||s == 1)
 	{
 		if (hero != nullptr)
 		{
@@ -70,7 +75,7 @@ void CObjBoss2::Action()
 	CHitBox* hit = Hits::GetHitBox(this);
 	hit->SetPos(m_x + m_scroll_map_x, m_y + m_scroll_map_y);
 
-	if (Stage == 1)
+	if (Stage == 1||s==1)
 	{
 		//trueなら弾発射
 		if (m_attack == true)
@@ -84,7 +89,7 @@ void CObjBoss2::Action()
 			m_attack = false;
 		}
 	}
-	else if (Stage == 3)
+	else if (Stage == 3|| s == 3)
 	{
 		if (m_attack == true)
 		{
@@ -146,21 +151,27 @@ void CObjBoss2::Action()
 		Effect* effect = new Effect(m_x, m_y,m_r);
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
 		if (m_hp <= 0) {
-			if (main->GetStage() == 1) {
-				//爆発音鳴らす
-				Audio::Start(12);
-				Audio::Stop(0);
-				main->RoundChange();
-				this->SetStatus(false);
-				Hits::DeleteHitBox(this);
-			}
-			if (main->GetStage() == 3) {
-				Audio::Start(12);
-				Audio::Stop(0);
-				Scene::SetScene(new CSceneGameClear());
-				this->SetStatus(false);
-				Hits::DeleteHitBox(this);
-			}
+			//if (main->GetStage() == 1) {
+			//	//爆発音鳴らす
+			//	Audio::Start(12);
+			//	Audio::Stop(0);
+			//	main->RoundChange();
+			//	this->SetStatus(false);
+			//	Hits::DeleteHitBox(this);
+			//}
+			//if (main->GetStage() == 3) {
+			//	Audio::Start(12);
+			//	Audio::Stop(0);
+			//	Scene::SetScene(new CSceneGameClear());
+			//	this->SetStatus(false);
+			//	Hits::DeleteHitBox(this);
+			//}
+			//爆発音鳴らす
+			Audio::Start(12);
+			Audio::Stop(0);
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+			main->RoundChange();
 		}
 	}
 	else if (pbullet_enable == false) {
@@ -174,21 +185,29 @@ void CObjBoss2::Action()
 			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 			pbullet_enable = true;
 			if (m_hp <= 0) {
-				if (main->GetStage() == 1) {
-					//爆発音鳴らす
-					Audio::Start(12);
-					Audio::Stop(0);
-					main->RoundChange();
-					this->SetStatus(false);
-					Hits::DeleteHitBox(this);
-				}
-				if (main->GetStage() == 3) {
-					Audio::Start(12);
-					Audio::Stop(0);
-					Scene::SetScene(new CSceneGameClear());
-					this->SetStatus(false);
-					Hits::DeleteHitBox(this);
-				}
+				//if (main->GetStage() == 1) {
+				//	//爆発音鳴らす
+				//	Audio::Start(12);
+				//	Audio::Stop(0);
+				//	main->RoundChange();
+				//	this->SetStatus(false);
+				//	Hits::DeleteHitBox(this);
+				//}
+				//if (main->GetStage() == 3) {
+				//	Audio::Start(12);
+				//	Audio::Stop(0);
+				//	Scene::SetScene(new CSceneGameClear());
+				//	this->SetStatus(false);
+				//	Hits::DeleteHitBox(this);
+				//}
+				
+				//爆発音鳴らす
+				Audio::Start(12);
+				Audio::Stop(0);
+				this->SetStatus(false);
+				Hits::DeleteHitBox(this);
+				main->RoundChange();
+				
 			}
 		}
 	}

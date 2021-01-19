@@ -68,6 +68,7 @@ void CObjBoss::Action()
 		m_oni_time = 0;
 	}
 
+
 	//ある程度近づくと主人公と並行な位置まで移動
 	//主人公の座標取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);

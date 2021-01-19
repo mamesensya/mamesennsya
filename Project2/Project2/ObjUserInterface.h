@@ -29,6 +29,8 @@ public:
 		getguns[2] = uniquea;
 		getflugs = getflug;
 	}
+	int GetS() { return playstage; };
+
 private:
 	char keystr[4] = { 'Z','X','C','V' };
 	bool flug;
