@@ -32,6 +32,7 @@ enum OBJ_NAME
 	OBJ_BOSS_BULLET4,
 	OBJ_PENETRATE_BULLET,
 	OBJ_EFFECT,
+	OBJ_MINIMAP,
 };
 //------------------------------------------------
 
@@ -102,6 +103,7 @@ struct UserData
 #include "CObjBossBullet2.h"
 #include "CObjBossBullet4.h"
 #include"Effect.h"
+#include "CObjMinimap.h"
 //------------------------------------------------
 
 //ゲームシーンクラスヘッダ------------------------

@@ -136,6 +136,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"button.png", 27, TEX_SIZE_512);
 	Draw::LoadImageW(L"buttonstr.png", 28, TEX_SIZE_512);
 	Draw::LoadImageW(L"fader.png", 29, TEX_SIZE_512);
+	Draw::LoadImageW(L"material.png", 31, TEX_SIZE_512);
 	//-------------------------------------------------------------------------------------/
 
 	/*CObjBox* obj_box = new CObjBox(400, 300);
@@ -156,6 +157,9 @@ void CSceneMain::InitScene()
 	//blockオブジェクトの作成
 	CObjBlock* obj_b = new CObjBlock(map);
 	Objs::InsertObj(obj_b, OBJ_BLOCK, 4);
+
+	CObjMinimap* minimap = new CObjMinimap(map);
+	Objs::InsertObj(minimap, OBJ_MINIMAP, 2000);
 
 	//エフェクト
 	Draw::LoadImageW(L"当たりエフェクト.png", 30,TEX_SIZE_512);
