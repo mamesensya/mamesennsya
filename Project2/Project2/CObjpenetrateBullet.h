@@ -16,9 +16,9 @@ private:
 	float m_vx;
 	float m_vy;
 	float m_r;
-	int interval;
-
-	bool  intervalEnable;
+	
+	bool pbullet_enable;
+	bool pbullet_interval;
 
 	bool m_up;
 	bool m_reft;
