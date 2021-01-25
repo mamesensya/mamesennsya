@@ -148,6 +148,7 @@
     <ClCompile Include="CObjEnemy3.cpp" />
     <ClCompile Include="CObjEnemy3Bullet.cpp" />
     <ClCompile Include="CObjEnemyBullet.cpp" />
+    <ClCompile Include="CObjMinimap.cpp" />
     <ClCompile Include="CObjpenetrateBullet.cpp" />
     <ClCompile Include="CObjPlayerBullet.cpp" />
     <ClCompile Include="CObjUserInterface.cpp" />
@@ -199,6 +200,7 @@
     <ClInclude Include="CObjEnemy3.h" />
     <ClInclude Include="CObjEnemy3Bullet.h" />
     <ClInclude Include="CObjEnemyBullet.h" />
+    <ClInclude Include="CObjMinimap.h" />
     <ClInclude Include="CObjpenetrateBullet.h" />
     <ClInclude Include="CObjPlayerBullet.h" />
     <ClInclude Include="Effect.h" />

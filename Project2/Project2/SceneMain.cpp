@@ -116,7 +116,7 @@ void CSceneMain::InitScene()
 	//主人公グラフィック読み込み(300×300)
 	Draw::LoadImageW(L"さいころ5.png", 1, TEX_SIZE_512);
 	//主人公表示
-	CObjHero* obj = new CObjHero(0,0,0);
+	CObjHero* obj = new CObjHero(0,0,180);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 
@@ -136,6 +136,7 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"button.png", 27, TEX_SIZE_512);
 	Draw::LoadImageW(L"buttonstr.png", 28, TEX_SIZE_512);
 	Draw::LoadImageW(L"fader.png", 29, TEX_SIZE_512);
+	Draw::LoadImageW(L"material.png", 31, TEX_SIZE_512);
 	//-------------------------------------------------------------------------------------/
 
 	/*CObjBox* obj_box = new CObjBox(400, 300);
@@ -157,6 +158,9 @@ void CSceneMain::InitScene()
 	CObjBlock* obj_b = new CObjBlock(map);
 	Objs::InsertObj(obj_b, OBJ_BLOCK, 4);
 
+	CObjMinimap* minimap = new CObjMinimap(map);
+	Objs::InsertObj(minimap, OBJ_MINIMAP, 2000);
+
 	//エフェクト
 	Draw::LoadImageW(L"当たりエフェクト.png", 30,TEX_SIZE_512);
 }
@@ -170,7 +174,6 @@ void CSceneMain::Scene()
 
 void CSceneMain::RoundChange() {
 	Stage++;
-
 	CObjUserInterface* ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
 	ui->setStageStatus(2);
 };
