@@ -62,7 +62,7 @@ void CObjPlayerBullet::Action() {
 			m_up,m_down,m_reft,m_right
 		};
 
-		int data_base2[6] =
+		int data_base2[8] =
 		{
 			OBJ_ENEMY_BULLET,
 			OBJ_ENEMY_3BULLET,
@@ -70,10 +70,33 @@ void CObjPlayerBullet::Action() {
 			OBJ_BOSS_BULLET2,
 			OBJ_BOSS_BULLET4,
 			OBJ_ENEMY,
+			OBJ_BOSS,
+			OBJ_BOSS2,
 		};
 
 		CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 		bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+
+		
+
+
+		/*if (m_hit == true)
+		{*/
+		for (int i = 0; i <= 7; i++)
+		{
+			if (Hit->CheckObjNameHit(data_base2[i]) != nullptr)
+			{
+				Effect* effect = new Effect(m_x, m_y, m_r);
+				Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+			
+
+				m_hit = false;
+			}
+
+		}
+
+		//}
 
 		if (Hit->CheckObjNameHit(OBJ_ENEMY) != nullptr) {
 			Effect* effect = new Effect(m_x, m_y, m_r);
@@ -84,6 +107,8 @@ void CObjPlayerBullet::Action() {
 		}
 		else if (Hit->CheckObjNameHit(OBJ_ENEMY_BULLET) != nullptr) {
 			//“G‚Ì‹Ê
+			/*Effect* effect = new Effect(m_x, m_y, m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);*/
 
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
@@ -96,6 +121,8 @@ void CObjPlayerBullet::Action() {
 		}
 		else if (Hit->CheckObjNameHit(OBJ_ENEMY_3BULLET) != nullptr) {
 			//“G3–”
+			Effect* effect = new Effect(m_x, m_y, m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
@@ -103,7 +130,7 @@ void CObjPlayerBullet::Action() {
 
 		for (int i = 0; i <= 3; i++)
 		{
-			
+
 			if (data_base[i] == true)
 			{
 				Effect* effect = new Effect(m_x, m_y, m_r);
@@ -112,21 +139,7 @@ void CObjPlayerBullet::Action() {
 				this->SetStatus(false);
 				Hits::DeleteHitBox(this);
 			}
-		}	
-		/*if (m_hit == true)
-		{
-			for (int i = 0; i < 5; i++)
-			{
-				if (Hit->CheckObjNameHit(data_base[i]) != nullptr)
-				{
-					Effect* effect = new Effect(m_x, m_y, m_r);
-					Objs::InsertObj(effect, OBJ_EFFECT, 20);
-
-					
-					m_hit = false;
-				}
-			}
-		}*/
+		}
 		
 };
 

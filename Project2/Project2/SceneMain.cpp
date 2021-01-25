@@ -40,22 +40,22 @@ void CSceneMain::InitScene()
 
 	int map[60][80];
 	int count = 1;
-	switch (Stage) {
-	case 0:
-		p = Save::ExternalDataOpen(L"Book1.csv", &size);
-		break;
-	case 1:
-		p = Save::ExternalDataOpen(L"Book2.csv", &size);
-		break;
-	case 2:
-		p = Save::ExternalDataOpen(L"Book3.csv", &size);
-		break;
-	case 3:
-		p = Save::ExternalDataOpen(L"Book4.csv", &size);
-	default:
-		break;
-	};
-
+		switch (Stage) {
+		case 0:
+			p = Save::ExternalDataOpen(L"Book1.csv", &size);
+			break;
+		case 1:
+			p = Save::ExternalDataOpen(L"Book2.csv", &size);
+			break;
+		case 2:
+			p = Save::ExternalDataOpen(L"Book3.csv", &size);
+			break;
+		case 3:
+			p = Save::ExternalDataOpen(L"Book4.csv", &size);
+		default:
+			break;
+		};
+	
 	for (int i = 0; i < 60; i++)
 	{
 		for (int j = 0; j < 80; j++)
@@ -174,6 +174,7 @@ void CSceneMain::Scene()
 
 void CSceneMain::RoundChange() {
 	Stage++;
+	
 	CObjUserInterface* ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
 	ui->setStageStatus(2);
 };
