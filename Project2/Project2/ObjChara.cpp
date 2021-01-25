@@ -134,6 +134,7 @@ void CObjChara::Action()
 				Hits::DeleteHitBox(this);//ŽålŒö‚ªŠ—L‚·‚éHitBox‚ðíœ‚·‚é
 				
 				//Scene::SetScene(new CSceneGameOver());
+				Audio::VolumeMaster(-1.0f);
 				ui->setStageStatus(3);
 			}
 
