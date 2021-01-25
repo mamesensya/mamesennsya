@@ -40,12 +40,6 @@ void CSceneMain::InitScene()
 
 	int map[60][80];
 	int count = 1;
-
-	if (Stageflug != -1) {
-		Stage = 0;
-	}else {
-		Stage = Stageflug = 0;
-	}
 		switch (Stage) {
 		case 0:
 			p = Save::ExternalDataOpen(L"Book1.csv", &size);
@@ -180,6 +174,7 @@ void CSceneMain::Scene()
 
 void CSceneMain::RoundChange() {
 	Stage++;
+	
 	CObjUserInterface* ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
 	ui->setStageStatus(2);
 };

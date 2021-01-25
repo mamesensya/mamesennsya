@@ -17,9 +17,9 @@ public:
 	void InitScene() ;//ゲームメインの初期化メソッド
 	void Scene();//ゲームメインの実行中メソッド
 	void RoundChange();
-	void MemorizeStage() {
-		Stageflug = Stage;
-	}
+	void SetStage(int round) {
+		Stage = round;
+	};
 	int GetEnemy() {
 		return GetenemyMax;
 	}
