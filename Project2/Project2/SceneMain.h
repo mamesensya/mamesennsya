@@ -17,9 +17,7 @@ public:
 	void InitScene() ;//ゲームメインの初期化メソッド
 	void Scene();//ゲームメインの実行中メソッド
 	void RoundChange();
-	void SetStage(int round) {
-		Stage = round;
-	};
+	void SetStage();
 	int GetEnemy() {
 		return GetenemyMax;
 	}
@@ -27,9 +25,9 @@ public:
 	{
 		return Stage;
 	};
-	
+
 private:
 	int GetenemyMax = 0;
-	int Stageflug = -1;
+	int Resetflg = 0;
 };
 
