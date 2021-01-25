@@ -77,18 +77,7 @@ void CObjPlayerBullet::Action() {
 		CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 		bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
 
-		for (int i = 0; i <= 3; i++)
-		{
-
-			if (data_base[i] == true)
-			{
-				Effect* effect = new Effect(m_x, m_y, m_r);
-				Objs::InsertObj(effect, OBJ_EFFECT, 20);
-
-				this->SetStatus(false);
-				Hits::DeleteHitBox(this);
-			}
-		}
+		
 
 
 		/*if (m_hit == true)
@@ -99,6 +88,8 @@ void CObjPlayerBullet::Action() {
 			{
 				Effect* effect = new Effect(m_x, m_y, m_r);
 				Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+			
 
 				m_hit = false;
 			}
@@ -137,7 +128,18 @@ void CObjPlayerBullet::Action() {
 			Hits::DeleteHitBox(this);
 		}
 
-		
+		for (int i = 0; i <= 3; i++)
+		{
+
+			if (data_base[i] == true)
+			{
+				Effect* effect = new Effect(m_x, m_y, m_r);
+				Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+				this->SetStatus(false);
+				Hits::DeleteHitBox(this);
+			}
+		}
 		
 };
 

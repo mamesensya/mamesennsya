@@ -178,3 +178,7 @@ void CSceneMain::RoundChange() {
 	CObjUserInterface* ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
 	ui->setStageStatus(2);
 };
+
+void CSceneMain::SetStage() {
+	Stage = 0;
+};

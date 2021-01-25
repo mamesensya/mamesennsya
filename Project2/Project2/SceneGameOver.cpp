@@ -29,8 +29,6 @@ void CSceneGameOver::Scene() {
 	if (Input::GetVKey(VK_RETURN) == true)
 	{
 		CSceneMain* main = new CSceneMain();
-		main->SetStage(0);
-
 		Scene::SetScene(new SceneTitle);
 		//チャタリング防止用
 		while (Input::GetVKey(VK_RETURN) == true);

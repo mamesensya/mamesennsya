@@ -55,12 +55,15 @@ CObjHero::CObjHero(float x, float y,float r)
 //イニシャライズ
 void CObjHero::Init()
 {
-	m_bullet = 10;
-	m_unique_bullet_1 = 3;
-	m_unique_bullet_2 = 3;
-	m_hero_flag = false;
-	m_hp = HP;
-	bullet = m_bullet + m_unique_bullet_1 + m_unique_bullet_2;
+	
+		m_bullet = 10;
+		m_unique_bullet_1 = 2;
+		m_unique_bullet_2 = 2;
+		m_hero_flag = false;
+		m_hp = HP;
+		bullet = m_bullet + m_unique_bullet_1 + m_unique_bullet_2;
+
+	
 
 	//当たり判定
 	Hits::SetHitBox(this, m_x, m_y, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);

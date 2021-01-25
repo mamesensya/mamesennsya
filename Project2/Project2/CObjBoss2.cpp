@@ -96,7 +96,7 @@ void CObjBoss2::Action()
 				if (m_r >= 0.0 && reflect == true)
 				{
 					//Šp“xm_angle‚ÅŠp“x’eŠÛ”­ŽË
-					m_r += 5.0;
+					m_r += 10.0;
 					CObjBossBullet4* obj_bossbullet = new CObjBossBullet4(m_x-15.0f, m_y-10.0f, -m_r-95.0f);
 					Objs::InsertObj(obj_bossbullet, OBJ_BOSS_BULLET4, 50);
 					if (m_r >= 360.0)
@@ -107,7 +107,7 @@ void CObjBoss2::Action()
 				else if (m_r <= 360 && reflect == false)
 				{
 					//Šp“xm_angle‚ÅŠp“x’eŠÛ”­ŽË
-					m_r -= 5.0;
+					m_r -= 10.0;
 					if (m_r <= 0)
 					{
 						reflect = true;

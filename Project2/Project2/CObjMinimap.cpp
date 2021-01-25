@@ -41,7 +41,7 @@ void CObjMinimap::Draw() {
 	src.m_right  = 32.0f;
 	src.m_bottom = 32.0f;
 
-	dst.m_top    = 0.0f;
+	dst.m_top    = 80.0f + 0.0f;
 	dst.m_left   = 560.0f;
 	dst.m_right  = dst.m_left + 240.0f;
 	dst.m_bottom = dst.m_top  + 240.0f;
@@ -51,7 +51,7 @@ void CObjMinimap::Draw() {
 	for (p=0; p < 24; p++) {
 
 		for (s=0; s < 24; s++) {
-			dst.m_top    = p * 10.0f;
+			dst.m_top    = 80.0f+ p * 10.0f;
 			dst.m_left   = 560.0f + s * 10.0f;
 			dst.m_right  = dst.m_left + 10.0f;
 			dst.m_bottom = dst.m_top + 10.0f;
