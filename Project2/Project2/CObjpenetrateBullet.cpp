@@ -40,6 +40,18 @@ void CObjPenetrateBullet::Action() {
 		m_up,m_down,m_reft,m_right
 	};
 
+	int data_base2[8] =
+	{
+		OBJ_ENEMY_BULLET,
+		OBJ_ENEMY_3BULLET,
+		OBJ_BOSS_BULLET,
+		OBJ_BOSS_BULLET2,
+		OBJ_BOSS_BULLET4,
+		OBJ_ENEMY,
+		OBJ_BOSS,
+		OBJ_BOSS2,
+	};
+
 
 	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
@@ -57,6 +69,17 @@ void CObjPenetrateBullet::Action() {
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
 		}
+	}
+	for (int i = 0; i <= 7; i++)
+	{
+		if (Hit->CheckObjNameHit(data_base2[i]) != nullptr)
+		{
+			Effect* effect = new Effect(m_x, m_y, m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+			m_hit = false;
+		}
+
 	}
 	
 };
