@@ -10,12 +10,16 @@ static int Stage;
 //シーン　：　ゲームメイン
 class CSceneMain :public CScene
 {
+
 public:
 	CSceneMain() ;
 	~CSceneMain() ;
 	void InitScene() ;//ゲームメインの初期化メソッド
 	void Scene();//ゲームメインの実行中メソッド
 	void RoundChange();
+	void MemorizeStage() {
+		Stageflug = Stage;
+	}
 	int GetEnemy() {
 		return GetenemyMax;
 	}
@@ -26,5 +30,6 @@ public:
 	
 private:
 	int GetenemyMax = 0;
+	int Stageflug = -1;
 };
 

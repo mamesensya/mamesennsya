@@ -28,6 +28,9 @@ void CSceneGameOver::Scene() {
 	//エンターキーでタイトルに移行
 	if (Input::GetVKey(VK_RETURN) == true)
 	{
+		CSceneMain* main = new CSceneMain();
+		main->MemorizeStage();
+
 		Scene::SetScene(new SceneTitle);
 		//チャタリング防止用
 		while (Input::GetVKey(VK_RETURN) == true);

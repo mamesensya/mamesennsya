@@ -68,7 +68,9 @@ void CObjMinimap::Draw() {
 				c[0] = 1.0f; c[1] = 1.0f; c[2] = 0.0f; c[3] = 1.0f;
 				Draw::Draw(31, &src, &dst, c, 0);
 			}
+
 		}
 
 	}
+
 };
