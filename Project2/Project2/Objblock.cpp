@@ -16,8 +16,11 @@
 #include"GameL/HitBoxManager.h"
 
 //使用するネームスペース
-
 using namespace GameL;
+
+#define SCROLLX 368
+#define SCROLLY 268
+
 
 CObjBlock::CObjBlock(int map[60][80])
 {
@@ -30,9 +33,6 @@ void CObjBlock::Init()
 	m_scroll = 0.0f;
 	m_scroll2 = 0.0f;
 
-	
-	
-		
 }
 
 //アクション
@@ -67,36 +67,36 @@ void CObjBlock::Action()
 		if (left == true) { ; }
 		else {
 			//右方スクロールライン
-			if (hx < 200)
+			if (hx < SCROLLX)
 			{
-				hero->SetX(200);
+				hero->SetX(SCROLLX);
 				m_scroll -= hero->GetVX();
 			}
 		}
 		if (right == true) { ; }
 		else {
 			//左方スクロールライン
-			if (hx > 400)
+			if (hx > SCROLLX+32)
 			{
-				hero->SetX(400);
+				hero->SetX(SCROLLX+32);
 				m_scroll -= hero->GetVX();
 			}
 		}
 		if (up == true) { ; }
 		else {
 			//上方スクロールライン
-			if (hy < 200)
+			if (hy < SCROLLY)
 			{
-				hero->SetY(200);
+				hero->SetY(SCROLLY);
 				m_scroll2 -= hero->GetVY();
 			}
 		}
 		if (down == true) { ; }
 		else {
 			//下方スクロールライン
-			if (hy > 400)
+			if (hy > SCROLLY+32)
 			{
-				hero->SetY(400);
+				hero->SetY(SCROLLY+32);
 				m_scroll2 -= hero->GetVY();
 			}
 		}
