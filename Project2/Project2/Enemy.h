@@ -17,6 +17,7 @@ public:
 	float GetX() { return m_x; }
 	float GetY() { return m_y; }
 	float GetR() { return m_r; }
+	float GetBI() { return  pbullet_interval; }
 
 private:
 	float m_x;//xÀ•W

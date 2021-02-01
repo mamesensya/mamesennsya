@@ -16,6 +16,8 @@ public:
 	float GetY() { return m_y; }
 	float GetR() { return m_r; }
 
+	int GetBI() { return pbullet_interval; }
+
 	int m_bullet_type{ 0 };//ボスの攻撃方法変更用
 private:
 	float m_x{ 0 };//x座標

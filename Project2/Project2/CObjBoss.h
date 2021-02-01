@@ -19,6 +19,8 @@ public:
 	float GetR() { return m_r; }
 	bool Getcek() { return m_check; }
 
+	int GetBI() { return pbullet_interval; }
+
 	int m_Bcount{ 0 };
 	int m_oni_count{ 0 };
 	int round{ 0 };

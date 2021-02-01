@@ -10,6 +10,7 @@ public:
 	void Init();
 	void Action();
 	void Draw();
+
 private:
 	float m_x;
 	float m_y;
@@ -18,7 +19,8 @@ private:
 	float m_r;
 	
 	bool pbullet_enable;
-	bool pbullet_interval;
+	int pbullet_interval=1;
+	bool flag = false;
 
 	bool m_up;
 	bool m_reft;

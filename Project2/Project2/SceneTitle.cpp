@@ -42,8 +42,4 @@ void SceneTitle::Scene() {
 	float c[4] = {1.0f,1.0f,1.0f,1.0f};
 	//Font::StrDraw(L"ì§êÌé‘",208,100 ,128, c);
 	Font::StrDraw(L"(C) CopyRight 2020 Team.Inverse", 245,580,20, c);
-	
-
-	
-
 }

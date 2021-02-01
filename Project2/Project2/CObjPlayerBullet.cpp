@@ -105,6 +105,20 @@ void CObjPlayerBullet::Action() {
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
 		}
+		else if (Hit->CheckObjNameHit(OBJ_BOSS) != nullptr) {
+			Effect* effect = new Effect(m_x, m_y, m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
+		else if (Hit->CheckObjNameHit(OBJ_BOSS2) != nullptr) {
+			Effect* effect = new Effect(m_x, m_y, m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+			this->SetStatus(false);
+			Hits::DeleteHitBox(this);
+		}
 		else if (Hit->CheckObjNameHit(OBJ_ENEMY_BULLET) != nullptr) {
 			//“G‚Ì‹Ê
 			/*Effect* effect = new Effect(m_x, m_y, m_r);
