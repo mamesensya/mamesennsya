@@ -30,8 +30,7 @@ void CSceneGameClear::Scene()
 	if (Input::GetVKey(VK_RETURN) == true)
 	{
 		CSceneMain* main = new CSceneMain();
-		main->SetStage();
-
+		main->SStage();
 		Scene::SetScene(new SceneTitle);
 		//チャタリング防止用
 		while (Input::GetVKey(VK_RETURN) == true);
