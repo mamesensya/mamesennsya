@@ -182,6 +182,6 @@ void CSceneMain::RoundChange() {
 	ui->setStageStatus(2);
 };
 
-void CSceneMain::SetStage() {
+void CSceneMain::SStage() {
 	Stage = 0;
 };

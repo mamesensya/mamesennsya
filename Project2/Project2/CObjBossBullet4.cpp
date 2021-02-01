@@ -81,7 +81,7 @@ void CObjBossBullet4::Action()
 		this->SetStatus(false);//íœ–½—ß
 		Hits::DeleteHitBox(this);//íœ
 	}
-	//ŠÑ’Ê’e‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ð’²‚×‚é
+	//’Êí’e‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ð’²‚×‚é
 	else if (Hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 		Effect* effect = new Effect(m_x, m_y,m_r);
@@ -90,6 +90,7 @@ void CObjBossBullet4::Action()
 		this->SetStatus(false);//Ž©g‚Éíœ–½—ß‚ðo‚·
 		Hits::DeleteHitBox(this);//’eŠÛ‚ªŠ—L‚·‚éHitBox‚Éíœ‚·‚éB
 	}
+	//ŠÑ’Ê’e‚ÆÚG‚µ‚Ä‚¢‚é‚©‚ð’²‚×‚é
 	else if (Hit->CheckObjNameHit(OBJ_PENETRATE_BULLET) != nullptr)
 	{
 		Effect* effect = new Effect(m_x, m_y, m_r);

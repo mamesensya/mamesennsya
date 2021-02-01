@@ -15,8 +15,7 @@ CObjPenetrateBullet::CObjPenetrateBullet(float x, float y, float r) {
 void CObjPenetrateBullet::Init() {
 	m_vx = 0;
 	m_vy = 0;
-	interval = 0;
-	intervalEnable = false;
+
 	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_RED, OBJ_PENETRATE_BULLET, 1);
 };
 
@@ -81,7 +80,27 @@ void CObjPenetrateBullet::Action() {
 			Hits::DeleteHitBox(this);
 		}
 	}
+	for (int i = 0; i <= 7; i++)
+	{
+		if (Hit->CheckObjNameHit(data_base2[i]) != nullptr)
+		{
+			Effect* effect = new Effect(m_x, m_y, m_r);
+			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 
+		if (pbullet_enable == true) 
+		{
+			pbullet_interval++;
+			 if (pbullet_interval > 7) 
+			 {
+				pbullet_interval = 0;
+				pbullet_enable = false;
+			}
+		}
+
+		}
+
+	}
+	
 };
 
 void CObjPenetrateBullet::Draw() {

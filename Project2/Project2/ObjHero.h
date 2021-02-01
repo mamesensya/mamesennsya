@@ -38,7 +38,6 @@ public:
 	bool m_hero_flag;//主人公の状態確認フラグ
 	//false：主人公（戦車）　true：主人公（人）
 
-
 	bool Getup() { return m_hit_up; };
 	bool Getdown() { return m_hit_down; };
 	bool Getleft() { return m_hit_left; };
