@@ -74,15 +74,6 @@ void CObjGhostAttack::Action()
 {
 	CHitBox* hit = Hits::GetHitBox(this);
 
-	//CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	//m_scroll_map_x = block->GetSX();
-	//m_scroll_map_y = block->GetSY();
-
-
-
-	
-
-
 	m_time ++ ;
 	if (m_time == 20)
 	{
@@ -101,8 +92,6 @@ void CObjGhostAttack::Action()
 	}
 	
 	hit->SetPos(m_x, m_y);
-
-
 }
 
 void CObjGhostAttack::Draw()

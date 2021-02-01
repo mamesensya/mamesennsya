@@ -72,17 +72,9 @@ void CObjHero::Init()
 //アクション
 void CObjHero::Action()
 {
-	//m_time++;
-	//if (m_time == 21.0f)
-	//{
-	//	m_time = 0;
-	//}
-
-
 	//HitBoxの内容更新
 	CHitBox* hit = Hits::GetHitBox(this);
 	
-
 	//主人公（人）の状態なら動作しない
 	if (m_hero_flag == false)
 	{
@@ -153,9 +145,6 @@ void CObjHero::Action()
 		CObjUserInterface* ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
 		pb->BlockHit(&m_x, &m_y, &m_hit_up, &m_hit_down, &m_hit_left, &m_hit_right, &m_vx, &m_vy);
 
-		
-
-
 		//ベクトルを位置に加算
 		m_x += m_vx;
 		m_y += m_vy;
@@ -173,6 +162,7 @@ void CObjHero::Action()
 		hit->SetPos(m_x, m_y);
 
 		if (m_attack == true) {
+			//通常弾を発射
 			if (Input::GetVKey('Z') == true && m_bullet > 0)
 			{
 				//発射音鳴らす
@@ -184,6 +174,7 @@ void CObjHero::Action()
 				bullet -= 1;
 				m_attack = false;
 			}
+			//貫通弾を発射
 			if (Input::GetVKey('X') == true && m_unique_bullet_1 > 0) {
 				//発射音鳴らす
 				Audio::Start(10);
@@ -194,6 +185,7 @@ void CObjHero::Action()
 				bullet -= 1;
 				m_attack = false;
 			}
+			//拡散弾を発射
 			if (Input::GetVKey('C') == true && m_unique_bullet_2 > 0) {
 				//発射音鳴らす
 				Audio::Start(10);
@@ -209,20 +201,16 @@ void CObjHero::Action()
 		}
 		if (Input::GetVKey('W') == true) {
 			Scene::SetScene(new CSceneMain());
+			Audio::VolumeMaster(-1.0f);//ボリュームを-1する
 		}
 
 		//当たり判定を行うオブジェクト情報部
 		int data_base[5] =
 		{
-			//OBJ_ENEMY,
 			OBJ_ENEMY_BULLET,
-			//OBJ_ENEMY3,
 			OBJ_ENEMY_3BULLET,
-			//OBJ_BOSS,
 			OBJ_BOSS_BULLET,
-			//OBJ_GHOST,
 			OBJ_GHOST_ATTACK,
-			//OBJ_BOSS2,
 			OBJ_BOSS_BULLET2,
 		};
 		//敵オブジェクトと接触したら主人公のm_hpが減少
@@ -248,10 +236,9 @@ void CObjHero::Action()
 		{
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
-			Audio::VolumeMaster(-1.0f);
+			Audio::VolumeMaster(-1.0f);//ボリュームを-1する
 			ui->setStageStatus(3);
 		}
-
 		//攻撃間隔制御
 		if (m_attack == false)
 		{
@@ -325,16 +312,3 @@ bool VectorNormalize(float* vx, float* vy)
 	//計算成功
 	return true;
 }
-
-
-///主人公が下りた状態で画面外に行かないように修正
-///正面がわかりづらいのを修正←画像書き換え
-///敵hpをヘラる
-///ボスが出たらわかりやすく表示する
-///敵の弾と主人公の弾で相殺できるように修正
-///主人公（豆）が斧で敵に攻撃できるように修正
-///難易度調整（もうちょっと緩め）
-///アニメーション追加
-///主人公初期位置で下を向くように修正
-///主人公が下りた状態の時下りた主人公の方に向かって攻撃するように修正
-///主人公（豆）のグラフィックを箱より上に表示する←完了

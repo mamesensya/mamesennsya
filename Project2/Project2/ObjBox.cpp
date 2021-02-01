@@ -19,9 +19,6 @@ CObjBox::CObjBox(float x, float y)
 //イニシャライズ
 void CObjBox::Init()
 {
-
-	
-
 	//当たり判定用HitBox作成
 	Hits::SetHitBox(this, m_x, m_y, 64, 64, ELEMENT_ITEM, OBJ_BOX, 1);
 }
@@ -34,24 +31,11 @@ void CObjBox::Action()
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
 
-	/*CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	float hvx = hero->GetVX();*/
-
-	//// 主人公と接触しているかどうか調べる
-	//	if (hit->CheckObjNameHit(OBJ_HERO) != nullptr)
-	//	{
-	//		hvx = hvx - hvx - hvx;
-	//		hero->SetVX(hvx);
-	//	}
-
-	
 	hit->SetPos(m_x+m_scroll_map_x, m_y+m_scroll_map_y);
 
 	//主人公（近接攻撃）と接触したらボックスを削除
 	if(hit->CheckObjNameHit(OBJ_ATTACK)!=nullptr)
 	{
-	
-
 		int x = m_x;
 		int y = m_y;
 		block->m_map[x / 64][y / 64] == 0;
@@ -67,7 +51,6 @@ void CObjBox::Action()
 
 	if (m_x >= (80 * 64) || m_y >= (60 * 64))
 	{
-
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 	}
