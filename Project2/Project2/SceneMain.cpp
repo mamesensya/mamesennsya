@@ -151,15 +151,18 @@ void CSceneMain::InitScene()
 	obj_ui->setMAXenemy(GetenemyMax);
 	obj_ui->setStage(Stage+1);
 	obj_ui->flugset(true);
+
+	CObjMinimap* minimap = new CObjMinimap(map);
+	Objs::InsertObj(minimap, OBJ_MINIMAP, 1000);
+
 	//obj_ui->NextStageProcess();
-	Objs::InsertObj(obj_ui, OBJ_USERINTERFACE, 1000);
+	Objs::InsertObj(obj_ui, OBJ_USERINTERFACE, 2000);
 
 	//blockオブジェクトの作成
 	CObjBlock* obj_b = new CObjBlock(map);
 	Objs::InsertObj(obj_b, OBJ_BLOCK, 4);
 
-	CObjMinimap* minimap = new CObjMinimap(map);
-	Objs::InsertObj(minimap, OBJ_MINIMAP, 2000);
+	
 
 	//エフェクト
 	Draw::LoadImageW(L"当たりエフェクト.png", 30,TEX_SIZE_512);

@@ -57,15 +57,15 @@ void CObjMinimap::Draw() {
 			dst.m_bottom = dst.m_top + 10.0f;
 
 			if (mapdata[scroll_y + p][scroll_x + s] == 1) {
-				c[0] = 1.0f; c[1] = 1.0f; c[2] = 1.0f; c[3] = 1.0f;
+				c[0] = 1.0f; c[1] = 1.0f; c[2] = 1.0f; c[3] = 0.5f;
 				Draw::Draw(31, &src, &dst, c, 0);
 			}
 			if (mapdata[scroll_y + p][scroll_x + s] == 3) {
-				c[0] = 0.0f; c[1] = 1.0f; c[2] = 0.0f; c[3] = 1.0f;
+				c[0] = 0.0f; c[1] = 1.0f; c[2] = 0.0f; c[3] = 0.5f;
 				Draw::Draw(31, &src, &dst, c, 0);
 			}
 			if (mapdata[scroll_y + p][scroll_x + s] == 2) {
-				c[0] = 1.0f; c[1] = 1.0f; c[2] = 0.0f; c[3] = 1.0f;
+				c[0] = 1.0f; c[1] = 1.0f; c[2] = 0.0f; c[3] = 0.5f;
 				Draw::Draw(31, &src, &dst, c, 0);
 			}
 
