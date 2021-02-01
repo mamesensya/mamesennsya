@@ -15,21 +15,24 @@ public:
 
 
 private:
-	float m_x;
+	float m_x;//座標
 	float m_y;
-	float m_r;
-	float m_vx;
+
+	float m_r;//角度
+
+	float m_vx;//ベクトル
 	float m_vy;
-	float mx{ 0 };
+
+	float mx{ 0 };//移動量
 	float my{ 0 };
 
-	float m_scroll_map_x{ 0 };
+	float m_scroll_map_x{ 0 };//スクロール値格納用
 	float m_scroll_map_y{ 0 };
 
-	float m_speed{ 0.5 };
+	float m_speed{ 0.5 };//弾丸スピード
 
 
-	bool m_up;
+	bool m_up;//当たり判定
 	bool m_reft;
 	bool m_right;
 	bool m_down;

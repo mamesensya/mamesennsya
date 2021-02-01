@@ -36,20 +36,20 @@ private:
 	float m_hp;//HP
 	int count;//ålŒö‚ÌˆÊ’u‚ğŒü‚­ˆ×‚Ì•Ï”
 	int m_time;//’e”­ËŠÔŠu§Œä—p•Ï”
-	int m_time2;
-	int m_move_time;
-	int pbullet_interval;
-	bool pbullet_enable;
+	int m_time2;//‹‘å’e”­ËŠÔŠu§Œä—p
+	int m_move_time;//BOSSˆÚ“®d’¼§Œä—p
+	int pbullet_interval;//ŠÑ’Ê’e“–‚½‚è”»’è§Œä—p
+	bool pbullet_enable;//ŠÑ’Ê’e“–‚½‚è”»’èflag
 
 	bool m_check{false};
 
-	float m_oni_time{ 0 };
+	float m_oni_time{ 0 };//‹SoŒ»ŠÔŠu§Œä—p•Ï”
 
-	float m_scroll_map_x{ 0 };
+	float m_scroll_map_x{ 0 };//ƒXƒNƒ[ƒ‹’lŠi”[•Ï”
 	float m_scroll_map_y{ 0 };
 
 
-	bool m_hit_up;
+	bool m_hit_up;//“–‚½‚è”»’è
 	bool m_hit_down;
 	bool m_hit_left;
 	bool m_hit_right;

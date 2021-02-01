@@ -22,14 +22,14 @@ private:
 	float mx;//移動量
 	float my;
 
-	float m_speed;
+	float m_speed;//弾丸スピード
 
-	float m_scroll_map_x{0};
+	float m_scroll_map_x{0};//スクロール値格納用変数
 	float m_scroll_map_y{ 0 };
 
 
 
-	bool m_up;
+	bool m_up;//当たり判定
 	bool m_reft;
 	bool m_right;
 	bool m_down;

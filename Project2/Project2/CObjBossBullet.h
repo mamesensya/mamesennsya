@@ -20,16 +20,20 @@ public:
 	float GetMY() { return my; }
 
 private:
-	float m_x;
+	float m_x;//座標
 	float m_y;
-	float m_r;
-	float m_vx;
-	float m_vy;
-	float mx{ 0 };
-	float my{ 0 };
-	float m_time{ 0 };
 
-	float m_scroll_map_x{ 0 };
+	float m_r;//角度
+
+	float m_vx;//ベクトル
+	float m_vy;
+
+	float mx{ 0 };//移動量
+	float my{ 0 };
+
+	float m_time{ 0 };//拡散タイミング制御用
+
+	float m_scroll_map_x{ 0 };//スクロール値格納用変数
 	float m_scroll_map_y{ 0 };
 
 

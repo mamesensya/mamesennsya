@@ -32,10 +32,10 @@ private:
 	int pbullet_interval;//貫通弾制御用
 	bool pbullet_enable;
 
-	float m_scroll_map_x{ 0 };
+	float m_scroll_map_x{ 0 };//スクロール値格納用変数
 	float m_scroll_map_y{ 0 };
 
-	bool m_hit_up;
+	bool m_hit_up;//当たり判定
 	bool m_hit_down;
 	bool m_hit_left;
 	bool m_hit_right;

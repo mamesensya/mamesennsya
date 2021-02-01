@@ -30,15 +30,15 @@ private:
 	float m_hp;//HP
 	int count;//主人公の位置を向く為の変数
 	int m_time;//弾発射間隔制御用変数
-	int m_move_time;
-	int pbullet_interval;
-	bool pbullet_enable;
+	int m_move_time;//移動硬直制御用変数
+	int pbullet_interval;//貫通弾当たり判定制御用変数
+	bool pbullet_enable;//貫通弾当たり判定flag
 
-	float m_scroll_map_x{ 0 };
+	float m_scroll_map_x{ 0 };//スクロール値格納用
 	float m_scroll_map_y{ 0 };
 
 
-	bool m_hit_up;
+	bool m_hit_up;//当たり判定
 	bool m_hit_down;
 	bool m_hit_left;
 	bool m_hit_right;

@@ -13,6 +13,7 @@ public:
 private:
 	float m_x;//ˆÊ’u
 	float m_y;
+
 	float m_r;//Šp“x
 
 	int m_time{ 0 };//ŠÔ§Œä—p
