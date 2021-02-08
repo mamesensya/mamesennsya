@@ -20,6 +20,11 @@ void CObjChara::Init()
 {
 	m_hp = 2;
 
+	m_hit_up = false;
+	m_hit_left = false;
+	m_hit_right = false;
+	m_hit_down = false;
+
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	//ヒーローからフラグ情報をもらって代入
 	m_hero_flag = hero->m_hero_flag;

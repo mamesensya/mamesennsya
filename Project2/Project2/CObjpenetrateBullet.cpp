@@ -16,6 +16,11 @@ void CObjPenetrateBullet::Init() {
 	m_vx = 0;
 	m_vy = 0;
 
+	m_up = false;
+	m_reft = false;
+	m_right = false;
+	m_down = false;
+
 	Hits::SetHitBox(this, m_x, m_y, 32, 32, ELEMENT_RED, OBJ_PENETRATE_BULLET, 1);
 };
 
@@ -60,14 +65,10 @@ void CObjPenetrateBullet::Action() {
 	{
 		if (Hit->CheckObjNameHit(data_base2[i]) != nullptr)
 		{
-
-			if (i == 3)
+			if (flag == false)
 			{
-				if (flag == false)
-				{
-					pbullet_interval = 7;
-					flag = true;
-				}
+				pbullet_interval = 0;
+				flag = true;
 			}
 			//貫通弾は貫通弾でインターバルを使う
 			if (pbullet_interval==0)
@@ -84,8 +85,6 @@ void CObjPenetrateBullet::Action() {
 				flag = false;
 			}
 		}
-		
-
 	}
 	for (int i = 0; i <= 3; i++)
 	{

@@ -23,6 +23,11 @@ void CObjBoss2::Init()
 	pbullet_interval = 0; //貫通弾ヒットの間隔
 	pbullet_enable = false; //貫通弾ダメージ有効
 
+	m_hit_up = false;
+	m_hit_left = false;
+	m_hit_right = false;
+	m_hit_down = false;
+
 	//HitBox追加
 	Hits::SetHitBox(this, m_x, m_y, 150, 172, ELEMENT_ENEMY, OBJ_BOSS2, 1);
 }

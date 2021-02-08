@@ -26,7 +26,6 @@ private:
 	bool m_reft;
 	bool m_right;
 	bool m_down;
-	bool m_hit;
 
 	float m_scroll_map_x{ 0 };//スクロール値格納用
 	float m_scroll_map_y{ 0 };
@@ -34,5 +33,5 @@ private:
 	float m_newscroll_x{0};//現在のスクロールの値を格納
 	float m_newscroll_y{0};
 
-	int num;//弾丸
+	int bullettype;//弾丸
 };

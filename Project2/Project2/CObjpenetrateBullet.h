@@ -28,7 +28,6 @@ private:
 	bool m_reft;
 	bool m_right;
 	bool m_down;
-	bool m_hit;
 
 	float m_scroll_map_x{ 0 };//スクロール値格納用
 	float m_scroll_map_y{ 0 };

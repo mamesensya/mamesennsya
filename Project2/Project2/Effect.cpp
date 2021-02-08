@@ -62,5 +62,5 @@ void Effect::Draw()
 	dst.m_bottom = 45.0f + m_y ;
 	SetPrio(80);
 	//•`‰æ
-	Draw::Draw(30, &src, &dst, c, m_r+90);
+	Draw::Draw(12, &src, &dst, c, m_r+90);
 }

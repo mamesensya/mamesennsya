@@ -38,7 +38,7 @@ void CObjBox::Action()
 	{
 		int x = m_x;
 		int y = m_y;
-		block->m_map[x / 64][y / 64] == 0;
+		block->m_map[x / 64][y / 64] = 0;
 
 		//“¤” ‚ğíœ
 		this->SetStatus(false);

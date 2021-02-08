@@ -18,6 +18,11 @@ void CObjBossBullet2::Init()
 	m_vx = 0.0f;
 	m_vy = 0.0f;
 
+	m_up = false;
+	m_reft = false;
+	m_right = false;
+	m_down = false;
+
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
@@ -114,6 +119,6 @@ void CObjBossBullet2::Draw()
 	dst.m_left = -10.0f + m_x + m_scroll_map_x;
 	dst.m_right = 110.0f + m_x + m_scroll_map_x;
 	dst.m_bottom = 110.0f + m_y + m_scroll_map_y;
-
+	
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 }

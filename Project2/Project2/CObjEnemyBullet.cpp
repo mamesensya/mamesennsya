@@ -27,6 +27,11 @@ void CObjEnemyBullet::Init()
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
 
+	m_up = false;
+	m_reft = false;
+	m_right = false;
+	m_down = false;
+
 	//HitBoxçÏê¨
 	Hits::SetHitBox(this, m_x+m_scroll_map_x, m_y+m_scroll_map_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
 }

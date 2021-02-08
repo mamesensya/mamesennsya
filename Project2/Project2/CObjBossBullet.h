@@ -36,11 +36,6 @@ private:
 	float m_scroll_map_x{ 0 };//スクロール値格納用変数
 	float m_scroll_map_y{ 0 };
 
-
-	//ボス座標
-	float Bx;
-	float By;
-
 	//angleを実行するか判断する変数
 	bool m_check{false};
 

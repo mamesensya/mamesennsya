@@ -41,7 +41,7 @@ void CSceneManager::GameLoop()
 	CDirectXDeviec::ViewDraw2D();
 
 	Swap();			//シーン切り替え
-	SceneAction();	//シーンアクション実行
+ 	SceneAction();	//シーンアクション実行
 	SceneDraw();	//シーン描画
 	
 	m_TimeEnd=timeGetTime();

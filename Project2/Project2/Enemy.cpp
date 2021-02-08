@@ -29,6 +29,11 @@ void CObjEnemy::Init()
 	m_time = 0;//弾丸発射制御用time
 	m_move_time = 0;//移動硬直用time
 
+	m_hit_up = false;
+	m_hit_left = false;
+	m_hit_right = false;
+	m_hit_down = false;
+
 	pbullet_interval = 0; //貫通弾ヒットの間隔
 	pbullet_enable = false; //貫通弾ダメージ有効
 
@@ -93,9 +98,6 @@ void CObjEnemy::Action()
 			x = m_x - cx;
 			y = m_y - cy;
 		}
-
-		if ((x < -400.0f && x > 400.0f) || (y < -400.0f && y > 400.0f));
-
 
 		if ((x >= -400.0f && x <= 400.0f) && (y >= -400.0f && y <= 400.0f))
 		{

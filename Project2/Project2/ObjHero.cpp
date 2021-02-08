@@ -63,7 +63,10 @@ void CObjHero::Init()
 		m_hp = HP;
 		bullet = m_bullet + m_unique_bullet_1 + m_unique_bullet_2;
 
-	
+		m_hit_up = false;
+		m_hit_left = false;
+		m_hit_right = false;
+		m_hit_down = false;
 
 	//“–‚½‚è”»’è
 	Hits::SetHitBox(this, m_x, m_y, 64, 64, ELEMENT_PLAYER, OBJ_HERO, 1);

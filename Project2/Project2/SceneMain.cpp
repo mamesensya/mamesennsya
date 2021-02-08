@@ -80,20 +80,19 @@ void CSceneMain::InitScene()
 	Audio::LoadAudio(13, L"SE敵弾着弾音.wav", EFFECT);
 	Audio::LoadAudio(14, L"SE主弾着弾音.wav", EFFECT);
 
-	//ボリュームを1.5増やす
+	//ボリュームを1.0増やす
 	Audio::VolumeMaster(1.0f);
 
 	//音楽スタート
 	Audio::Start(0);
 
-	//敵戦車
-	Draw::LoadImageW(L"鬼トランプJ.png", 19, TEX_SIZE_512);
+	//主人公グラフィック読み込み(300×300)
+	Draw::LoadImageW(L"さいころ5.png", 1, TEX_SIZE_512);
 	//敵の弾（BB弾）
 	Draw::LoadImageW(L"EnemyBB.png", 2, TEX_SIZE_512);
 	//床
 	Draw::LoadImageW(L"床改.png", 3, TEX_SIZE_512);
-	//敵　鬼
-	Draw::LoadImageW(L"おにボタン.png", 20, TEX_SIZE_512);
+
 	//ボス戦車
 	Draw::LoadImageW(L"おにゴム　赤.png", 5, TEX_SIZE_512);
 	//鬼　攻撃
@@ -105,28 +104,25 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"土台.png", 9, TEX_SIZE_512);
 	Draw::LoadImageW(L"枝豆.png", 10, TEX_SIZE_512);
 	Draw::LoadImageW(L"黒豆.png", 11, TEX_SIZE_512);
+	//エフェクト
+	Draw::LoadImageW(L"当たりエフェクト.png", 12, TEX_SIZE_512);
 	//壁
 	Draw::LoadImageW(L"hako.png", 13, TEX_SIZE_512);
 	//弾
 	Draw::LoadImageW(L"大豆.jpg", 14, TEX_SIZE_512);
-	//壊すと豆が出る箱
-	Draw::LoadImageW(L"豆箱.jpg", 21, TEX_SIZE_512);
-	//壊れる壁
-	Draw::LoadImageW(L"hako.png", 17, TEX_SIZE_512);
-	//主人公グラフィック読み込み(300×300)
-	Draw::LoadImageW(L"さいころ5.png", 1, TEX_SIZE_512);
-	//主人公表示
-	CObjHero* obj = new CObjHero(0,0,180);
-	Objs::InsertObj(obj, OBJ_HERO, 10);
-
-
 	//主人公（人）
 	Draw::LoadImageW(L"豆　静止.png", 15, TEX_SIZE_512);
 
+	//壊れる壁
+	Draw::LoadImageW(L"hako.png", 17, TEX_SIZE_512);
+	//敵戦車
+	Draw::LoadImageW(L"鬼トランプJ.png", 19, TEX_SIZE_512);
+	//敵　鬼
+	Draw::LoadImageW(L"おにボタン.png", 20, TEX_SIZE_512);
+	//壊すと豆が出る箱
+	Draw::LoadImageW(L"豆箱.jpg", 21, TEX_SIZE_512);
 	//主人公（人）の攻撃
 	Draw::LoadImageW(L"主人公近接攻撃（仮）.png", 22, TEX_SIZE_512);
-
-	
 
 	//ユーザーインターフェースで使用する画像集---------------------------------------------/
 	Draw::LoadImageW(L"heart.png", 23, TEX_SIZE_512);	    //戦車　の体力表示
@@ -139,11 +135,9 @@ void CSceneMain::InitScene()
 	Draw::LoadImageW(L"material.png", 31, TEX_SIZE_512);
 	//-------------------------------------------------------------------------------------/
 
-	/*CObjBox* obj_box = new CObjBox(400, 300);
-	Objs::InsertObj(obj_box, OBJ_BOX, 11);*/
-
-	//CObjbreakblock* obj_break_block = new CObjbreakblock(200, 300);
-	//Objs::InsertObj(obj_break_block, OBJ_BREAK_BLOCK, 17);
+		//主人公表示
+	CObjHero* obj = new CObjHero(0, 0, 180);
+	Objs::InsertObj(obj, OBJ_HERO, 10);
 
 	//ユーザーインタフェース
 	CObjUserInterface* obj_ui = new CObjUserInterface();
@@ -161,11 +155,6 @@ void CSceneMain::InitScene()
 	//blockオブジェクトの作成
 	CObjBlock* obj_b = new CObjBlock(map);
 	Objs::InsertObj(obj_b, OBJ_BLOCK, 4);
-
-	
-
-	//エフェクト
-	Draw::LoadImageW(L"当たりエフェクト.png", 30,TEX_SIZE_512);
 }
 
 

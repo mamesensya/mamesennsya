@@ -25,11 +25,16 @@ void CObjBoss::Init()
 	m_vx = 0.0f;    //移動方向
 	m_vy = 0.0f;
 	m_r = 0.0f;//向きを決める変数
-	m_hp = 15.0f;//体力
+	m_hp = 25.0f;//体力
 	count = 0;//向きを固定するカウント
 	m_time = 0;//弾丸発射制御用time
 	m_time2 = 0;
 	m_move_time = 0;//移動硬直用time
+
+	m_hit_up = false;
+	m_hit_left = false;
+	m_hit_right = false;
+	m_hit_down = false;
 
 	pbullet_interval = 0; //貫通弾ヒットの間隔
 	pbullet_enable = false; //貫通弾ダメージ有効

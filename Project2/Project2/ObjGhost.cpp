@@ -24,7 +24,10 @@ void CObjGhost::Init()
 	m_time = 0;
 	m_r = 0.0f;
 
-
+	m_hit_up = false;
+	m_hit_left = false;
+	m_hit_right = false;
+	m_hit_down = false;
 
 	//“–‚½‚è”»’è
 	Hits::SetHitBox(this, m_x, m_y, 30, 30, ELEMENT_ENEMY, OBJ_GHOST, 4);

@@ -25,7 +25,10 @@ void CObjBossBullet::Init()
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
 
-	
+	m_up = false;
+	m_reft = false;
+	m_right = false;
+	m_down = false;
 
 	//HitBox作成
 	Hits::SetHitBox(this, m_x+m_scroll_map_x, m_y+m_scroll_map_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
@@ -90,7 +93,7 @@ void CObjBossBullet::Action()
 
 	//ブロックと弾の当たり判定　関数に値を渡す
 	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
-	bbh->BlockHit(&Bx, &By, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
+	bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
 
 	m_x -= m_scroll_map_x;
 	m_y -= m_scroll_map_y;

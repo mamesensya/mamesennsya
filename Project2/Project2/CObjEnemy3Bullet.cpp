@@ -20,6 +20,11 @@ void CObjEnemy3B::Init() {
 	mx=0;
 	my = 0;
 
+	m_up = false;
+	m_reft = false;
+	m_right = false;
+	m_down = false;
+
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();

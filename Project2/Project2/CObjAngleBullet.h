@@ -33,6 +33,7 @@ private:
 	bool m_reft;
 	bool m_right;
 	bool m_down;
+
 	bool m_hit;
 
 };

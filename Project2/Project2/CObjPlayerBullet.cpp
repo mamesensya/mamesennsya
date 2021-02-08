@@ -12,12 +12,17 @@ CObjPlayerBullet::CObjPlayerBullet(float x, float y, float r,int n) {
 	m_x = x+20;
 	m_y = y+20;
 	m_r = r;
-	num = n;
+	bullettype = n;
 };
 
 void CObjPlayerBullet::Init() {
 	m_vx = 0;
 	m_vy = 0;
+
+	m_up = false;
+	m_reft = false;
+	m_right = false;
+	m_down = false;
 
 	//スクロールした分のベクトルを取得
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
@@ -88,10 +93,6 @@ void CObjPlayerBullet::Action() {
 			{
 				Effect* effect = new Effect(m_x, m_y, m_r);
 				Objs::InsertObj(effect, OBJ_EFFECT, 20);
-
-			
-
-				m_hit = false;
 			}
 
 		}
@@ -162,7 +163,7 @@ void CObjPlayerBullet::Draw() {
 
 	RECT_F src;
 	RECT_F dst;
-	if (num == 1) {
+	if (bullettype == 1) {
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;
 		src.m_right = 768.0f;
@@ -175,7 +176,7 @@ void CObjPlayerBullet::Draw() {
 
 		Draw::Draw(14, &src, &dst, c, 0);
 	}
-	if (num == 2)
+	if (bullettype == 2)
 	{
 		src.m_top = 0.0f;
 		src.m_left = 0.0f;

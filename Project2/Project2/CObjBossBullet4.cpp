@@ -19,6 +19,14 @@ void CObjBossBullet4::Init()
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
 
+	m_vx = 0;
+	m_vy = 0;
+
+	m_up = false;
+	m_reft = false;
+	m_right = false;
+	m_down = false;
+
 	//HitBoxçÏê¨
 	Hits::SetHitBox(this, m_x+m_scroll_map_x, m_y+m_scroll_map_y, 32, 32, ELEMENT_ENEMY, OBJ_ENEMY_BULLET, 1);
 }
@@ -126,6 +134,6 @@ void CObjBossBullet4::Draw()
 	dst.m_left = 0.0f + m_x + m_scroll_map_x;
 	dst.m_right = 32.0f + m_x + m_scroll_map_x;
 	dst.m_bottom = 32.0f + m_y + m_scroll_map_y;
-
+	
 	Draw::Draw(2, &src, &dst, c, 0.0f);
 }

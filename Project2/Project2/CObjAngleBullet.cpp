@@ -23,6 +23,13 @@ CObjAngleBullet::CObjAngleBullet(float x, float y, float r)
 void CObjAngleBullet::Init()
 {
 
+    m_up = false;
+    m_reft = false;
+    m_right = false;
+    m_down = false;
+
+
+    m_hit = false;
 
     //スクロールした分のベクトルを取得
     CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
