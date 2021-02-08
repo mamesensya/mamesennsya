@@ -18,7 +18,7 @@ CObjBoss2::CObjBoss2(float x, float y)
 
 void CObjBoss2::Init()
 {
-	m_hp = 15.0f;
+	m_hp = 25.0f;
 	m_attack = false;
 	pbullet_interval = 0; //貫通弾ヒットの間隔
 	pbullet_enable = false; //貫通弾ダメージ有効
