@@ -29,10 +29,10 @@ private:
 	float m_x;//位置
 	float m_y;
 
-	float m_vx;
+	float m_vx;//移動ベクトル
 	float m_vy;
 
-	float m_scroll_map_x{ 0 };
+	float m_scroll_map_x{ 0 };//スクロール値用
 	float m_scroll_map_y{ 0 };
 
 	int num{0};

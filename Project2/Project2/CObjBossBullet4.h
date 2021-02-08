@@ -32,7 +32,7 @@ private:
 	float m_speed{ 0.5 };//弾丸スピード
 
 
-	bool m_up;//当たり判定
+	bool m_up;//当たり判定用
 	bool m_reft;
 	bool m_right;
 	bool m_down;

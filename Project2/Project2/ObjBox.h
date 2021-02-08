@@ -19,6 +19,6 @@ private:
 	float m_x;//位置
 	float m_y;
 
-	float m_scroll_map_x{ 0 };
+	float m_scroll_map_x{ 0 };//スクロール値用
 	float m_scroll_map_y{ 0 };
 };

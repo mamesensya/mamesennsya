@@ -159,9 +159,6 @@
     <ClInclude Include="CObjEnemy3.h">
       <Filter>.hファイル</Filter>
     </ClInclude>
-    <ClInclude Include="CObjEnemy3Bullet.h">
-      <Filter>.cppファイル</Filter>
-    </ClInclude>
     <ClInclude Include="CObjEnemyBullet.h">
       <Filter>.hファイル</Filter>
     </ClInclude>
@@ -260,6 +257,9 @@
     </ClInclude>
     <ClInclude Include="GameL\UserData.h">
       <Filter>分類不明</Filter>
+    </ClInclude>
+    <ClInclude Include="CObjEnemy3Bullet.h">
+      <Filter>.hファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

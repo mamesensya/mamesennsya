@@ -29,8 +29,8 @@ private:
 	float m_y;//y座標
 	float m_get_x;//Hero座標x
 	float m_get_y;//Hero座標y
-	float m_vx;//移動方向x
-	float m_vy;//移動方向y
+	float m_vx;//移動ベクトルx
+	float m_vy;//移動ベクトルy
 	float m_posture;//
 	float m_r;//移動方向に描画する変数
 	float m_hp;//HP
@@ -49,7 +49,7 @@ private:
 	float m_scroll_map_y{ 0 };
 
 
-	bool m_hit_up;//当たり判定
+	bool m_hit_up;//当たり判定用
 	bool m_hit_down;
 	bool m_hit_left;
 	bool m_hit_right;

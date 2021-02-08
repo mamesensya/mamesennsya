@@ -176,9 +176,6 @@ void CObjBoss2::Action()
 			Audio::Start(13);
 
 			m_hp--;
-
-			Effect* effect = new Effect(m_x, m_y,m_r);
-			Objs::InsertObj(effect, OBJ_EFFECT, 20);
 			pbullet_enable = true;
 			if (m_hp <= 0 && stage != 4) {				
 				//”š”­‰¹–Â‚ç‚·
@@ -199,7 +196,7 @@ void CObjBoss2::Action()
 			}
 		}
 	}
-	else if (pbullet_enable == true) {
+	if (pbullet_enable == true) {
 		pbullet_interval++;
 		if (pbullet_interval > 7) {
 			pbullet_interval = 0;

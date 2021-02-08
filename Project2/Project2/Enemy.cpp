@@ -311,15 +311,11 @@ void CObjEnemy::Action()
 		Audio::Start(13);
 
 		m_hp--;
-	/*	Effect* effect = new Effect(m_x, m_y,m_r);
-		Objs::InsertObj(effect, OBJ_EFFECT, 20);*/
 		if (m_hp <= 0) {
 			//爆発音鳴らす
 			Audio::Start(12);
 			CObjUserInterface* obj_ui = (CObjUserInterface*)Objs::GetObj(OBJ_USERINTERFACE);
 			obj_ui->setenemyMax--;
-		/*	CObjbreakblock* Bblock = (CObjbreakblock*)Objs::GetObj(OBJ_BREAK_BLOCK);
-			Bblock->Enemycount--;*/
 			this->SetStatus(false);//自身に削除命令を出す
 			Hits::DeleteHitBox(this);//弾丸が所有するHitBoxに削除する。
 
@@ -333,11 +329,9 @@ void CObjEnemy::Action()
 			//弾着弾音
 			Audio::Start(13);
 
+
 			m_hp--;
 			pbullet_enable = true;
-			Effect* effect = new Effect(m_x, m_y,m_r);
-			Objs::InsertObj(effect, OBJ_EFFECT, 20);
-		
 			if (m_hp <= 0) {
 				//爆発音鳴らす
 				Audio::Start(12);
@@ -349,7 +343,7 @@ void CObjEnemy::Action()
 			}
 		}
 	}
-	else if (pbullet_enable == true) {
+	if (pbullet_enable == true) {
 		pbullet_interval++;
 		if (pbullet_interval > 7) {
 			pbullet_interval = 0;

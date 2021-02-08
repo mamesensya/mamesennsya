@@ -35,7 +35,7 @@ private:
 	float m_scroll_map_x{ 0 };//スクロール値格納用変数
 	float m_scroll_map_y{ 0 };
 
-	bool m_hit_up;//当たり判定
+	bool m_hit_up;//当たり判定用
 	bool m_hit_down;
 	bool m_hit_left;
 	bool m_hit_right;

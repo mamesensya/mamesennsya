@@ -55,19 +55,38 @@ void CObjPenetrateBullet::Action() {
 	CObjBlock* bbh = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
 	bbh->BlockHit(&m_x, &m_y, &m_up, &m_down, &m_reft, &m_right, &m_vx, &m_vy);
 
-	//for (int i = 0; i <= 7; i++)
-	//{
-	//	if (Hit->CheckObjNameHit(data_base2[i]) != nullptr)
-	//	{
-	//		Effect* effect = new Effect(m_x, m_y, m_r);
-	//		Objs::InsertObj(effect, OBJ_EFFECT, 20);
-
-	//		m_hit = false;
-	//	}
-
-	//}
 	
+	for (int i = 0; i <= 7; i++)
+	{
+		if (Hit->CheckObjNameHit(data_base2[i]) != nullptr)
+		{
 
+			if (i == 3)
+			{
+				if (flag == false)
+				{
+					pbullet_interval = 7;
+					flag = true;
+				}
+			}
+			//貫通弾は貫通弾でインターバルを使う
+			if (pbullet_interval==0)
+			{
+				Effect* effect = new Effect(m_x, m_y, m_r);
+				Objs::InsertObj(effect, OBJ_EFFECT, 20);
+			}
+			if (flag == true) {
+				pbullet_interval++;
+			}
+			if (pbullet_interval >7 )
+			{
+				pbullet_interval = 0;
+				flag = false;
+			}
+		}
+		
+
+	}
 	for (int i = 0; i <= 3; i++)
 	{
 
@@ -80,46 +99,6 @@ void CObjPenetrateBullet::Action() {
 			Hits::DeleteHitBox(this);
 		}
 	}
-	for (int i = 0; i <= 7; i++)
-	{
-		if (Hit->CheckObjNameHit(data_base2[i]) != nullptr)
-		{
-			if (i == 3)
-			{
-				if (flag == false)
-				{
-					pbullet_interval = 0;
-					flag = true;
-				}
-			}
-			if (i == 5) {
-				CObjEnemy* OBJ_E = (CObjEnemy*)Objs::GetObj(OBJ_ENEMY);
-				pbullet_interval = OBJ_E->GetBI();
-			}
-			else if (i == 6) {
-				CObjBoss* OBJ_EB = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
-				pbullet_interval = OBJ_EB->GetBI();
-			}
-			else if (i == 7) {
-				CObjBoss2* OBJ_EB2 = (CObjBoss2*)Objs::GetObj(OBJ_BOSS2);
-				pbullet_interval = OBJ_EB2->GetBI();
-			}
-			if (pbullet_interval==0)
-			{
-				Effect* effect = new Effect(m_x, m_y, m_r);
-				Objs::InsertObj(effect, OBJ_EFFECT, 20);
-			}
-			if (i == 3) {
-				pbullet_interval++;
-			}
-			if (pbullet_interval > 7) 
-			{
-				pbullet_interval = 0;
-			}
-		}
-
-	}
-	
 };
 
 void CObjPenetrateBullet::Draw() {

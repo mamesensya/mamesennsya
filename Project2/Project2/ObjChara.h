@@ -44,7 +44,7 @@ private:
 	bool m_attack{ true };//UŒ‚ŠÔŠu§Œä—p
 	bool m_hit{ true };//”í’eŠÔŠu§Œä—p
 
-	bool m_hit_up;
+	bool m_hit_up;//“–‚½‚è”»’è—p
 	bool m_hit_down;
 	bool m_hit_left;
 	bool m_hit_right;

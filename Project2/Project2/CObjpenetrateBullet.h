@@ -21,7 +21,7 @@ private:
 	float m_r;//角度
 	
 	bool pbullet_enable;//貫通弾当たり判定
-	int pbullet_interval=1;//貫通弾hitタイミング制御用
+	int pbullet_interval;//貫通弾hitタイミング制御用
 	bool flag = false;//貫通弾初期化flag
 
 	bool m_up;//当たり判定
