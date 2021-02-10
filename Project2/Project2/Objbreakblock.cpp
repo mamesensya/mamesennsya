@@ -6,6 +6,7 @@
 #include "Objbreakblock.h"
 #include"ObjUserInterface.h"
 #include"ObjHero.h"
+#include"GameL\Audio.h"
 
 
 
@@ -55,7 +56,10 @@ void CObjbreakblock::Action()
 			//壁を削除
 			this->SetStatus(false);
 			Hits::DeleteHitBox(this);
-			
+			//壁が壊れたらBGMをボス戦用に変更
+			Audio::LoadAudio(0, L"BGMBoss.wav", SOUND_TYPE::BACK_MUSIC);
+			Audio::Start(0);
+			Audio::VolumeMaster(0.0f);
 		}
 
 		if (m_x >= (80 * 64) || m_y >= (60 * 64))

@@ -72,7 +72,6 @@ void CSceneMain::InitScene()
 	//âπäyì«Ç›çûÇ›
 	Audio::LoadAudio(0, L"BGMGame.wav", BACK_MUSIC);
 	Audio::LoadAudio(1, L"BGMGame2.wav", BACK_MUSIC);
-	Audio::LoadAudio(2, L"BGMBossÅiâºÅj.wav", BACK_MUSIC);
 
 	Audio::LoadAudio(10, L"SEíeî≠éÀâπ.wav", EFFECT);
 	Audio::LoadAudio(11, L"SEíeälìæâπ.wav", EFFECT);
