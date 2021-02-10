@@ -6,25 +6,25 @@
 using namespace GameL;
 
 CObjMinimap::CObjMinimap(int map[60][80]) {
-	memcpy(mapdata, map, sizeof(int) * (60 * 80));
+	memcpy(mapdata, map, sizeof(int) * (60 * 80)); //SceneMainで読み込んだマップデータを別の配列にコピー
 };
 
 void CObjMinimap::Init() {
 };
 
 void CObjMinimap::Action() {
-	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO); //主人公の現在座標を取得する為に必要
+	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK); //スクロールの値を取得する為に必要
 	
-	src_x = (int)block->GetSX() - block->GetSX() - block->GetSX();
+	src_x = (int)block->GetSX() - block->GetSX() - block->GetSX(); //スクロール値の反転
 	src_y = (int)block->GetSY() - block->GetSY() - block->GetSY();
 
-	if (hero != nullptr) {
-		px = ((hero->GetX() +src_x) + 32.0f) / 64;
-		py = ((hero->GetY() +src_y) + 32.0f) / 64 ;
+	if (hero != nullptr) { //heroオブジェクトが存在している場合のみ以下の処理を実行
+		px = ((hero->GetX() +src_x) + 32.0f) / 64;  //主人公の座標（中心を基点に）取得
+		py = ((hero->GetY() +src_y) + 32.0f) / 64 ; //Y軸（中心を基点に）取得
 
-		if (px > 5 && px < 50) scroll_x = px-6;
-		if (py > 5 && py < 70) scroll_y = py-6;
+		if (px > 5 && px < 50) scroll_x = px-6; //主人公が5マス～50マス以内にいる場合はスクロールさせる
+		if (py > 5 && py < 70) scroll_y = py-6; //主人公が5マス～70マス以内にいる場合はスクロールさせる
 	}
 };
 
