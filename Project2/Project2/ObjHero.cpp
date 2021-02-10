@@ -59,7 +59,7 @@ void CObjHero::Init()
 		m_bullet = 10;
 		m_unique_bullet_1 = 2;
 		m_unique_bullet_2 = 2;
-		m_hero_flag = false;
+		m_hero_flag = true;
 		m_hp = HP;
 		bullet = m_bullet + m_unique_bullet_1 + m_unique_bullet_2;
 
@@ -78,6 +78,8 @@ void CObjHero::Action()
 	//HitBoxの内容更新
 	CHitBox* hit = Hits::GetHitBox(this);
 	
+	hit->SetPos(m_x, m_y);
+
 	//主人公（人）の状態なら動作しない
 	if (m_hero_flag == false)
 	{
@@ -162,7 +164,6 @@ void CObjHero::Action()
 			pb->SetSX(m_scroll);
 			pb->SetSY(m_scroll2);
 		}
-		hit->SetPos(m_x, m_y);
 
 		if (m_attack == true) {
 			//通常弾を発射

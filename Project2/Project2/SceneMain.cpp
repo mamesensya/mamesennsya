@@ -139,6 +139,9 @@ void CSceneMain::InitScene()
 	CObjHero* obj = new CObjHero(0, 0, 180);
 	Objs::InsertObj(obj, OBJ_HERO, 10);
 
+	CObjChara* obj_c = new CObjChara(300, 300);
+	Objs::InsertObj(obj_c, OBJ_CHARA, 10);
+
 	//ユーザーインタフェース
 	CObjUserInterface* obj_ui = new CObjUserInterface();
 
