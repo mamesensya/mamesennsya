@@ -114,9 +114,6 @@ void CObjMinimap::Draw() {
 
 		Draw::Draw(31, &src, &dst, c, 0);
 	}
-
-	swprintf_s(str, L"X=%d,Y=%d", px, py);
-	Font::StrDraw(str, 100, 100, 20, c);
 };
 
 void CObjMinimap::MapReload(int map[60][80]) {
