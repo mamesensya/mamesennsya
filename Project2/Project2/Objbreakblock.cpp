@@ -48,7 +48,7 @@ void CObjbreakblock::Action()
 
 	CHitBox* hit = Hits::GetHitBox(this);
 
-
+	CObjMinimap* minimap = (CObjMinimap*)Objs::GetObj(OBJ_MINIMAP);
 
 		//“G‚ğ‘Sˆõ“|‚µ‚½‚ç‚µ‚½‚ç•Ç‚ğíœ
 		if (Enemycount==0)

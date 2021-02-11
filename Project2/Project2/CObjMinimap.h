@@ -20,7 +20,8 @@ private:
 
 	int bx = 0; //豆状態の主人公の中心座標を取得
 	int by = 0;
-
+	int oldbx = 0;
+	int oldby = 0;
 	int scroll_x = 0; //ミニマップをスクロールさせる際に必要になる変数
 	int scroll_y = 0;
 
