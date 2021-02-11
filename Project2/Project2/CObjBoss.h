@@ -18,12 +18,10 @@ public:
 	float GetY() { return m_y; }
 	float GetR() { return m_r; }
 	bool Getcek() { return m_check; }
-
+	void oniDamage() { m_oni_count--; }
 	int GetBI() { return pbullet_interval; }
+	int GetBcount() { return m_Bcount; }
 
-	int m_Bcount{ 0 };
-	int m_oni_count{ 0 };
-	int round{ 0 };
 private:
 	float m_x;//x座標
 	float m_y;//y座標
@@ -45,6 +43,8 @@ private:
 	float m_scroll_map_x{ 0 };//スクロール値格納変数
 	float m_scroll_map_y{ 0 };
 
+	int m_oni_count{ 0 };//鬼の数を制御する変数
+	int m_Bcount{ 0 };
 
 	bool m_hit_up;//当たり判定用
 	bool m_hit_down;

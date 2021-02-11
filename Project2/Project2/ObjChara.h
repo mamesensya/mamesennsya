@@ -3,6 +3,8 @@
 
 using namespace GameL;
 
+static int Hhp = 2;
+
 class CObjChara :public CObj
 {
 public:
@@ -14,7 +16,9 @@ public:
 
 	float GetX() { return m_x; }
 	float GetY() { return m_y; }
-	
+	void Sethp() { Hhp = m_hp; }
+	void Gethp() { m_hp = Hhp; }
+	void reset() { Hhp = 2; }
 
 	void SetX(float x) { m_px = x; }
 	void SetY(float y) { m_py = y; }
@@ -50,3 +54,4 @@ private:
 	bool m_hit_right;
 	
 };
+

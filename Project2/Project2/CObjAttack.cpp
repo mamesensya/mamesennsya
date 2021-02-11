@@ -28,6 +28,9 @@ void CObjAttack::Action()
 {
 	CHitBox* Hit = Hits::GetHitBox(this);
 
+
+	m_time++;
+
 	//ŽålŒö‚ªŒü‚¢‚Ä‚¢‚éŒü‚«‚É‚æ‚Á‚ÄUŒ‚‚ÌŒü‚«‚ð•Ï‚¦‚é
 	if (m_r == 0.0f)
 	{
@@ -49,13 +52,35 @@ void CObjAttack::Action()
 		//HitBox‚ÌˆÊ’uXV
 		Hit->SetPos(m_x + 25.0f, m_y);
 	}
+
+
 	//ŽålŒö‚ÌUŒ‚ŠÔŠu§Œä
-	m_time++;
 	if (m_time == 10)
 	{
 		this->SetStatus(false);
 		Hits::DeleteHitBox(this);
 		m_time = 0;
+	}
+	else if (Hit->CheckObjNameHit(OBJ_ENEMY) != nullptr) {
+		Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
+	else if (Hit->CheckObjNameHit(OBJ_BOSS) != nullptr) {
+		Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+	}
+	else if (Hit->CheckObjNameHit(OBJ_BOSS2) != nullptr) {
+		Effect* effect = new Effect(m_x, m_y, m_r);
+		Objs::InsertObj(effect, OBJ_EFFECT, 20);
+
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
 	}
 }
 
