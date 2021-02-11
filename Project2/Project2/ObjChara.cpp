@@ -34,6 +34,7 @@ void CObjChara::Init()
 
 void CObjChara::Action()
 {
+	Gethp();
 	//主人公の情報を取得
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
 	//主人公が存在しないなら動作しない
@@ -111,7 +112,6 @@ void CObjChara::Action()
 				OBJ_GHOST_ATTACK,
 				OBJ_BOSS_BULLET2,
 			};
-
 			//敵オブジェクトと接触したら主人公のm_hpが減少
 			if (m_hit == true)
 			{
@@ -122,14 +122,16 @@ void CObjChara::Action()
 						//弾着弾音
 						Audio::Start(14);
 
-						m_hp -= 1;
+						//m_hp -= 1;
 						m_hit = false;
+						Sethp();
 					}
 				}
 			}
 			//m_hpが０になると主人公を破棄
 			if (m_hp == 0)
 			{
+				reset();
 				this->SetStatus(false);//自身に削除命令を出す
 				Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 				Audio::VolumeMaster(-1.0f);
@@ -166,7 +168,7 @@ void CObjChara::Action()
 						m_hero_flag = false;
 
 						hero->m_hero_flag = false;
-
+						Sethp();
 						this->SetStatus(false);//自身に削除命令を出す
 						Hits::DeleteHitBox(this);//主人公が所有するHitBoxを削除する
 						//チャタリング防止用

@@ -41,7 +41,7 @@ void CObjBossBullet::Action()
 
 	CObjBoss* bb = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
 	if(bb!=nullptr)
-	count = bb->m_Bcount;
+	count = bb->GetBcount();
 
 	m_time ++ ;
 

@@ -24,7 +24,6 @@ void CSceneGameOver::Scene() {
 	wchar_t str[128];
 	float c[4] = { 1.0f,1.0f,1.0f,1.0f };
 	Font::StrDraw(L"G A M E   O V E R", 230, 300, 20, c);
-
 	//エンターキーでタイトルに移行
 	if (Input::GetVKey(VK_RETURN) == true)
 	{

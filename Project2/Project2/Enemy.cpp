@@ -71,9 +71,7 @@ void CObjEnemy::Action()
 	float y = 0;//主人公から敵のベクトルy
 
 	//主人公の座標取得
-
 	CObjHero* hero = (CObjHero*)Objs::GetObj(OBJ_HERO);
-	CObjChara* chara = (CObjChara*)Objs::GetObj(OBJ_CHARA);
 	if (hero != nullptr)
 	{
 		float hx = hero->GetX();
@@ -86,6 +84,9 @@ void CObjEnemy::Action()
 		hy = hy - m_scroll_map_y;
 		x = m_x - hx;
 		y = m_y - hy;
+		//豆主人公がいるとき豆主人公に向かって弾発射
+
+		CObjChara* chara = (CObjChara*)Objs::GetObj(OBJ_CHARA);
 		if (chara != nullptr)
 		{
 			cx = chara->GetX();
@@ -294,7 +295,7 @@ void CObjEnemy::Action()
 	{
 		Effect* effect = new Effect(m_x, m_y, m_r);
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
-		m_hp -= 0.05f;
+		m_hp -= 0.5f;
 
 		if (m_hp <= 0) {
 			//爆発音鳴らす

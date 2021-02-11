@@ -77,6 +77,23 @@ void CObjEnemy3::Action()
 		x = m_x - (hx-m_scroll_map_x);
 		y = m_y - (hy-m_scroll_map_y);
 
+		//“¤ŽålŒö‚ª‚¢‚é‚Æ‚«“¤ŽålŒö‚ÉŒü‚©‚Á‚Ä’e”­ŽË
+		CObjChara* chara = (CObjChara*)Objs::GetObj(OBJ_CHARA);
+		if (chara != nullptr)
+		{
+			float cx = 0;
+			float cy = 0;
+			cx = chara->GetX();
+			cy = chara->GetY();
+
+
+			cx = cx - m_scroll_map_x;
+			cy = cy - m_scroll_map_y;
+
+			x = m_x - cx;
+			y = m_y - cy;
+		}
+
 
 		if ((x >= -400.0f && x <= 400.0f) && (y >= -400.0f && y <= 400.0f))
 		{
@@ -271,7 +288,7 @@ void CObjEnemy3::Action()
 	{
 	/*	Effect* effect = new Effect(m_x, m_y, m_r);
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);*/
-		m_hp -= 0.05f;
+		m_hp -= 0.5f;
 		if (m_hp <= 0) {
 			//”š”­‰¹–Â‚ç‚·
 			Audio::Start(12);

@@ -131,7 +131,7 @@ void CObjBoss2::Action()
 	{
 		Effect* effect = new Effect(m_x, m_y, m_r);
 		Objs::InsertObj(effect, OBJ_EFFECT, 20);
-		m_hp -= 0.05f;
+		m_hp -= 0.1f;
 		if (m_hp <= 0 && stage != 4) {
 			//”š”­‰¹–Â‚ç‚·
 			Audio::Start(12);
@@ -151,7 +151,7 @@ void CObjBoss2::Action()
 			Scene::SetScene(new CSceneGameClear);
 		}
 	}
-	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	else if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
 	{
 		//’e’…’e‰¹
 		Audio::Start(13);

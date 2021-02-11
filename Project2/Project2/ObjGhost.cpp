@@ -180,9 +180,8 @@ void CObjGhost::Action()
 	}
 
 	
-
 	//ŽålŒö’e‚ÆÚG‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é
-	if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	if (hit->CheckObjNameHit(OBJ_ATTACK) != nullptr)
 	{
 
 		this->SetStatus(false);
@@ -191,7 +190,19 @@ void CObjGhost::Action()
 		CObjBoss* Boss = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
 		if (Boss != nullptr)
 		{
-			Boss->m_oni_count--;
+			Boss->oniDamage();
+		}
+	}
+	//ŽålŒö’e‚ÆÚG‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é
+	else if (hit->CheckObjNameHit(OBJ_BULLET) != nullptr)
+	{
+		this->SetStatus(false);
+		Hits::DeleteHitBox(this);
+
+		CObjBoss* Boss = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
+		if (Boss != nullptr)
+		{
+			Boss->oniDamage();
 		}
 	}
 	//ŽålŒö’e‚ÆÚG‚µ‚Ä‚¢‚é‚©‚Ç‚¤‚©’²‚×‚é
@@ -204,7 +215,7 @@ void CObjGhost::Action()
 		CObjBoss* Boss = (CObjBoss*)Objs::GetObj(OBJ_BOSS);
 		if (Boss != nullptr)
 		{
-			Boss->m_oni_count--;
+			Boss->oniDamage();
 		}
 	}
 	
