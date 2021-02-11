@@ -28,6 +28,8 @@ void CObjBox::Action()
 {
 	CHitBox* hit = Hits::GetHitBox(this);
 	CObjBlock* block = (CObjBlock*)Objs::GetObj(OBJ_BLOCK);
+	CObjMinimap* minimap = (CObjMinimap*)Objs::GetObj(OBJ_MINIMAP);
+
 	m_scroll_map_x = block->GetSX();
 	m_scroll_map_y = block->GetSY();
 
@@ -39,6 +41,8 @@ void CObjBox::Action()
 		int x = m_x;
 		int y = m_y;
 		block->m_map[x / 64][y / 64] = 0;
+		//ミニマップ更新
+		minimap->MapReload(block->m_map);
 
 		//豆箱を削除
 		this->SetStatus(false);
