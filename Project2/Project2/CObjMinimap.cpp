@@ -137,15 +137,15 @@ void CObjMinimap::Draw() {
 
 
 	c[0] = 0.0f; c[1] = 0.0f; c[2] = 0.0f; c[3] = 1.0f;
-	//デバッグ
-	swprintf_s(str, L"主人公　px=%d,py=%d", px, py);
-	Font::StrDraw(str, 100, 100, 20, c);
-	swprintf_s(str, L"豆　　　bx=%d,by=%d", bx, by);
-	Font::StrDraw(str, 100, 120, 20, c);
-	swprintf_s(str, L"豆　　　fix_x=%d", (int)590-((oldbx - bx) * 10));
-	Font::StrDraw(str, 100, 140, 20, c);
-	swprintf_s(str, L"豆　,   fix_y=%d", (int)80- ((oldby - by) * 10));
-	Font::StrDraw(str, 100, 160, 20, c);
+	////デバッグ
+	//swprintf_s(str, L"主人公　px=%d,py=%d", px, py);
+	//Font::StrDraw(str, 100, 100, 20, c);
+	//swprintf_s(str, L"豆　　　bx=%d,by=%d", bx, by);
+	//Font::StrDraw(str, 100, 120, 20, c);
+	//swprintf_s(str, L"豆　　　fix_x=%d", (int)590-((oldbx - bx) * 10));
+	//Font::StrDraw(str, 100, 140, 20, c);
+	//swprintf_s(str, L"豆　,   fix_y=%d", (int)80- ((oldby - by) * 10));
+	//Font::StrDraw(str, 100, 160, 20, c);
 };
 
 void CObjMinimap::MapReload(int map[60][80]) {

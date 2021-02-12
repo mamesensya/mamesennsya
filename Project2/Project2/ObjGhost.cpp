@@ -75,7 +75,22 @@ void CObjGhost::Action()
 		x = m_x - hx + m_scroll_map_x;
 		y = m_y - hy + m_scroll_map_y;
 
+		//“¤ŽålŒö‚ª‚¢‚é‚Æ‚«“¤ŽålŒö‚ÉŒü‚©‚Á‚Ä’e”­ŽË
+		CObjChara* chara = (CObjChara*)Objs::GetObj(OBJ_CHARA);
+		if (chara != nullptr)
+		{
+			float cx = 0;
+			float cy = 0;
+			cx = chara->GetX();
+			cy = chara->GetY();
 
+
+			cx = cx - m_scroll_map_x;
+			cy = cy - m_scroll_map_y;
+
+			x = m_x - cx;
+			y = m_y - cy;
+		}
 		
 
 

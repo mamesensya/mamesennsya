@@ -122,7 +122,7 @@ void CObjChara::Action()
 						//’e’…’e‰¹
 						Audio::Start(14);
 
-						//m_hp -= 1;
+						m_hp -= 1;
 						m_hit = false;
 						Sethp();
 					}
